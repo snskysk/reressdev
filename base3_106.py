@@ -32,41 +32,45 @@ def func1(value):
     #options = Options()
     #options.add_argument('--headless')
     #driver = webdriver.Chrome(chrome_options=options)
+    try:
+        print("---https://rs.rikkyo.ac.jp/にアクセス---")
+        driver.get(URL)
 
-    print("---https://rs.rikkyo.ac.jp/にアクセス---")
-    driver.get(URL)
+        print("---ユーザ情報を入力---")
+        driver.find_element_by_css_selector("#userNameInput").send_keys(USER)
+        driver.find_element_by_css_selector("#userNameInput").send_keys(Keys.RETURN)
 
-    print("---ユーザ情報を入力---")
-    driver.find_element_by_css_selector("#userNameInput").send_keys(USER)
-    driver.find_element_by_css_selector("#userNameInput").send_keys(Keys.RETURN)
+        driver.find_element_by_css_selector("#passwordInput").send_keys(PASS)
+        driver.find_element_by_css_selector("#passwordInput").send_keys(Keys.RETURN)
+        print("---ユーザ情報入力完了　―　ページ遷移---")
 
-    driver.find_element_by_css_selector("#passwordInput").send_keys(PASS)
-    driver.find_element_by_css_selector("#passwordInput").send_keys(Keys.RETURN)
-    print("---ユーザ情報入力完了　―　ページ遷移---")
+        time.sleep(1)
 
-    time.sleep(1)
+        #print("---スクリーンショットの保存---")
+        #driver.save_screenshot("gv/static/gv/images/test101.png")
 
-    print("---スクリーンショットの保存---")
-    driver.save_screenshot("gv/static/gv/images/test101.png")
-
-    print("---ページ遷移---")
-    driver.find_element_by_css_selector("#MainContent_Contents_MenuCtrl_lnkSeiseki").click()
-
-
-    print("---ページソースを取得---")
-    html=driver.page_source
-
-    print("---ページソースからテーブル要素を取得---")
-    tables = pd.io.html.read_html(html, flavor='bs4')
-    print("---全"+str(len(tables))+"個のテーブルを取得---")
-
-    time.sleep(1)
+        print("---ページ遷移---")
+        driver.find_element_by_css_selector("#MainContent_Contents_MenuCtrl_lnkSeiseki").click()
 
 
-    driver.close()
-    print("---Chromeをダウン---")
-    print("---process all complete---")
-    print("--------------------------")
+        print("---ページソースを取得---")
+        html=driver.page_source
+
+        print("---ページソースからテーブル要素を取得---")
+        tables = pd.io.html.read_html(html, flavor='bs4')
+        print("---全"+str(len(tables))+"個のテーブルを取得---")
+
+        time.sleep(1)
+
+
+        driver.close()
+        print("---Chromeをダウン---")
+        print("---process all complete---")
+        print("--------------------------")
+
+    except:
+        driver.quit()
+        print('error確認!chromeを閉じるよ')
 
 
     zen=["Ｓ","Ａ","Ｂ","Ｃ"]
@@ -305,8 +309,13 @@ def func1(value):
     # 予定達成率は、今期順当に単位をとれたとした場合の達成率
     present_rate,future_rate=[],[]
     for i in range(len(class_Unp)):
-        present_rate.append(got_U[i]/must_U[i]*100)
-        future_rate.append((got_U[i]+present_U[i])/must_U[i]*100)
+        if must_U[i]==0:
+            a=0
+            present_rate.append(a)
+            future_rate.append(a)
+        else:
+            present_rate.append(got_U[i]/must_U[i]*100)
+            future_rate.append((got_U[i]+present_U[i])/must_U[i]*100)
 
     present_rate=np.array(present_rate)
     future_rate=np.array(future_rate)
