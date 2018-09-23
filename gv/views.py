@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from .forms import userInfoForm, findForm
-import pandas as pd
 from .models import studentInfo, subjectInfo
 import main
 from pytojs import pytojsMaterials
