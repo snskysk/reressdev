@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class studentinfo(models.Model):
+class studentInfo(models.Model):
     user_id = models.CharField(primary_key=True, max_length = 8)
     student_grade = models.IntegerField()
     enteryear = models.IntegerField()
@@ -10,7 +10,7 @@ class studentinfo(models.Model):
     def __str__(self):
         return self.user_id
 
-class subjectinfo(models.Model):
+class subjectInfo(models.Model):
     subjectnum = models.CharField(max_length = 15)
     managementnum = models.CharField(max_length = 20)
     user_id = models.CharField(max_length = 10)
