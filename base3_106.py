@@ -32,6 +32,7 @@ def func1(value):
     #options = Options()
     #options.add_argument('--headless')
     #driver = webdriver.Chrome(chrome_options=options)
+"""
     try:
         print("---https://rs.rikkyo.ac.jp/にアクセス---")
         driver.get(URL)
@@ -71,7 +72,42 @@ def func1(value):
     except:
         driver.quit()
         print('error確認!chromeを閉じるよ')
+"""
 
+    print("---https://rs.rikkyo.ac.jp/にアクセス---")
+    driver.get(URL)
+
+    print("---ユーザ情報を入力---")
+    driver.find_element_by_css_selector("#userNameInput").send_keys(USER)
+    driver.find_element_by_css_selector("#userNameInput").send_keys(Keys.RETURN)
+
+    driver.find_element_by_css_selector("#passwordInput").send_keys(PASS)
+    driver.find_element_by_css_selector("#passwordInput").send_keys(Keys.RETURN)
+    print("---ユーザ情報入力完了　―　ページ遷移---")
+
+    time.sleep(1)
+
+    #print("---スクリーンショットの保存---")
+    #driver.save_screenshot("gv/static/gv/images/test101.png")
+
+    print("---ページ遷移---")
+    driver.find_element_by_css_selector("#MainContent_Contents_MenuCtrl_lnkSeiseki").click()
+
+
+    print("---ページソースを取得---")
+    html=driver.page_source
+
+    print("---ページソースからテーブル要素を取得---")
+    tables = pd.io.html.read_html(html, flavor='bs4')
+    print("---全"+str(len(tables))+"個のテーブルを取得---")
+
+    time.sleep(1)
+
+
+    driver.close()
+    print("---Chromeをダウン---")
+    print("---process all complete---")
+    print("--------------------------")
 
     zen=["Ｓ","Ａ","Ｂ","Ｃ"]
     user_info=tables[2]
