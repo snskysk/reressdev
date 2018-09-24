@@ -19,7 +19,7 @@ def get(request):
         #formから学籍番号とパスワードの取得
         value = [request.POST['stunum'], request.POST['password']]
         #入力が正しいか
-"""
+
         try:
             result, list_pie, list_bar, table, personal_dataset= main.condact(value)
         #正しくなかったら戻る
@@ -31,11 +31,11 @@ def get(request):
             もう一度入力してね♡'
             }
             return render(request, 'gv/index.html', params)
-"""
 
-        result, list_pie, list_bar, table, personal_dataset= main.condact(value)
 
-    
+        #result, list_pie, list_bar, table, personal_dataset= main.condact(value)
+
+
         #正しくデータを整形することができるかどうか。
         try:
             #pythonからjsへの値の受け渡し
