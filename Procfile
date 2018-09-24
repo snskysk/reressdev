@@ -1,1 +1,1 @@
-web: gunicorn grade.wsgi --log-file -
+web: gunicorn --env DJANGO_SETTINGS_MODULE=grade.settings grade.wsgi --log-file -
