@@ -36,7 +36,7 @@ def func1(value):
     #driver = Chrome(executable_path=driver_path, chrome_options=options)
 
     options = Options()
-    options.binary_location = '/user/masashi'
+    options.binary_location = 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe'
     options.add_argument('--headless')
     options.add_argument('--disable-gpu')
     driver = webdriver.Chrome(chrome_options=options)
