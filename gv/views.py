@@ -31,10 +31,10 @@ def get(request):
             もう一度入力してね♡'
             }
             return render(request, 'gv/index.html', params)
-"""
 
-        result, list_pie, list_bar, table, personal_dataset= main.condact(value)
-"""
+
+        #result, list_pie, list_bar, table, personal_dataset= main.condact(value)
+
 
         #正しくデータを整形することができるかどうか。
         try:
