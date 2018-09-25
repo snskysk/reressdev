@@ -22,8 +22,8 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'grade.settings')
 application = Cling(get_wsgi_application())
 
 # 下記が静的ファイルのセッティング#
-from whitenoise.django import DjangoWhiteNoise
-application = DjangoWhiteNoise(application)
+#from whitenoise.django import DjangoWhiteNoise
+#application = DjangoWhiteNoise(application)
 #application = get_wsgi_application()
 
 #from whitenoise.django import DjangoWhiteNoise
