@@ -29,17 +29,17 @@ def func1(value):
     time.sleep(1)
     print("---Chromeを起動---")
 
-    options = Options()
-    # Heroku以外ではNone
-    if chrome_binary_path: options.binary_location = chrome_binary_path
-    options.add_argument('--headless')
-    driver = Chrome(executable_path=driver_path, chrome_options=options)
-
     #options = Options()
-    #options.binary_location = '/app/.apt/usr/bin/google-chrome'
+    # Heroku以外ではNone
+    #if chrome_binary_path: options.binary_location = chrome_binary_path
     #options.add_argument('--headless')
-    #options.add_argument('--disable-gpu')
-    #driver = webdriver.Chrome(chrome_options=options)
+    #driver = Chrome(executable_path=driver_path, chrome_options=options)
+
+    options = Options()
+    options.binary_location = '/user/masashi'
+    options.add_argument('--headless')
+    options.add_argument('--disable-gpu')
+    driver = webdriver.Chrome(chrome_options=options)
 
 
     #driver = webdriver.Chrome(executable_path='Chromedriverがあるパス')
