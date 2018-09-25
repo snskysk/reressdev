@@ -34,12 +34,13 @@ def func1(value):
     #if chrome_binary_path: options.binary_location = chrome_binary_path
     #options.add_argument('--headless')
     #driver = Chrome(executable_path=driver_path, chrome_options=options)
+    CHROME_BINARY_LOCATION='/app/bin/compile'
 
     chrome_options = Options()
     chrome_options.binary_location = CHROME_BINARY_LOCATION
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--no-sandbox')
-    driver = webdriver.Chrome(executable_path=CHROME_DRIVER_PATH, chrome_options=chrome_options)
+    driver = webdriver.Chrome(executable_path=chromedriver, chrome_options=chrome_options)
 
 
     #driver = webdriver.Chrome(executable_path='Chromedriverがあるパス')
