@@ -15,7 +15,7 @@ def index(request):
 
 
 def get(request):
-    if request.method == 'POST':
+    if request.method == 'GET':
         #formから学籍番号とパスワードの取得
         value = [request.POST['stunum'], request.POST['password']]
         #入力が正しいか
