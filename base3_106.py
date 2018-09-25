@@ -14,7 +14,7 @@ from bs4 import BeautifulSoup
 import time
 import pandas as pd
 import numpy as np
-from PIL import Image
+#from PIL import Image
 #import matplotlib.pyplot as plt
 #import matplotlib.cm as cm
 #from matplotlib.font_manager import FontProperties
