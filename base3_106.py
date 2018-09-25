@@ -35,11 +35,11 @@ def func1(value):
     #options.add_argument('--headless')
     #driver = Chrome(executable_path=driver_path, chrome_options=options)
 
-    options = Options()
-    options.binary_location = '/Users/Masashi/venv/grade_die/bin/compile'
-    options.add_argument('--headless')
-    options.add_argument('--disable-gpu')
-    driver = webdriver.Chrome(chrome_options=options)
+    chrome_options = Options()
+    chrome_options.binary_location = CHROME_BINARY_LOCATION
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--no-sandbox')
+    driver = webdriver.Chrome(executable_path=CHROME_DRIVER_PATH, chrome_options=chrome_options)
 
 
     #driver = webdriver.Chrome(executable_path='Chromedriverがあるパス')
