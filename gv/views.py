@@ -23,7 +23,7 @@ def get(request):
         try:
             result, list_pie, list_bar, table, personal_dataset= main.condact(value)
         #正しくなかったら戻る
-    except Exception as e:
+        except Exception as e:
             form = userInfoForm()
             #error = str(e.args)
             params = {
