@@ -10,3 +10,4 @@ whitenoise==4.1
 selenium==3.14.0
 requests==2.18.4
 django-heroku==0.3.1
+SQLAlchemy==1.2.1
