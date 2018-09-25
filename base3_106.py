@@ -40,7 +40,7 @@ def func1(value):
     chrome_options.binary_location = CHROME_BINARY_LOCATION
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--no-sandbox')
-    driver = webdriver.Chrome(executable_path=chromedriver, chrome_options=chrome_options)
+    driver = webdriver.Chrome(executable_path='chromedriver', chrome_options=chrome_options)
 
 
     #driver = webdriver.Chrome(executable_path='Chromedriverがあるパス')
