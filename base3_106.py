@@ -15,9 +15,9 @@ import time
 import pandas as pd
 import numpy as np
 from PIL import Image
-import matplotlib.pyplot as plt
-import matplotlib.cm as cm
-from matplotlib.font_manager import FontProperties
+#import matplotlib.pyplot as plt
+#import matplotlib.cm as cm
+#from matplotlib.font_manager import FontProperties
 
 
 
