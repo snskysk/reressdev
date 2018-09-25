@@ -23,12 +23,14 @@ def get(request):
         try:
             result, list_pie, list_bar, table, personal_dataset= main.condact(value)
         #正しくなかったら戻る
-        except:
+    except Exception as e:
             form = userInfoForm()
+            error = str(e.args)
             params = {
             'form':form,
-            'message':'学籍番号かパスワードがまちがえてるよ♡<br>\
-            もう一度入力してね♡'
+            #'message':'学籍番号かパスワードがまちがえてるよ♡<br>\
+            #もう一度入力してね♡'
+            'message':error
             }
             return render(request, 'gv/index.html', params)
 
