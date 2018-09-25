@@ -25,12 +25,12 @@ def get(request):
         #正しくなかったら戻る
         except Exception as e:
             form = userInfoForm()
-            #error = str(e.args)
+            error = str(e.args)
             params = {
             'form':form,
-            'message':'学籍番号かパスワードがまちがえてるよ♡<br>\
-            もう一度入力してね♡'
-            #'message':error
+            #'message':'学籍番号かパスワードがまちがえてるよ♡<br>\
+            #もう一度入力してね♡'
+            'message':error
             }
             return render(request, 'gv/index.html', params)
 
