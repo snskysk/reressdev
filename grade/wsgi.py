@@ -8,10 +8,10 @@ https://docs.djangoproject.com/en/2.1/howto/deployment/wsgi/
 """
 
 import os
-#import sys
+import sys
 
-#sys.path.append("/path/to/project/grade")
-#sys.path.append("/path/to/project/grade/grade_die")
+sys.path.append("/path/to/project/grade")
+sys.path.append("/path/to/project/grade/grade_die")
 
 
 from django.core.wsgi import get_wsgi_application
