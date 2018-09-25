@@ -34,7 +34,7 @@ def func1(value):
     #if chrome_binary_path: options.binary_location = chrome_binary_path
     #options.add_argument('--headless')
     #driver = Chrome(executable_path=driver_path, chrome_options=options)
-    CHROME_BINARY_LOCATION='/app/bin/compile'
+    CHROME_BINARY_LOCATION='/app/.apt/opt/google/chrome/google-chrome'
 
     chrome_options = Options()
     chrome_options.binary_location = CHROME_BINARY_LOCATION
