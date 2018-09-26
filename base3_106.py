@@ -14,6 +14,7 @@ from bs4 import BeautifulSoup
 import time
 import pandas as pd
 import numpy as np
+import os
 #from PIL import Image
 #import matplotlib.pyplot as plt
 #import matplotlib.cm as cm
@@ -37,13 +38,20 @@ def func1(value):
 
     # ここでchrome_binary_locationを指定
     #CHROME_BINARY_LOCATION='/app/.apt/opt/google/chrome/google-chrome'
+    GOOGLE_CHROME_SHIM= /app/.apt/opt/google/chrome/google-chrome
 
-    chrome_options = Options()
-    chrome_options.binary_location = "/app/.apt/usr/bin/google-chrome"
-    chrome_options.add_argument('--disable-gpu')
-    chrome_options.add_argument('--no-sandbox')
-    driver = webdriver.Chrome(executable_path='chromedriver', chrome_options=chrome_options)
+    #chrome_options = Options()
+    #chrome_options.binary_location = "/app/.apt/usr/bin/google-chrome"
+    #chrome_options.add_argument('--disable-gpu')
+    #chrome_options.add_argument('--no-sandbox')
+    #driver = webdriver.Chrome(executable_path='chromedriver', chrome_options=chrome_options)
 
+    chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
+    opts = Options()
+    opts.binary_location = chrome_bin
+    options.add_argument('--headless')
+    options.add_argument('--no-sandbox')
+    driver = webdriver.Chrome(executable_path="chromedriver",    chrome_options=opts)
 
     #driver = webdriver.Chrome(executable_path='Chromedriverがあるパス')
     #options = Options()
