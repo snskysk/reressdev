@@ -49,7 +49,7 @@ def func1(value):
     chrome_bin = os.environ.get(GOOGLE_CHROME_SHIM, None)
     opts = Options()
     opts.binary_location = chrome_bin
-    #Options.add_argument('--headless')
+    Options.add_argument('--headless')
     Options.add_argument('--disable-gpu')
     Options.add_argument('--no-sandbox')
     driver = webdriver.Chrome(executable_path="chromedriver", chrome_options=opts)
