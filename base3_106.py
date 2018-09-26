@@ -50,7 +50,7 @@ def func1(value):
     opts = Options()
     opts.binary_location = chrome_bin
     Options.add_argument('--headless')
-    Options.add_argument('--no-sandbox')
+    Options.add_argument('--disable-gpu')
     driver = webdriver.Chrome(executable_path="chromedriver",    chrome_options=opts)
 
     #driver = webdriver.Chrome(executable_path='Chromedriverがあるパス')
