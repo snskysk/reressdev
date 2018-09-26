@@ -46,7 +46,7 @@ def func1(value):
     #chrome_options.add_argument('--no-sandbox')
     #driver = webdriver.Chrome(executable_path='chromedriver', chrome_options=chrome_options)
 
-    chrome_bin = os.environ.get(GOOGLE_CHROME_SHIM, None)
+    chrome_bin = os.environ.get(GOOGLE_CHROME_SHIM, chromedriver)
     opts = Options()
     opts.binary_location = chrome_bin
     Options.add_argument('--headless')
