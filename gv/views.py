@@ -4,6 +4,8 @@ from .models import studentInfo, subjectInfo
 import main
 from pytojs import pytojsMaterials
 import sys
+import traceback
+
 # Create your views here.
 def index(request):
     form = userInfoForm()
@@ -24,10 +26,11 @@ def get(request):
         try:
             result, list_pie, list_bar, table, personal_dataset= main.condact(value)
         #正しくなかったら戻る
-        except Exception as e:
+        except:
             form = userInfoForm()
-            error = str(e.args)
-            error = str(sys.exc_info()[-1].tb_lineno)
+            #error = str(e.args)
+            #error = str(sys.exc_info()[-1].tb_lineno)
+            error=traceback.format_exc()
             params = {
             'form':form,
             #'message':'学籍番号かパスワードがまちがえてるよ♡<br>\
