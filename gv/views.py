@@ -3,6 +3,7 @@ from .forms import userInfoForm, findForm
 from .models import studentInfo, subjectInfo
 import main
 from pytojs import pytojsMaterials
+import sys
 # Create your views here.
 def index(request):
     form = userInfoForm()
@@ -26,6 +27,7 @@ def get(request):
         except Exception as e:
             form = userInfoForm()
             error = str(e.args)
+            error = str(sys.exc_info()[-1].tb_lineno)
             params = {
             'form':form,
             #'message':'学籍番号かパスワードがまちがえてるよ♡<br>\
