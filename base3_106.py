@@ -52,7 +52,7 @@ def func1(value):
     #Options.add_argument('--headless')
     Options.add_argument('--disable-gpu')
     Options.add_argument('--no-sandbox')
-    driver = webdriver.Chrome(chrome_options=opts)
+    driver = webdriver.Chrome(executable_path=chrome_bin, chrome_options=opts)
 
 
     #chrome_bin = GOOGLE_CHROME_SHIM
