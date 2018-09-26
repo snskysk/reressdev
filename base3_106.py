@@ -49,6 +49,7 @@ def func1(value):
     GOOGLE_CHROME_SHIM = '/app/.apt/usr/bin/google-chrome-stableand'
     #GOOGLE_CHROME_SHIM= '/app/.apt/opt/google/chrome/google-chrome'
     #CHROME_DRIVER_PATH = " /app/.chromedriver/bin/chromedriver "
+    CHROME_DRIVER_PATH = '/app/.chromedriver/bin/'
 
     #chrome_bin = os.environ.get(GOOGLE_CHROME_SHIM," chromedriver ")
     #chrome_bin = os.environ.get(GOOGLE_CHROME_SHIM,None)
@@ -60,8 +61,8 @@ def func1(value):
     opts.add_argument('--disable-gpu')
     opts.add_argument('--no-sandbox')
     #driver = webdriver.Chrome( chrome_options=opts)
-    driver = webdriver.Chrome(executable_path='chromedriver', chrome_options=opts)
-    #driver = webdriver.Chrome( executable_path = CHROME_DRIVER_PATH , chrome_options = opts)
+    #driver = webdriver.Chrome(executable_path='chromedriver', chrome_options=opts)
+    driver = webdriver.Chrome( executable_path = CHROME_DRIVER_PATH , chrome_options = opts)
 
     #chrome_bin = GOOGLE_CHROME_SHIM
     #opts = Options()
