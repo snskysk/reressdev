@@ -50,12 +50,13 @@ def func1(value):
     #GOOGLE_CHROME_SHIM= '/app/.apt/opt/google/chrome/google-chrome'
     #CHROME_DRIVER_PATH = " /app/.chromedriver/bin/chromedriver "
 
-    chrome_bin = os.environ.get(GOOGLE_CHROME_SHIM," chromedriver ")
-    chrome_bin = os.environ.get(GOOGLE_CHROME_SHIM,None)
+    #chrome_bin = os.environ.get(GOOGLE_CHROME_SHIM," chromedriver ")
+    #chrome_bin = os.environ.get(GOOGLE_CHROME_SHIM,None)
     opts = Options()
 
-    opts.binary_location = chrome_bin
-    #opts.add_argument('--headless')
+    opts.binary_location = GOOGLE_CHROME_BIN
+    #opts.binary_location = chrome_bin
+    opts.add_argument('--headless')
     opts.add_argument('--disable-gpu')
     opts.add_argument('--no-sandbox')
     #driver = webdriver.Chrome( chrome_options=opts)
