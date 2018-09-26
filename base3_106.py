@@ -36,10 +36,10 @@ def func1(value):
     #driver = Chrome(executable_path=driver_path, chrome_options=options)
 
     # ここでchrome_binary_locationを指定
-    CHROME_BINARY_LOCATION='/app/.apt/opt/google/chrome/google-chrome'
+    #CHROME_BINARY_LOCATION='/app/.apt/opt/google/chrome/google-chrome'
 
     chrome_options = Options()
-    chrome_options.binary_location = ''
+    chrome_options.binary_location = '/app/bin'
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--no-sandbox')
     driver = webdriver.Chrome(executable_path='chromedriver', chrome_options=chrome_options)
