@@ -38,7 +38,7 @@ def func1(value):
 
     # ここでchrome_binary_locationを指定
     #CHROME_BINARY_LOCATION='/app/.apt/opt/google/chrome/google-chrome'
-    GOOGLE_CHROME_SHIM= /app/.apt/opt/google/chrome/google-chrome
+    GOOGLE_CHROME_SHIM= '/app/.apt/opt/google/chrome/google-chrome'
 
     #chrome_options = Options()
     #chrome_options.binary_location = "/app/.apt/usr/bin/google-chrome"
@@ -46,7 +46,7 @@ def func1(value):
     #chrome_options.add_argument('--no-sandbox')
     #driver = webdriver.Chrome(executable_path='chromedriver', chrome_options=chrome_options)
 
-    chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
+    chrome_bin = os.environ.get(GOOGLE_CHROME_SHIM, None)
     opts = Options()
     opts.binary_location = chrome_bin
     options.add_argument('--headless')
