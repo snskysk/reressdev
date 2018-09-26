@@ -38,22 +38,24 @@ def func1(value):
 
     # ここでchrome_binary_locationを指定
     #CHROME_BINARY_LOCATION='/app/.apt/opt/google/chrome/google-chrome'
-    GOOGLE_CHROME_SHIM= '/app/.apt/opt/google/chrome/google-chrome'
+
 
     #chrome_options = Options()
     #chrome_options.binary_location = "/app/.apt/usr/bin/google-chrome"
     #chrome_options.add_argument('--disable-gpu')
     #chrome_options.add_argument('--no-sandbox')
     #driver = webdriver.Chrome(executable_path='chromedriver', chrome_options=chrome_options)
+    GOOGLE_CHROME_SHIM= '/app/.apt/opt/google/chrome/google-chrome'
+    CHROMEDRIVER_PATH = " /app/.chromedriver/bin/chromedriver "
 
-    chrome_bin = os.environ.get(GOOGLE_CHROME_SHIM)
+    chrome_bin = os.environ.get(GOOGLE_CHROME_SHIM," chromedriver ")
     opts = Options()
     opts.binary_location = chrome_bin
-    #Options.add_argument('--headless')
+    opts.add_argument('--headless')
     opts.add_argument('--disable-gpu')
     opts.add_argument('--no-sandbox')
     #driver = webdriver.Chrome(executable_path=chrome_bin, chrome_options=opts)
-
+    driver = webdriver.Chrome( executable_path = CHROMEDRIVER_PATH , chrome_options = opts)
 
     #chrome_bin = GOOGLE_CHROME_SHIM
     #opts = Options()
@@ -61,7 +63,7 @@ def func1(value):
     #Options.add_argument('--disable-gpu')
     #Options.add_argument('--no-sandbox')
     #driver = webdriver.Chrome(executable_path="chromedriver", chrome_options=opts)
-    driver = webdriver.Chrome( chrome_options=opts)
+    #driver = webdriver.Chrome( chrome_options=opts)
 
 
     #driver = webdriver.Chrome(executable_path='Chromedriverがあるパス')
