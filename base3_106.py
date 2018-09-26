@@ -39,7 +39,7 @@ def func1(value):
     #CHROME_BINARY_LOCATION='/app/.apt/opt/google/chrome/google-chrome'
 
     chrome_options = Options()
-    chrome_options.binary_location = '/app/bin'
+    chrome_options.binary_location = "/app/.apt/usr/bin/google-chrome"
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--no-sandbox')
     driver = webdriver.Chrome(executable_path='chromedriver', chrome_options=chrome_options)
@@ -91,10 +91,15 @@ def func1(value):
         print('error確認!chromeを閉じるよ')
 
     zen=["Ｓ","Ａ","Ｂ","Ｃ"]
+    #user_info=tables[2]
+    #unit_info=tables[3]
+    #gpa_info=tables[4]
+    #grade_info=tables[6]
+
     user_info=tables[2]
-    unit_info=tables[3]
-    gpa_info=tables[4]
-    grade_info=tables[6]
+    unit_info=tables[4]
+    gpa_info=tables[5]
+    grade_info=tables[7]
 
     user_info.columns=['Major&Grade', 'ID&Class', 'userName', 'enterYear', 'seasons']
 
