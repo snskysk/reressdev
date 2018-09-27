@@ -103,16 +103,26 @@ def func1(value):
         print("---ページ遷移---")
         driver.find_element_by_css_selector("#MainContent_Contents_MenuCtrl_lnkSeiseki").click()
 
+        print('a')
+        data = driver.page_source.encode('utf-8')
+        print('b')
+        soup = BeautifulSoup(data, 'html.parser')
+
+        #tableを取得
+        tables = soup.find_all('table')
+
+        dflist = pd.io.html.read_html(str(tables))
+
 
         print("---ページソースを取得---")
-        html=driver.page_source
+        #html=driver.page_source
         print('fdf')
 
         print("---ページソースからテーブル要素を取得---")
         #tables = pd.io.html.read_html(html, flavor='bs4')
         #tttt = pd.io.html.read_html(html, flavor='bs4')
         #tttt = pd.read_html(html, flavor='bs4')
-        tttt = [1,2,3,4,5,6,7,8]
+        #tttt = [1,2,3,4,5,6,7,8]
         #print('現在のurl')
 
 
