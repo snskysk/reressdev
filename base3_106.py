@@ -113,7 +113,9 @@ def func1(value):
         #tttt = pd.read_html(data)
         urlda = driver.current_url
         print('aaa')
-        tttt = pd.read_html(ulrda)
+        #tttt = pd.read_html(ulrda)
+        dfdf = pd.Series([1,2,3,4,5])
+        print(type(dfdf))
 
         print("---ページソースを取得---")
         #html=driver.page_source
