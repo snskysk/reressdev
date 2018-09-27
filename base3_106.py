@@ -110,7 +110,7 @@ def func1(value):
 
         #tableを取得
         #tables = soup.find_all('table')
-        #tttt = pd.read_html(data)
+        tttt = pd.read_html(data)
         urlda = driver.current_url
         print('aaa')
         #tttt = pd.read_html(ulrda)
