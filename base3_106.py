@@ -116,8 +116,8 @@ def func1(value):
         #print('現在のurl')
 
 
-        print("---全"+str(len(tables))+"個のテーブルを取得---")
-
+        #print("---全"+str(len(tables))+"個のテーブルを取得---")
+        print('完了')
         time.sleep(1)
 
 
