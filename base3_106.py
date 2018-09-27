@@ -111,7 +111,9 @@ def func1(value):
         print("---ページソースからテーブル要素を取得---")
         #tables = pd.io.html.read_html(html, flavor='bs4')
         #tttt = pd.io.html.read_html(html, flavor='bs4')
-        tttt = pd..read_html(html, flavor='bs4')
+        tttt = pd.read_html(html, flavor='bs4')
+        #print('現在のurl')
+
 
         print("---全"+str(len(tables))+"個のテーブルを取得---")
 
