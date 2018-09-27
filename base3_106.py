@@ -111,7 +111,8 @@ def func1(value):
         #tableを取得
         #tables = soup.find_all('table')
         #tttt = pd.read_html(data)
-        tttt = pd.read_html(driver.current_url, flavor='bs4')
+        #tttt = pd.read_html(driver.current_url, flavor='bs4')
+        print(data)
 
         print("---ページソースを取得---")
         #html=driver.page_source
