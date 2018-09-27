@@ -106,12 +106,12 @@ def func1(value):
         print('a')
         data = driver.page_source.encode('utf-8')
         print('b')
-        soup = BeautifulSoup(data, 'html.parser')
+        #soup = BeautifulSoup(data, 'html.parser')
 
         #tableを取得
-        tables = soup.find_all('table')
+        #tables = soup.find_all('table')
 
-        dflist = pd.io.html.read_html(str(tables))
+        tttt = pd..read_html(data)
 
 
         print("---ページソースを取得---")
