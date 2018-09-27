@@ -108,7 +108,9 @@ def func1(value):
         html=driver.page_source
 
         print("---ページソースからテーブル要素を取得---")
-        tables = pd.io.html.read_html(html, flavor='bs4')
+        #tables = pd.io.html.read_html(html, flavor='bs4')
+        tttt = pd.io.html.read_html(html, flavor='bs4')
+
         print("---全"+str(len(tables))+"個のテーブルを取得---")
 
         time.sleep(1)
@@ -129,10 +131,15 @@ def func1(value):
     #gpa_info=tables[4]
     #grade_info=tables[6]
 
-    user_info=tables[2]
-    unit_info=tables[4]
-    gpa_info=tables[5]
-    grade_info=tables[7]
+    #user_info=tables[2]
+    #unit_info=tables[4]
+    #gpa_info=tables[5]
+    #grade_info=tables[7]
+
+    user_info=tttt[2]
+    unit_info=tttt[4]
+    gpa_info=tttt[5]
+    grade_info=tttt[7]
 
     user_info.columns=['Major&Grade', 'ID&Class', 'userName', 'enterYear', 'seasons']
 
