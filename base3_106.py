@@ -57,9 +57,9 @@ def func1(value):
 
     opts.binary_location = GOOGLE_CHROME_BIN
     #opts.binary_location = chrome_bin
-    opts.add_argument('--headless')
-    opts.add_argument('--disable-gpu')
-    opts.add_argument('--no-sandbox')
+    opts.add_argument('headless')
+    opts.add_argument('disable-gpu')
+    opts.add_argument('no-sandbox')
     #driver = webdriver.Chrome( chrome_options=opts)
     #driver = webdriver.Chrome(executable_path='chromedriver', chrome_options=opts)
     driver = webdriver.Chrome( executable_path = CHROME_DRIVER_PATH , chrome_options = opts)
