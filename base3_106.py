@@ -129,7 +129,7 @@ def func1(value):
     #gpa_info=tables[4]
     #grade_info=tables[6]
 
-    user_info=tables[2]
+    user_info=tables[3]
     unit_info=tables[4]
     gpa_info=tables[5]
     grade_info=tables[7]
