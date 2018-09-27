@@ -111,7 +111,7 @@ def func1(value):
         #tableを取得
         #tables = soup.find_all('table')
 
-        tttt = pd..read_html(data)
+        tttt = pd.read_html(data)
 
 
         print("---ページソースを取得---")
