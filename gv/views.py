@@ -5,6 +5,7 @@ import main
 from pytojs import pytojsMaterials
 import sys
 import traceback
+from main import condact
 
 # Create your views here.
 def index(request):
