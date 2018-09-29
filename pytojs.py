@@ -47,5 +47,13 @@ def pytojsMaterials(result, list_pie, list_bar, table):
     kind_name = str_kind_name.split(',')
     #params['str_kind_name'] = str_kind_name
     params['kind_name'] = kind_name
-    print(params['kind_name'])
+    #print(params['kind_name'])
+
+
+    #円グラフ(S,A,B,C,Dの比率)
+    unitOfcircle, gradeOfcircle = list_pie[4:6]
+    params['unitOfcircle'] = unitOfcircle
+    params['gradeOfcircle'] = gradeOfcircle
+
+
     return params
