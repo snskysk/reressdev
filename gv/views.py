@@ -15,7 +15,7 @@ def index(request):
         'message':'学籍番号とパスワードを入力してね',
         }
 
-    return render(request, 'gv/index.html', params)
+    return render(request, 'gv/index3.html', params)
 
 
 def get(request):
