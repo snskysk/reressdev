@@ -1,0 +1,5 @@
+/*mainhomeでグラフの高さを整える*/
+.row-height {
+  display: flex;
+  flex-wrap: wrap;
+}
