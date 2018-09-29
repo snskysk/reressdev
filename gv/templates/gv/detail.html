@@ -1,0 +1,19 @@
+
+{% load static %}
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Grade Visualizer</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel='stylesheet' type='text/css' href='{% static 'gv/css/style.css' %}' />
+	</head>
+	<body id = class="landing is-preload body">
+		<h2>Grade Visualizer</h2>
+		<h1 class="page-header">{{str_name}}さんの成績</h1>
+		{{gradeAchievement}}
+		{{Achivement_list}}
+		{{kind_list}}
+	</body>
+</html>
