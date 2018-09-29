@@ -115,3 +115,12 @@ def deteil(request):
             print(i)
 
         return render(request, 'gv/deteil.html', params)
+
+def detail(request):
+    '''params = {
+        'str_name':str_name,
+        'gradeAchievement':gradeAchievement
+    }'''
+    params3 = params2
+
+    return render(request, 'gv/detail.html', params3)
