@@ -11,7 +11,7 @@ import os
 import sys
 
 sys.path.append("/path/to/project/grade")
-sys.path.append("/path/to/project/grade/grade_die")
+sys.path.append("/path/to/project/grade/grade_success4")
 
 
 from django.core.wsgi import get_wsgi_application
