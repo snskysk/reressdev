@@ -155,10 +155,15 @@ def func1(value):
     #grade_info=tables[7]
 
     print('ここまできてる')
+    #user_info=tttt[2]
+    #unit_info=tttt[4]
+    #gpa_info=tttt[5]
+    #grade_info=tttt[7]
+
     user_info=tttt[2]
-    unit_info=tttt[4]
-    gpa_info=tttt[5]
-    grade_info=tttt[7]
+    unit_info=tttt[3]
+    gpa_info=tttt[4]
+    grade_info=tttt[6]
 
     user_info.columns=['Major&Grade', 'ID&Class', 'userName', 'enterYear', 'seasons']
 
