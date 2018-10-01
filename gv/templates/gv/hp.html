@@ -1,10 +1,7 @@
 {% extends 'gv/base.html' %}
 {% load static%}
-<!DOCTYPE html>
-<html>
-<head lang="ja">
-    <meta charset="UTF-8">
-    <title></title>
+{% block css%}
+
     <link rel='stylesheet' type='text/css' href='{% static 'gv/css/homepage.css' %}' />
 
     <!-- Bootstrap Core CSS -->
@@ -30,18 +27,16 @@
     <!-- プログレスバー -->
     <link rel='stylesheet' type='text/css' href='{% static 'gv/css/style.css' %}' />
 
-</head>
-<body>
+{% endblock %}
+
+
+{% block body %}
 
 <main class="footer-content" role="main">
 
 <div class=header-logo><h1>GV　~ database system for Rikkyo Univ. students. ~</h1></div>
 <div id="container"></div>
-<script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/master/dist/progressbar.js"></script>
-<script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/master/dist/progressbar.min.js"></script>
-<script src="{% static 'gv/js/purogres.js' %}" language="JavaScript"></script>
-<script>
-</script>
+
 
 
 <div class="copy-container">
@@ -143,5 +138,12 @@
 
  </footer>
 
-</body>
-</html>
+{% block body %}
+
+{% block js %}
+<script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/master/dist/progressbar.js"></script>
+<script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/master/dist/progressbar.min.js"></script>
+<script src="{% static 'gv/js/purogres.js' %}" language="JavaScript"></script>
+<script>
+</script>
+{% block body %}
