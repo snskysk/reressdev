@@ -3,7 +3,6 @@
 
 # In[10]:
 
-
 def dataset_for_database(result,uservalue):
     import datetime
     import numpy as np
@@ -11,13 +10,13 @@ def dataset_for_database(result,uservalue):
     table=result[3]
     user=uservalue[0]
     d_today = datetime.date.today()
-    
+
     user_id=[]
     last_login=[]
     for i in range(len(table)+100):
         user_id.append(user)
         last_login.append(d_today)
-    
+
     user_id=np.array(user_id)
     user_id=pd.DataFrame({
         "user_id":user_id
@@ -30,7 +29,7 @@ def dataset_for_database(result,uservalue):
     table=pd.concat([table,user_id],axis=1)
     table=pd.concat([table,last_login],axis=1)
     table=table.query('unit=="1"|unit=="2"|unit=="4"|unit=="6"|unit=="8"')
-    
+
     # 09/14
     c=table.query('unit!="NaN"')[["unit"]].astype(int)
     c.columns=["unit_int"]
@@ -60,7 +59,7 @@ def dataset_for_database(result,uservalue):
 
     table=table[["subjectnum","managementnum","user_id","subjectname","unit_int","grade","grade_score_int","result_score_int","year_int","season","teacher","gpa_int","category1","category2","last_login"]]
     table.columns=["subjectnum","managementnum","user_id","subjectname","unit","grade","grade_score","result_score","year","season","teacher","gpa","category1","category2","last_login"]
- 
+
     return table
 
 def personal_dataset_for_database(result,uservalue):
@@ -176,4 +175,3 @@ def newdata_judgement(database_dataset,uservalue):
         print("passed-2")
     else:
         print("passed-3")
-

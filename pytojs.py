@@ -33,6 +33,7 @@ def pytojsMaterials(result, list_pie, list_bar, table):
 
     #単位の取得率(ex:専門選択の取得パーセンテージ)
     Achivement_list = list(list_bar[2]['現在達成率(%)'])
+
     params['Achivement_list'] = Achivement_list
     #str_Achievement_list = str(Achivement_list)[1:-2]
     #params['str_Achievement_list'] = str_Achievement_list
@@ -55,5 +56,13 @@ def pytojsMaterials(result, list_pie, list_bar, table):
     params['unitOfcircle'] = unitOfcircle
     params['gradeOfcircle'] = gradeOfcircle
 
+    #不足単位数と履修単位数
+    lb1, lb2 = list_bar[0:2]
+    ##残単を計算する
+    import numpy as np
+    residual_unit = list(np.array(lb1['必要単位数']) - np.array(lb1['修得単位数']))
+    on_course = list(lb2['履修単位数'])
+    params['residual_unit'] = residual_unit
+    params['on_course'] = on_course
 
     return params

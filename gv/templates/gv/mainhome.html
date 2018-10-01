@@ -1,249 +1,13 @@
-{% load static%}
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'gv/base.html' %}
+{% load static %}
 
-<head>
+{% block css%}
+  <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/style.css' %}' />
+{% endblock %}
 
-  <title>GV</title>
-  <!--自分のcss-->
-  <link rel='stylesheet' type='text/css' href='{% static 'gv/css/style2.css' %}' />
-
-  <!-- Bootstrap Core CSS -->
-  <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/bootstrap.min.css' %}' />
-  <!--<link href="../css/bootstrap.min.css" rel="stylesheet">-->
-
-  <!-- MetisMenu CSS -->
-  <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/metisMenu.min.css' %}' />
-  <!--<link href="../css/metisMenu.min.css" rel="stylesheet">-->
-
-  <!-- Custom CSS -->
-  <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/startmin.css' %}' />
-  <!--<link href="../css/startmin.css" rel="stylesheet">-->
-
-  <!-- Morris Charts CSS -->
-  <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/morris.css' %}' />
-  <!--<link href="../css/morris.css" rel="stylesheet">-->
-
-  <!-- Custom Fonts -->
-  <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/font-awesome.min.css' %}' />
-  <!--<link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
-
-</head>
-
-<body>
-
-  <div id="wrapper">
-
-        <!-- Navigation -->
-        <!--消し方に気を付ける-->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="index.html">Grade Visualizer</a>
-          </div>
-
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-          <ul class="nav navbar-nav navbar-left navbar-top-links">
-            <li><a href="#"><i class="fa fa-home fa-fw"></i> Website</a></li>
-          </ul>
-
-
-          <!--ハンバーガーメニューの左にあるオブジェクト-->
-          <ul class="nav navbar-right navbar-top-links">
-            <li class="dropdown navbar-inverse">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <i class="fa fa-bell fa-fw"></i> <b class="caret"></b>
-                            </a>
-              <ul class="dropdown-menu dropdown-alerts">
-                <li>
-                  <a href="#">
-                                        <div>
-                                            <i class="fa fa-comment fa-fw"></i> New Comment
-                                            <span class="pull-right text-muted small">4 minutes ago</span>
-                                        </div>
-                                    </a>
-                </li>
-                <li>
-                  <a href="#">
-                                        <div>
-                                            <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                            <span class="pull-right text-muted small">12 minutes ago</span>
-                                        </div>
-                                    </a>
-                </li>
-                <li>
-                  <a href="#">
-                                        <div>
-                                            <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                            <span class="pull-right text-muted small">4 minutes ago</span>
-                                        </div>
-                                    </a>
-                </li>
-                <li>
-                  <a href="#">
-                                        <div>
-                                            <i class="fa fa-tasks fa-fw"></i> New Task
-                                            <span class="pull-right text-muted small">4 minutes ago</span>
-                                        </div>
-                                    </a>
-                </li>
-                <li>
-                  <a href="#">
-                                        <div>
-                                            <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                            <span class="pull-right text-muted small">4 minutes ago</span>
-                                        </div>
-                                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                  <a class="text-center" href="#">
-                                        <strong>See All Alerts</strong>
-                                        <i class="fa fa-angle-right"></i>
-                                    </a>
-                </li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <i class="fa fa-user fa-fw"></i> secondtruth <b class="caret"></b>
-                            </a>
-              <ul class="dropdown-menu dropdown-user">
-                <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                </li>
-                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                </li>
-                <li class="divider"></li>
-                <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <!-- /.navbar-top-links -->
-
-
-          <!--ハンバーガーメニュー-->
-          <div class="navbar-default sidebar" role="navigation">
-            <div class="sidebar-nav navbar-collapse">
-
-              <!--ナビゲーションメニュー-->
-              <ul class="nav" id="side-menu">
-                <li class="sidebar-search">
-                  <div class="input-group custom-search-form">
-                    <input type="text" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fa fa-search"></i>
-                                            </button>
-                                    </span>
-                  </div>
-                  <!-- /input-group -->
-                </li>
-                <li>
-                  <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> 成績参照</a>
-                </li>
-                <!--ナビゲーションメニューはとりあえず一つだけ-->
-                <!--
-                <li>
-                  <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
-                  <ul class="nav nav-second-level">
-                    <li>
-                      <a href="flot.html">Flot Charts</a>
-                    </li>
-                    <li>
-                      <a href="morris.html">Morris.js Charts</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
-                </li>
-                <li>
-                  <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
-                  <ul class="nav nav-second-level">
-                    <li>
-                      <a href="panels-wells.html">Panels and Wells</a>
-                    </li>
-                    <li>
-                      <a href="buttons.html">Buttons</a>
-                    </li>
-                    <li>
-                      <a href="notifications.html">Notifications</a>
-                    </li>
-                    <li>
-                      <a href="typography.html">Typography</a>
-                    </li>
-                    <li>
-                      <a href="icons.html"> Icons</a>
-                    </li>
-                    <li>
-                      <a href="grid.html">Grid</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-                  <ul class="nav nav-second-level">
-                    <li>
-                      <a href="#">Second Level Item</a>
-                    </li>
-                    <li>
-                      <a href="#">Second Level Item</a>
-                    </li>
-                    <li>
-                      <a href="#">Third Level <span class="fa arrow"></span></a>
-                      <ul class="nav nav-third-level">
-                        <li>
-                          <a href="#">Third Level Item</a>
-                        </li>
-                        <li>
-                          <a href="#">Third Level Item</a>
-                        </li>
-                        <li>
-                          <a href="#">Third Level Item</a>
-                        </li>
-                        <li>
-                          <a href="#">Third Level Item</a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-                  <ul class="nav nav-second-level">
-                    <li>
-                      <a href="blank.html">Blank Page</a>
-                    </li>
-                    <li>
-                      <a href="login.html">Login Page</a>
-                    </li>
-                  </ul>
-                </li>
-                -->
-              </ul>
-            </div>
-          </div>
-        </nav>
-
-
-
-
-
-
-
-
-
+{% block body %}
     <!--メインの部分-->
-    <div id="page-wrapper">
+    <div id="page-wrapper" class='page-wrapper'>
       <div class="row">
         <div class="col-lg-12">
           <h1 class="page-header">{{str_name}}さんの成績</h1>
@@ -258,7 +22,8 @@
               成績取得率
             </div>
             <div class="panel-body">
-              <svg id="fillgauge4" width="100%" height="100%"></svg>
+              <!--<div class = 'pigraph'><svg id="fillgauge4" width="100%" height="100%"></svg></div>-->
+              <div><svg id="fillgauge4" align="center" width="100%" height="297"></svg></div>
               <!--<svg id="fillgauge1" width="100%" height="100%"></svg>-->
               <!--<svg id="fillgauge1" width="100%" height="100%"></svg>-->
               <!--<svg id="fillgauge1" width="100%"></svg>-->
@@ -302,9 +67,7 @@
             </div>
             <div class="panel-body">
               <!--<div style="width:400px">-->
-              <div width="100%">
-                <canvas id="graph"></canvas>
-              </div>
+              <div class = 'pigraph'><canvas width="400" height="300" id="pigraph"></canvas></div>
             </div>
           </div>
         </div>
@@ -332,18 +95,6 @@
             </div>
           </div>
         </div>
-        <!--4つ目のグラフ-->
-        <div class="col-lg-6 col-xs-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              Donut Chart Example
-            </div>
-            <div class="panel-body">
-              <a href='{% url 'detail' %}'>詳細</a>
-            </div>
-          </div>
-        </div>
-
         <!--
         <div class="col-lg-12">
           <div class="panel panel-default">
@@ -358,130 +109,136 @@
           </div>
         </div>
         -->
-      </div>
+
     </div>
+{% endblock %}
 
-  </div>
+
+{% block js %}
   <!-- jQuery -->
-  <script src="{% static 'gv/mainhome/js/jquery.min.js' %}" language="JavaScript"></script>
+<script src="{% static 'gv/base/js/jquery.min.js' %}" language="JavaScript"></script>
 
-  <!-- Bootstrap Core JavaScript -->
-  <script src="{% static 'gv/mainhome/js/bootstrap.min.js' %}" language="JavaScript"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="{% static 'gv/base/js/bootstrap.min.js' %}" language="JavaScript"></script>
 
-  <!-- Metis Menu Plugin JavaScript -->
-  <script src="{% static 'gv/mainhome/js/metisMenu.min.js' %}" language="JavaScript"></script>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="{% static 'gv/base/js/metisMenu.min.js' %}" language="JavaScript"></script>
 
-  <!-- グラフを記述するファイル -->
-  <script src="{% static 'gv/mainhome/js/raphael.min.js' %}" language="JavaScript"></script>
-  <script src="{% static 'gv/mainhome/js/morris.min.js' %}" language="JavaScript"></script>
-  <!--それぞれのグラフのデータ点が記述されているファイル-->
-  <script src="{% static 'gv/mainhome/js/morris-data.js' %}" language="JavaScript"></script>
-
-
-  <!-- Custom Theme JavaScript -->
-  <script src="{% static 'gv/mainhome/js/startmin.js' %}" language="JavaScript"></script>
+<!-- グラフを記述するファイル -->
+<script src="{% static 'gv/base/js/raphael.min.js' %}" language="JavaScript"></script>
+<script src="{% static 'gv/base/js/morris.min.js' %}" language="JavaScript"></script>
+<!--それぞれのグラフのデータ点が記述されているファイル-->
+<script src="{% static 'gv/base/js/morris-data.js' %}" language="JavaScript"></script>
 
 
-  <!--水槽ゲージのためのライブラリやファイルのimport-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-  <script src="http://d3js.org/d3.v3.min.js" language="JavaScript"></script>
-  <script src="{% static 'gv/js/liquidFillGauge.js' %}" language="JavaScript"></script>
-  <!--水槽ゲージの詳細(6個分)-->
-  <script>
-    //単位取得率の定義
-    var gradeAchievement = {{gradeAchievement | safe}}
-    /*
-    var gauge1 = loadLiquidFillGauge("fillgauge1", gradeAchievement);
-    var config1 = liquidFillGaugeDefaultSettings();
-    config1.circleColor = "#FF7777";
-    config1.textColor = "#FF4444";
-    config1.waveTextColor = "#FFAAAA";
-    config1.waveColor = "#FFDDDD";
-    config1.circleThickness = 0.2;
-    config1.textVertPosition = 0.2;
-    config1.waveAnimateTime = 1000;
-    */
-    /*
-    var gauge2= loadLiquidFillGauge("fillgauge2", 28, config1);
-    var config2 = liquidFillGaugeDefaultSettings();
-    config2.circleColor = "#D4AB6A";
-    config2.textColor = "#553300";
-    config2.waveTextColor = "#805615";
-    config2.waveColor = "#AA7D39";
-    config2.circleThickness = 0.1;
-    config2.circleFillGap = 0.2;
-    config2.textVertPosition = 0.8;
-    config2.waveAnimateTime = 2000;
-    config2.waveHeight = 0.3;
-    config2.waveCount = 1;
-    */
-    /*
-    var gauge3 = loadLiquidFillGauge("fillgauge3", 60.1, config2);
-    var config3 = liquidFillGaugeDefaultSettings();
-    config3.textVertPosition = 0.8;
-    config3.waveAnimateTime = 5000;
-    config3.waveHeight = 0.15;
-    config3.waveAnimate = false;
-    config3.waveOffset = 0.25;
-    config3.valueCountUp = false;
-    config3.displayPercent = false;
-    */
-    var config4 = liquidFillGaugeDefaultSettings();
-    config4.circleThickness = 0.15;
-    config4.circleColor = "#178BCA";
-    config4.textColor = "#045681";
-    config4.waveTextColor = "#A4DBf8";
-    config4.waveColor = "#178BCA";
-    //config4.circleColor = "#49a4e5";
-    //config4.textColor = "#05a4e5";
-    //config4.waveTextColor = "#05a4e5";
-    //config4.waveColor = "#2577B5";
-    config4.textVertPosition = 0.3;
-    config4.waveAnimateTime = 1000;
-    config4.waveHeight = 0.05;
-    config4.waveAnimate = true;
-    config4.waveRise = false;
-    config4.waveHeightScaling = false;
-    config4.waveOffset = 0.25;
-    config4.textSize = 0.75;
-    config4.waveCount = 3;
-    var gauge4 = loadLiquidFillGauge("fillgauge4", gradeAchievement, config4);
-    /*
-    var gauge5 = loadLiquidFillGauge("fillgauge5", 60.44, config4);
-    var config5 = liquidFillGaugeDefaultSettings();
-    config5.circleThickness = 0.4;
-    config5.circleColor = "#6DA398";
-    config5.textColor = "#0E5144";
-    config5.waveTextColor = "#6DA398";
-    config5.waveColor = "#246D5F";
-    config5.textVertPosition = 0.52;
-    config5.waveAnimateTime = 5000;
-    config5.waveHeight = 0;
-    config5.waveAnimate = false;
-    config5.waveCount = 2;
-    config5.waveOffset = 0.25;
-    config5.textSize = 1.2;
-    config5.minValue = 30;
-    config5.maxValue = 150
-    config5.displayPercent = false;
-    //var gauge6 = loadLiquidFillGauge("fillgauge6", 120, config5);
-
-    function NewValue(){
-        if(Math.random() > .5){
-            return Math.round(Math.random()*100);
-        } else {
-            return (Math.random()*100).toFixed(1);
-        }
-    }
-    */
-  </script>
+<!-- Custom Theme JavaScript -->
+<script src="{% static 'gv/base/js/startmin.js' %}" language="JavaScript"></script>
 
 
+<!--**********************************************************************************************
+                                 水槽ゲージのための記述
+***************************************************************************************************-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js" language="JavaScript"></script>
+<script src="{% static 'gv/mainhome/liquid-full/liquidFillGauge.js' %}" language="JavaScript"></script>
+<!--水槽ゲージの詳細(6個分)-->
+<script>
+  //単位取得率の定義
+  var gradeAchievement = {{gradeAchievement | safe}}
+  /*
+  var gauge1 = loadLiquidFillGauge("fillgauge1", gradeAchievement);
+  var config1 = liquidFillGaugeDefaultSettings();
+  config1.circleColor = "#FF7777";
+  config1.textColor = "#FF4444";
+  config1.waveTextColor = "#FFAAAA";
+  config1.waveColor = "#FFDDDD";
+  config1.circleThickness = 0.2;
+  config1.textVertPosition = 0.2;
+  config1.waveAnimateTime = 1000;
+  */
+  /*
+  var gauge2= loadLiquidFillGauge("fillgauge2", 28, config1);
+  var config2 = liquidFillGaugeDefaultSettings();
+  config2.circleColor = "#D4AB6A";
+  config2.textColor = "#553300";
+  config2.waveTextColor = "#805615";
+  config2.waveColor = "#AA7D39";
+  config2.circleThickness = 0.1;
+  config2.circleFillGap = 0.2;
+  config2.textVertPosition = 0.8;
+  config2.waveAnimateTime = 2000;
+  config2.waveHeight = 0.3;
+  config2.waveCount = 1;
+  */
+  /*
+  var gauge3 = loadLiquidFillGauge("fillgauge3", 60.1, config2);
+  var config3 = liquidFillGaugeDefaultSettings();
+  config3.textVertPosition = 0.8;
+  config3.waveAnimateTime = 5000;
+  config3.waveHeight = 0.15;
+  config3.waveAnimate = false;
+  config3.waveOffset = 0.25;
+  config3.valueCountUp = false;
+  config3.displayPercent = false;
+  */
+  var config4 = liquidFillGaugeDefaultSettings();
+  config4.circleThickness = 0.15;
+  config4.circleColor = "rgb(23,130,207,0.5)";
+  config4.textColor = "#045681";
+  config4.waveTextColor = "#A4DBf8";
+  config4.waveColor = "rgb(23,139,202,0.6)";
+  //config4.circleColor = "#49a4e5";
+  //config4.textColor = "#05a4e5";
+  //config4.waveTextColor = "#05a4e5";
+  //config4.waveColor = "#2577B5";
+  config4.textVertPosition = 0.3;
+  config4.waveAnimateTime = 1000;
+  config4.waveHeight = 0.05;
+  config4.waveAnimate = true;
+  config4.waveRise = false;
+  config4.waveHeightScaling = false;
+  config4.waveOffset = 0.25;
+  config4.textSize = 0.75;
+  config4.waveCount = 3;
+  var gauge4 = loadLiquidFillGauge("fillgauge4", gradeAchievement, config4);
+  /*
+  var gauge5 = loadLiquidFillGauge("fillgauge5", 60.44, config4);
+  var config5 = liquidFillGaugeDefaultSettings();
+  config5.circleThickness = 0.4;
+  config5.circleColor = "#6DA398";
+  config5.textColor = "#0E5144";
+  config5.waveTextColor = "#6DA398";
+  config5.waveColor = "#246D5F";
+  config5.textVertPosition = 0.52;
+  config5.waveAnimateTime = 5000;
+  config5.waveHeight = 0;
+  config5.waveAnimate = false;
+  config5.waveCount = 2;
+  config5.waveOffset = 0.25;
+  config5.textSize = 1.2;
+  config5.minValue = 30;
+  config5.maxValue = 150
+  config5.displayPercent = false;
+  //var gauge6 = loadLiquidFillGauge("fillgauge6", 120, config5);
 
-  <!--棒グラフの記述(Bar Chart)-->
+  function NewValue(){
+      if(Math.random() > .5){
+          return Math.round(Math.random()*100);
+      } else {
+          return (Math.random()*100).toFixed(1);
+      }
+  }
+  */
+</script>
+
+
+<!--**************************************************
+               棒グラフの記述
+****************************************************-->
 <script language="JavaScript">
+  var residual_unit = {{residual_unit|safe}};
   var kind_name = {{kind_name|safe}};
-  var Achivement_list = {{Achivement_list|safe}};
+  var on_course = {{on_course|safe}};
   var ctx = document.getElementById("bar-chart").getContext('2d');
   var ChartDemo = new Chart(ctx, {
          type: 'bar',
@@ -490,14 +247,23 @@
             labels: kind_name,
             datasets: [
             {
-            label: "取得達成率",
+            label: "残単位数",
             lineTension: 0,
             fill: false,
             //backgroundColor: ["rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(246,133,124,0.5)","rgba(246,133,124,0.5)","rgba(206,195,73,0.5)"]
             backgroundColor: "rgba(131,185,206,0.5)",
             //borderColor: "#217346",
-            data: Achivement_list,
+            data: residual_unit
           },
+          {
+          label: "履修単位数",
+          lineTension: 0,
+          fill: false,
+          //backgroundColor: ["rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(246,133,124,0.5)","rgba(246,133,124,0.5)","rgba(206,195,73,0.5)"]
+          backgroundColor: "rgba(131,0,206,0.5)",
+          //borderColor: "#217346",
+          data: on_course
+        }
             ]
          },
          options: {
@@ -506,6 +272,8 @@
           xAxes: [{
             ticks: {
               fontSize: 10,
+              maxRotation: 100,
+              minRotation: 0
             },
           }],
           yAxes: [{
@@ -519,88 +287,85 @@
        });
 </script>
 
-  <!--円グラフのJSの記述-->
-  <script>
-    //グラフのデータの配列
-    var gradeOfcircle = {{gradeOfcircle | safe}}
-    var unitOfcircle = {{unitOfcircle | safe}}
-    //グラフの定義
-    var drawGraph = function(data) {
-      var ctx = document.getElementById('graph').getContext('2d');
-      var datas = {
-        labels: data[0],
-        datasets: [{
-          backgroundColor: ["#9E0142", "#F46D43", "#FEE08B", "#E6F598", "#66C2A5"],
-          hoverBackgroundColor: ["#5a45aa", "#5a45aa", "#5a45aa", "#5a45aa", "#5a45aa"],
-          data: data[1]
-        }]
-      };
-      var config = {
-        type: 'doughnut',
-        data: datas,
 
-        options: {
-          title: {
-            display: false,
-            fontSize: 35,
-            text: '単位'
-          },
+<!--**********************************************************************************************
+                                  円グラフの記述
+***************************************************************************************************-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+<script>
+  var dataLabelPlugin = {
+      afterDatasetsDraw: function (chart, easing) {
+          // To only draw at the end of animation, check for easing === 1
+          var ctx = chart.ctx;
 
-        }
-
-      };
-      var myChart = new Chart(ctx, config);
-    };
-
-
-    window.onload = function() {
-      //var data = [['A', 'B', 'C'],
-      //[200, 100, 50]]
-      var data = [gradeOfcircle,
-        unitOfcircle
-      ]
-      drawGraph(data);
-    };
-
-    /*
-    //円グラフでラベルをグラフにつける
-      Chart.plugins.register({
-          afterDatasetsDraw: function (chart, easing) {
-              // To only draw at the end of animation, check for easing === 1
-              var ctx = chart.ctx;
-
-              chart.data.datasets.forEach(function (dataset, i) {
-                  var meta = chart.getDatasetMeta(i);
-                  if (!meta.hidden) {
-                      meta.data.forEach(function (element, index) {
-                          // Draw the text in black, with the specified font
-                          ctx.fillStyle = 'rgb(0, 0, 0)';
-
-                          var fontSize = 16;
-                          var fontStyle = 'normal';
-                          var fontFamily = 'Helvetica Neue';
-                          ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
-
-                          // Just naively convert to string for now
-                          var dataString = dataset.data[index].toString();
-
-                          // Make sure alignment settings are correct
-                          ctx.textAlign = 'center';
-                          ctx.textBaseline = 'middle';
-
-                          var padding = 5;
-                          var position = element.tooltipPosition();
-                          ctx.fillText(dataString, position.x, position.y - (fontSize / 2) - padding);
-                      });
-                  }
+          chart.data.datasets.forEach(function (dataset, i) {
+              var dataSum = 0;
+              dataset.data.forEach(function (element){
+                  dataSum += element;
               });
-          }
-      });
-      */
-  </script>
+
+              var meta = chart.getDatasetMeta(i);
+              if (!meta.hidden) {
+                  meta.data.forEach(function (element, index) {
+                      // Draw the text in black, with the specified font
+                      ctx.fillStyle = 'rgb(255, 255, 255)';
+
+                      var fontSize = 12;
+                      var fontStyle = 'normal';
+                      var fontFamily = 'Helvetica Neue';
+                      ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+
+                      // Just naively convert to string for now
+                      var labelString = chart.data.labels[index];
+                      var dataString = (Math.round(dataset.data[index] / dataSum * 1000)/10).toString() + "%";
+
+                      // Make sure alignment settings are correct
+                      ctx.textAlign = 'center';
+                      ctx.textBaseline = 'middle';
+
+                      var padding = 5;
+                      var position = element.tooltipPosition();
+                      ctx.fillText(labelString, position.x, position.y - (fontSize / 2) - padding);
+                      ctx.fillText(dataString, position.x, position.y + (fontSize / 2) - padding);
+                  });
+              }
+          });
+      }
+  };
+
+  // Chart
+  var unitOfcircle = {{unitOfcircle|safe}}
+  var gradeOfcircle = {{gradeOfcircle|safe}}
+  var myChart = "pigraph";
+  var chart = new Chart(myChart, {
+      type: 'pie',
+      data: {
+          labels: gradeOfcircle,
+          datasets: [{
+              label: "Sample",
+              //backgroundColor: ["#3F51B5", "#F44336", "#FF9800", "#4CAF50", "#9C27B0", "#00BCD4", "#E91E63"],
+              backgroundColor: ["#3F51B5", "#F44336", "#FF9800", "#4CAF50", "#9C27B0"],
+              data: unitOfcircle,
+          }]
+      },
+      options: {
+          title: {
+              display: false,
+              text: "Sample"
+          },
+          legend:{
+          },
+          maintainAspectRatio: false,
+      },
+      plugins: [dataLabelPlugin],
+                });
+</script>
 
 
-  <!--レーダーチャート-->
+
+<!--**********************************************************************************************
+                                  レーダーチャート記述
+***************************************************************************************************-->
   <script>
     var Achivement_list = {{Achivement_list | safe}}
     var kind_name = {{kind_name | safe}}
@@ -675,6 +440,4 @@
     var myRadar = new Chart($("#myrader"), config);
   </script>
 
-</body>
-
-</html>
+{% endblock %}

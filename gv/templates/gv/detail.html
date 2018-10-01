@@ -1,19 +1,113 @@
-
+{% extends 'gv/base.html' %}
+{% load widget_tweaks %}
 {% load static %}
-<!DOCTYPE HTML>
+{% block css %}
+<link rel='stylesheet' type='text/css' href='{% static 'gv/detail/detail.css' %}' />
 
-<html>
-	<head>
-		<title>Grade Visualizer</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel='stylesheet' type='text/css' href='{% static 'gv/css/style.css' %}' />
-	</head>
-	<body id = class="landing is-preload body">
-		<h2>Grade Visualizer</h2>
-		<h1 class="page-header">{{str_name}}さんの成績</h1>
-		{{gradeAchievement}}
-		{{Achivement_list}}
-		{{kind_list}}
-	</body>
-</html>
+{% endblock%}
+
+{% block body %}
+<!--メインの部分-->
+<div id="page-wrapper" class='page-wrapper'>
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">成績詳細</h1>
+    </div>
+  </div>
+  <div class="row row-height">
+    <div class="col-lg-12 col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          検索
+        </div>
+        <div class="panel-body">
+
+          <form action='{% url 'detail' %}' method='post' , name='detail'>
+            {% csrf_token %}
+            <div class='detail_input_box'>
+              {{form.subname_teacher|add_class:"detail_input_from"|attr:"placeholder:科目名/先生"}}
+            </div>
+            <div class='detail_input_box'>
+              {{form.gv}}
+            </div>
+            <div class = 'row'>
+              <div class = 'col-lg-6 col-xs-12'>
+                <div class="cp_ipselect cp_sl04">
+                  {{form.season}}
+                </div>
+              </div>
+              <div class = 'col-lg-6 col-xs-12'>
+                <div class="cp_ipselect cp_sl04">
+                  {{form.grade}}
+                </div>
+              </div>
+              <div class = 'col-lg-6 col-xs-12'>
+                <div class="cp_ipselect cp_sl04">
+                  {{form.year}}
+                </div>
+              </div>
+              <div class = 'col-lg-6 col-xs-12'>
+                <div class="cp_ipselect cp_sl04">
+                  {{form.category1}}
+                </div>
+              </div>
+            </div>
+            <div class="wrap">
+              <button class="button">検索</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class='col-lg-12'>
+      <div class='detail_table_class'>
+        <table class='type06 table_center_class'>
+          <thead>
+            <tr>
+              <th>科目名</th>
+              <th>成績</th>
+              <th>季節</th>
+              <th>先生</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for message in filtered_sub %}
+            <tr>
+              <td>{{ message.subjectname }}</td>
+              <td>{{ message.grade }}</td>
+              <td>{{ message.season }}</td>
+              <td>{{message.teacher}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+{% block js %}
+<!-- jQuery -->
+<script src="{% static 'gv/base/js/jquery.min.js' %}" language="JavaScript"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="{% static 'gv/base/js/bootstrap.min.js' %}" language="JavaScript"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="{% static 'gv/base/js/metisMenu.min.js' %}" language="JavaScript"></script>
+
+<!-- グラフを記述するファイル -->
+<script src="{% static 'gv/base/js/raphael.min.js' %}" language="JavaScript"></script>
+<script src="{% static 'gv/base/js/morris.min.js' %}" language="JavaScript"></script>
+<!--それぞれのグラフのデータ点が記述されているファイル-->
+<script src="{% static 'gv/base/js/morris-data.js' %}" language="JavaScript"></script>
+
+
+<!-- Custom Theme JavaScript -->
+<script src="{% static 'gv/base/js/startmin.js' %}" language="JavaScript"></script>
+
+
+{% endblock %}
