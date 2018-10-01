@@ -1,7 +1,9 @@
-{% extends 'gv/base.html' %}
 {% load static%}
-{% block css%}
-
+<!DOCTYPE html>
+<html>
+<head lang="ja">
+    <meta charset="UTF-8">
+    <title></title>
     <link rel='stylesheet' type='text/css' href='{% static 'gv/css/homepage.css' %}' />
 
     <!-- Bootstrap Core CSS -->
@@ -27,16 +29,18 @@
     <!-- プログレスバー -->
     <link rel='stylesheet' type='text/css' href='{% static 'gv/css/style.css' %}' />
 
-{% endblock %}
-
-
-{% block body %}
+</head>
+<body>
 
 <main class="footer-content" role="main">
 
 <div class=header-logo><h1>GV　~ database system for Rikkyo Univ. students. ~</h1></div>
 <div id="container"></div>
-
+<script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/master/dist/progressbar.js"></script>
+<script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/master/dist/progressbar.min.js"></script>
+<script src="{% static 'gv/js/purogres.js' %}" language="JavaScript"></script>
+<script>
+</script>
 
 
 <div class="copy-container">
@@ -54,7 +58,7 @@
     </div>
     <div class="panel-body">
         <div class="image101">
-        <!--img width=200 height=120 src="image101.jpg"-->
+        <img width=200 height=120 src="image101.jpg">
         </div>
         <ul style="list-style:none;">
 
@@ -72,7 +76,7 @@
     <div class="panel-body">
         <div class="panel-body">
             <div class="image101">
-        <!--img width=200 height=120 src="image101.jpg"-->
+            <img width=200 height=120 src="/gv/static//gv/images/image101.jpg">
             </div>
             <ul style="list-style:none;">
 
@@ -91,7 +95,7 @@
     <div class="panel-body">
         <div class="panel-body">
             <div class="image101">
-        <!--img width=200 height=120 src="image101.jpg"-->
+            <img width=200 height=120 src="image101.jpg">
             </div>
 
             <ul style="list-style:none;">
@@ -110,7 +114,7 @@
     <div class="panel-body">
         <div class="panel-body">
             <div class="image101">
-        <!--img width=200 height=120 src="image101.jpg"-->
+            <img width=200 height=120 src="image101.jpg">
             </div>
             <ul style="list-style:none;">
                 <li>面接無しで隙間時間アルバイト</li>
@@ -138,12 +142,5 @@
 
  </footer>
 
-{% block body %}
-
-{% block js %}
-<script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/master/dist/progressbar.js"></script>
-<script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/master/dist/progressbar.min.js"></script>
-<script src="{% static 'gv/js/purogres.js' %}" language="JavaScript"></script>
-<script>
-</script>
-{% block body %}
+</body>
+</html>
