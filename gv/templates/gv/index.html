@@ -25,10 +25,11 @@
 	<link rel="stylesheet" type="text/css" href='{% static 'gv/login/css/util.css' %}'>
 	<link rel="stylesheet" type="text/css" href='{% static 'gv/login/css/main.css' %}'>
 	<!--===============================================================================================-->
-    {% endblock%}
+
+{% endblock%}
 
 
-    {% block body %}
+{% block body %}
 
 	<div class="limiter">
 		<div class="container-login100">
@@ -63,10 +64,10 @@
 
 
 	<div id="dropDownSelect1"></div>
-    {% endblock %}
+{% endblock %}
 
 
-    {% block js %}
+{% block js %}
 <!--===============================================================================================-->
 	<script src='{% static 'gv/login/vendor/jquery/jquery-3.2.1.min.js' %}'></script>
 <!--===============================================================================================-->
@@ -85,27 +86,4 @@
 	<script src='{% static 'gv/login/js/main.js' %}'></script>
 
 
-
-    <!-- jQuery -->
-    <script src="{% static 'gv/base/js/jquery.min.js' %}" language="JavaScript"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{% static 'gv/base/js/bootstrap.min.js' %}" language="JavaScript"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="{% static 'gv/base/js/metisMenu.min.js' %}" language="JavaScript"></script>
-
-    <!-- グラフを記述するファイル -->
-    <script src="{% static 'gv/base/js/raphael.min.js' %}" language="JavaScript"></script>
-    <script src="{% static 'gv/base/js/morris.min.js' %}" language="JavaScript"></script>
-    <!--それぞれのグラフのデータ点が記述されているファイル-->
-    <script src="{% static 'gv/base/js/morris-data.js' %}" language="JavaScript"></script>
-
-
-    <!-- Custom Theme JavaScript -->
-    <script src="{% static 'gv/base/js/startmin.js' %}" language="JavaScript"></script>
-
-
-
-
-    {% endblock %}
+{% endblock %}
