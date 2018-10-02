@@ -1,13 +1,8 @@
-
+{% extends 'gv/base.html' %}
 {% load static %}
 {% load widget_tweaks %}
-<!DOCTYPE HTML>
 
-<html lang="en">
-<head>
-	<title>gv</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+{% block css %}
 	<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href='{% static 'gv/login/images/icons/favicon.ico' %}'/>
 	<!--===============================================================================================-->
@@ -30,12 +25,10 @@
 	<link rel="stylesheet" type="text/css" href='{% static 'gv/login/css/util.css' %}'>
 	<link rel="stylesheet" type="text/css" href='{% static 'gv/login/css/main.css' %}'>
 	<!--===============================================================================================-->
-</head>
-<body>
+    {% endblock%}
 
 
-
-
+    {% block body %}
 
 	<div class="limiter">
 		<div class="container-login100">
@@ -70,7 +63,10 @@
 
 
 	<div id="dropDownSelect1"></div>
+    {% endblock %}
 
+
+    {% block js %}
 <!--===============================================================================================-->
 	<script src='{% static 'gv/login/vendor/jquery/jquery-3.2.1.min.js' %}'></script>
 <!--===============================================================================================-->
@@ -88,5 +84,4 @@
 <!--===============================================================================================-->
 	<script src='{% static 'gv/login/js/main.js' %}'></script>
 
-</body>
-</html>
+    {% endblock %}
