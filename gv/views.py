@@ -19,6 +19,8 @@ from django.db.models import Q
 from django.forms import Select
 
 
+import time
+
 # Create your views here.
 
 
@@ -249,6 +251,9 @@ def detail(request):
                 'filtered_sub':filtered_sub,
                 'form':form
             }
+
+            time.sleep(2)
+
             return render(request, 'gv/detail.html', detail_params)
         except:
             pass
@@ -277,6 +282,12 @@ def detail(request):
             'filtered_sub':filtered_sub,
             'form':form
         }
+
+
+        time.sleep(2)
+
+
+
         return render(request, 'gv/detail.html', detail_params)
     else:
         ######################################################################################################
@@ -314,6 +325,10 @@ def detail(request):
             'form':form,
             #'filtered_sub':filtered_sub
         }
+
+        time.sleep(2)
+
+                
         return render(request, 'gv/detail.html', detail_params)
 
 
