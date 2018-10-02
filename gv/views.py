@@ -46,7 +46,7 @@ def index(request):
         'form':form,
         'message':'学籍番号とパスワードを入力してください',
         }
-    time.sleep(2)
+
     return render(request, 'gv/index.html', index_params)
 
 ####################################################################################
@@ -61,7 +61,7 @@ def mainhome_after_login(request):
     #一度mainhomeに入っていれば実行
     if mainhome_after_login == 'ok':
 
-        time.sleep(2)
+
         return render(request, 'gv/mainhome.html', mainhome_params)
     else:
         form = userInfoForm()
@@ -255,7 +255,7 @@ def detail(request):
                 'form':form
             }
 
-            time.sleep(2)
+
 
             return render(request, 'gv/detail.html', detail_params)
         except:
@@ -287,7 +287,7 @@ def detail(request):
         }
 
 
-        time.sleep(2)
+
 
 
 
@@ -329,7 +329,7 @@ def detail(request):
             #'filtered_sub':filtered_sub
         }
 
-        time.sleep(2)
+
 
 
         return render(request, 'gv/detail.html', detail_params)
@@ -405,6 +405,8 @@ def mainhome(request):
         global login
         login = 'ok'
         print(login)
+
+        time.sleep(2)
         return render(request, 'gv/mainhome.html', mainhome_params)
 
     #getでmainhomeにアクセスしてしまった時の処理
