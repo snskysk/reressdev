@@ -46,6 +46,7 @@ def index(request):
         'form':form,
         'message':'学籍番号とパスワードを入力してください',
         }
+    time.sleep(2)
     return render(request, 'gv/index.html', index_params)
 
 ####################################################################################
@@ -59,6 +60,8 @@ def mainhome_after_login(request):
         mainhome_after_login = 'no'
     #一度mainhomeに入っていれば実行
     if mainhome_after_login == 'ok':
+
+        time.sleep(2)
         return render(request, 'gv/mainhome.html', mainhome_params)
     else:
         form = userInfoForm()
@@ -328,7 +331,7 @@ def detail(request):
 
         time.sleep(2)
 
-                
+
         return render(request, 'gv/detail.html', detail_params)
 
 
