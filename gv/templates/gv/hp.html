@@ -33,102 +33,109 @@
 
 {% block body %}
 
-
-
-<div class="copy-container">
-    <p>What is GV?</p>
-
-<p>GradeVisualizerは、立教生のあらゆる生活場面をデータ化することで<br>
-    誰もが活用できるデータプラットフォームを作ることを使命とするシステムです。</p>
-</div>
-<div>
-    <div class=".col-lg-pull-8 col-xs-12">
-      <div class="panel panel-success">
-        <div class="panel-heading">
-            <h4><a href='{% url 'index' %}'>original function</a></h4>
-        </div>
-        <div class="panel-body">
-            <div>
-
-            <div class="col-lg-6 col-xs-12">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4><a href='{% url 'index' %}'>立教大学周辺　飲食店検索</a></h4>
-                </div>
-                <div class="panel-body">
-                    <div class="image101">
-                    <img width=200 height=120 src="image101.jpg">
-                    </div>
-                    <ul style="list-style:none;">
-
-                        <li>立教生たちが実際に使ったことのある飲食店のデータを閲覧できます。</li>
-                        <li>場所や料金、混雑具合からインスタ映え具合まで様々な条件に合わせて検索できます。</li>
-                    </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6 col-xs-12">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4><a href='{% url 'index' %}'>データ登録</a></h4>
-                </div>
-                <div class="panel-body">
-                    <div class="panel-body">
-                        <div class="image101">
-                        <img width=200 height=120 src="/gv/static//gv/images/image101.jpg">
-                        </div>
-                        <ul style="list-style:none;">
-
-                            <li>実際に行ったお店や施設の情報をデータベースに登録しよう</li>
-                            <li>お店を登録してDBポイントをゲット</li>
-                        </ul>
-                    </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6 col-xs-12">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4><a href='{% url 'index' %}'>成績・履修参照</a></h4>
-                </div>
-                <div class="panel-body">
-                    <div class="panel-body">
-                        <div class="image101">
-                        <img width=200 height=120 src="image101.jpg">
-                        </div>
-
-                        <ul style="list-style:none;">
-                            <li>あなたの成績をわかりやすくビジュアライズ</li>
-                            <li>残単数も一目で丸わかり！</li>
-                        </ul>
-                    </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6 col-xs-12">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4><a href='{% url 'index' %}'>Use Taimee</a></h4>
-                </div>
-                <div class="panel-body">
-                    <div class="panel-body">
-                        <div class="image101">
-                        <img width=200 height=120 src="image101.jpg">
-                        </div>
-                        <ul style="list-style:none;">
-                            <li>面接無しで隙間時間アルバイト</li>
-                            <li>立教発で日本初の隙間時間ワークシステムを使ってお小遣い稼ぎ。</li>
-                        </ul>
-                    </div>
-                </div>
-              </div>
-            </div>
-
-        </div>
-      </div>
+<div id="page-wrapper" class='page-wrapper'>
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">トップページ</h1>
     </div>
-</div>
+  </div>
 
+
+    <div class="copy-container">
+        <p>What is GV?</p>
+
+    <p>GradeVisualizerは、立教生のあらゆる生活場面をデータ化することで<br>
+        誰もが活用できるデータプラットフォームを作ることを使命とするシステムです。</p>
+    </div>
+    <div>
+        <div class=".col-lg-pull-8 col-xs-12">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4><a href='{% url 'index' %}'>original function</a></h4>
+            </div>
+            <div class="panel-body">
+                <div>
+
+                <div class="col-lg-6 col-xs-12">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><a href='{% url 'index' %}'>立教大学周辺　飲食店検索</a></h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="image101">
+                        <img width=200 height=120 src="image101.jpg">
+                        </div>
+                        <ul style="list-style:none;">
+
+                            <li>立教生たちが実際に使ったことのある飲食店のデータを閲覧できます。</li>
+                            <li>場所や料金、混雑具合からインスタ映え具合まで様々な条件に合わせて検索できます。</li>
+                        </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><a href='{% url 'index' %}'>データ登録</a></h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="panel-body">
+                            <div class="image101">
+                            <img width=200 height=120 src="/gv/static//gv/images/image101.jpg">
+                            </div>
+                            <ul style="list-style:none;">
+
+                                <li>実際に行ったお店や施設の情報をデータベースに登録しよう</li>
+                                <li>お店を登録してDBポイントをゲット</li>
+                            </ul>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><a href='{% url 'index' %}'>成績・履修参照</a></h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="panel-body">
+                            <div class="image101">
+                            <img width=200 height=120 src="image101.jpg">
+                            </div>
+
+                            <ul style="list-style:none;">
+                                <li>あなたの成績をわかりやすくビジュアライズ</li>
+                                <li>残単数も一目で丸わかり！</li>
+                            </ul>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><a href='{% url 'index' %}'>Use Taimee</a></h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="panel-body">
+                            <div class="image101">
+                            <img width=200 height=120 src="image101.jpg">
+                            </div>
+                            <ul style="list-style:none;">
+                                <li>面接無しで隙間時間アルバイト</li>
+                                <li>立教発で日本初の隙間時間ワークシステムを使ってお小遣い稼ぎ。</li>
+                            </ul>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+
+            </div>
+          </div>
+        </div>
+    </div>
+
+    </div>
 </div>
 <!-- /main -->
 
