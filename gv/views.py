@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 #from .forms import userInfoForm, findForm
 from .models import studentInfo, subjectInfo
-import main
-from pytojs import pytojsMaterials
+import pycord.main
+from pycord.pytojs import pytojsMaterials
 import sys
 import traceback
-from main import condact
+from pycord.main import condact
 
 ######################################################################################
                 #10/01追加
