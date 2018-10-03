@@ -8,6 +8,9 @@ from . import models
 from django.forms import formset_factory
 
 
+from .models import food_pool
+
+
 
 class userInfoForm(forms.Form):
     stunum = forms.CharField(label='学籍番号')
