@@ -421,3 +421,13 @@ def review(request):
         form = food_pool_Form(request.POST)
         form.save()
     return render(request, 'gv/review.html', review_params)
+
+######################################################################################
+                                     #飲食店検索
+###################################################################################
+def shop_search(request):
+    food_pool_objects = food_pool.objects.all()
+    shop_search_params = {
+        'food_pool':food_pool_objects
+    }
+    return render(request, 'gv/shop_search.html', shop_search_params)
