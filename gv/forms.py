@@ -47,3 +47,11 @@ class find_my_sub_Form(forms.Form):
     year = forms.ChoiceField(widget=forms.Select, choices = [('','year')], required = False)
     gv = forms.ChoiceField(widget=forms.RadioSelect(), choices=[('gv', '最新の成績')], required = False)
     category1 = forms.ChoiceField(widget=forms.Select, choices = [('','kind1')], required = False)
+
+
+class food_pool_Form(forms.ModelForm):
+    class Meta:
+        model = food_pool
+        fields = '__all__'
+        read_only_fields = ('created_at')
+        widget = {'type':'range'}

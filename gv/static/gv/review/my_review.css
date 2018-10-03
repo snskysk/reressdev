@@ -1,0 +1,23 @@
+/************************************************
+          高さをそろえる
+************************************************/
+.table {
+  display: -webkit-box; /*Android4.3*/
+  display: -moz-box;    /*Firefox21*/
+  display: -ms-flexbox; /*IE10*/
+  display: -webkit-flex; /*PC-Safari,iOS8.4*/
+  display: flex
+}
+
+.block-center {
+  display: inline-block;
+  text-align: center;
+}
+
+.inline-center {
+  text-align: center;
+}
+
+.line {
+  border: solid #008080;
+}

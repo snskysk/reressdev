@@ -1,0 +1,85 @@
+{% extends 'gv/base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block css %}
+  <link rel='stylesheet' type='text/css' href='{% static 'gv/review/my_review.css' %}' />
+{% endblock %}
+{% block body %}
+<div id="page-wrapper" class='page-wrapper'>
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">レビュー</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-8 col-md-offset-2">
+      <div class"row">
+        <div class = 'table'>
+          <div class="col-lg-6 inline-center line">
+            <img src='{% static 'gv/review/sample.jpg' %}' width='100%' height='100%'>
+          </div>
+          <div class="col-lg-6 line">
+            <form class = "block-center" action='{% url 'review' %}' method='post' , name='review'>
+              {% csrf_token %}
+              <div class="col-lg-12 col-xs-12">
+                店名<br>
+                {{form.shop_name}}
+              </div>
+              <div class="col-lg-12 col-xs-12">
+                ジャンル<br>
+                {{form.genre}}
+              </div>
+              <div class="col-lg-12 col-xs-12">
+                エリア<br>
+                {{form.area}}
+              </div>
+              <div class="col-lg-12 col-xs-12">
+                利用時間<br>
+                {{form.utilization_time}}
+              </div>
+              <div class="col-lg-12 col-xs-12">
+                価格<br>
+                {{form.price|add_class:"d"|attr:"type:range"|attr:"step:2"}}
+              </div>
+              <div class="col-lg-12 col-xs-12">
+                人数<br>
+                {{form.number_of_people}}
+              </div>
+              <div class="col-lg-12 col-xs-12">
+                量<br>
+                {{form.evaluation_amount}}
+              </div>
+              <div class="col-lg-12 col-xs-12">
+                質<br>
+                {{form.evaluation_quality}}
+              </div>
+              <div class="col-lg-12 col-xs-12">
+                滞在時間<br>
+                {{form.duration}}
+              </div>
+              <div class="col-lg-12 col-xs-12">
+                性別<br>
+                {{form.sex}}
+              </div>
+              <div class="col-lg-12 col-xs-12">
+                写真映え度<br>
+                {{form.photograph_shine}}
+              </div>
+              <div class="col-lg-12">
+                <button type="submit">Saveする</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+
+
+{% endblock %}

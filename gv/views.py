@@ -417,3 +417,17 @@ def mainhome(request):
         'message':'学籍番号とパスワードを入力しよう!'
         }
         return render(request, 'gv/index.html', index_params)
+
+######################################################################################
+                                     #飲食店レビュー
+###################################################################################
+
+def review(request):
+    form = food_pool_Form()
+    review_params = {
+        'form':form
+    }
+    if request.method == 'POST':
+        form = food_pool_Form(request.POST)
+        form.save()
+    return render(request, 'gv/review.html', review_params)
