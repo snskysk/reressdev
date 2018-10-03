@@ -1,25 +1,19 @@
-from django.shortcuts import render, redirect
-#from .forms import userInfoForm, findForm
-from .models import studentInfo, subjectInfo
-import pycord.main
-from pycord.pytojs import pytojsMaterials
 import sys
 import traceback
-from pycord.main import condact
+import time
 
-######################################################################################
-                #10/01追加
-###################################################################################
-#from django.shortcuts import render, redirect
-from .forms import userInfoForm, findForm, find_my_sub_Form
-#from .models import studentInfo, subjectInfo
-#from main import condact
-#from pytojs import pytojsMaterials
+
+#
+from django.shortcuts import render, redirect
+from .forms import userInfoForm, findForm, find_my_sub_Form, food_pool_Form
+from .models import studentInfo, subjectInfo, food_pool
+from pycord.main import condact
+from pycord.pytojs import pytojsMaterials
 from django.db.models import Q
 from django.forms import Select
+#
 
 
-import time
 
 # Create your views here.
 
@@ -340,10 +334,10 @@ def detail(request):
 #####################################################################################
 
 def mainhome(request):
-    value = [request.POST['stunum'], request.POST['password']]
-
 
     if request.method == 'POST':
+        value = [request.POST['stunum'], request.POST['password']]
+
         #formから学籍番号とパスワードの取得
         #入力が正しいか
         try:
@@ -368,7 +362,6 @@ def mainhome(request):
             #pythonからjsへの値の受け渡し
             global mainhome_params
             mainhome_params = pytojsMaterials(result, list_pie, list_bar, table)
-            print(mainhome_params)
 
         except Exception as e:
             form = userInfoForm()
@@ -404,9 +397,6 @@ def mainhome(request):
         #ログインしたことの証拠,mainhome_after_loginで使用
         global login
         login = 'ok'
-        print(login)
-
-        time.sleep(2)
         return render(request, 'gv/mainhome.html', mainhome_params)
 
     #getでmainhomeにアクセスしてしまった時の処理
