@@ -3,7 +3,7 @@
 
 {% block css %}
 
-    <link rel='stylesheet' type='text/css' href='{% static 'gv/css/homepage.css' %}' />
+    <link rel='stylesheet' type='text/css' href='{% static 'gv/homepage/homepage.css' %}' />
 
     <!-- Bootstrap Core CSS -->
     <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/bootstrap.min.css' %}' />
@@ -26,7 +26,7 @@
     <!--<link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
 
     <!-- プログレスバー -->
-    <link rel='stylesheet' type='text/css' href='{% static 'gv/css/style2.css' %}' />
+    <link rel='stylesheet' type='text/css' href='{% static 'gv/homepage/style2.css' %}' />
 
 {% endblock%}
 
@@ -46,7 +46,7 @@
       <div id="container"></div>
       <script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/master/dist/progressbar.js"></script>
       <script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/master/dist/progressbar.min.js"></script>
-      <script src="{% static 'gv/js/purogres.js' %}" language="JavaScript"></script>
+      <script src="{% static 'gv/homepage/purogres.js' %}" language="JavaScript"></script>
       <script>
       </script>
 
@@ -71,7 +71,7 @@
                 <div class="col-lg-6 col-xs-12">
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4><a href='{% url 'index' %}'>立教大学周辺　飲食店検索</a></h4>
+                        <h4><a href='{% url 'index' %}'>立教大学周辺　飲食店データ検索</a></h4>
                     </div>
                     <div class="panel-body">
                         <div class="image101">

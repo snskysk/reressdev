@@ -32,7 +32,33 @@ class subjectInfo(models.Model):
         subjectname = self.subjectname
         user_id = self.user_id
         return user_id + 'の' + subjectname
+#################################################################
+                                #10/03
+#################################################################
 
+class food_pool(models.Model):
+    shop_name  = models.CharField(max_length = 30)
+    utilization_time = models.CharField(max_length = 30)
+    utilization_time_list = ['1','2']
+    area_list = [['西池袋','西池袋'],['東池袋','東池袋']]
+    area = models.CharField(max_length = 30, choices=area_list)
+    genre = models.CharField(max_length = 30)
+    price = models.IntegerField()
+    number_of_people = models.IntegerField()
+    evaluation_quality = models.IntegerField()
+    evaluation_amount = models.IntegerField()
+    duration = models.IntegerField()
+    sex = models.CharField(max_length = 30)
+    photograph_shine = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    '''
+    def __str__(self):
+        created_at = self.created_at
+        return created_at
+        '''
+
+###########################################
+###########################################
 
 
 from django.db import models
