@@ -334,7 +334,8 @@ def detail(request):
 ###################################################################################
                                #メインのグラフを出力する画面
 #####################################################################################
-
+from django.utils.functional import cached_property
+@cached_property
 def mainhome(request):
 
     if request.method == 'POST':
@@ -362,7 +363,7 @@ def mainhome(request):
 
         try:
             #pythonからjsへの値の受け渡し
-            global mainhome_params
+            #global mainhome_params
             mainhome_params = pytojsMaterials(result, list_pie, list_bar, table)
 
         except Exception as e:
