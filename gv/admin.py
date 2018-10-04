@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import studentInfo, subjectInfo
+from .models import studentInfo, subjectInfo, food_pool
 
 
 admin.site.register(studentInfo)
