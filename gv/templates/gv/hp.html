@@ -2,8 +2,20 @@
 {% load static%}
 
 {% block css %}
+  <!--  #######css homepage & mainhome ##############   -->
+  <!--  #######js homepage & base ####################   -->
 
+  <!--  ##############################################   -->
+  <!--  ################    css    from    homepage  #########   -->
+  <!--  ##############################################   -->
     <link rel='stylesheet' type='text/css' href='{% static 'gv/homepage/homepage.css' %}' />
+
+    <!-- プログレスバー -->
+    <link rel='stylesheet' type='text/css' href='{% static 'gv/homepage/style2.css' %}' />
+
+    <!--  ##############################################   -->
+    <!--  ################    css    from    mainhome  #########   -->
+    <!--  ##############################################   -->
 
     <!-- Bootstrap Core CSS -->
     <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/bootstrap.min.css' %}' />
@@ -24,9 +36,6 @@
     <!-- Custom Fonts -->
     <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/font-awesome.min.css' %}' />
     <!--<link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
-
-    <!-- プログレスバー -->
-    <link rel='stylesheet' type='text/css' href='{% static 'gv/homepage/style2.css' %}' />
 
 {% endblock%}
 
@@ -175,6 +184,16 @@
 {% endblock%}
 
 {% block js %}
+
+<!--  ##############################################   -->
+<!--  ################    js    from    homepage  #########   -->
+<!--  ###################    1  content    ###############   -->
+
+
+<!--  ##############################################   -->
+<!--  ################    js    from    base  #########   -->
+<!--  ##############################################   -->
+
 <!-- jQuery -->
 <script src="{% static 'gv/base/js/jquery.min.js' %}" language="JavaScript"></script>
 

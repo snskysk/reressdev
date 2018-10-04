@@ -2,6 +2,12 @@
 {% load static %}
 
 {% block css%}
+<!--  ################    css    mainhome  #############   -->
+<!--  ################    js base mainhome  #############   -->
+
+<!--  ##############################################   -->
+<!--  ################    css    from    mainhome  #############   -->
+<!--  ##############################################   -->
   <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/style.css' %}' />
 {% endblock %}
 
@@ -115,6 +121,10 @@
 
 
 {% block js %}
+
+<!--  ##############################################   -->
+<!--  ################    js    from    base  #############   -->
+<!--  ##############################################   -->
   <!-- jQuery -->
 <script src="{% static 'gv/base/js/jquery.min.js' %}" language="JavaScript"></script>
 
@@ -138,6 +148,9 @@
 <!--**********************************************************************************************
                                  水槽ゲージのための記述
 ***************************************************************************************************-->
+<!--  ##############################################   -->
+<!--  ################    js    from    mainhome  #############   -->
+<!--  ##############################################   -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 <script src="http://d3js.org/d3.v3.min.js" language="JavaScript"></script>
 <script src="{% static 'gv/mainhome/liquid-full/liquidFillGauge.js' %}" language="JavaScript"></script>
