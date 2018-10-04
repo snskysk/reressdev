@@ -159,11 +159,32 @@ def func1(value):
     #unit_info=tttt[4]
     #gpa_info=tttt[5]
     #grade_info=tttt[7]
+    if len(tttt)>6:
+        user_info=tttt[2]
+        unit_info=tttt[3]
+        gpa_info=tttt[4]
+        grade_info=tttt[6]
+        check_gpa=0
+    else:
+        user_info=tttt[2]
+        unit_info=tttt[3]
+        grade_info=tttt[5]
 
-    user_info=tttt[2]
-    unit_info=tttt[3]
-    gpa_info=tttt[4]
-    grade_info=tttt[6]
+        berore15_0123=["GPA状況","年度","2016<"]
+        berore15_4=["GPA状況","年度","3.00"]
+        before_dm0=pd.DataFrame({
+            "berfore15_0123":berore15_0123
+        })
+        before_dm1=pd.DataFrame({
+            "berfore15_4":berore15_4
+        })
+        before_dm0=pd.concat([before_dm0,before_dm1],axis=1)
+        before_dm0=pd.concat([before_dm0,before_dm1],axis=1)
+        before_dm0=pd.concat([before_dm0,before_dm1],axis=1)
+        before_dm0=pd.concat([before_dm0,before_dm1],axis=1)
+        gpa_info=before_dm0
+
+        check_gpa=1
 
     user_info.columns=['Major&Grade', 'ID&Class', 'userName', 'enterYear', 'seasons']
 
@@ -237,30 +258,71 @@ def func1(value):
 
     npmain_GI=np.array(main_GI)
 
-    gpa_np=np.array(gpa_info.query('index!=0 & index!=1')[["累計"]])
-    gpa_np=gpa_np[len(gpa_np)-1,0]
-    gpa_np
+    if check_gpa==0:
+        gpa_np=np.array(gpa_info.query('index!=0 & index!=1')[["累計"]])
+        gpa_np=gpa_np[len(gpa_np)-1,0]
 
-    gpa_data=[]
-    for s in range(len(npmain_GI)):
-        if npmain_GI[s,3]==zen[0]:
-            gpa_data.append(gpa_np)
 
-        elif npmain_GI[s,3]==zen[1]:
-            gpa_data.append(gpa_np)
+        gpa_data=[]
+        for s in range(len(npmain_GI)):
+            if npmain_GI[s,3]==zen[0]:
+                gpa_data.append(gpa_np)
 
-        elif npmain_GI[s,3]==zen[2]:
-            gpa_data.append(gpa_np)
+            elif npmain_GI[s,3]==zen[1]:
+                gpa_data.append(gpa_np)
 
-        elif npmain_GI[s,3]==zen[3]:
-            gpa_data.append(gpa_np)
-        else:
-            gpa_data.append("NaN")
+            elif npmain_GI[s,3]==zen[2]:
+                gpa_data.append(gpa_np)
 
-    gpa_data=np.array(gpa_data)
-    gpa_data=pd.DataFrame({
-        "gpa_data":gpa_data
-    })
+            elif npmain_GI[s,3]==zen[3]:
+                gpa_data.append(gpa_np)
+            else:
+                gpa_data.append("NaN")
+
+        gpa_data=np.array(gpa_data)
+        gpa_data=pd.DataFrame({
+            "gpa_data":gpa_data
+        })
+
+    else:
+        gpa_data=[]
+        for s in range(len(npmain_GI)):
+            if npmain_GI[s,3]==zen[0]:
+                gpa_data.append(4)
+
+            elif npmain_GI[s,3]==zen[1]:
+                gpa_data.append(3)
+
+            elif npmain_GI[s,3]==zen[2]:
+                gpa_data.append(3)
+
+            elif npmain_GI[s,3]==zen[3]:
+                gpa_data.append(1)
+            else:
+                gpa_data.append(0)
+
+        gpa=(np.sum(gpa_data)/len(gpa_data))
+
+        gpa_data=[]
+        for s in range(len(npmain_GI)):
+            if npmain_GI[s,3]==zen[0]:
+                gpa_data.append(gpa)
+
+            elif npmain_GI[s,3]==zen[1]:
+                gpa_data.append(gpa)
+
+            elif npmain_GI[s,3]==zen[2]:
+                gpa_data.append(gpa)
+
+            elif npmain_GI[s,3]==zen[3]:
+                gpa_data.append(gpa)
+            else:
+                gpa_data.append("NaN")
+
+        gpa_data=np.array(gpa_data)
+        gpa_data=pd.DataFrame({
+            "gpa_data":gpa_data
+        })
 
 
     main_GI=pd.concat([main_GI,gpa_data],axis=1)
