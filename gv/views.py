@@ -13,7 +13,7 @@ from django.db.models import Q
 from django.forms import Select
 #
 
-
+from django.views.decorators.cache import cache_page
 
 # Create your views here.
 
@@ -334,7 +334,9 @@ def detail(request):
 ###################################################################################
                                #メインのグラフを出力する画面
 #####################################################################################
+def get_products():
 
+@cache_page(60 * 5)
 def mainhome(request):
 
     if request.method == 'POST':
@@ -343,10 +345,10 @@ def mainhome(request):
         #formから学籍番号とパスワードの取得
         #入力が正しいか
         try:
-            global result
-            global list_pie
-            global list_bar
-            global personal_dataset
+            #global result
+            #global list_pie
+            #global list_bar
+            #global personal_dataset
             result, list_pie, list_bar, table, personal_dataset = condact(value)
         #正しくなかったら戻る
         except Exception as e:
