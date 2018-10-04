@@ -334,8 +334,8 @@ def detail(request):
 ###################################################################################
                                #メインのグラフを出力する画面
 #####################################################################################
-from django.utils.functional import cached_property
-@cached_property
+#from django.utils.functional import cached_property
+#@cached_property
 def mainhome(request):
 
     if request.method == 'POST':
