@@ -335,9 +335,7 @@ def detail(request):
 #####################################################################################
 #from django.utils.functional import cached_property
 #@cached_property
-from django.views.decorators.cache import cache_page
 
-@cache_page(60 * 15)
 def mainhome(request):
 
     if request.method == 'POST':
@@ -346,10 +344,10 @@ def mainhome(request):
         #formから学籍番号とパスワードの取得
         #入力が正しいか
         try:
-            #global result
-            #global list_pie
-            #global list_bar
-            #global personal_dataset
+            global result
+            global list_pie
+            global list_bar
+            global personal_dataset
             result, list_pie, list_bar, table, personal_dataset = condact(value)
         #正しくなかったら戻る
         except Exception as e:
@@ -365,7 +363,7 @@ def mainhome(request):
 
         try:
             #pythonからjsへの値の受け渡し
-            #global mainhome_params
+            global mainhome_params
             mainhome_params = pytojsMaterials(result, list_pie, list_bar, table)
 
         except Exception as e:
