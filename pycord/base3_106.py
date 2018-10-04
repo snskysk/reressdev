@@ -167,24 +167,32 @@ def func1(value):
         check_gpa=0
     else:
         user_info=tttt[2]
-        unit_info=tttt[3]
-        grade_info=tttt[5]
+        check=tttt[3]
+        for_check=(np.array(check.query('index==0')))
+        if len(for_check[0])!=5:
+            unit_info=tttt[4]
+            gpa_info=tttt[5]
+            grade_info=tttt[7]
+        else:
 
-        berore15_0123=["GPA状況","年度","2016<"]
-        berore15_4=["GPA状況","年度","3.00"]
-        before_dm0=pd.DataFrame({
-            "berfore15_0123":berore15_0123
-        })
-        before_dm1=pd.DataFrame({
-            "berfore15_4":berore15_4
-        })
-        before_dm0=pd.concat([before_dm0,before_dm1],axis=1)
-        before_dm0=pd.concat([before_dm0,before_dm1],axis=1)
-        before_dm0=pd.concat([before_dm0,before_dm1],axis=1)
-        before_dm0=pd.concat([before_dm0,before_dm1],axis=1)
-        gpa_info=before_dm0
+            unit_info=tttt[3]
+            grade_info=tttt[5]
 
-        check_gpa=1
+            berore15_0123=["GPA状況","年度","2016<"]
+            berore15_4=["GPA状況","年度","3.00"]
+            before_dm0=pd.DataFrame({
+                "berfore15_0123":berore15_0123
+            })
+            before_dm1=pd.DataFrame({
+                "berfore15_4":berore15_4
+            })
+            before_dm0=pd.concat([before_dm0,before_dm1],axis=1)
+            before_dm0=pd.concat([before_dm0,before_dm1],axis=1)
+            before_dm0=pd.concat([before_dm0,before_dm1],axis=1)
+            before_dm0=pd.concat([before_dm0,before_dm1],axis=1)
+            gpa_info=before_dm0
+
+            check_gpa=1
 
     user_info.columns=['Major&Grade', 'ID&Class', 'userName', 'enterYear', 'seasons']
 
