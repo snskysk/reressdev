@@ -13,7 +13,6 @@ from django.db.models import Q
 from django.forms import Select
 #
 
-#from django.views.decorators.cache import cache_page
 
 # Create your views here.
 
@@ -336,6 +335,9 @@ def detail(request):
 #####################################################################################
 #from django.utils.functional import cached_property
 #@cached_property
+from django.views.decorators.cache import cache_page
+
+@cache_page(60 * 15)
 def mainhome(request):
 
     if request.method == 'POST':
