@@ -13,7 +13,7 @@ from django.db.models import Q
 from django.forms import Select
 #
 
-from django.views.decorators.cache import cache_page
+#from django.views.decorators.cache import cache_page
 
 # Create your views here.
 
