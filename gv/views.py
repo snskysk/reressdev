@@ -145,27 +145,6 @@ def get(request):
 ######################################################################################
 
 
-def deteil(request):
-    if request.method == 'GET':
-        form = findForm()
-        params = {
-            'form':form,
-            'str':'検索してね♡'
-        }
-        return render(request, 'gv/deteil.html', params)
-    else:
-        params = {
-            'form':findForm(request.POST),
-            'str':request.POST['find']
-        }
-        #data = subjectInfo.objects.all().filter(user_id__contains=params['str'])
-        data = subjectInfo.objects.all()
-
-        for i in list(data):
-            print(i)
-
-        return render(request, 'gv/deteil.html', params)
-
 ######################################################################################
                                      #詳細画面
 ###################################################################################
