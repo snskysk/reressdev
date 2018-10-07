@@ -1,23 +1,10 @@
-/************************************************
-          高さをそろえる
-************************************************/
-.table {
-  display: -webkit-box; /*Android4.3*/
-  display: -moz-box;    /*Firefox21*/
-  display: -ms-flexbox; /*IE10*/
-  display: -webkit-flex; /*PC-Safari,iOS8.4*/
-  display: flex
+
+/*星のサイズ*/
+.br-theme-fontawesome-stars .br-widget a {
+  font-size: 5rem;
 }
 
-.block-center {
-  display: inline-block;
+
+.review_div {
   text-align: center;
-}
-
-.inline-center {
-  text-align: center;
-}
-
-.line {
-  border: solid #008080;
 }
