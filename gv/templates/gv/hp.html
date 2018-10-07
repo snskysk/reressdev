@@ -2,8 +2,20 @@
 {% load static%}
 
 {% block css %}
+  <!--  #######css homepage & mainhome ##############   -->
+  <!--  #######js homepage & base ####################   -->
 
+  <!--  ##############################################   -->
+  <!--  ################    css    from    homepage  #########   -->
+  <!--  ##############################################   -->
     <link rel='stylesheet' type='text/css' href='{% static 'gv/homepage/homepage.css' %}' />
+
+    <!-- プログレスバー -->
+    <link rel='stylesheet' type='text/css' href='{% static 'gv/homepage/style2.css' %}' />
+
+    <!--  ##############################################   -->
+    <!--  ################    css    from    mainhome  #########   -->
+    <!--  ##############################################   -->
 
     <!-- Bootstrap Core CSS -->
     <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/bootstrap.min.css' %}' />
@@ -25,18 +37,14 @@
     <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/font-awesome.min.css' %}' />
     <!--<link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
 
-    <!-- プログレスバー -->
-    <link rel='stylesheet' type='text/css' href='{% static 'gv/homepage/style2.css' %}' />
-
 {% endblock%}
 
 
 {% block body %}
-<!-->
+
 <div id="page-wrapper" class='page-wrapper'>
   <div class="row">
     <div class="col-lg-12">
-    <-->
       <!--h1 class="page-header">Re:Re:ss</h1-->
       <div class="page-head">
       <a href="{% url 'hp' %}"><img src="/static/gv/images/titlelogo.PNG" alt="Re:Re:ss" width="220" height="90" border="0" /></a>
@@ -76,7 +84,7 @@
                     </div>
                     <div class="panel-body">
                         <div class="image101">
-                                <img width=350 height=210 src="/static/gv/images/graph_ex4.PNG">
+                                <img src="{% static 'gv/images/graph_ex4.PNG'%}" width="100%">
                         </div>
                         <ul style="list-style:none;">
 
@@ -89,12 +97,12 @@
                 <div class="col-lg-6 col-xs-12">
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4><a href='{% url 'index' %}'>飲食店データ登録</a></h4>
+                        <h4><a href='{% url 'review' %}'>飲食店データ登録</a></h4>
                     </div>
                     <div class="panel-body">
                         <div class="panel-body">
                             <div class="image101">
-                                <img width=350 height=210 src="/static/gv/images/graph_ex15.PNG">
+                                <img src="{% static 'gv/images/graph_ex15.PNG'%}" width="100%">
                             </div>
                             <ul style="list-style:none;">
 
@@ -113,7 +121,7 @@
                     <div class="panel-body">
                         <div class="panel-body">
                             <div class="image101">
-                                <img width=350 height=210 src="/static/gv/images/graph_ex2.PNG">
+                                <img src="{% static 'gv/images/graph_ex2.PNG'%}" width="100%">
                             </div>
 
                             <ul style="list-style:none;">
@@ -132,7 +140,7 @@
                     <div class="panel-body">
                         <div class="panel-body">
                             <div class="image101">
-                                <img width=350 height=210 src="/static/gv/images/graph_ex3.PNG">
+                                <img src="{% static 'gv/images/graph_ex3.PNG'%}" width="100%">
                             </div>
 
                             <ul style="list-style:none;">
@@ -147,12 +155,12 @@
                 <div class="col-lg-6 col-xs-12">
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4><a href='{% url 'index' %}'>Use Taimee</a></h4>
+                        <h4><a href='https://taimee.co.jp/'>Use Taimee</a></h4>
                     </div>
                     <div class="panel-body">
                         <div class="panel-body">
                             <div class="image101">
-                                <img width=350 height=210 src="/static/gv/images/graph_ex16.PNG">
+                                <img src="{% static 'gv/images/graph_ex16.PNG'%}" width="100%">
                             </div>
                             <ul style="list-style:none;">
                                 <li>面接無しで隙間時間アルバイト</li>
@@ -167,17 +175,25 @@
           </div>
         </div>
     </div>
-<!-->
+
     </div>
 </div>
-<-->
 <!-- /main -->
-
 
 
 {% endblock%}
 
 {% block js %}
+
+<!--  ##############################################   -->
+<!--  ################    js    from    homepage  #########   -->
+<!--  ###################    1  content    ###############   -->
+
+
+<!--  ##############################################   -->
+<!--  ################    js    from    base  #########   -->
+<!--  ##############################################   -->
+
 <!-- jQuery -->
 <script src="{% static 'gv/base/js/jquery.min.js' %}" language="JavaScript"></script>
 
