@@ -1,0 +1,45 @@
+
+
+/*drowerの上部にスペースを与える*/
+.contents-space {
+  height: 10px;
+}
+
+
+.background {
+  background-color: #F5F6F7;
+}
+
+
+.drawer_li_div {
+  padding-bottom: 5px;
+  border-bottom: solid #F5F6F7;
+}
+
+
+
+
+/*divの大きさを確認するときに使用*/
+.line {
+  border: solid;
+}
+
+
+/*下まで伸ばす*/
+/*
+html{
+    height:100%;
+}
+body{
+    height:100%;
+}
+.div-to-{
+    height:100%;
+    min-height:100%;
+    width:100%;
+    background:#FFFFFF;
+}
+body > .div-to-{
+    height:auto;
+}
+*/
