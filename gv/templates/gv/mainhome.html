@@ -1,306 +1,39 @@
 {% extends 'gv/base.html' %}
 {% load static %}
-
-{% block css%}
-<!--  ################    css    mainhome  #############   -->
-<!--  ################    js base mainhome  #############   -->
-
-<!--  ##############################################   -->
-<!--  ################    css    from    mainhome  #############   -->
-<!--  ##############################################   -->
-  <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/style.css' %}' />
+{% block css %}
 {% endblock %}
 
+
 {% block body %}
-    <!--メインの部分-->
-    <div id="page-wrapper" class='page-wrapper'>
-      <div class="row">
-        <div class="col-lg-12">
-          <h1 class="page-header">{{str_name}}さんの成績</h1>
-        </div>
-      </div>
-
-      <!--row-heightで箱の高さを整える-->
-      <div class="row row-height">
-        <div class="col-lg-6 col-xs-12">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              成績取得率
-            </div>
-            <div class="panel-body">
-              <!--<div class = 'pigraph'><svg id="fillgauge4" width="100%" height="100%"></svg></div>-->
-              <div><svg id="fillgauge4" align="center" width="100%" height="297"></svg></div>
-              <!--<svg id="fillgauge1" width="100%" height="100%"></svg>-->
-              <!--<svg id="fillgauge1" width="100%" height="100%"></svg>-->
-              <!--<svg id="fillgauge1" width="100%"></svg>-->
-            </div>
-          </div>
-        </div>
-        <!--
-        <div class="col-lg-3 col-xs-3">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              2
-            </div>
-            <div class="panel-body">
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-xs-3">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              3
-            </div>
-            <div class="panel-body">
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-xs-3">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              4
-            </div>
-            <div class="panel-body">
-            </div>
-          </div>
-        </div>
-        -->
-        <!--1つ目のグラフ-->
-        <div class="col-lg-6 col-xs-12">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              円グラフ
-            </div>
-            <div class="panel-body">
-              <!--<div style="width:400px">-->
-              <div class = 'pigraph'><canvas width="400" height="300" id="pigraph"></canvas></div>
-            </div>
-          </div>
-        </div>
-        <!--2つ目のグラフ-->
-        <div class="col-lg-6 col-xs-12">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              レーダー
-            </div>
-            <div class="panel-body">
-              <!--<div id="morris-area-char"></div>
-              <canvas id="radar" height="450" width="450"></canvas>-->
-              <div><canvas id="myrader"></canvas></div>
-            </div>
-          </div>
-        </div>
-        <!--3つ目のグラフ-->
-        <div class="col-lg-6 col-xs-12">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              棒グラフ
-            </div>
-            <div class="panel-body">
-              <div><canvas id="bar-chart"></canvas></div>
-            </div>
-          </div>
-        </div>
-        <!--
-        <div class="col-lg-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              Morris.js Usage
-            </div>
-            <div class="panel-body">
-              <p>Morris.js is a jQuery based charting plugin created by Olly Smith. In SB Admin, we are using the most recent version of Morris.js which includes the resize function, which makes the charts fully responsive. The documentation for
-                Morris.js is available on their website, <a target="_blank" href="http://morrisjs.github.io/morris.js/">http://morrisjs.github.io/morris.js/</a>.</p>
-              <a target="_blank" class="btn btn-default btn-lg btn-block" href="http://morrisjs.github.io/morris.js/">View Morris.js Documentation</a>
-            </div>
-          </div>
-        </div>
-        -->
-
-    </div>
+  <h1 class="page-header" style="text-align:center;">成績グラフ</h1>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      円グラフ
+    </div><!--panel-heaing-->
+    <div class="panel-body">
+      <div><canvas width="400" height="300" id="pigraph"></canvas></div>
+    </div><!--panel-body-->
+  </div><!--panel panel-default-->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      棒グラフ
+    </div><!--panel-heaing-->
+    <div class="panel-body">
+      <div><canvas id="bar-chart"></canvas></div>
+    </div><!--panel-body-->
+  </div><!--panel panel-default-->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      レーダーチャート
+    </div><!--panel-heaing-->
+    <div class="panel-body">
+      <div><canvas width="500" height="500" id="myrader"></canvas></div>
+    </div><!--panel-body-->
+  </div><!--panel panel-default-->
 {% endblock %}
 
 
 {% block js %}
-
-<!--  ##############################################   -->
-<!--  ################    js    from    base  #############   -->
-<!--  ##############################################   -->
-  <!-- jQuery -->
-<script src="{% static 'gv/base/js/jquery.min.js' %}" language="JavaScript"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="{% static 'gv/base/js/bootstrap.min.js' %}" language="JavaScript"></script>
-
-<!-- Metis Menu Plugin JavaScript -->
-<script src="{% static 'gv/base/js/metisMenu.min.js' %}" language="JavaScript"></script>
-
-<!-- グラフを記述するファイル -->
-<script src="{% static 'gv/base/js/raphael.min.js' %}" language="JavaScript"></script>
-<script src="{% static 'gv/base/js/morris.min.js' %}" language="JavaScript"></script>
-<!--それぞれのグラフのデータ点が記述されているファイル-->
-<script src="{% static 'gv/base/js/morris-data.js' %}" language="JavaScript"></script>
-
-
-<!-- Custom Theme JavaScript -->
-<script src="{% static 'gv/base/js/startmin.js' %}" language="JavaScript"></script>
-
-
-<!--**********************************************************************************************
-                                 水槽ゲージのための記述
-***************************************************************************************************-->
-<!--  ##############################################   -->
-<!--  ################    js    from    mainhome  #############   -->
-<!--  ##############################################   -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-<script src="http://d3js.org/d3.v3.min.js" language="JavaScript"></script>
-<script src="{% static 'gv/mainhome/liquid-full/liquidFillGauge.js' %}" language="JavaScript"></script>
-<!--水槽ゲージの詳細(6個分)-->
-<script>
-  //単位取得率の定義
-  var gradeAchievement = {{gradeAchievement | safe}}
-  /*
-  var gauge1 = loadLiquidFillGauge("fillgauge1", gradeAchievement);
-  var config1 = liquidFillGaugeDefaultSettings();
-  config1.circleColor = "#FF7777";
-  config1.textColor = "#FF4444";
-  config1.waveTextColor = "#FFAAAA";
-  config1.waveColor = "#FFDDDD";
-  config1.circleThickness = 0.2;
-  config1.textVertPosition = 0.2;
-  config1.waveAnimateTime = 1000;
-  */
-  /*
-  var gauge2= loadLiquidFillGauge("fillgauge2", 28, config1);
-  var config2 = liquidFillGaugeDefaultSettings();
-  config2.circleColor = "#D4AB6A";
-  config2.textColor = "#553300";
-  config2.waveTextColor = "#805615";
-  config2.waveColor = "#AA7D39";
-  config2.circleThickness = 0.1;
-  config2.circleFillGap = 0.2;
-  config2.textVertPosition = 0.8;
-  config2.waveAnimateTime = 2000;
-  config2.waveHeight = 0.3;
-  config2.waveCount = 1;
-  */
-  /*
-  var gauge3 = loadLiquidFillGauge("fillgauge3", 60.1, config2);
-  var config3 = liquidFillGaugeDefaultSettings();
-  config3.textVertPosition = 0.8;
-  config3.waveAnimateTime = 5000;
-  config3.waveHeight = 0.15;
-  config3.waveAnimate = false;
-  config3.waveOffset = 0.25;
-  config3.valueCountUp = false;
-  config3.displayPercent = false;
-  */
-  var config4 = liquidFillGaugeDefaultSettings();
-  config4.circleThickness = 0.15;
-  config4.circleColor = "rgb(23,130,207,0.5)";
-  config4.textColor = "#045681";
-  config4.waveTextColor = "#A4DBf8";
-  config4.waveColor = "rgb(23,139,202,0.6)";
-  //config4.circleColor = "#49a4e5";
-  //config4.textColor = "#05a4e5";
-  //config4.waveTextColor = "#05a4e5";
-  //config4.waveColor = "#2577B5";
-  config4.textVertPosition = 0.3;
-  config4.waveAnimateTime = 1000;
-  config4.waveHeight = 0.05;
-  config4.waveAnimate = true;
-  config4.waveRise = false;
-  config4.waveHeightScaling = false;
-  config4.waveOffset = 0.25;
-  config4.textSize = 0.75;
-  config4.waveCount = 3;
-  var gauge4 = loadLiquidFillGauge("fillgauge4", gradeAchievement, config4);
-  /*
-  var gauge5 = loadLiquidFillGauge("fillgauge5", 60.44, config4);
-  var config5 = liquidFillGaugeDefaultSettings();
-  config5.circleThickness = 0.4;
-  config5.circleColor = "#6DA398";
-  config5.textColor = "#0E5144";
-  config5.waveTextColor = "#6DA398";
-  config5.waveColor = "#246D5F";
-  config5.textVertPosition = 0.52;
-  config5.waveAnimateTime = 5000;
-  config5.waveHeight = 0;
-  config5.waveAnimate = false;
-  config5.waveCount = 2;
-  config5.waveOffset = 0.25;
-  config5.textSize = 1.2;
-  config5.minValue = 30;
-  config5.maxValue = 150
-  config5.displayPercent = false;
-  //var gauge6 = loadLiquidFillGauge("fillgauge6", 120, config5);
-
-  function NewValue(){
-      if(Math.random() > .5){
-          return Math.round(Math.random()*100);
-      } else {
-          return (Math.random()*100).toFixed(1);
-      }
-  }
-  */
-</script>
-
-
-<!--**************************************************
-               棒グラフの記述
-****************************************************-->
-<script language="JavaScript">
-  var residual_unit = {{residual_unit|safe}};
-  var kind_name = {{kind_name|safe}};
-  var on_course = {{on_course|safe}};
-  var ctx = document.getElementById("bar-chart").getContext('2d');
-  var ChartDemo = new Chart(ctx, {
-         type: 'bar',
-         data: {
-            //labels: kind_list,
-            labels: kind_name,
-            datasets: [
-            {
-            label: "残単位数",
-            lineTension: 0,
-            fill: false,
-            //backgroundColor: ["rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(246,133,124,0.5)","rgba(246,133,124,0.5)","rgba(206,195,73,0.5)"]
-            backgroundColor: "rgba(131,185,206,0.5)",
-            //borderColor: "#217346",
-            data: residual_unit
-          },
-          {
-          label: "履修単位数",
-          lineTension: 0,
-          fill: false,
-          //backgroundColor: ["rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(246,133,124,0.5)","rgba(246,133,124,0.5)","rgba(206,195,73,0.5)"]
-          backgroundColor: "rgba(131,0,206,0.5)",
-          //borderColor: "#217346",
-          data: on_course
-        }
-            ]
-         },
-         options: {
-            responsive: true,
-            scales: {
-          xAxes: [{
-            ticks: {
-              fontSize: 10,
-              maxRotation: 100,
-              minRotation: 0
-            },
-          }],
-          yAxes: [{
-            ticks: {
-              fontSize: 18,
-              beginAtZero:true,
-            },
-          }],
-        },
-         }
-       });
-</script>
-
-
 <!--**********************************************************************************************
                                   円グラフの記述
 ***************************************************************************************************-->
@@ -321,8 +54,8 @@
               if (!meta.hidden) {
                   meta.data.forEach(function (element, index) {
                       // Draw the text in black, with the specified font
-                      ctx.fillStyle = 'rgb(255, 255, 255)';
-
+                      //ctx.fillStyle = 'rgb(255, 255, 255)';
+                      ctx.fillStyle = '#000000';
                       var fontSize = 12;
                       var fontStyle = 'normal';
                       var fontFamily = 'Helvetica Neue';
@@ -333,10 +66,11 @@
                       var dataString = (Math.round(dataset.data[index] / dataSum * 1000)/10).toString() + "%";
 
                       // Make sure alignment settings are correct
+                      //ctx.textAlign = 'center';
                       ctx.textAlign = 'center';
                       ctx.textBaseline = 'middle';
 
-                      var padding = 5;
+                      var padding = 25;
                       var position = element.tooltipPosition();
                       ctx.fillText(labelString, position.x, position.y - (fontSize / 2) - padding);
                       ctx.fillText(dataString, position.x, position.y + (fontSize / 2) - padding);
@@ -356,7 +90,6 @@
           labels: gradeOfcircle,
           datasets: [{
               label: "Sample",
-              //backgroundColor: ["#3F51B5", "#F44336", "#FF9800", "#4CAF50", "#9C27B0", "#00BCD4", "#E91E63"],
               backgroundColor: ["#3F51B5", "#F44336", "#FF9800", "#4CAF50", "#9C27B0"],
               data: unitOfcircle,
           }]
@@ -367,11 +100,79 @@
               text: "Sample"
           },
           legend:{
+            labels: {
+              boxWidth: 20,
+              fontSize: 10,
+            }
           },
           maintainAspectRatio: false,
       },
       plugins: [dataLabelPlugin],
                 });
+</script>
+
+
+
+<!--**************************************************
+               棒グラフの記述
+****************************************************-->
+<script language="JavaScript">
+  var residual_unit = {{residual_unit|safe}};
+  var kind_name = {{kind_name|safe}};
+  var on_course = {{on_course|safe}};
+  var ctx = document.getElementById("bar-chart").getContext('2d');
+  ctx.canvas.height = 280;
+  var ChartDemo = new Chart(ctx, {
+         type: 'bar',
+         data: {
+            //labels: kind_list,
+            labels: kind_name,
+            datasets: [
+            {
+            label: "残単位数",
+            lineTension: 0,
+            fill: false,
+            //backgroundColor: ["rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(246,133,124,0.5)","rgba(246,133,124,0.5)","rgba(206,195,73,0.5)"]
+            backgroundColor: "rgba(131,185,206,0.5)",
+            //borderColor: "#217346",
+            data: residual_unit
+          },
+          {
+          label: "履修中単位数",
+          lineTension: 0,
+          fill: false,
+          //backgroundColor: ["rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(246,133,124,0.5)","rgba(246,133,124,0.5)","rgba(206,195,73,0.5)"]
+          backgroundColor: "rgba(131,0,206,0.5)",
+          //borderColor: "#217346",
+          data: on_course
+        }
+            ]
+         },
+         options: {
+            responsive: true,
+            legend: {
+              labels: {
+                fontSize: 7,
+                boxWidth: 20,
+              }
+            },
+            scales: {
+          xAxes: [{
+            ticks: {
+              fontSize: 7,
+              maxRotation: 100,
+              minRotation: 0
+            },
+          }],
+          yAxes: [{
+            ticks: {
+              fontSize: 18,
+              beginAtZero:true,
+            },
+          }],
+        },
+         }
+       });
 </script>
 
 
@@ -414,21 +215,19 @@
         }, ]
       },
       options: {
+        responsive: true,
         animation: false,
         showTooltips: false,
         legend: {
-          position: 'bottom'
+          position: 'top',
         },
         title: {
           display: false,
-          fontSize: 20,
-          fontColor: '#666',
-          text: '一週間チャート'
         },
         scale: {
           display: true,
           pointLabels: {
-            fontSize: 15,
+            fontSize: 8,
             fontColor: colorSet.yellow
           },
           ticks: {
@@ -452,5 +251,6 @@
      */
     var myRadar = new Chart($("#myrader"), config);
   </script>
+
 
 {% endblock %}

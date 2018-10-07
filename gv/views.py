@@ -2,7 +2,6 @@ import sys
 import traceback
 import time
 
-
 #
 from django.shortcuts import render, redirect
 from .forms import userInfoForm, findForm, find_my_sub_Form, food_pool_Form
@@ -429,8 +428,27 @@ def review(request):
                                      #飲食店検索
 ###################################################################################
 def shop_search(request):
-    food_pool_objects = food_pool.objects.all()
+    if request.method == 'POST':
+        form = find_shop(request.POST)
+        shop_obj = food_pool.objects.all()
+        print(shop_obj)
+        shop_name = request.POST['shop_name']
+        price = request.POST['price']
+        #shop_nameのフィルター
+        if len(shop_name) is not 0:
+            shop_obj = shop_obj.filter(shop_name__contains=shop_name)
+        #価格のフィルター
+        if len(price) is not 0:
+            shop_obj = shop_obj.filter(price=price)
+        shop_search_params = {
+            'form':form,
+            'shop_obj':shop_obj
+        }
+        return render(request, 'gv/shop_search.html', shop_search_params)
+    shop_obj = food_pool.objects.all()
+    form = find_shop()
     shop_search_params = {
-        'food_pool':food_pool_objects
+        'form':form,
+        'shop_obj':shop_obj
     }
     return render(request, 'gv/shop_search.html', shop_search_params)
