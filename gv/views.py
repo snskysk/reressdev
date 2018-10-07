@@ -10,7 +10,7 @@ from pycord.main import condact
 from pycord.pytojs import pytojsMaterials
 from django.db.models import Q, Sum
 from django.forms import Select
-import threading#
+import threading
 
 
 # Create your views here.

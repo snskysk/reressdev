@@ -9,6 +9,6 @@
         $(element).find("tr.odd").click(function() {
             $(this).next("tr").toggle();
         });
-        
-    }    
+
+    }
 })(jQuery); 
