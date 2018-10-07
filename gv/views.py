@@ -170,17 +170,29 @@ def deteil(request):
                                      #詳細画面
 ###################################################################################
 
+######################################################################################################
+                            #フォームを人それぞれで分ける 関数化
+######################################################################################################
+def make_list(model_name,form_name,sn,form):
+    kind_list = list(set(list(subjectInfo.objects.filter(user_id=sn).values_list('{}'.format(model_name), flat=True))))
+    the_field = form.fields['{}'.format(form_name)]
+    form_list = [('','{}'.format(form_name))]
+    for i in range(0, len(kind_list)):
+        form_tuple = (kind_list[i],kind_list[i])
+        form_list.append(form_tuple)
+        the_field.choices = form_list
+    return
 
+
+######################################################################################
+                                     #詳細画面
+###################################################################################
 def detail(request):
-    ###################################################################
-        ##直すところ##
-    ###############################################################
     try:
-        sn = personal_dataset.loc[0,'user_id']   #ログイン中のユーザーの学籍番号
-        #sn = '16cb087l'
+        #sn = personal_dataset.loc[0,'user_id']   #ログイン中のユーザーの学籍番号
+        sn = '16cb087l'
     #ログインしてからでなければ入れない
     except Exception as e:
-        print(str(e.args))
         form = userInfoForm()
         index_params = {
             'form':form
@@ -188,72 +200,17 @@ def detail(request):
         return render(request, 'gv/index.html', index_params)
 
 
-
     if request.method == 'POST':
         form = find_my_sub_Form(request.POST)
-
-
-        ######################################################################################################
-                                        #yearのフォームを人それぞれで分ける
-        ######################################################################################################
-        year_list = list(set(list(subjectInfo.objects.filter(user_id=sn).values_list('year_int', flat=True))))
-        form = find_my_sub_Form()
-        year_field = form.fields['year']
-        c = [('','year')]
-        for i in range(0, len(year_list)):
-            year_tuple = (str(year_list[i]),str(year_list[i]))
-            c.append(year_tuple)
-        print(c)
-        year_field.choices = c
-        #year_field.widget = Select(choices=c)
-        #form.fields['year'] = year_field
-        #orm.full_clean()
-
-        ######################################################################################################
-                                #category1のフォームを人それぞれで分ける
-        ######################################################################################################
-        category1_list = list(set(list(subjectInfo.objects.filter(user_id=sn).values_list('category1', flat=True))))
-        print(category1_list)
-
-        category1_field = form.fields['category1']
-        c = [('','kind1')]
-        for i in range(0, len(category1_list)):
-            category1_tuple = (category1_list[i],category1_list[i])
-            c.append(category1_tuple)
-        category1_field.choices = c
-
-
-
-
-
-
-
-
-
-
+        make_list('year_int','year',sn,form)
+        make_list('category1','category1',sn,form)
         filtered_sub = subjectInfo.objects.filter(user_id=sn)
         season = request.POST['season']
         grade = request.POST['grade']
         year = request.POST['year']
         category1 = request.POST['category1']
-        print(year)
         subname_teacher = request.POST['subname_teacher']
 
-        #今期の成績を選択した場合
-        try:
-            gv = request.POST['gv']
-            form = find_my_sub_Form()
-            filtered_sub = filtered_sub.filter(season__contains='春学期').filter(year_int=2018)
-            detail_params = {
-                'filtered_sub':filtered_sub,
-                'form':form
-            }
-
-
-
-            return render(request, 'gv/detail.html', detail_params)
-        except:
-            pass
         #季節のフィルター
         if len(season) is not 0:
             filtered_sub = filtered_sub.filter(season__contains=season)
@@ -275,58 +232,28 @@ def detail(request):
             y = int(year)
             filtered_sub = filtered_sub.filter(year_int=y)
 
+        result_score_int_sum = filtered_sub.aggregate(Sum('result_score_int'))['result_score_int__sum']
+        unit_int_sum = filtered_sub.aggregate(Sum('unit_int'))['unit_int__sum']
+        gpa = result_score_int_sum / unit_int_sum
+
         detail_params = {
+            'gpa_message':'該当科目のgpaは<b><u>'+str(round(gpa,2))+'</u></b><br>    ※Dがある場合正しく計算されません',
             'filtered_sub':filtered_sub,
-            'form':form
-        }
-
-
-
-
-
-
-        return render(request, 'gv/detail.html', detail_params)
-    else:
-        ######################################################################################################
-                                        #yearのフォームを人それぞれで分ける
-        ######################################################################################################
-        year_list = list(set(list(subjectInfo.objects.filter(user_id=sn).values_list('year_int', flat=True))))
-        form = find_my_sub_Form()
-        year_field = form.fields['year']
-        c = [('','year')]
-        for i in range(0, len(year_list)):
-            year_tuple = (str(year_list[i]),str(year_list[i]))
-            c.append(year_tuple)
-        year_field.choices = c
-        #year_field.widget = Select(choices=c)
-        #form.fields['year'] = year_field
-        #orm.full_clean()
-
-        ######################################################################################################
-                                #category1のフォームを人それぞれで分ける
-        ######################################################################################################
-        category1_list = list(set(list(subjectInfo.objects.filter(user_id=sn).values_list('category1', flat=True))))
-
-
-        category1_field = form.fields['category1']
-        c = [('','kind1')]
-        for i in range(0, len(category1_list)):
-            category1_tuple = (category1_list[i],category1_list[i])
-            c.append(category1_tuple)
-        category1_field.choices = c
-
-
-
-        #filtered_sub = subjectInfo.objects.filter(user_id=sn)
-        detail_params = {
             'form':form,
-            #'filtered_sub':filtered_sub
         }
-
-
-
-
         return render(request, 'gv/detail.html', detail_params)
+    form = find_my_sub_Form()
+    filtered_sub = subjectInfo.objects.filter(user_id=sn)
+    result_score_int_sum = filtered_sub.aggregate(Sum('result_score_int'))['result_score_int__sum']
+    unit_int_sum = filtered_sub.aggregate(Sum('unit_int'))['unit_int__sum']
+    gpa = result_score_int_sum / unit_int_sum
+    make_list('year_int','year',sn,form)
+    make_list('category1','category1',sn,form)
+    detail_params = {
+        'form':form,
+        'filtered_sub':filtered_sub
+    }
+    return render(request, 'gv/detail.html', detail_params)
 
 ###################################################################################
                                #メインのグラフを出力する画面
