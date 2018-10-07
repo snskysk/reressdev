@@ -4,13 +4,13 @@ import time
 
 #
 from django.shortcuts import render, redirect
-from .forms import userInfoForm, findForm, find_my_sub_Form, food_pool_Form
+from .forms import userInfoForm, findForm, find_my_sub_Form, food_pool_Form, find_shop
 from .models import studentInfo, subjectInfo, food_pool
 from pycord.main import condact
 from pycord.pytojs import pytojsMaterials
-from django.db.models import Q
+from django.db.models import Q, Sum
 from django.forms import Select
-#
+import threading#
 
 
 # Create your views here.
