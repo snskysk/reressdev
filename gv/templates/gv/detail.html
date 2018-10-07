@@ -2,123 +2,88 @@
 {% load widget_tweaks %}
 {% load static %}
 {% block css %}
-<!--  ########        css detail  #######       js base   ##########   -->
-
-<!--  ##############################################   -->
-<!--  ###########    css    from    detail  #############   -->
-<!--  ##############################################   -->
-
 <link rel='stylesheet' type='text/css' href='{% static 'gv/detail/detail.css' %}' />
+
 
 {% endblock%}
 
-
 {% block body %}
 <!--メインの部分-->
-<div id="page-wrapper" class='page-wrapper'>
-  <div class="row">
-    <div class="col-lg-12">
-      <h1 class="page-header">成績詳細</h1>
-    </div>
-  </div>
-  <div class="row row-height">
-    <div class="col-lg-12 col-xs-12">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          検索
-        </div>
-        <div class="panel-body">
-
-          <form action='{% url 'detail' %}' method='post' , name='detail'>
+  <h1 class="page-header" style="text-align:center;">成績詳細</h1>
+  <div class="detail_onclick" onclick="obj=document.getElementById('menu1').style; obj.display=(obj.display=='none')?'block':'none';">
+    <a class="detail_a" style="cursor:pointer;"><span style="color: #000000;"><u>▼成績詳細検索▼</u></span></a><br><br>
+  </div><!--detail_onclick-->
+  <div id="menu1" style="display:none;clear:both;">
+    <div class="panel panel-default line">
+  	   <div class="panel-heading">
+         成績詳細
+  	    </div><!--panel-heading-->
+  	    <div class="panel-body detail_panel">
+          <form action='{% url 'detail' %}' method='post' name='detail'>
             {% csrf_token %}
-            <div class='detail_input_box'>
-              {{form.subname_teacher|add_class:"detail_input_from"|attr:"placeholder:科目名/先生"}}
-            </div>
-            <div class='detail_input_box'>
-              {{form.gv}}
-            </div>
-            <div class = 'row'>
-              <div class = 'col-lg-6 col-xs-12'>
-                <div class="cp_ipselect cp_sl04">
-                  {{form.season}}
-                </div>
-              </div>
-              <div class = 'col-lg-6 col-xs-12'>
-                <div class="cp_ipselect cp_sl04">
-                  {{form.grade}}
-                </div>
-              </div>
-              <div class = 'col-lg-6 col-xs-12'>
-                <div class="cp_ipselect cp_sl04">
-                  {{form.year}}
-                </div>
-              </div>
-              <div class = 'col-lg-6 col-xs-12'>
-                <div class="cp_ipselect cp_sl04">
-                  {{form.category1}}
-                </div>
-              </div>
-            </div>
-            <div class="wrap">
-              <button class="button">検索</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <div class='col-lg-12'>
-      <div class='detail_table_class'>
-        <table class='type06 table_center_class'>
-          <thead>
-            <tr>
-              <th>科目名</th>
-              <th>成績</th>
-              <th>季節</th>
-              <th>先生</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for message in filtered_sub %}
-            <tr>
-              <td>{{ message.subjectname }}</td>
-              <td>{{ message.grade }}</td>
-              <td>{{ message.season }}</td>
-              <td>{{message.teacher}}</td>
-            </tr>
+            {% for field in form %}
+              {% if forloop.first %}
+                {{field|add_class:"field"|attr:"placeholder:教科名/先生"}}
+              {% else %}
+                <div class="cp_ipselect cp_sl04 line">
+                  {{ field }}
+                </div><!--cp_ipselect cp_sl04-->
+              {% endif %}
             {% endfor %}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
+            <div><!--button-->
+              <div class="detail_button_div">
+                <button class="detail_button">
+                  成績を見る
+                </button>
+              </div><!--detail-button-div-->
+            </div><!--button-->
+          </form>
+  	    </div><!--panel-body-->
+    </div><!--panel-primary-->
+  </div><!--menu1-->
+  <h6 style="text-align:center;">{{gpa_message|safe}}</h6>
+  <div class="line">
+    <table class='type06 table_center_class' id="report" width="100%">
+      <thead>
+        <tr>
+          <th>科目名</th>
+          <th>成績</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for message in filtered_sub %}
+        <tr>
+          <td>{{ message.subjectname }}</td>
+          <td>{{ message.grade }}</td>
+        </tr>
+        <tr>
+          <td colspan="40">
+            <div class="line">
+              <p style="text-align: center;">
+              ▲この授業の詳細▲<br>先生の名前:{{message.teacher}}<br>
+              受講年度:{{message.year_int}}<br>季節:{{message.season}}
+            </p>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div><!--line-->
 {% endblock %}
 
 
 {% block js %}
-<!--  ##############################################   -->
-<!--  ###########    js    from    base  #############   -->
-<!--  ##############################################   -->
+<script src='{% static 'gv/shop_search/jExpand.js' %}'></script><!--tableを押すと列が拡大する-->
+<script>
+$("#report tr:odd").addClass("master");
+$("#report tr:not(.master)").hide();
+$("#report tr:first-child").show();
+$("#report tr.master").click(function(){
+    $(this).next("tr").toggle();
+    $(this).find(".arrow").toggleClass("up");
+});
 
-<!-- jQuery -->
-<script src="{% static 'gv/base/js/jquery.min.js' %}" language="JavaScript"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="{% static 'gv/base/js/bootstrap.min.js' %}" language="JavaScript"></script>
-
-<!-- Metis Menu Plugin JavaScript -->
-<script src="{% static 'gv/base/js/metisMenu.min.js' %}" language="JavaScript"></script>
-
-<!-- グラフを記述するファイル -->
-<script src="{% static 'gv/base/js/raphael.min.js' %}" language="JavaScript"></script>
-<script src="{% static 'gv/base/js/morris.min.js' %}" language="JavaScript"></script>
-<!--それぞれのグラフのデータ点が記述されているファイル-->
-<script src="{% static 'gv/base/js/morris-data.js' %}" language="JavaScript"></script>
-
-
-<!-- Custom Theme JavaScript -->
-<script src="{% static 'gv/base/js/startmin.js' %}" language="JavaScript"></script>
-
+</script>
 
 {% endblock %}
