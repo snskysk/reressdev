@@ -75,8 +75,5 @@ class find_shop(forms.Form):
 
 
 
-
-
-
     shop_name = forms.CharField(label='科目名/先生', required = False)
     price = forms.ChoiceField(choices=price_list, required = False)
