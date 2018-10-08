@@ -1,4 +1,8 @@
 /*mainhomeでグラフの高さを整える*/
+
+
+
+
 .row-height {
   display: flex;
   flex-wrap: wrap;
@@ -38,9 +42,34 @@ h4 {
   text-align: center;
   color: blue;
 }
+
+#body-design{
+    background-color:red;
+}
+
+#hp-back1 {
+  background-image: url("../images/hp_design2.PNG");
+}
+#hp-back2 {
+  background-image: url("../images/hp_design2.PNG");
+}
+#hp-back3 {
+  background-image: url("../images/hp_design2.PNG");
+}
+
+
+#panel-body-both {
+  text-align: center;
+  color: black;
+  background-color:#727172;
+  background-image: url("../images/hp_design2.PNG");
+
+}
+
 .panel-body {
   text-align: center;
   color: black;
+  background-color:white;
 }
 
 .col-lg-6 col-xs-12{

@@ -47,12 +47,11 @@
     <div class="col-lg-12">
       <!--h1 class="page-header">Re:Re:ss</h1-->
       <div class="page-head">
-      <a href="{% url 'hp' %}"><img src="/static/gv/images/titlelogo.PNG" alt="Re:Re:ss" width="220" height="90" border="0" /></a>
+      <a href="{% url 'hp' %}"><img src="/static/gv/images/titlelogo.PNG" alt="Re:Re:ss" width="100%" /></a>
     </div>
     </div>
   </div>
-      <div class=header-logo><h1>--- Record Registration Server System ---</h1></div>
-      <div id="container"></div>
+
 
 
     <div class="copy-container">
@@ -61,7 +60,34 @@
     </div>
     <div>
         <div class=".col-lg-pull-8 col-xs-12">
-          <div class="panel panel-primary">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4>設計思想</h4>
+            </div>
+            <div class="panel-body">
+                <div>
+
+                <div class="col-lg-6 col-xs-12">
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="image101">
+                                <img src="/static/gv/images/creating_idea.PNG" width="100%">
+                        </div>
+
+                    </div>
+                  </div>
+                </div>
+
+
+
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div>
+        <div class=".col-lg-pull-8 col-xs-12">
+          <div class="panel panel-success">
             <div class="panel-heading">
                 <h4>開発者情報</h4>
             </div>
@@ -75,7 +101,7 @@
                     </div>
                     <div class="panel-body">
                         <div class="image101">
-                                <img width=350 height=500 src="/static/gv/images/developer1.PNG">
+                                <img src="/static/gv/images/developer1.PNG" width="100%">
                         </div>
                         <ul style="list-style:none;">
 
@@ -94,7 +120,7 @@
                     <div class="panel-body">
                         <div class="panel-body">
                             <div class="image101">
-                                <img width=350 height=490 src="/static/gv/images/developer2.PNG">
+                                <img src="/static/gv/images/developer2.PNG" width="100%">
                             </div>
                             <ul style="list-style:none;">
 
@@ -116,6 +142,24 @@
     </div>
 </div>
 <!-- /main -->
+
+<div class="footer">
+  <div id="button"></div>
+<div id="f-container">
+<div id="cont">
+<div class="footer_center">
+        <h3>
+            <div class="image101">
+<a href="{% url 'info' %}"><img width=80 height=80 src="/static/gv/images/footer_info.PNG"></a>              <a href="{% url 'hp' %}"><img width=160 height=80 src="/static/gv/images/footer_legal.PNG"></a>              <a href="{% url 'hp' %}"><img width=100 height=80 src="/static/gv/images/footer_support.PNG"></a><br>
+
+        </h3>
+</div>
+
+</div>
+</div>
+</div>
+
+
 
 
 {% endblock%}
