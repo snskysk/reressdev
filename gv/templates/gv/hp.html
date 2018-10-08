@@ -8,10 +8,11 @@
   <!--  ##############################################   -->
   <!--  ################    css    from    homepage  #########   -->
   <!--  ##############################################   -->
-  <link rel='stylesheet' type='text/css' href='{% static 'gv/homepage/homepage.css' %}' />
+    <link rel='stylesheet' type='text/css' href='{% static 'gv/homepage/homepage.css' %}' />
 
     <!-- プログレスバー -->
     <link rel='stylesheet' type='text/css' href='{% static 'gv/homepage/style2.css' %}' />
+
 
     <!--  ##############################################   -->
     <!--  ################    css    from    mainhome  #########   -->
@@ -37,13 +38,10 @@
     <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/font-awesome.min.css' %}' />
     <!--<link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
 
-<!-- 自分のCSS -->
 {% endblock%}
 
 
 {% block body %}
-
-
 
 <div id="page-wrapper" class='page-wrapper'>
   <div class="row">
@@ -54,21 +52,21 @@
     </div>
     </div>
   </div>
+      <div class=header-logo><h1>--- Record Registration Server System ---</h1></div>
+      <div id="container"></div>
+      <script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/master/dist/progressbar.js"></script>
+      <script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/master/dist/progressbar.min.js"></script>
+      <script src="{% static 'gv/homepage/purogres.js' %}" language="JavaScript"></script>
+      <script>
+      </script>
 
     <div class="copy-container">
-        <h4 id="jump-tag">Re:Re:ss</h4><br>
-        <h2>  立教生が作って使う<br>データベースシステム</h2><br>
-        <h4 id="jump-tag">JUMP TO</h4><br>
+        <p>What's Re:Re:ss?</p>
 
-        <ul>
-        <li><a href="#jump101">飲食店データ  検索</a></li>
-        <li><a href="#jump102">飲食店データ  登録</a></li>
-        <li><a href="#jump103">成績グラフ表示</a></li>
-        <li><a href="#jump104">成績・履修詳細</a></li>
-        <li><a href="#jump105">Use  Taimee</a></li>
-    </ul>
-    <h4 id="jump-tag">You Can</h4><br><p>
-        Re:Re:ssでは<a href='https://r.rikkyo.ac.jp'>立教大学WEBシステム</a>と連携することで、多彩な拡張機能を利用できます。 </p>
+    <p>Re:Re:ssは、立教生のあらゆる生活場面のデータ化により<br>
+        誰もがデータを活用できるプラットフォームを構築することを使命とするシステムです。</p>
+    <p><br>
+        Re:Re:ssと<a href='https://r.rikkyo.ac.jp'>立教大学WEBシステム</a>を連携させることで、多彩な拡張機能を利用できます。 </p>
 
     </div>
     <div>
@@ -77,74 +75,79 @@
             <div class="panel-heading">
                 <h4><a href='{% url 'index' %}'>Re:Re:ss  Functions</a></h4>
             </div>
-            <div class="panel-body" id="panel-body-both">
+            <div class="panel-body">
                 <div>
 
                 <div class="col-lg-6 col-xs-12">
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                        <div id="jump101"></div>
-                        <h4><a href='{% url 'shop_search' %}'>飲食店データ  検索</a></h4>
+                        <h4><a href='{% url 'shop_search' %}'>立教大学周辺　飲食店データ検索</a></h4>
                     </div>
                     <div class="panel-body">
                         <div class="image101">
-                                <img src="{% static 'gv/images/graph_ex4.PNG'%}" width="100%"><br>
-                                <img src="{% static 'gv/images/graph_ex42.PNG'%}" width="100%">
-
+                                <img src="{% static 'gv/images/graph_ex4.PNG'%}" width="100%">
                         </div>
+                        <ul style="list-style:none;">
 
+                            <li>立教生たちが実際に使ったことのある飲食店のデータを閲覧できます。</li>
+                            <li>場所や料金、滞在時間からインスタ映え具合まで様々な条件に合わせて検索しよう</li>
+                        </ul>
                     </div>
                   </div>
                 </div>
-
                 <div class="col-lg-6 col-xs-12">
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                        <div id="jump102"></div>
-                        <h4><a href='{% url 'review' %}'>飲食店データ  登録</a></h4>
+                        <h4><a href='{% url 'review' %}'>飲食店データ登録</a></h4>
                     </div>
                     <div class="panel-body">
                         <div class="panel-body">
                             <div class="image101">
-                                <img src="{% static 'gv/images/graph_ex15.PNG'%}" width="100%"><br>
-                                <img src="{% static 'gv/images/graph_ex152.PNG'%}" width="100%">
+                                <img src="{% static 'gv/images/graph_ex15.PNG'%}" width="100%">
                             </div>
+                            <ul style="list-style:none;">
 
+                                <li>実際に行ったお店や施設の情報をデータベースに登録しよう</li>
+                                <li>お店を登録してDBポイントをゲット</li>
+                            </ul>
                         </div>
                     </div>
                   </div>
                 </div>
-
                 <div class="col-lg-6 col-xs-12">
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                        <div id="jump103"></div>
                         <h4><a href='{% url 'index' %}'>成績グラフ表示</a></h4>
                     </div>
                     <div class="panel-body">
                         <div class="panel-body">
                             <div class="image101">
-                                <img src="{% static 'gv/images/graph_ex01.PNG'%}" width="100%">
-                                <img src="{% static 'gv/images/graph_ex011.PNG'%}" width="100%">
+                                <img src="{% static 'gv/images/graph_ex2.PNG'%}" width="100%">
                             </div>
 
+                            <ul style="list-style:none;">
+                                <li>ユーザーの成績をわかりやすくビジュアライズ</li>
+                                <li>残単数も一目で丸わかり！</li>
+                            </ul>
                         </div>
                     </div>
                   </div>
                 </div>
-
                 <div class="col-lg-6 col-xs-12">
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                        <div id="jump104"></div>
                         <h4><a href='{% url 'index' %}'>成績・履修詳細</a></h4>
                     </div>
                     <div class="panel-body">
                         <div class="panel-body">
                             <div class="image101">
                                 <img src="{% static 'gv/images/graph_ex3.PNG'%}" width="100%">
-                                <img src="{% static 'gv/images/graph_ex31.PNG'%}" width="100%">
                             </div>
+
+                            <ul style="list-style:none;">
+                                <li>ユーザーの成績や履修状況を表形式でディスプレイ</li>
+                                <li>科目区分ごとの参照機能も搭載</li>
+                            </ul>
                         </div>
                     </div>
                   </div>
@@ -153,20 +156,21 @@
                 <div class="col-lg-6 col-xs-12">
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                        <div id="jump105"></div>
                         <h4><a href='https://taimee.co.jp/'>Use Taimee</a></h4>
                     </div>
                     <div class="panel-body">
                         <div class="panel-body">
                             <div class="image101">
                                 <img src="{% static 'gv/images/graph_ex16.PNG'%}" width="100%">
-                                <img src="{% static 'gv/images/graph_ex11.PNG'%}" width="100%">
                             </div>
+                            <ul style="list-style:none;">
+                                <li>面接無しで隙間時間アルバイト</li>
+                                <li>立教発で日本初の隙間時間ワークシステムを使ってお小遣い稼ぎ。</li>
+                            </ul>
                         </div>
                     </div>
                   </div>
                 </div>
-
 
             </div>
           </div>
@@ -176,27 +180,6 @@
     </div>
 </div>
 <!-- /main -->
-
-
-
-<div class="footer">
-  <div id="button"></div>
-<div id="f-container">
-<div id="cont">
-<div class="footer_center">
-        <h3>
-            <div class="image101">
-<a href="{% url 'info' %}"><img width=80 height=80 src="/static/gv/images/footer_info.PNG"></a>              <a href="{% url 'legal' %}"><img width=160 height=80 src="/static/gv/images/footer_legal.PNG"></a>              <a href="{% url 'hp' %}"><img width=100 height=80 src="/static/gv/images/footer_support.PNG"></a><br>
-
-        </h3>
-</div>
-
-</div>
-</div>
-</div>
-
-
-
 
 
 {% endblock%}
@@ -211,6 +194,7 @@
 <!--  ##############################################   -->
 <!--  ################    js    from    base  #########   -->
 <!--  ##############################################   -->
+
 
 
 {% endblock %}
