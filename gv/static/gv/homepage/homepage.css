@@ -1,8 +1,4 @@
 /*mainhomeでグラフの高さを整える*/
-
-
-
-
 .row-height {
   display: flex;
   flex-wrap: wrap;
@@ -38,67 +34,18 @@ height: 8px;
 float: inherit;
 }
 
-
-h5 {
+h4 {
   text-align: center;
-  color: black;
+  color: blue;
 }
-
-#body-design{
-    background-color:red;
-}
-
-#hp-back1 {
-  background-image: url("../images/hp_design2.PNG");
-}
-#hp-back2 {
-  background-image: url("../images/hp_design2.PNG");
-}
-#hp-back3 {
-  background-image: url("../images/hp_design2.PNG");
-}
-
-
-#panel-body-both {
-  text-align: center;
-  color: black;
-  background-color:#727172;
-  background-image: url("../images/hp_design2.PNG");
-
-}
-
 .panel-body {
   text-align: center;
   color: black;
-  background-color:white;
 }
 
 .col-lg-6 col-xs-12{
     padding-bottom:20px;
 }
-
-ul, ol {
-  padding: 0;
-  position: relative;
-}
-
-ul li, ol li {
-  color: #2d8fdd;
-  border-left: solid 6px #2d8fdd;/*左側の線*/
-  background: #f1f8ff;/*背景色*/
-  margin-bottom: 3px;/*下のバーとの余白*/
- 	line-height: 1.5;
-  	padding: 0.5em;
-  list-style-type: none!important;/*ポチ消す*/
-}
-
-
-
-
-
-
-
-
 
 
 
