@@ -39,40 +39,6 @@ float: inherit;
 }
 
 
-h2 {
-color: #2d8fdd;
-text-align: center;
-text-shadow: 0 0 5px white;
-border-left: solid 7px #2d8fdd;
-background: -webkit-repeating-linear-gradient(-45deg, #cce7ff, #cce7ff 3px,#e9f4ff 3px, #e9f4ff 7px);
-background: repeating-linear-gradient(-45deg, #cce7ff, #cce7ff 3px,#e9f4ff 3px, #e9f4ff 7px);
-}
-
-
-
-#jump-tag{
-position: relative;
-text-align: center;
-display: inline-block;
-margin-bottom: 1em;
-}
-#jump-tag:before {
-content: '';
-position: absolute;
-text-align: center;
-bottom: -15px;
-display: inline-block;
-width: 60px;
-height: 5px;
-left: 50%;
--moz-transform: translateX(-50%);
--webkit-transform: translateX(-50%);
--ms-transform: translateX(-50%);
-transform: translateX(-50%);
-background-color: black;
-border-radius: 2px;
-}
-
 h5 {
   text-align: center;
   color: black;
