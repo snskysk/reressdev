@@ -8,7 +8,7 @@
   <!--  ##############################################   -->
   <!--  ################    css    from    homepage  #########   -->
   <!--  ##############################################   -->
-    <link rel='stylesheet' type='text/css' href='{% static 'gv/homepage/homepage.css' %}' />
+  <link rel='stylesheet' type='text/css' href='{% static 'gv/homepage/homepage.css' %}' />
 
     <!-- プログレスバー -->
     <link rel='stylesheet' type='text/css' href='{% static 'gv/homepage/style2.css' %}' />
@@ -56,8 +56,18 @@
   </div>
 
     <div class="copy-container">
-        <p>Re:Re:ss<br>【サイト概要を入力】</p>
-    <p><br>
+        <h4 id="jump-tag">Re:Re:ss</h4><br>
+        <h2>  立教生が作って使う<br>データベースシステム</h2><br>
+        <h4 id="jump-tag">JUMP TO</h4><br>
+
+        <ul>
+        <li><a href="#jump101">飲食店データ  検索</a></li>
+        <li><a href="#jump102">飲食店データ  登録</a></li>
+        <li><a href="#jump103">成績グラフ表示</a></li>
+        <li><a href="#jump104">成績・履修詳細</a></li>
+        <li><a href="#jump105">Use  Taimee</a></li>
+    </ul>
+    <h4 id="jump-tag">You Can</h4><br><p>
         Re:Re:ssでは<a href='https://r.rikkyo.ac.jp'>立教大学WEBシステム</a>と連携することで、多彩な拡張機能を利用できます。 </p>
 
     </div>
@@ -73,6 +83,7 @@
                 <div class="col-lg-6 col-xs-12">
                   <div class="panel panel-default">
                     <div class="panel-heading">
+                        <div id="jump101"></div>
                         <h4><a href='{% url 'shop_search' %}'>飲食店データ  検索</a></h4>
                     </div>
                     <div class="panel-body">
@@ -85,9 +96,11 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="col-lg-6 col-xs-12">
                   <div class="panel panel-default">
                     <div class="panel-heading">
+                        <div id="jump102"></div>
                         <h4><a href='{% url 'review' %}'>飲食店データ  登録</a></h4>
                     </div>
                     <div class="panel-body">
@@ -101,9 +114,11 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="col-lg-6 col-xs-12">
                   <div class="panel panel-default">
                     <div class="panel-heading">
+                        <div id="jump103"></div>
                         <h4><a href='{% url 'index' %}'>成績グラフ表示</a></h4>
                     </div>
                     <div class="panel-body">
@@ -117,9 +132,11 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="col-lg-6 col-xs-12">
                   <div class="panel panel-default">
                     <div class="panel-heading">
+                        <div id="jump104"></div>
                         <h4><a href='{% url 'index' %}'>成績・履修詳細</a></h4>
                     </div>
                     <div class="panel-body">
@@ -136,6 +153,7 @@
                 <div class="col-lg-6 col-xs-12">
                   <div class="panel panel-default">
                     <div class="panel-heading">
+                        <div id="jump105"></div>
                         <h4><a href='https://taimee.co.jp/'>Use Taimee</a></h4>
                     </div>
                     <div class="panel-body">
@@ -168,7 +186,7 @@
 <div class="footer_center">
         <h3>
             <div class="image101">
-<a href="{% url 'info' %}"><img width=80 height=80 src="/static/gv/images/footer_info.PNG"></a>              <a href="{% url 'hp' %}"><img width=160 height=80 src="/static/gv/images/footer_legal.PNG"></a>              <a href="{% url 'hp' %}"><img width=100 height=80 src="/static/gv/images/footer_support.PNG"></a><br>
+<a href="{% url 'info' %}"><img width=80 height=80 src="/static/gv/images/footer_info.PNG"></a>              <a href="{% url 'legal' %}"><img width=160 height=80 src="/static/gv/images/footer_legal.PNG"></a>              <a href="{% url 'hp' %}"><img width=100 height=80 src="/static/gv/images/footer_support.PNG"></a><br>
 
         </h3>
 </div>
@@ -193,7 +211,6 @@
 <!--  ##############################################   -->
 <!--  ################    js    from    base  #########   -->
 <!--  ##############################################   -->
-
 
 
 {% endblock %}
