@@ -50,7 +50,6 @@ background: repeating-linear-gradient(-45deg, #cce7ff, #cce7ff 3px,#e9f4ff 3px, 
 
 
 
-
 #jump-tag{
 position: relative;
 text-align: center;
@@ -73,6 +72,13 @@ transform: translateX(-50%);
 background-color: black;
 border-radius: 2px;
 }
+
+
+#hp-boxhead{
+    color:#FFFFFF;
+    text-align: center;
+}
+
 
 h5 {
   text-align: center;
