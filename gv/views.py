@@ -169,8 +169,9 @@ def make_list(model_name,form_name,sn,form):
 
 def detail(request):
     try:
+        sn=request.session['stunum']
         #sn = personal_dataset.loc[0,'user_id']   #ログイン中のユーザーの学籍番号
-        sn = '16cb087l'
+        #sn = '16cb087l'
     #ログインしてからでなければ入れない
     except Exception as e:
         form = userInfoForm()
@@ -248,13 +249,15 @@ def mainhome(request):
     if request.method == 'POST':
         value = [request.POST['stunum'], request.POST['password']]
 
+        request.session['stunum']=value[0]
+
         #formから学籍番号とパスワードの取得
         #入力が正しいか
         try:
-            global result
-            global list_pie
-            global list_bar
-            global personal_dataset
+            #global result
+            #global list_pie
+            #global list_bar
+            #global personal_dataset
             result, list_pie, list_bar, table, personal_dataset = condact(value)
         #正しくなかったら戻る
         except Exception as e:
@@ -270,7 +273,7 @@ def mainhome(request):
 
         try:
             #pythonからjsへの値の受け渡し
-            global mainhome_params
+            #global mainhome_params
             mainhome_params = pytojsMaterials(result, list_pie, list_bar, table)
 
         except Exception as e:
@@ -305,7 +308,7 @@ def mainhome(request):
 
 
         #ログインしたことの証拠,mainhome_after_loginで使用
-        global login
+        #global login
         login = 'ok'
         return render(request, 'gv/mainhome.html', mainhome_params)
 
