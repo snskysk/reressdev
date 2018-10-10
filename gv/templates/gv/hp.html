@@ -1,6 +1,6 @@
 {% extends 'gv/base.html' %}
 {% load static%}
-
+{% load widget_tweaks %}
 {% block css %}
   <!--  #######css homepage & mainhome ##############   -->
   <!--  #######js homepage & base ####################   -->
@@ -37,6 +37,61 @@
     <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/font-awesome.min.css' %}' />
     <!--<link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
 
+    <!--  ##############################################   -->
+    <!--  ################    index     #########   -->
+    <!--  ##############################################   -->
+
+    <!--===============================================================================================-->
+	<link rel="icon" type="image/png" href='{% static 'gv/login/images/icons/favicon.ico' %}'/>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static 'gv/login/vendor/bootstrap/css/bootstrap.min.css' %}'>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static 'gv/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}'>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static 'gv/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}'>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static 'gv/login/vendor/animate/animate.css' %}'>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static 'gv/login/vendor/css-hamburgers/hamburgers.min.css' %}'>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static 'gv/login/vendor/animsition/css/animsition.min.css' %}'>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static 'gv/login/vendor/select2/select2.min.css' %}'>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static 'gv/login/vendor/daterangepicker/daterangepicker.css' %}'>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static 'gv/login/css/util.css' %}'>
+	<link rel="stylesheet" type="text/css" href='{% static 'gv/login/css/main.css' %}'>
+
+
+    <link rel='stylesheet' type='text/css' href='{% static 'gv/homepage/homepage.css' %}' />
+
+    <!-- Bootstrap Core CSS -->
+    <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/bootstrap.min.css' %}' />
+    <!--<link href="../css/bootstrap.min.css" rel="stylesheet">-->
+
+    <!-- MetisMenu CSS -->
+    <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/metisMenu.min.css' %}' />
+    <!--<link href="../css/metisMenu.min.css" rel="stylesheet">-->
+
+    <!-- Custom CSS -->
+    <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/startmin.css' %}' />
+    <!--<link href="../css/startmin.css" rel="stylesheet">-->
+
+    <!-- Morris Charts CSS -->
+    <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/morris.css' %}' />
+    <!--<link href="../css/morris.css" rel="stylesheet">-->
+
+    <!-- Custom Fonts -->
+    <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/font-awesome.min.css' %}' />
+    <!--<link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
+
+
+
+
+
+
+
 <!-- 自分のCSS -->
 {% endblock%}
 
@@ -56,26 +111,69 @@
   </div>
 
     <div class="copy-container">
-        <h4 id="jump-tag">Re:Re:ss</h4><br>
-        <h2>  立教生が作って使う<br>データベースシステム</h2><br>
-        <h4 id="jump-tag">JUMP TO</h4><br>
-
+        <p></p>
+        <h2 id="jump-tag">Re:Re:ss</h2><br>
+        <h1 id="hp-title2">  立教生が作って使う<br>データベースシステム</h1><br>
+        <p></p>
+        <h2 id="jump-tag">JUMP TO</h2><br>
         <ul>
-        <li><a href="#jump101">飲食店データ  検索</a></li>
-        <li><a href="#jump102">飲食店データ  登録</a></li>
-        <li><a href="#jump103">成績グラフ表示</a></li>
-        <li><a href="#jump104">成績・履修詳細</a></li>
-        <li><a href="#jump105">Use  Taimee</a></li>
+        <li><a href="#jump101"><h2>飲食店データ  検索</h2></a></li>
+        <li><a href="#jump102"><h2>飲食店データ  登録</h2></a></li>
+        <li><a href="#jump103"><h2>成績グラフ表示</h2></a></li>
+        <li><a href="#jump104"><h2>成績・履修詳細</h2></a></li>
+        <li><a href="#jump105"><h2>Use  Taimee</h2></a></li>
     </ul>
-    <h4 id="jump-tag">You Can</h4><br><p>
-        Re:Re:ssでは<a href='https://r.rikkyo.ac.jp'>立教大学WEBシステム</a>と連携することで、多彩な拡張機能を利用できます。 </p>
+    <p>
+    </p>
+    <h2 id="jump-tag">CREATE  ORIGINAL  DATABASE</h2><br>
+
+                                          <div class="limiter">
+                                    		<div class="container-login100">
+                                    			<div class="wrap-login100 p-t-50 p-b-90">
+                                    				<form class="login100-form validate-form flex-sb flex-w" action='{% url 'mainhome' %}' method='post', name = 'mainhome'>
+                                    					{% csrf_token %}
+                                    					<span class="login100-form-title p-b-51">
+                                    						グラフ付きのオリジナル成績表を発行しよう。<br>30秒程で発行できます。
+                                    					</span>
+                                    					<div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
+                                    						{{form.stunum|add_class:"input100"|attr:"placeholder:学籍番号"}}
+                                    						<span class="focus-input100"></span>
+                                    					</div>
+
+
+                                    					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+                                    						{{form.password|add_class:"input100"|attr:"placeholder:パスワード"}}
+                                    						<span class="focus-input100"></span>
+                                    					</div>
+
+                                    					<div class="container-login100-form-btn m-t-17">
+                                    						<button class="login100-form-btn">
+
+                                    							Commit
+                                    						</button>
+                                    					</div>
+                                    				</form>
+
+
+
+                                    			</div>
+                                    		</div>
+                                    	</div>
+
+
+
+    <p>Re:Re:ssの飲食店システムはだれでも利用可能です。<br>
+    <br>
+    立教生は、立教大学ＷＥＢシステムと連携させて、多彩な拡張機能も利用できます。
+
+         </p>
 
     </div>
     <div>
         <div class=".col-lg-pull-8 col-xs-12">
           <div class="panel panel-primary">
             <div class="panel-heading">
-                <h4><a href='{% url 'index' %}'>Re:Re:ss  Functions</a></h4>
+                <h1>Re:Re:ss  Functions</h1>
             </div>
             <div class="panel-body" id="panel-body-both">
                 <div>
@@ -84,12 +182,12 @@
                   <div class="panel panel-default">
                     <div class="panel-heading">
                         <div id="jump101"></div>
-                        <h4><a href='{% url 'shop_search' %}'>飲食店データ  検索</a></h4>
+                        <a href='{% url 'shop_search' %}'><h2>飲食店データ  検索</h2></a>
                     </div>
                     <div class="panel-body">
                         <div class="image101">
                                 <img src="{% static 'gv/images/graph_ex4.PNG'%}" width="100%"><br>
-                                <img src="{% static 'gv/images/graph_ex42.PNG'%}" width="100%">
+                                <img src="{% static 'gv/images/graph_ex42.PNG'%}" width="95%">
 
                         </div>
 
@@ -101,13 +199,13 @@
                   <div class="panel panel-default">
                     <div class="panel-heading">
                         <div id="jump102"></div>
-                        <h4><a href='{% url 'review' %}'>飲食店データ  登録</a></h4>
+                        <a href='{% url 'review' %}'><h2>飲食店データ  登録</h2></a>
                     </div>
                     <div class="panel-body">
                         <div class="panel-body">
                             <div class="image101">
                                 <img src="{% static 'gv/images/graph_ex15.PNG'%}" width="100%"><br>
-                                <img src="{% static 'gv/images/graph_ex152.PNG'%}" width="100%">
+                                <img src="{% static 'gv/images/graph_ex152.PNG'%}" width="95%">
                             </div>
 
                         </div>
@@ -119,14 +217,15 @@
                   <div class="panel panel-default">
                     <div class="panel-heading">
                         <div id="jump103"></div>
-                        <h4><a href='{% url 'index' %}'>成績グラフ表示</a></h4>
+                        <h2>成績グラフ表示</h2>
                     </div>
                     <div class="panel-body">
                         <div class="panel-body">
                             <div class="image101">
                                 <img src="{% static 'gv/images/graph_ex01.PNG'%}" width="100%">
-                                <img src="{% static 'gv/images/graph_ex011.PNG'%}" width="100%">
+                                <img src="{% static 'gv/images/graph_ex011.PNG'%}" width="95%">
                             </div>
+
 
                         </div>
                     </div>
@@ -137,13 +236,13 @@
                   <div class="panel panel-default">
                     <div class="panel-heading">
                         <div id="jump104"></div>
-                        <h4><a href='{% url 'index' %}'>成績・履修詳細</a></h4>
+                        <h2>成績・履修詳細</h2>
                     </div>
                     <div class="panel-body">
                         <div class="panel-body">
                             <div class="image101">
                                 <img src="{% static 'gv/images/graph_ex3.PNG'%}" width="100%">
-                                <img src="{% static 'gv/images/graph_ex31.PNG'%}" width="100%">
+                                <img src="{% static 'gv/images/graph_ex31.PNG'%}" width="95%">
                             </div>
                         </div>
                     </div>
@@ -154,13 +253,13 @@
                   <div class="panel panel-default">
                     <div class="panel-heading">
                         <div id="jump105"></div>
-                        <h4><a href='https://taimee.co.jp/'>Use Taimee</a></h4>
+                        <a href='https://taimee.co.jp/'><h2>Use Taimee</h2></a>
                     </div>
                     <div class="panel-body">
                         <div class="panel-body">
                             <div class="image101">
                                 <img src="{% static 'gv/images/graph_ex16.PNG'%}" width="100%">
-                                <img src="{% static 'gv/images/graph_ex11.PNG'%}" width="100%">
+                                <img src="{% static 'gv/images/graph_ex11.PNG'%}" width="95%">
                             </div>
                         </div>
                     </div>
@@ -186,7 +285,7 @@
 <div class="footer_center">
         <h3>
             <div class="image101">
-<a href="{% url 'info' %}"><img width=80 height=80 src="/static/gv/images/footer_info.PNG"></a>              <a href="{% url 'info' %}"><img width=160 height=80 src="/static/gv/images/footer_legal.PNG"></a>              <a href="{% url 'hp' %}"><img width=100 height=80 src="/static/gv/images/footer_support.PNG"></a><br>
+<a href="{% url 'info' %}"><img width=80 height=80 src="/static/gv/images/footer_info.PNG"></a>              <a href="{% url 'legal' %}"><img width=160 height=80 src="/static/gv/images/footer_legal.PNG"></a>              <a href="{% url 'hp' %}"><img width=100 height=80 src="/static/gv/images/footer_support.PNG"></a><br>
 
         </h3>
 </div>
@@ -211,6 +310,17 @@
 <!--  ##############################################   -->
 <!--  ################    js    from    base  #########   -->
 <!--  ##############################################   -->
+
+<!--  ##############################################   -->
+<!--  ################    index     #########   -->
+<!--  ##############################################   -->
+
+
+
+
+
+
+
 
 
 {% endblock %}

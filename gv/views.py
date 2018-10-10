@@ -21,13 +21,13 @@ import threading
 ######################################################################################
 
 def hp(request):
-    '''params = {
-        'str_name':str_name,
-        'gradeAchievement':gradeAchievement
-    }'''
-    #params3 = params2
+    form = userInfoForm()
+    index_params = {
+        'form':form,
+        'message':'学籍番号とパスワードを入力してください',
+        }
 
-    return render(request, 'gv/hp.html')
+    return render(request, 'gv/hp.html', index_params)
 
 def info(request):
     return render(request, 'gv/informations.html')
@@ -68,7 +68,7 @@ def mainhome_after_login(request):
         for i,j in enumerate(unitOfcircle):
             num = int(unitOfcircle[i])
             unitOfcircle[i] = num
-            
+
         mainhome_after_login_params['unitOfcircle'] = unitOfcircle
         gradeOfcircle = request.session['gradeOfcircle']
         gradeOfcircle = gradeOfcircle[1:-1].replace(' ','').replace("'",'').split(',')
