@@ -48,8 +48,38 @@ def index(request):
 ####################################################################################
 def mainhome_after_login(request):
     try: #ログインしているか確かめる
-        mainhome_after_login = login
+        #mainhome_after_login = login
         #print(mainhome_after_login)
+        mainhome_after_login_params = {}
+        str_name = request.session['str_name']
+        mainhome_after_login_params['str_name'] = str_name
+        gpa = request.session['gpa']
+        mainhome_after_login_params['gpa'] = gpa
+        gradeAchievement = request.session['gradeAchievement']
+        mainhome_after_login_params['gradeAchievement'] = gradeAchievement
+        kind_name = request.session['kind_name']
+        kind_name = kind_name[1:-1].replace(' ','').replace("'",'').split(',')
+        mainhome_after_login_params['kind_name'] = kind_name
+        Achivement_list = request.session['Achivement_list']
+        Achivement_list = Achivement_list[1:-1].replace(' ','').replace("'",'').split(',')
+        mainhome_after_login_params['Achivement_list'] = Achivement_list
+        unitOfcircle = request.session['unitOfcircle']
+        unitOfcircle = unitOfcircle[1:-1].replace(' ','').replace("'",'').split(',')
+        mainhome_after_login_params['unitOfcircle'] = unitOfcircle
+        gradeOfcircle = request.session['gradeOfcircle']
+        gradeOfcircle = gradeOfcircle[1:-1].replace(' ','').replace("'",'').split(',')
+        mainhome_after_login_params['gradeOfcircle'] = gradeOfcircle
+        residual_unit = request.session['residual_unit']
+        residual_unit = residual_unit[1:-1].replace(' ','').replace("'",'').split(',')
+        mainhome_after_login_params['residual_unit'] = residual_unit
+        on_course = request.session['on_course']
+        on_course = on_course[1:-1].replace(' ','').replace("'",'').split(',')
+        mainhome_after_login_params['on_course'] = on_course
+
+
+        return render(request, 'gv/mainhome.html', mainhome_after_login_params)
+
+
     except Exception:
         mainhome_after_login = 'no'
     #一度mainhomeに入っていれば実行
@@ -275,6 +305,10 @@ def mainhome(request):
             #pythonからjsへの値の受け渡し
             #global mainhome_params
             mainhome_params = pytojsMaterials(result, list_pie, list_bar, table)
+
+            for k in mainhome_params.keys():
+                request.session['{}'.format(k)] = str(mainhome_params[k])
+
 
         except Exception as e:
             form = userInfoForm()
