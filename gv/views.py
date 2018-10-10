@@ -65,6 +65,10 @@ def mainhome_after_login(request):
         mainhome_after_login_params['Achivement_list'] = Achivement_list
         unitOfcircle = request.session['unitOfcircle']
         unitOfcircle = unitOfcircle[1:-1].replace(' ','').replace("'",'').split(',')
+        for i,j in enumerate(unitOfcircle):
+            num = int(unitOfcircle[i])
+            unitOfcircle[i] = num
+            
         mainhome_after_login_params['unitOfcircle'] = unitOfcircle
         gradeOfcircle = request.session['gradeOfcircle']
         gradeOfcircle = gradeOfcircle[1:-1].replace(' ','').replace("'",'').split(',')
