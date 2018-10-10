@@ -1,6 +1,6 @@
 {% extends 'gv/base.html' %}
 {% load static%}
-
+{% load widget_tweaks %}
 {% block css %}
   <!--  #######css homepage & mainhome ##############   -->
   <!--  #######js homepage & base ####################   -->
@@ -98,43 +98,6 @@
 {% block body %}
 
 
-<div class="limiter">
-  <div class="container-login100">
-      <div class="wrap-login100 p-t-50 p-b-90">
-          <form class="login100-form validate-form flex-sb flex-w" action='{% url 'mainhome' %}' method='post', name = 'mainhome'>
-              {% csrf_token %}
-              <span class="login100-form-title p-b-51">
-                  グラフ付きのオリジナル成績表を発行しよう。<br>30秒程で発行できます。
-              </span>
-              <div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
-                  {{form.stunum|add_class:"input100"|attr:"placeholder:学籍番号"}}
-                  <span class="focus-input100"></span>
-              </div>
-
-
-              <div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-                  {{form.password|add_class:"input100"|attr:"placeholder:パスワード"}}
-                  <span class="focus-input100"></span>
-              </div>
-
-              <div class="container-login100-form-btn m-t-17">
-                  <button class="login100-form-btn">
-
-                      Commit
-                  </button>
-              </div>
-          </form>
-
-
-
-      </div>
-  </div>
-</div>
-
-
-
-
-
 <div id="page-wrapper" class='page-wrapper'>
   <div class="row">
     <div class="col-lg-12">
@@ -161,6 +124,39 @@
     </p>
     <h2 id="jump-tag">CREATE  ORIGINAL  DATABASE</h2><br>
 
+
+    <div class="limiter">
+      <div class="container-login100">
+          <div class="wrap-login100 p-t-50 p-b-90">
+              <form class="login100-form validate-form flex-sb flex-w" action='{% url 'mainhome' %}' method='post', name = 'mainhome'>
+                  {% csrf_token %}
+                  <span class="login100-form-title p-b-51">
+                      グラフ付きのオリジナル成績表を発行しよう。<br>30秒程で発行できます。
+                  </span>
+                  <div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
+                      {{form.stunum|add_class:"input100"|attr:"placeholder:学籍番号"}}
+                      <span class="focus-input100"></span>
+                  </div>
+
+
+                  <div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+                      {{form.password|add_class:"input100"|attr:"placeholder:パスワード"}}
+                      <span class="focus-input100"></span>
+                  </div>
+
+                  <div class="container-login100-form-btn m-t-17">
+                      <button class="login100-form-btn">
+
+                          Commit
+                      </button>
+                  </div>
+              </form>
+
+
+
+          </div>
+      </div>
+    </div>
 
 
 
