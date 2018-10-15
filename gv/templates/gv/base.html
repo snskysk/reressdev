@@ -51,8 +51,11 @@
       <div class="drawer_li_div"><li><a href={% url 'review' %}><i class="fa fa-edit fa-fw"></i><u>飲食店登録</u></a></li></div><br>
       <div class="drawer_li_div"><li><a href={% url 'mainhome_after_login' %}><i class="fa fa-table fa-fw"></i><u>成績グラフ表示</u></a></li></div><br>
       <div class="drawer_li_div"><li><a href={% url 'detail' %}><i class="fa fa-table fa-fw"></i><u>成績・履修詳細</u></a></li></div><br>
+      <div class="drawer_li_div"><li><a href={% url 'course' %}><i class="fa fa-table fa-fw"></i><u>履修を考える</u></a></li></div><br>
+      <div class="drawer_li_div"><li><a href={% url 'teacher_search' %}><i class="fa fa-table fa-fw"></i><u>先生を探す</u></a></li></div><br>
       <div class="drawer_li_div"><li><a href='#'><i class="fa fa-sitemap fa-fw"></i><u>Taimee</u></a></li></div><br>
     </ul>
+
 
   </ul>
 </div>
@@ -61,17 +64,10 @@
 
 <!--要素はすべてsectionの中へ-->
 <section class="drawer-contents">
-  <div class="background">
-    <!-- コンテンツ部分 -->
-    <div class="contents-space">
-    </div><!--contents-space/ハンバーガーとかぶらないように隙間を空ける-->
-    <div class="row">
-      <div class="col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1" id="body-design3">
-        {% block body %}
-        {% endblock %}
-      </div><!--col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1-->
-    </div><!--row-->
-  </div><!--background-->
+  <div class="window background">
+    {% block body %}
+    {% endblock %}
+  </div><!--window-height-->
 </section>
 
 
@@ -80,6 +76,15 @@
  <script>
  $(document).ready(function() {
   $(".drawer").drawer();
+  var wH = $(window).height();
+  //div#exampleの高さを取得を取得して、変数divHに代入
+  var divH = $('.window').innerHeight();
+  // ボックス要素より画面サイズが大きければ実行
+  if(wH > divH){
+  	// div#examplに高さを加える
+  	$('.window').css('height',wH+'px');
+  }
+
 });
  </script>
 </body>
