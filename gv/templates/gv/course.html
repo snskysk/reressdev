@@ -3,7 +3,8 @@
 {% load static %}
 {% block css %}
 <link rel='stylesheet' type='text/css' href='{% static 'gv/course/my_course.css' %}' />
-
+<link rel='stylesheet' type='text/css' href='{% static 'gv/design/button.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/design/table.css' %}' />
 
 {% endblock%}
 
@@ -14,16 +15,20 @@
   <br>
   <form action='{% url 'course' %}' method='post' name='course'>
     {% csrf_token %}
-      <div class="row">
-        <div class="col-xs-6">
-          {{ form.category1 }}
+      <div class="row" id="category-box">
+        <div class="col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1">
+            <div class="cp_ipselect cp_sl04 line">
+                {{ form.category1 }}
+            </div>
         </div><!--col-xs-6-->
       </div><!--row-->
-        <button class="detail_button">
-          絞る
+        <button class="hamon">
+          絞りこみ
         </button>
   </form>
 
+<p>
+<p>
 
   <br>
   <table>

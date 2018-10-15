@@ -3,13 +3,14 @@
 {% load static %}
 {% block css %}
 <link rel='stylesheet' type='text/css' href='{% static 'gv/teacher_search/my_teacher_search.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/design/button.css' %}' />
 
 
 {% endblock%}
 
 {% block body %}
 <!--メインの部分-->
-  <h1 class="page-header" style="text-align:center;">教授別 成績判定統計</h1>
+  <h1 class="page-header" style="text-align:center;">先生の成績</h1>
 
   <br>
 
@@ -29,7 +30,10 @@
         </td>
       </tr>
     </table>
-    <button class="detail_button">
+
+    <p>
+    <p>
+    <button class="hamon">
       先生を探す
     </button>
   </form>
