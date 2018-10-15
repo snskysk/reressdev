@@ -163,16 +163,16 @@ def mainhome_after_login(request):
     except Exception:
         mainhome_after_login = 'no'
     #一度mainhomeに入っていれば実行
-    if mainhome_after_login == 'ok':
+    #if mainhome_after_login == 'ok':
 
 
-        return render(request, 'gv/mainhome.html', mainhome_params)
-    else:
-        form = userInfoForm()
-        index_params = {
-            'form':form
-        }
-        return render(request, 'gv/index.html', index_params)
+        #return render(request, 'gv/mainhome.html', mainhome_params)
+    #else:
+    form = userInfoForm()
+    index_params = {
+        'form':form
+    }
+    return render(request, 'gv/index.html', index_params)
 
 def get(request):
     if request.method == 'POST':
