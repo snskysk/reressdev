@@ -4,7 +4,17 @@ from . import models
 from .models import food_pool
 from django.forms.widgets import NumberInput
 
+###################### new ####################
 
+class find_course(forms.Form):
+    category1 = forms.ChoiceField(widget=forms.Select, choices = [('','全体')], required = False)
+
+
+
+class find_teacher(forms.Form):
+    t_name = forms.CharField(label='先生')
+
+##############################################
 
 class userInfoForm(forms.Form):
     stunum = forms.CharField(label='学籍番号')
