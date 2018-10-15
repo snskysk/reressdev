@@ -41,8 +41,55 @@ def exists_submit_token(request):
 ###################################################################################
                                     #トップページ
 ######################################################################################
+"""
 def course(request):
     return render(request, 'gv/informations.html')
+"""
+
+######################################################################################
+                                     #履修を考えるcourse
+###################################################################################
+def course(request):
+    sn = request.session['stunum']  #学籍番号をsessionから持ってくる
+    enter_year = sn[:2]   #学籍番号から入学年度の取得
+    facu_depa = sn[2:4]  #学籍番号から学部学科の取得
+    stu_obj = studentInfo.objects.filter(user_id__contains=facu_depa) #データベースから同じ学部学科の人を取得
+    sub_obj = subjectInfo.objects.filter(user_id__contains=facu_depa) #データベースから同じ学部学科の授業を取得
+    sub_obj = sub_obj.exclude(category1__contains='必') #必修を除く
+
+    if request.method == 'POST':
+        form = find_course(request.POST)
+        make_list('category1','category1',sn,form)
+        category1 = request.POST['category1']
+        if len(category1) is not 0:
+            sub_obj = sub_obj.filter(category1=category1)
+        sub_list = sub_obj.values_list('subjectname', flat=True)#授業名でリストを取得(重複あり)
+        sub_list_counter = Counter(sub_list).most_common() #授業の数(多い順)
+
+        course_params = {
+            'form':form,
+            'sub_list_counter':sub_list_counter
+        }
+        return render(request, 'gv/course.html', course_params)
+
+
+    sub_list = sub_obj.values_list('subjectname', flat=True)#授業名でリストを取得(重複あり)
+    sub_list_counter = Counter(sub_list).most_common() #授業の数(多い順)
+
+    form = find_course()
+    make_list('category1','category1',sn,form)
+    now_field = form.fields['category1'].choices
+    #選択肢から必修を取り除く
+    new_field = [e for e in now_field if '必' not in e[1]]
+    form.fields['category1'].choices = new_field
+    course_params = {
+        'sub_obj':sub_obj,
+        'form':form,
+        'sub_list_counter':sub_list_counter,
+        }
+    return render(request, 'gv/course.html', course_params)
+
+
 
 def teacher_search(request):
     return render(request, 'gv/informations.html')

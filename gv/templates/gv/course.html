@@ -1,0 +1,52 @@
+{% extends 'gv/base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% load to_rate %}
+{% block css %}
+<link rel='stylesheet' type='text/css' href='{% static 'gv/course/my_course.css' %}' />
+
+
+{% endblock%}
+
+{% block body %}
+<!--メインの部分-->
+  <h1 class="page-header" style="text-align:center;">履修を考えよう</h1>
+
+  <br>
+  <form action='{% url 'course' %}' method='post' name='course'>
+    {% csrf_token %}
+      <div class="row">
+        <div class="col-xs-6">
+          {{ form.category1 }}
+        </div><!--col-xs-6-->
+      </div><!--row-->
+        <button class="detail_button">
+          絞る
+        </button>
+  </form>
+
+
+  <br>
+  <table>
+    <thead>
+      <tr>
+        <th>授業名</th>
+        <th>人数</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for message in sub_list_counter %}
+      <tr>
+        <td><a href="#" target="_blank">{{ message.0 }}</a></td>
+        <td>{{ message.1 }}人</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+
+
+{% block js %}
+
+
+{% endblock %}
