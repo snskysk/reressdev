@@ -125,7 +125,7 @@
     </ul>
     <p id="under-linep">
     </p>
-    <h4 id="jump-tag" class="sub-title">CREATE  ORIGINAL  DATABASE</h4><br>
+    <h4 id="jump-tag" class="sub-title">LOGIN</h4><br>
 
 
     <div class="limiter">
@@ -135,7 +135,8 @@
                   {% csrf_token %}
                   <div id="jump201"></div>
                   <span class="login100-form-title p-b-51">
-                      学生ログインしてRe:Re:ssを使おう<br>立教大学WEBシステムとの連携に数十秒かかります
+                      学生ログインしてRe:Re:ssを使おう<br>
+                      <br>立教大学WEBシステムとの連携に数十秒かかります
                   </span>
                   <div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
                       {{form.stunum|add_class:"input100"|attr:"placeholder:学籍番号"}}
