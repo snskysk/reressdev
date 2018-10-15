@@ -4,6 +4,7 @@ import time
 
 #
 from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
 #from .forms import userInfoForm, findForm, find_my_sub_Form, food_pool_Form, find_shop
 from .forms import userInfoForm, findForm, find_my_sub_Form, food_pool_Form, find_shop, find_course, find_teacher
 from .models import studentInfo, subjectInfo, food_pool
