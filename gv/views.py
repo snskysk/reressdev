@@ -41,10 +41,7 @@ def exists_submit_token(request):
 ###################################################################################
                                     #トップページ
 ######################################################################################
-"""
-def course(request):
-    return render(request, 'gv/informations.html')
-"""
+
 
 ######################################################################################
                                      #履修を考えるcourse
@@ -90,9 +87,62 @@ def course(request):
     return render(request, 'gv/course.html', course_params)
 
 
-
+"""
 def teacher_search(request):
     return render(request, 'gv/informations.html')
+"""
+
+def teacher_search(request):
+    sub_obj = subjectInfo.objects.all()
+    teacher_list = list(set(list(subjectInfo.objects.values_list('teacher', flat=True))))
+
+    if request.method == 'POST':
+        form = find_teacher(request.POST)
+        t_name = request.POST['t_name']
+        sub_obj = sub_obj.filter(teacher=t_name)
+        num_sub = len(sub_obj)#その先生の授業数
+        #################################################
+                #今の段階では0のときエラー
+        ##############################################
+        grade_list_dict = OrderedDict({'Ｓ':0,'Ａ':0,'Ｂ':0,'Ｃ':0, '履':0}) #順番がたぶん大事
+        grade_list = sub_obj.values_list('grade', flat=True)#授業名でリストを取得(重複あり)
+        #grade_list_counter = Counter(grade_list).most_common() #授業の数(多い順)
+        grade_list_dict_new = Counter(grade_list) #授業の数
+        grade_list_dict.update(grade_list_dict_new) #辞書をupdate
+        #p = [pp for pp in grade_list_dict.values() if]
+        nums = grade_list_dict.values()
+        p = [(num / mum) * 100 for num,mum in zip(nums,[num_sub]*5)]#確立を計算
+        grade_list_sample = list(grade_list_dict.keys())
+        grade_list_sample = ['S','A','B','C','履修中']
+
+        print(grade_list_dict)
+        print(nums)
+        print(num_sub)
+        print(p)
+
+        teacher_search_params = {
+            'form':form,
+            'sub_obj':sub_obj,
+            'p':p,
+            'grade_list_sample':grade_list_sample,
+            'teacher_list':teacher_list,
+        }
+        return render(request, 'gv/teacher_search.html', teacher_search_params)
+
+    form = find_teacher()
+    p = [0,0,0,0]
+    grade_list_sample = ['S','A','B','C','履修中']
+
+
+
+
+    teacher_search_params = {
+        'form':form,
+        'p':p,
+        'grade_list_sample':grade_list_sample,
+        'teacher_list':teacher_list,
+    }
+    return render(request, 'gv/teacher_search.html', teacher_search_params)
 
 
 
