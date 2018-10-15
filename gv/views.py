@@ -15,10 +15,34 @@ import threading
 
 # Create your views here.
 
+###################################################################################
+                                    #2重サブミット防止
+#################################################################################
+def set_submit_token(request):
+    submit_token = str(uuid.uuid4())
+    request.session['submit_token'] = submit_token
+    return submit_token
+
+def exists_submit_token(request):
+    token_in_request = request.POST['submit_token']
+    token_in_session = request.session['submit_token']
+    if token_in_request == token_in_session:
+        status = True
+    else:
+        status = False
+    submit_token = set_submit_token(request)
+    return status
 
 ###################################################################################
                                     #トップページ
 ######################################################################################
+def course(request):
+    return render(request, 'gv/informations.html')
+
+def teacher_search(request):
+    return render(request, 'gv/informations.html')
+
+
 
 def hp(request):
     form = userInfoForm()
