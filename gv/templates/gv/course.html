@@ -10,7 +10,7 @@
 
 {% block body %}
 <!--メインの部分-->
-  <h1 class="page-header" style="text-align:center;">履修を考えよう</h1>
+  <h1 class="page-header" style="text-align:center;">履修を考えよう<br><br>学科別 人気授業統計</h1>
 
   <br>
   <form action='{% url 'course' %}' method='post' name='course'>
@@ -26,16 +26,15 @@
           絞りこみ
         </button>
   </form>
-
+<br>
 <p>
-<p>
+    <h3></h3></p>
 
-  <br>
   <table>
     <thead>
       <tr>
-        <th>授業名</th>
-        <th>人数</th>
+        <th>　  あなたの学科で人気の授業<br>（クリックで授業の詳細を表示）</th>
+        <th>履修者<br>数合計</th>
       </tr>
     </thead>
     <tbody>

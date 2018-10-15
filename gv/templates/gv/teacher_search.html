@@ -4,13 +4,14 @@
 {% block css %}
 <link rel='stylesheet' type='text/css' href='{% static 'gv/teacher_search/my_teacher_search.css' %}' />
 <link rel='stylesheet' type='text/css' href='{% static 'gv/design/button.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/design/table.css' %}' />
 
 
 {% endblock%}
 
 {% block body %}
 <!--メインの部分-->
-  <h1 class="page-header" style="text-align:center;">先生の成績</h1>
+  <h1 class="page-header" style="text-align:center;">教授の厳しさは？<br><br>教授別 成績判定統計</h1>
 
   <br>
 
@@ -20,7 +21,7 @@
     {% csrf_token %}
     <table>
       <tr>
-        <td>入力:</td>
+        <td>教授名入力<br>（部分一致可）</td>
         <td>
           <!-- 入力フォーム -->
           {{form.t_name|attr:"autocomplete:off"}}
@@ -34,7 +35,7 @@
     <p>
     <p>
     <button class="hamon">
-      先生を探す
+      教授を検索
     </button>
   </form>
 
