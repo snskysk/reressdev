@@ -2,7 +2,7 @@
 {% load widget_tweaks %}
 {% load static %}
 {% block css %}
-
+<link rel='stylesheet' type='text/css' href='{% static 'gv/course/my_course.css' %}' />
 
 
 {% endblock%}
@@ -36,7 +36,13 @@
     <tbody>
       {% for message in sub_list_counter %}
       <tr>
-        <td><a href="#" target="_blank">{{ message.0 }}</a></td>
+        <td>
+          <form method="POST" action="{% url 'sirabasu' %}" target="_blank">
+            {% csrf_token %}
+            <input type="hidden" name="sub-name" value="{{message.0}}">
+            <a href="javascript:void(0)" onclick="this.parentNode.submit()">{{message.0}}</a>
+          </form>
+        </td>
         <td>{{ message.1 }}人</td>
       </tr>
       {% endfor %}
@@ -45,7 +51,29 @@
 {% endblock %}
 
 
-{% block js %}
 
+
+
+
+
+
+
+
+
+{% block js %}
+<script>
+$(document).ready(function() {
+
+
+ var texts = $(".sub-name").map(function(){
+     return $(this).text();
+ }).get();
+ console.log(texts[0])
+
+});
+
+
+
+</script>
 
 {% endblock %}

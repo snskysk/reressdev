@@ -110,7 +110,7 @@
 
     <div class="copy-container">
         <h4 id="jump-tag" class="sub-title">Re:Re:ss</h4><br>
-        <h2 id="hp-title2">  立教生が作って使う<br>データベースシステム</h2><br>
+        <h2 id="hp-title2">  立教生のデータを繋ぐ<br>情報コネクトシステム</h2><br>
 
         <p id="under-linep">
         </p>
@@ -135,7 +135,7 @@
                   {% csrf_token %}
                   <div id="jump201"></div>
                   <span class="login100-form-title p-b-51">
-                      学生ログインしてRe:Re:ssを使おう<br>
+                      学生ログイン<br>
                       <br>立教大学WEBシステムとの連携に数十秒かかります
                   </span>
                   <div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
@@ -229,7 +229,7 @@
           <div class="panel panel-primary">
             <div class="panel-heading">
                 <div id="jump101"></div>
-                <a href='{% url 'shop_search' %}'><h2 id="hp-boxhead">学科別 人気授業統計</h2></a>
+                <a href='{% url 'course' %}'><h2 id="hp-boxhead">学科別 人気授業統計</h2></a>
 
         </div>
             <div class="panel-body" id="panel-body-both">
@@ -254,7 +254,7 @@
           <div class="panel panel-primary">
             <div class="panel-heading">
                 <div id="jump102"></div>
-                <a href='{% url 'review' %}'><h2 id="hp-boxhead">教師別 成績判定統計</h2></a>
+                <a href='{% url 'teacher_search' %}'><h2 id="hp-boxhead">教師別 成績判定統計</h2></a>
         </div>
             <div class="panel-body" id="panel-body-both">
                 <div>

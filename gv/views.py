@@ -86,6 +86,28 @@ def course(request):
         }
     return render(request, 'gv/course.html', course_params)
 
+def sirabasu(request):
+    sub_name=request.POST['sub-name']#授業名を取得
+    subinfo = subjectInfo.objects.filter(subjectname=sub_name)[0]#データベースから該当する授業を取得
+    sub_num = subinfo.subjectnum#教科番号を取得
+    #now_url = get_sirabasu(sub_name, sub_num)
+
+    url = 'https://sy.rikkyo.ac.jp/timetable/slbsskgr.do'
+    url = url + '?'
+    #科目名を追加
+    url = url + 'value(kouginm)={}&'.format(sub_name)
+    url = url + 'value(kamnumText1)={}&'.format(sub_num[:3])
+    url = url + 'value(kamnumText2)={}&'.format(sub_num[3])
+    url = url + 'value(kamnumText3)={}&'.format(sub_num[4])
+    url = url + 'value(kamnumText4)={}&'.format(sub_num[5])
+    url = url + 'value(kamnumText5)={}'.format(sub_num[6])
+    print(url)
+
+
+    sirabasu_params={}
+    return HttpResponseRedirect('{}'.format(url))
+    #return render(request, 'gv/teacher_search.html', sirabasu_params)
+
 
 """
 def teacher_search(request):
