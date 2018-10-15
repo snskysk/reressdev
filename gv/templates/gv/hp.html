@@ -114,13 +114,13 @@
 
         <p id="under-linep">
         </p>
-        <h4 id="jump-tag" class="sub-title">JUMP TO</h4><br>
+        <h4 id="jump-tag" class="sub-title">TOOL  LIST</h4><br>
 
         <ul>
-        <li><a href="#jump101">飲食店データ  検索</a></li>
-        <li><a href="#jump102">飲食店データ  登録</a></li>
-        <li><a href="#jump103">成績グラフ表示</a></li>
-        <li><a href="#jump104">成績・履修詳細</a></li>
+        <li><a href="#jump103">成績参照 グラフVer.</a></li>
+        <li><a href="#jump104">成績参照 テーブルVer.</a></li>
+        <li><a href="#jump101">学科別 人気授業統計</a></li>
+        <li><a href="#jump102">教授別 成績判定統計</a></li>
         <li><a href="#jump105">Use  Taimee</a></li>
     </ul>
     <p id="under-linep">
@@ -135,7 +135,7 @@
                   {% csrf_token %}
                   <div id="jump201"></div>
                   <span class="login100-form-title p-b-51">
-                      オリジナル成績表を発行しよう。<br>数十秒で出来上がります。
+                      学生ログインしてRe:Re:ssを使おう<br>立教大学WEBシステムとの連携に数十秒かかります
                   </span>
                   <div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
                       {{form.stunum|add_class:"input100"|attr:"placeholder:学籍番号"}}
@@ -164,71 +164,23 @@
 
 
 
-    <p id="under-linep">Re:Re:ssの飲食店システムはだれでも利用可能です。<br>
+    <p id="under-linep">Re:Re:ssは立教大学の成績データ活用に特化したシステムです<br>
     </p>
     <p>
-    立教生は、立教大学ＷＥＢシステムと連携させて、多彩な拡張機能も利用できます。
+    立教生は、立教大学WEBシステムと連携させて、多彩な拡張機能を利用できます。
 
          </p>
 
     </div>
 
-    <div>
-        <div class=".col-lg-pull-8 col-xs-12">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-                <div id="jump101"></div>
-                <a href='{% url 'shop_search' %}'><h2 id="hp-boxhead">飲食店データ  検索</h2></a>
 
-        </div>
-            <div class="panel-body" id="panel-body-both">
-                <div>
-                    <div class="image101">
-                            <img src="{% static 'gv/images/graph_ex4.PNG'%}" width="100%"><br>
-                            <img src="{% static 'gv/images/graph_ex42.PNG'%}" width="95%">
-
-                            <div class="container-login100-form-btn m-t-17">
-                                <button class="login100-form-btn">
-
-                                    <a href='{% url 'shop_search' %}'><h2 id="hp-boxhead">USE<h2></a>
-                                </button>
-                    </div>
-            </div>
-          </div>
-        </div>
-    </div>
-</div>
-
-    <div>
-        <div class=".col-lg-pull-8 col-xs-12">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-                <div id="jump102"></div>
-                <a href='{% url 'review' %}'><h2 id="hp-boxhead">飲食店データ  登録</h2></a>
-        </div>
-            <div class="panel-body" id="panel-body-both">
-                <div>
-                    <div class="image101">
-                            <img src="{% static 'gv/images/graph_ex15.PNG'%}" width="100%"><br>
-                            <img src="{% static 'gv/images/graph_ex152.PNG'%}" width="95%">
-                            <div class="container-login100-form-btn m-t-17">
-                                <button class="login100-form-btn">
-
-                                    <a href='{% url 'review' %}'><h2 id="hp-boxhead">USE<h2></a>
-                                </button>
-                            </div>
-                    </div>
-            </div>
-          </div>
-        </div>
-    </div>
 
     <div>
         <div class=".col-lg-pull-8 col-xs-12">
           <div class="panel panel-primary">
             <div class="panel-heading">
                 <div id="jump103"></div>
-                <h2 id="hp-boxhead">オリジナル成績グラフ</h2>
+                <h2 id="hp-boxhead">成績参照 グラフVer.</h2>
             </div>
             <div class="panel-body" id="panel-body-both">
                 <div>
@@ -252,7 +204,7 @@
           <div class="panel panel-primary">
             <div class="panel-heading">
                 <div id="jump104"></div>
-                <h2 id="hp-boxhead">オリジナル成績表</h2>
+                <h2 id="hp-boxhead">成績参照 テーブルVer.</h2>
         </div>
             <div class="panel-body" id="panel-body-both">
                 <div>
@@ -263,6 +215,55 @@
                                 <button class="login100-form-btn">
 
                                     <a href="#jump201"><h2 id="hp-boxhead">USE<h2></a>
+                                </button>
+                            </div>
+                    </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div>
+        <div class=".col-lg-pull-8 col-xs-12">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div id="jump101"></div>
+                <a href='{% url 'shop_search' %}'><h2 id="hp-boxhead">学科別 人気授業統計</h2></a>
+
+        </div>
+            <div class="panel-body" id="panel-body-both">
+                <div>
+                    <div class="image101">
+                            <img src="{% static 'gv/images/graph_ex4.PNG'%}" width="100%"><br>
+                            <img src="{% static 'gv/images/graph_ex42.PNG'%}" width="95%">
+
+                            <div class="container-login100-form-btn m-t-17">
+                                <button class="login100-form-btn">
+
+                                    <a href='{% url 'shop_search' %}'><h2 id="hp-boxhead">USE<h2></a>
+                                </button>
+                    </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div>
+        <div class=".col-lg-pull-8 col-xs-12">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div id="jump102"></div>
+                <a href='{% url 'review' %}'><h2 id="hp-boxhead">教師別 成績判定統計</h2></a>
+        </div>
+            <div class="panel-body" id="panel-body-both">
+                <div>
+                    <div class="image101">
+                            <img src="{% static 'gv/images/graph_ex15.PNG'%}" width="100%"><br>
+                            <img src="{% static 'gv/images/graph_ex152.PNG'%}" width="95%">
+                            <div class="container-login100-form-btn m-t-17">
+                                <button class="login100-form-btn">
+
+                                    <a href='{% url 'review' %}'><h2 id="hp-boxhead">USE<h2></a>
                                 </button>
                             </div>
                     </div>
