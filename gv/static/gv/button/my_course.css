@@ -1,0 +1,18 @@
+
+
+#category-box{
+  text-indent:center;
+  position:relative;
+}
+
+.col-xs-12{
+width:auto;
+}
+
+
+body  {
+        background: #ececec;
+        font-family: 'Lato', sans-serif;
+        color: #444;
+        text-align: center
+    }

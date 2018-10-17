@@ -2,26 +2,38 @@
 {% load widget_tweaks %}
 {% load static %}
 {% block css %}
-<link rel='stylesheet' type='text/css' href='{% static 'gv/button/my_teacher_search.css' %}' />
-<link rel='stylesheet' type='text/css' href='{% static 'gv/button/button.css' %}' />
-<link rel='stylesheet' type='text/css' href='{% static 'gv/button/table.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/teacher_search/my_teacher_search.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/design/button.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/design/table.css' %}' />
 
 
 {% endblock%}
 
 {% block body %}
 <!--メインの部分-->
-  <h3 class="page-header" style="text-align:center;">教授の厳しさは？<br>教授別 成績判定統計</h3>
+  <h1 class="page-header" style="text-align:center;">教授の厳しさは？<br><br>教授別 成績判定統計</h1>
+
+  <br>
+
 
   <!--<form action='{% url 'teacher_search' %}' method='post' name='teacher_search' onsubmit="return false;">-->
     <form action='{% url 'teacher_search' %}' method='post' name='teacher_search'>
     {% csrf_token %}
-    教授名入力（部分一致可）<br>
+    <table>
+      <tr>
+        <td>教授名入力<br>（部分一致可）</td>
+        <td>
           <!-- 入力フォーム -->
           {{form.t_name|attr:"autocomplete:off"}}
           <!--<input id="text" type="text" name="pattern" value="" autocomplete="off" size="10" style="display: block">-->
           <!-- 補完候補を表示するエリア -->
           <div id="suggest" style="display:none;"></div>
+        </td>
+      </tr>
+    </table>
+
+    <p>
+    <p>
     <button class="hamon">
       教授を検索
     </button>
@@ -57,11 +69,11 @@
             labels: grade_list_sample,
             datasets: [
             {
-            label: "成績判定統計",
+            label: "確率",
             lineTension: 0,
             fill: false,
             //backgroundColor: ["rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(246,133,124,0.5)","rgba(246,133,124,0.5)","rgba(206,195,73,0.5)"]
-            backgroundColor: "rgba(131,90,206,0.4)",
+            backgroundColor: "rgba(131,90,206,0.5)",
             //borderColor: "#217346",
             data: p
           },
@@ -71,21 +83,21 @@
             responsive: true,
             legend: {
               labels: {
-                fontSize:13,
-                boxWidth: 0,
+                fontSize: 7,
+                boxWidth: 20,
               }
             },
             scales: {
           xAxes: [{
             ticks: {
-              fontSize: 15,
+              fontSize: 7,
               maxRotation: 100,
               minRotation: 0
             },
           }],
           yAxes: [{
             ticks: {
-              fontSize: 10,
+              fontSize: 18,
               beginAtZero:true,
               min: 0,
               max: 100,
@@ -113,5 +125,4 @@
     window.addEventListener('load', startSuggest, false) :
     window.attachEvent('onload', startSuggest);
 </script>
-
 {% endblock %}
