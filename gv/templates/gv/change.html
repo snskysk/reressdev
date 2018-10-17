@@ -8,22 +8,6 @@
   <h1 class="page-header" style="text-align:center;">成績グラフ</h1>
   <div class="panel panel-default">
     <div class="panel-heading">
-      達成率
-    </div><!--panel-heaing-->
-    <div class="panel-body">
-      <div><canvas width="400" height="300" id="doughnutg"></canvas></div>
-    </div><!--panel-body-->
-  </div><!--panel panel-default-->
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      レーダーチャート
-    </div><!--panel-heaing-->
-    <div class="panel-body">
-      <div><canvas width="500" height="500" id="myrader"></canvas></div>
-    </div><!--panel-body-->
-  </div><!--panel panel-default-->
-  <div class="panel panel-default">
-    <div class="panel-heading">
       円グラフ
     </div><!--panel-heaing-->
     <div class="panel-body">
@@ -36,6 +20,14 @@
     </div><!--panel-heaing-->
     <div class="panel-body">
       <div><canvas id="bar-chart"></canvas></div>
+    </div><!--panel-body-->
+  </div><!--panel panel-default-->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      レーダーチャート
+    </div><!--panel-heaing-->
+    <div class="panel-body">
+      <div><canvas width="500" height="500" id="myrader"></canvas></div>
     </div><!--panel-body-->
   </div><!--panel panel-default-->
 {% endblock %}
@@ -78,8 +70,7 @@
                       ctx.textAlign = 'center';
                       ctx.textBaseline = 'middle';
 
-                      var padding = 0;
-                      var padding = 0;
+                      var padding = 25;
                       var position = element.tooltipPosition();
                       ctx.fillText(labelString, position.x, position.y - (fontSize / 2) - padding);
                       ctx.fillText(dataString, position.x, position.y + (fontSize / 2) - padding);
@@ -119,43 +110,6 @@
       plugins: [dataLabelPlugin],
                 });
 </script>
-
-
-
-<!--円グラフ2個目-->
-<script>
-// Chart
-//var get_unit = {{get_unit|safe}}
-//var required_unit = {{required_unit|safe}}
-//var r_unit = {{r_unit|safe}}
-var myChart = "doughnutg";
-var chart = new Chart(myChart, {
-    type: 'doughnut',
-    data: {
-        labels: ["修得済み","履修中","残り単位"],
-        datasets: [{
-            label: "Sample",
-            backgroundColor: ["red", "green", "yellow"],
-            data: [110,6,8]
-        }]
-    },
-    options: {
-        title: {
-            display: false,
-            text: "Sample"
-        },
-        legend:{
-          labels: {
-            boxWidth: 20,
-            fontSize: 10,
-          }
-        },
-        maintainAspectRatio: false,
-    },
-    plugins: [dataLabelPlugin],
-              });
-</script>
-
 
 
 

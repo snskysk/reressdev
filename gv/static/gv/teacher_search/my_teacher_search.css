@@ -1,6 +1,5 @@
 body  {
         background: #ececec;
-        padding: 40px 0;
         font-family: 'Lato', sans-serif;
         color: #444;
         text-align: center
@@ -13,6 +12,7 @@ body  {
     /*font-size: 90%;*/
     font-size: 15px;
     width: 200px;
+    z-index: 9999;
 }
 #suggest div {
     display: block;
