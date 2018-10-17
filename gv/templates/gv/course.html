@@ -2,17 +2,18 @@
 {% load widget_tweaks %}
 {% load static %}
 {% block css %}
-<link rel='stylesheet' type='text/css' href='{% static 'gv/course/my_course.css' %}' />
-<link rel='stylesheet' type='text/css' href='{% static 'gv/design/button.css' %}' />
-<link rel='stylesheet' type='text/css' href='{% static 'gv/design/table.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/button/my_course.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/button/button.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/button/table.css' %}' />
 
 {% endblock%}
 
+
+
 {% block body %}
 <!--メインの部分-->
-  <h1 class="page-header" style="text-align:center;">履修を考えよう<br><br>学科別 人気授業統計</h1>
+  <h3 class="page-header" style="text-align:center;">履修を考えよう<br>学科別 人気授業統計</h3>
 
-  <br>
   <form action='{% url 'course' %}' method='post' name='course'>
     {% csrf_token %}
       <div class="row" id="category-box">
@@ -27,8 +28,6 @@
         </button>
   </form>
 <br>
-<p>
-    <h3></h3></p>
 
   <table>
     <thead>
@@ -53,8 +52,6 @@
     </tbody>
   </table>
 {% endblock %}
-
-
 
 
 
