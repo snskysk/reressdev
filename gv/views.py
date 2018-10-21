@@ -46,8 +46,15 @@ def exists_submit_token(request):
 ######################################################################################
                                      #履修を考えるcourse
 ###################################################################################
-def course(request):
-    sn = request.session['stunum']  #学籍番号をsessionから持ってくる
+def course(request, num=1):
+    try:#sessionが切れていないか確認
+        sn = request.session['stunum']  #学籍番号をsessionから持ってくる
+    except:
+        form = userInfoForm()
+        index_params = {
+            'form':form,
+            }
+        return render(request, 'gv/index.html', index_params)
     enter_year = sn[:2]   #学籍番号から入学年度の取得
     facu_depa = sn[2:4]  #学籍番号から学部学科の取得
     stu_obj = studentInfo.objects.filter(user_id__contains=facu_depa) #データベースから同じ学部学科の人を取得
@@ -57,6 +64,10 @@ def course(request):
     if request.method == 'POST':
         form = find_course(request.POST)
         make_list('category1','category1',sn,form)
+        now_field = form.fields['category1'].choices
+        #選択肢から必修を取り除く
+        new_field = [e for e in now_field if '必' not in e[1]]
+        form.fields['category1'].choices = new_field
         category1 = request.POST['category1']
         if len(category1) is not 0:
             sub_obj = sub_obj.filter(category1=category1)
@@ -73,6 +84,11 @@ def course(request):
     sub_list = sub_obj.values_list('subjectname', flat=True)#授業名でリストを取得(重複あり)
     sub_list_counter = Counter(sub_list).most_common() #授業の数(多い順)
 
+
+    ###############paginator######################
+    page = Paginator(sub_list_counter,10)
+    ##############################################
+
     form = find_course()
     make_list('category1','category1',sn,form)
     now_field = form.fields['category1'].choices
@@ -82,7 +98,8 @@ def course(request):
     course_params = {
         'sub_obj':sub_obj,
         'form':form,
-        'sub_list_counter':sub_list_counter,
+        #'sub_list_counter':sub_list_counter,
+        'sub_list_counter':page.get_page(num),
         }
     return render(request, 'gv/course.html', course_params)
 

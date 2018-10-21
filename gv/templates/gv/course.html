@@ -14,19 +14,23 @@
 <!--メインの部分-->
   <h3 class="page-header" style="text-align:center;">履修を考えよう<br>学科別 人気授業統計</h3>
 
-  <form action='{% url 'course' %}' method='post' name='course'>
-    {% csrf_token %}
-      <div class="row" id="category-box">
-        <div class="col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1">
-            <div class="cp_ipselect cp_sl04 line">
-                {{ form.category1 }}
-            </div>
-        </div><!--col-xs-6-->
-      </div><!--row-->
-        <button class="hamon">
-          絞りこみ
-        </button>
-  </form>
+  <div class="row">
+    <div class="col-lg-2 col-lg-offset-5 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
+      <form action='{% url 'course' %}' method='post' name='course'>
+        {% csrf_token %}
+          <div class="row" id="category-box">
+            <div class="col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1">
+                <div class="cp_ipselect cp_sl04 line">
+                    {{ form.category1 }}
+                </div>
+            </div><!--col-xs-6-->
+          </div><!--row-->
+            <button class="hamon">
+              絞りこみ
+            </button>
+      </form>
+    </div>
+  </div>
 <br>
 
   <table>
@@ -51,6 +55,20 @@
       {% endfor %}
     </tbody>
   </table>
+  <div class="pagination">
+    {% if sub_list_counter.has_previous %}
+      <a href="{% url 'course' %}">&laquo;first</a>
+      <a href="{% url 'course' %}{{sub_list_counter.previous_page_number}}">&laquo;prev</a>
+    {% endif %}
+    <span class"current">
+      [{{sub_list_counter.number}}/{{sub_list_counter.paginator.num_pages}}]
+    </span>
+    {% if sub_list_counter.has_next %}
+      <a href="{% url 'course' %}{{sub_list_counter.next_page_number}}">next&raquo;</a>
+      <a href="{% url 'course' %}{{sub_list_counter.paginator.num_pages}}">last&raquo;</a>
+    {% endif %}
+  </div><!--pagination-->
+
 {% endblock %}
 
 
