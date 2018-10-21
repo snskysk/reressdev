@@ -387,7 +387,7 @@ def detail(request):
         index_params = {
             'form':form
         }
-        return render(request, 'gv/index.html', index_params)
+        return render(request, 'gv/hp.html', index_params)
 
 
     if request.method == 'POST':
@@ -536,7 +536,7 @@ def mainhome(request):
             'form':form,
             'message':'正しく入力しなおしてください'
             }
-            return render(request, 'gv/index.html', index_params)
+            return render(request, 'gv/hp.html', index_params)
 
         #正しくデータを整形することができるかどうか。
 
@@ -552,7 +552,7 @@ def mainhome(request):
             'form':form,
             'message':'正しくデータを得ることができませんでした'
             }
-            return render(request, 'gv/index.html', index_params)
+            return render(request, 'gv/hp.html', index_params)
 
 
         #データベースに登録するかどうか
@@ -597,7 +597,7 @@ def mainhome(request):
         'form':form,
         'message':'学籍番号とパスワードを入力しよう!'
         }
-        return render(request, 'gv/index.html', index_params)
+        return render(request, 'gv/hp.html', index_params)
 
 ######################################################################################
                                      #飲食店レビュー

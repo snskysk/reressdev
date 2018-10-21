@@ -119,7 +119,6 @@
         <li><a href="#jump104"><h4>成績参照 テーブルVer.</h4></a></li>
         <li><a href="#jump101"><h4>学科別 人気授業統計</h4></a></li>
         <li><a href="#jump102"><h4>教授別 成績判定統計</h4></a></li>
-        <li><a href="#jump105"><h4>Use  Taimee</h4></a></li>
     </ul>
     <p id="under-linep">
     </p>
@@ -210,12 +209,13 @@
                     <div class="image101">
                             <img src="{% static 'gv/images/graph_ex3.PNG'%}" width="100%"><br>
                             <img src="{% static 'gv/images/graph_ex31.PNG'%}" width="95%">
-                            <div class="container-login100-form-btn m-t-17">
-                                <button class="login100-form-btn">
-
-                                    <a href="#jump201"><h2 id="hp-boxhead">USE<h2></a>
-                                </button>
-                            </div>
+                            <a href="#jump201">
+                                <div class="container-login100-form-btn m-t-17">
+                                    <button class="login100-form-btn">
+                                        <h2 id="hp-boxhead">USE<h2>
+                                    </button>
+                                </div>
+                            </a>
                     </div>
             </div>
           </div>
@@ -235,13 +235,13 @@
                     <div class="image101">
                             <img src="{% static 'gv/images/graph_ex4.PNG'%}" width="100%"><br>
                             <img src="{% static 'gv/images/graph_ex42.PNG'%}" width="95%">
-
-                            <div class="container-login100-form-btn m-t-17">
-                                <button class="login100-form-btn">
-
-                                    <a href='{% url 'course' %}'><h2 id="hp-boxhead">USE<h2></a>
-                                </button>
-                            </div>
+                            <a href='{% url 'course' %}'>
+                                <div class="container-login100-form-btn m-t-17">
+                                    <button class="login100-form-btn">
+                                        <h2 id="hp-boxhead">USE<h2>
+                                    </button>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -260,36 +260,13 @@
                     <div class="image101">
                             <img src="{% static 'gv/images/graph_ex15.PNG'%}" width="100%"><br>
                             <img src="{% static 'gv/images/graph_ex152.PNG'%}" width="95%">
-                            <div class="container-login100-form-btn m-t-17">
-                                <button class="login100-form-btn">
-
-                                    <a href='{% url 'teacher_search' %}'><h2 id="hp-boxhead">USE<h2></a>
-                                </button>
-                            </div>
-                    </div>
-            </div>
-          </div>
-        </div>
-    </div>
-
-    <div>
-        <div class=".col-lg-pull-8 col-xs-12">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-                <div id="jump105"></div>
-                <a href='https://taimee.co.jp/'><h2 id="hp-boxhead">Use Taimee</h2></a>
-        </div>
-            <div class="panel-body" id="panel-body-both">
-                <div>
-                    <div class="image101">
-                            <img src="{% static 'gv/images/graph_ex16.PNG'%}" width="100%"><br>
-                            <img src="{% static 'gv/images/graph_ex11.PNG'%}" width="95%">
-                            <div class="container-login100-form-btn m-t-17">
-                                <button class="login100-form-btn">
-
-                                    <a href='https://taimee.co.jp/'><h2 id="hp-boxhead">USE<h2></a>
-                                </button>
-                            </div>
+                            <a href='{% url 'teacher_search' %}'>
+                                <div class="container-login100-form-btn m-t-17">
+                                    <button class="login100-form-btn">
+                                        <h2 id="hp-boxhead">USE<h2>
+                                    </button>
+                                </div>
+                            </a>
                     </div>
             </div>
           </div>
