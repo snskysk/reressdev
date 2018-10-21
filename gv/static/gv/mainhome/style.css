@@ -1,11 +1,14 @@
-/*グラフの高さを合わせる*/
-.row-height {
-  display: flex;
-  flex-wrap: wrap;
+/*.contents{
+  width: 100%;
+  height: 100%;
+}
+*/
+/*
+.panel-color {
+  background-color: white !important;;
 }
 
-/*円グラフの中央寄せ*/
-.pigraph {
-  width:100%;
-	margin:0 auto;
+.panel-main-color {
+  color: red !important;
 }
+*/

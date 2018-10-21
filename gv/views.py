@@ -16,8 +16,7 @@ import threading
 import uuid
 from collections import Counter
 from collections import OrderedDict #順番付き辞書
-
-
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -424,25 +423,85 @@ def detail(request):
 #####################################################################################
 #from django.utils.functional import cached_property
 #@cached_property
-
 def mainhome(request):
 
     if request.method == 'POST':
         value = [request.POST['stunum'], request.POST['password']]
 
-        request.session['stunum']=value[0]
+        ##mainhomeすらログインしたことがあるuserなら戻す##
+        ##################################################
+        #学籍番号を大文字に変換
+        if not value[0].islower():
+            short_cut_sn = value[0].lower()
+        else:
+            short_cut_sn = value[0]
+        stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
+        if short_cut_sn in stuobj:#もしすでに登録されているなら
+
+            try:#もしsessionが残っているなら
+                mainhome_after_login_params = {}
+                str_name = request.session['str_name']
+                mainhome_after_login_params['str_name'] = str_name
+                gpa = request.session['gpa']
+                mainhome_after_login_params['gpa'] = gpa
+                #gradeAchievement = request.session['gradeAchievement']
+                #mainhome_after_login_params['gradeAchievement'] = gradeAchievement
+                kind_name = request.session['kind_name']
+                kind_name = kind_name[1:-1].replace(' ','').replace("'",'').split(',')
+                mainhome_after_login_params['kind_name'] = kind_name
+                Achivement_list = request.session['Achivement_list']
+                Achivement_list = Achivement_list[1:-1].replace(' ','').replace("'",'').split(',')
+                mainhome_after_login_params['Achivement_list'] = Achivement_list
+                unitOfcircle = request.session['unitOfcircle']
+                unitOfcircle = unitOfcircle[1:-1].replace(' ','').replace("'",'').split(',')
+                for i,j in enumerate(unitOfcircle):
+                    num = int(unitOfcircle[i])
+                    unitOfcircle[i] = num
+                mainhome_after_login_params['unitOfcircle'] = unitOfcircle
+                gradeOfcircle = request.session['gradeOfcircle']
+                gradeOfcircle = gradeOfcircle[1:-1].replace(' ','').replace("'",'').split(',')
+                mainhome_after_login_params['gradeOfcircle'] = gradeOfcircle
+                #residual_unit = request.session['residual_unit']
+                #residual_unit = residual_unit[1:-1].replace(' ','').replace("'",'').split(',')
+                #mainhome_after_login_params['residual_unit'] = residual_unit
+                #on_course = request.session['on_course']
+                #on_course = on_course[1:-1].replace(' ','').replace("'",'').split(',')
+                #ainhome_after_login_params['on_course'] = on_course
+
+                residual_num = request.session['residual_num']
+                mainhome_after_login_params['residual_num'] = residual_num
+                get_num = request.session['get_num']
+                mainhome_after_login_params['get_num'] = get_num
+                on_num = request.session['on_num']
+                mainhome_after_login_params['on_num'] = on_num
+                #棒グラフのsession
+                kind_name_bou = request.session['kind_name_bou']
+                mainhome_after_login_params['kind_name_bou'] = kind_name_bou
+                residual_unit_bou = request.session['residual_unit_bou']
+                mainhome_after_login_params['residual_unit_bou'] = residual_unit_bou
+                on_course_bou = request.session['on_course_bou']
+                mainhome_after_login_params['on_course_bou'] = on_course_bou
+                return render(request, 'gv/mainhome.html', mainhome_after_login_params)
+
+            except:
+                pass
+        else:
+            pass
+
+
+
+
+
+
+
 
         #formから学籍番号とパスワードの取得
         #入力が正しいか
         try:
-            #global result
-            #global list_pie
-            #global list_bar
-            #global personal_dataset
             result, list_pie, list_bar, table, personal_dataset = condact(value)
         #正しくなかったら戻る
         except Exception as e:
-            print(str(e.args))
+            pprint.pprint(str(e.args))
             form = userInfoForm()
             index_params = {
             'form':form,
@@ -454,14 +513,11 @@ def mainhome(request):
 
         try:
             #pythonからjsへの値の受け渡し
-            #global mainhome_params
             mainhome_params = pytojsMaterials(result, list_pie, list_bar, table)
-
             for k in mainhome_params.keys():
                 request.session['{}'.format(k)] = str(mainhome_params[k])
-
-
         except Exception as e:
+            print(str(e.args))
             form = userInfoForm()
             index_params = {
             'form':form,
@@ -471,11 +527,22 @@ def mainhome(request):
 
 
         #データベースに登録するかどうか
-        stuobj = studentInfo.objects.all()
+        stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
         t = list(personal_dataset.iloc[0])
-        if t[0] not in str(stuobj):
+
+        #学籍番号を大文字に変換
+        if not t[0].islower():
+            lowerd_sn = t[0].lower()
+        else:
+            lowerd_sn = t[0]
+
+        request.session['stunum'] = lowerd_sn #settionに学籍番号を登録
+
+
+        if lowerd_sn not in stuobj:
+            print('保存-------------------------------------------------------------------')
             #user情報の保存
-            stuinfo = studentInfo(user_id=t[0], student_grade=t[1],
+            stuinfo = studentInfo(user_id=lowerd_sn, student_grade=t[1],
             enteryear=t[2], seasons=t[3], gpa=t[4])
             stuinfo.save()
 
@@ -484,17 +551,14 @@ def mainhome(request):
             for i in range(len(table)):
                 s = list(table.iloc[i])
                 subjectInfomation = subjectInfo(subjectnum=s[0],managementnum=s[1],
-                user_id=s[2],subjectname=s[3],unit_int=s[4],grade=s[5],
+                user_id=lowerd_sn,subjectname=s[3],unit_int=s[4],grade=s[5],
                 grade_score_int=s[6],result_score_int=s[7],year_int=s[8],
                 season=s[9],teacher=s[10],gpa_int=s[11],
                 category1=s[12],category2=s[13],last_login=s[14],stu_id=stuinfo)
                 subjectInfomation.save()
 
 
-
         #ログインしたことの証拠,mainhome_after_loginで使用
-        #global login
-        login = 'ok'
         return render(request, 'gv/mainhome.html', mainhome_params)
 
     #getでmainhomeにアクセスしてしまった時の処理

@@ -1,43 +1,67 @@
 {% extends 'gv/base.html' %}
 {% load static %}
 {% block css %}
+<link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/style.css' %}' />
 {% endblock %}
 
 
 {% block body %}
   <h1 class="page-header" style="text-align:center;">成績グラフ</h1>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      達成率
-    </div><!--panel-heaing-->
-    <div class="panel-body">
-      <div><canvas width="400" height="300" id="doughnutg"></canvas></div>
-    </div><!--panel-body-->
-  </div><!--panel panel-default-->
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      レーダーチャート
-    </div><!--panel-heaing-->
-    <div class="panel-body">
-      <div><canvas width="500" height="500" id="myrader"></canvas></div>
-    </div><!--panel-body-->
-  </div><!--panel panel-default-->
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      円グラフ
-    </div><!--panel-heaing-->
-    <div class="panel-body">
-      <div><canvas width="400" height="300" id="pigraph"></canvas></div>
-    </div><!--panel-body-->
-  </div><!--panel panel-default-->
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      棒グラフ
-    </div><!--panel-heaing-->
-    <div class="panel-body">
-      <div><canvas id="bar-chart"></canvas></div>
-    </div><!--panel-body-->
-  </div><!--panel panel-default-->
+  <div class="row">
+
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <div class="panel panel-info panel-main-color">
+            <div class="panel-heading panel-color" style="text-align:center;">
+              <span>総合指標達成率グラフ</span>
+            </div><!--panel-heaing-->
+            <div class="panel-body">
+              <!--<div><canvas width="400" height="300" id="doughnutg"></canvas></div>-->
+              <div><canvas height="280px" id="doughnutg"></canvas></div>
+            </div><!--panel-body-->
+          </div><!--panel panel-info panel-main-color-->
+        </div><!--col-lg-6-->
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <div class="panel panel-info panel-main-color">
+            <div class="panel-heading panel-color" style="text-align:center;">
+              評価別獲得単位数グラフ
+            </div><!--panel-heaing-->
+            <div class="panel-body">
+              <div><canvas height="280px" id="pigraph"></canvas></div>
+            </div><!--panel-body-->
+          </div><!--panel panel-info panel-main-color-->
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <div class="panel panel-info panel-main-color">
+            <div class="panel-heading panel-color" style="text-align:center;">
+              科目区分別達成率グラフ
+            </div><!--panel-heaing-->
+            <div class="panel-body">
+              <div><canvas height="280px" id="myrader"></canvas></div>
+            </div><!--panel-body-->
+          </div><!--panel panel-info panel-main-color-->
+        </div><!--col-lg-6-->
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <div class="panel panel-info panel-main-color">
+            <div class="panel-heading panel-color" style="text-align:center;">
+              科目区分別残単・履修数算出グラフ
+            </div><!--panel-heaing-->
+            <div class="panel-body">
+              <div><canvas height="280px" id="bar-chart"></canvas></div>
+            </div><!--panel-body-->
+          </div><!--panel panel-info panel-main-color-->
+        </div>
+      </div>
+    </div>
+
+  </div><!--row-->
+
 {% endblock %}
 
 
@@ -125,18 +149,19 @@
 <!--円グラフ2個目-->
 <script>
 // Chart
-//var get_unit = {{get_unit|safe}}
-//var required_unit = {{required_unit|safe}}
-//var r_unit = {{r_unit|safe}}
+var get_num = {{get_num|safe}}
+var residual_num = {{residual_num|safe}}
+var on_num = {{on_num|safe}}
+
 var myChart = "doughnutg";
 var chart = new Chart(myChart, {
     type: 'doughnut',
     data: {
-        labels: ["修得済み","履修中","残り単位"],
+        labels: ["修得済み","履修中","残単"],
         datasets: [{
             label: "Sample",
             backgroundColor: ["red", "green", "yellow"],
-            data: [110,6,8]
+            data: [get_num,on_num,residual_num]
         }]
     },
     options: {
@@ -163,16 +188,19 @@ var chart = new Chart(myChart, {
                棒グラフの記述
 ****************************************************-->
 <script language="JavaScript">
-  var residual_unit = {{residual_unit|safe}};
-  var kind_name = {{kind_name|safe}};
-  var on_course = {{on_course|safe}};
+  //var residual_unit = {{residual_unit|safe}};
+  //var kind_name = {{kind_name|safe}};
+  //var on_course = {{on_course|safe}};
+  var residual_unit_bou = {{residual_unit_bou|safe}};
+  var kind_name_bou = {{kind_name_bou|safe}};
+  var on_course_bou = {{on_course_bou|safe}};
   var ctx = document.getElementById("bar-chart").getContext('2d');
   ctx.canvas.height = 280;
   var ChartDemo = new Chart(ctx, {
          type: 'bar',
          data: {
             //labels: kind_list,
-            labels: kind_name,
+            labels: kind_name_bou,
             datasets: [
             {
             label: "残単位数",
@@ -181,7 +209,7 @@ var chart = new Chart(myChart, {
             //backgroundColor: ["rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(246,133,124,0.5)","rgba(246,133,124,0.5)","rgba(206,195,73,0.5)"]
             backgroundColor: "rgba(131,185,206,0.5)",
             //borderColor: "#217346",
-            data: residual_unit
+            data: residual_unit_bou
           },
           {
           label: "履修中単位数",
@@ -190,29 +218,30 @@ var chart = new Chart(myChart, {
           //backgroundColor: ["rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(246,133,124,0.5)","rgba(246,133,124,0.5)","rgba(206,195,73,0.5)"]
           backgroundColor: "rgba(131,0,206,0.5)",
           //borderColor: "#217346",
-          data: on_course
+          data: on_course_bou
         }
             ]
          },
          options: {
             responsive: true,
+            maintainAspectRatio: false,
             legend: {
               labels: {
-                fontSize: 7,
+                fontSize: 13,
                 boxWidth: 20,
               }
             },
             scales: {
           xAxes: [{
             ticks: {
-              fontSize: 7,
+              fontSize: 10,
               maxRotation: 100,
               minRotation: 0
             },
           }],
           yAxes: [{
             ticks: {
-              fontSize: 18,
+              fontSize: 8,
               beginAtZero:true,
             },
           }],
@@ -262,6 +291,7 @@ var chart = new Chart(myChart, {
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
         animation: false,
         showTooltips: false,
         legend: {
@@ -282,6 +312,8 @@ var chart = new Chart(myChart, {
             fontColor: colorSet.green,
             min: 0,
             max: 100,
+            //maxRotation: 100,
+            //minRotation: 0,
             beginAtZero: true
           },
           gridLines: {
