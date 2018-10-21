@@ -15,4 +15,5 @@ urlpatterns = [
     path('course', views.course, name = 'course'),
     path('teacher_search', views.teacher_search, name = 'teacher_search'),
     path('sirabasu', views.sirabasu, name = 'sirabasu'),
+    path('course/<int:num>', views.course, name='course'),
 ]
