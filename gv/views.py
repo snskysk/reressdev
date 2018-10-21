@@ -54,7 +54,7 @@ def course(request, num=1):
         index_params = {
             'form':form,
             }
-        return render(request, 'gv/index.html', index_params)
+        return render(request, 'gv/hp.html', index_params)
     enter_year = sn[:2]   #学籍番号から入学年度の取得
     facu_depa = sn[2:4]  #学籍番号から学部学科の取得
     stu_obj = studentInfo.objects.filter(user_id__contains=facu_depa) #データベースから同じ学部学科の人を取得
