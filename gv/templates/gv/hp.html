@@ -86,9 +86,6 @@
 
 
 
-
-
-
 <!-- 自分のCSS -->
 {% endblock%}
 
@@ -109,7 +106,50 @@
     <div class="copy-container">
         <h4 id="jump-tag" class="sub-title">Re:Re:ss</h4><br>
         <h3 id="hp-title2">  立教生のデータを繋ぐ<br>情報コネクトシステム</h3><br>
+    </div>
 
+    <div>
+        <h4 id="jump-tag" class="sub-title">LOGIN</h4><br>
+
+        <div class="limiter">
+          <div class="container-login100">
+              <div class="wrap-login100 p-t-50 p-b-90">
+                  <form class="login100-form validate-form flex-sb flex-w" action='{% url 'mainhome' %}' method='post', name = 'mainhome'>
+                      {% csrf_token %}
+                      <div id="jump201"></div>
+                      <span class="login100-form-title p-b-51">
+                          学生ログイン<br>
+                          <br>立教大学WEBシステムとの連携に数十秒かかります
+                      </span>
+                      <div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
+                          {{form.stunum|add_class:"input100"|attr:"placeholder:学籍番号"}}
+                          <span class="focus-input100"></span>
+                      </div>
+
+
+                      <div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+                          {{form.password|add_class:"input100"|attr:"placeholder:パスワード"}}
+                          <span class="focus-input100"></span>
+                      </div>
+
+                      <div class="container-login100-form-btn m-t-17">
+                          <button class="login100-form-btn">
+
+                              Commit
+                          </button>
+                      </div>
+                  </form>
+
+
+
+              </div>
+          </div>
+        </div>
+
+    </div>
+
+
+    <div>
         <p id="under-linep">
         </p>
         <h4 id="jump-tag" class="sub-title">TOOL  LIST</h4><br>
@@ -119,54 +159,17 @@
         <li><a href="#jump104"><h4>成績参照 テーブルVer.</h4></a></li>
         <li><a href="#jump101"><h4>学科別 人気授業統計</h4></a></li>
         <li><a href="#jump102"><h4>教授別 成績判定統計</h4></a></li>
-    </ul>
-    <p id="under-linep">
-    </p>
-    <h4 id="jump-tag" class="sub-title">LOGIN</h4><br>
-
-
-    <div class="limiter">
-      <div class="container-login100">
-          <div class="wrap-login100 p-t-50 p-b-90">
-              <form class="login100-form validate-form flex-sb flex-w" action='{% url 'mainhome' %}' method='post', name = 'mainhome'>
-                  {% csrf_token %}
-                  <div id="jump201"></div>
-                  <span class="login100-form-title p-b-51">
-                      学生ログイン<br>
-                      <br>立教大学WEBシステムとの連携に数十秒かかります
-                  </span>
-                  <div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
-                      {{form.stunum|add_class:"input100"|attr:"placeholder:学籍番号"}}
-                      <span class="focus-input100"></span>
-                  </div>
-
-
-                  <div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-                      {{form.password|add_class:"input100"|attr:"placeholder:パスワード"}}
-                      <span class="focus-input100"></span>
-                  </div>
-
-                  <div class="container-login100-form-btn m-t-17">
-                      <button class="login100-form-btn">
-
-                          Commit
-                      </button>
-                  </div>
-              </form>
-
-
-
-          </div>
-      </div>
+        </ul>
+        <p id="under-linep">
+        </p>
     </div>
 
 
-
-    <p id="under-linep">Re:Re:ssは立教大学の成績データ活用に特化したシステムです。<br>
-    <br>
-    立教大学WEBシステムと連携させて、多彩な拡張機能を利用できます。
-
-    </p>
+    <div>
+        <p id="under-linep">Re:Re:ssは立教大学の成績データ活用に特化したシステムです。<br>
+        <br>
+        立教大学WEBシステムと連携させて、多彩な拡張機能を利用できます。
+        </p>
 
     </div>
 

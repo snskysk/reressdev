@@ -179,7 +179,7 @@ def func1(value):
             grade_info=tttt[5]
 
             berore15_0123=["GPA状況","年度","2016<"]
-            berore15_4=["GPA状況","年度","3.00"]
+            berore15_4=["GPA状況","年度","0.00"]
             before_dm0=pd.DataFrame({
                 "berfore15_0123":berore15_0123
             })
