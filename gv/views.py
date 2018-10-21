@@ -202,8 +202,8 @@ def mainhome_after_login(request):
         mainhome_after_login_params['str_name'] = str_name
         gpa = request.session['gpa']
         mainhome_after_login_params['gpa'] = gpa
-        gradeAchievement = request.session['gradeAchievement']
-        mainhome_after_login_params['gradeAchievement'] = gradeAchievement
+        #gradeAchievement = request.session['gradeAchievement']
+        #mainhome_after_login_params['gradeAchievement'] = gradeAchievement
         kind_name = request.session['kind_name']
         kind_name = kind_name[1:-1].replace(' ','').replace("'",'').split(',')
         mainhome_after_login_params['kind_name'] = kind_name
@@ -219,23 +219,34 @@ def mainhome_after_login(request):
         gradeOfcircle = request.session['gradeOfcircle']
         gradeOfcircle = gradeOfcircle[1:-1].replace(' ','').replace("'",'').split(',')
         mainhome_after_login_params['gradeOfcircle'] = gradeOfcircle
-        residual_unit = request.session['residual_unit']
-        residual_unit = residual_unit[1:-1].replace(' ','').replace("'",'').split(',')
-        mainhome_after_login_params['residual_unit'] = residual_unit
-        on_course = request.session['on_course']
-        on_course = on_course[1:-1].replace(' ','').replace("'",'').split(',')
-        mainhome_after_login_params['on_course'] = on_course
+        #residual_unit = request.session['residual_unit']
+        #residual_unit = residual_unit[1:-1].replace(' ','').replace("'",'').split(',')
+        #mainhome_after_login_params['residual_unit'] = residual_unit
+        #on_course = request.session['on_course']
+        #on_course = on_course[1:-1].replace(' ','').replace("'",'').split(',')
+        #mainhome_after_login_params['on_course'] = on_course
 
+        residual_num = request.session['residual_num']
+        mainhome_after_login_params['residual_num'] = residual_num
+        get_num = request.session['get_num']
+        mainhome_after_login_params['get_num'] = get_num
+        on_num = request.session['on_num']
+        mainhome_after_login_params['on_num'] = on_num
+
+        #棒グラフのsession
+        kind_name_bou = request.session['kind_name_bou']
+        mainhome_after_login_params['kind_name_bou'] = kind_name_bou
+        residual_unit_bou = request.session['residual_unit_bou']
+        mainhome_after_login_params['residual_unit_bou'] = residual_unit_bou
+        on_course_bou = request.session['on_course_bou']
+        mainhome_after_login_params['on_course_bou'] = on_course_bou
 
         return render(request, 'gv/mainhome.html', mainhome_after_login_params)
-
 
     except Exception:
         mainhome_after_login = 'no'
     #一度mainhomeに入っていれば実行
     #if mainhome_after_login == 'ok':
-
-
         #return render(request, 'gv/mainhome.html', mainhome_params)
     #else:
     form = userInfoForm()
