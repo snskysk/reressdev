@@ -185,6 +185,7 @@ def teacher_search(request):
 
 
 def hp(request):
+    request.session.flush()
     form = userInfoForm()
     index_params = {
         'form':form,

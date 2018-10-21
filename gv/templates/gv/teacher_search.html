@@ -14,27 +14,33 @@
   <h3 class="page-header" style="text-align:center;">教授の厳しさは？<br>教授別 成績判定統計</h3>
 
   <!--<form action='{% url 'teacher_search' %}' method='post' name='teacher_search' onsubmit="return false;">-->
+  <div class="row">
+    <div class="col-xs-12 col-lg-8 col-lg-offset-2">
     <form action='{% url 'teacher_search' %}' method='post' name='teacher_search'>
-    {% csrf_token %}
-    教授名入力（部分一致可）<br>
-          <!-- 入力フォーム -->
-          {{form.t_name|attr:"autocomplete:off"}}
-          <!--<input id="text" type="text" name="pattern" value="" autocomplete="off" size="10" style="display: block">-->
-          <!-- 補完候補を表示するエリア -->
-          <div id="suggest" style="display:none;"></div>
-    <button class="hamon">
-      教授を検索
-    </button>
-  </form>
+      {% csrf_token %}
+      教授名入力（部分一致可）<br>
+            <!-- 入力フォーム -->
+            {{form.t_name|attr:"autocomplete:off"}}
+            <!--<input id="text" type="text" name="pattern" value="" autocomplete="off" size="10" style="display: block">-->
+            <!-- 補完候補を表示するエリア -->
+            <div id="suggest" style="display:none;"></div>
+      <button class="hamon">
+        教授を検索
+      </button>
+    </form>
+    </div><!--col-xs-12 col-lg-8 col-lg-offset-2-->
+  </div>
 
 
 
 
   <br>
-
-  <div>
+  <div class="row">
+    <div class="col-xs-12 col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
     <div><canvas id="bar-chart"></canvas></div>
-  </div>
+  </div><!--col-xs-12 col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1-->
+</div><!--row-->
+
 
 {% endblock %}
 
