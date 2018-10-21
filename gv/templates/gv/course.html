@@ -57,15 +57,15 @@
   </table>
   <div class="pagination">
     {% if sub_list_counter.has_previous %}
-      <a href="{% url 'course' %}">&laquo;first</a>
-      <a href="{% url 'course' %}{{sub_list_counter.previous_page_number}}">&laquo;prev</a>
+      <a href="{% url 'course/' %}">&laquo;first</a>
+      <a href="{% url 'course/' %}{{sub_list_counter.previous_page_number}}">&laquo;prev</a>
     {% endif %}
     <span class"current">
       [{{sub_list_counter.number}}/{{sub_list_counter.paginator.num_pages}}]
     </span>
     {% if sub_list_counter.has_next %}
-      <a href="{% url 'course' %}{{sub_list_counter.next_page_number}}">next&raquo;</a>
-      <a href="{% url 'course' %}{{sub_list_counter.paginator.num_pages}}">last&raquo;</a>
+      <a href="{% url 'course/' %}{{sub_list_counter.next_page_number}}">next&raquo;</a>
+      <a href="{% url 'course/' %}{{sub_list_counter.paginator.num_pages}}">last&raquo;</a>
     {% endif %}
   </div><!--pagination-->
 
