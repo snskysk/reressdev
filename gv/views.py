@@ -271,7 +271,7 @@ def mainhome_after_login(request):
     index_params = {
         'form':form
     }
-    return render(request, 'gv/index.html', index_params)
+    return render(request, 'gv/hp.html', index_params)
 
 def get(request):
     if request.method == 'POST':
