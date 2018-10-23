@@ -1,0 +1,12 @@
+h1 {
+  text-align:center;
+}
+p {
+  text-align: center;
+  color: blue;
+}
+#container {
+margin: 20px;
+width: 400px;
+height: 8px;
+}
