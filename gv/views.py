@@ -50,6 +50,8 @@ def course(request, num=1):
         form = userInfoForm()
         index_params = {
             'form':form,
+            'message':'学籍番号とパスワードを入力しよう'
+
             }
         return render(request, 'gv/hp.html', index_params)
     enter_year = sn[:2]   #学籍番号から入学年度の取得
