@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,user-scalable=no">
-  <title>Re:Re:ss</title>
+  <title>RERES</title>
+  <link rel="shortcut icon" href="{% static 'gv/base/images/soccer_128x128.ico'%}" />
   <meta name="description" content="top description">
   <meta name="format-detection" content="telephone=no" />
                         <!--▼▼jqueryの3のバージョン▼▼-->
@@ -14,13 +15,14 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
                                 <!--▼▼fontawesomeの使用▼▼-->
-  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
                               <!--▼▼メニューバー▼▼-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.1.0/css/drawer.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.1.0/js/drawer.min.js"></script>
   <script src='{% static 'gv/base/js/nav.js' %}'></script>
                               <!--▼▼自分のcss▼▼-->
   <link rel="stylesheet" href='{% static 'gv/base/css/style.css'%}'>
+  <!--aタグの文字の色を指定-->
   <style type="text/css">
     a:link { color : #000000; }
     a:visited { color : #000000; }
@@ -38,22 +40,23 @@
   <span class="sr-only">toggle navigation</span>
   <span class="drawer-hamburger-icon"></span>
 </button>
-
 <nav class="drawer-nav">
   <div class="row">
   <div class="col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1">
   <ul class="drawer-menu">
     <!-- ドロワーメニューの中身 -->
-      <br><br><br>
-      <a href="{% url 'hp' %}"><img src="{% static 'gv/images/titlelogo.PNG'%}" width="100%"></a><br><br>
-      <div class="drawer_li_div"><li><a href={% url 'hp' %}><i class="fa fa-edit fa-fw"></i><u>トップページ</u></a></li></div><br>
-     <div class="drawer_li_div"><li><a href={% url 'mainhome_after_login' %}><i class="fa fa-table fa-fw"></i><u>成績参照<br>グラフVer.</u></a></li></div><br>
-      <div class="drawer_li_div"><li><a href={% url 'detail' %}><i class="fa fa-table fa-fw"></i><u>成績参照<br>テーブルVer.</u></a></li></div><br>
-      <div class="drawer_li_div"><li><a href={% url 'course' %}><i class="fa fa-table fa-fw"></i><u>学科別<br>人気授業統計</u></a></li></div><br>
-      <div class="drawer_li_div"><li><a href={% url 'teacher_search' %}><i class="fa fa-table fa-fw"></i><u>教授別<br>成績判定統計</u></a></li></div><br>
-      <div class="drawer_li_div"><li><a href='#'><i class="fa fa-sitemap fa-fw"></i><u>Taimee</u></a></li></div><br>
+      <br>
+      <img src="{% static 'gv/base/images/titlelogo.PNG'%}" width="100%"><br><br>
+      <li class="li-d"><a href={% url 'hp' %}><i class="fas fa-home fa-fw"></i>トップページ</a></li><br>
+      <!--<li class="li-d"><a href={% url 'index' %}><i class="fa fa-edit fa-fw"></i>ログイン</a></li><br>-->
+      <!--<li class="li-d"><a href={% url 'shop_search' %}><i class="fa fa-edit fa-fw"></i>飲食店検索</a></li><br>-->
+      <!--<li class="li-d"><a href={% url 'review' %}><i class="fa fa-edit fa-fw"></i>飲食店登録</a></li><br>-->
+      <li class="li-d"><a href={% url 'mainhome_after_login' %}><i class="fas fa-chart-bar fa-fw"></i></i>成績参照<br>グラフVer.</a></li><br>
+      <li class="li-d"><a href={% url 'detail' %}><i class="fa fa-table fa-fw"></i>成績参照<br>テーブルVer.</a></li><br>
+      <li class="li-d"><a href={% url 'course' %}><i class="fas fa-book-open fa-fw"></i>学科別<br>人気授業統計</a></li><br>
+      <li class="li-d"><a href={% url 'teacher_search' %}><i class="fas fa-chalkboard-teacher fa-fw"></i>教授別<br>成績判定統計</a></li><br>
+      <!--<div class="drawer_li_div"><li><a href='#'><i class="fa fa-sitemap fa-fw"></i>Taimee</a></li></div><br>-->
     </ul>
-
 
   </ul>
 </div>
@@ -73,7 +76,9 @@
 {% endblock %}
  <script>
  $(document).ready(function() {
-  $(".drawer").drawer();
+  $(".drawer").drawer({
+    drawerWidth:"500px",
+  });
   var wH = $(window).height();
   //div#exampleの高さを取得を取得して、変数divHに代入
   var divH = $('.window').innerHeight();
@@ -83,7 +88,11 @@
   	$('.window').css('height',wH+'px');
   }
 
+
 });
+
+
+
  </script>
 </body>
 </html>
