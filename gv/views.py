@@ -595,7 +595,7 @@ def detail(request):
 ######################################################################################
                                      #飲食店レビュー
 ###################################################################################
-"""
+
 def review(request):
     form = food_pool_Form()
     review_params = {
@@ -605,11 +605,11 @@ def review(request):
         form = food_pool_Form(request.POST)
         form.save()
     return render(request, 'gv/review.html', review_params)
-"""
+
 ######################################################################################
                                      #飲食店検索
 ###################################################################################
-"""
+
 def shop_search(request):
     if request.method == 'POST':
         form = find_shop(request.POST)
@@ -635,4 +635,3 @@ def shop_search(request):
         'shop_obj':shop_obj
     }
     return render(request, 'gv/shop_search.html', shop_search_params)
-"""
