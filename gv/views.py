@@ -122,7 +122,7 @@ def sirabasu(request):
     return HttpResponseRedirect('{}'.format(url))
     #return render(request, 'gv/teacher_search.html', sirabasu_params)
 
-
+"""
 def teacher_search(request):
     sub_obj = subjectInfo.objects.all()
     teacher_list = list(set(list(subjectInfo.objects.values_list('teacher', flat=True))))#すべての先生のリスト(重複なし)
@@ -175,6 +175,93 @@ def teacher_search(request):
         'teacher_list':teacher_list,
     }
     return render(request, 'gv/teacher_search.html', teacher_search_params)
+"""
+def teacher_search(request):
+    sub_obj = subjectInfo.objects.all()
+    teacher_list_space = list(set(list(subjectInfo.objects.values_list('teacher', flat=True))))#すべての先生のリスト(重複なし)
+    teacher_list = [i.replace('　', '') for i in teacher_list_space]#先生の名前スペースなし
+    #各先生の授業のリストを生成(ex:{'A先生':[B,C,D]})
+    teacher_sub_dict = {teacher_name.replace('　', ''):list(set(subjectInfo.objects.filter(teacher__contains=teacher_name).values_list('subjectname', flat=True))) for teacher_name in teacher_list_space}
+
+
+    if request.method == 'POST':
+        form = find_teacher(request.POST)
+        t_name = request.POST['t_name']
+        t_sub = request.POST['t_sub']
+        #もしスペースありで入力されたら訂正
+        if '　' in t_name:
+            t_name = t_name.replace('　','')
+        try:
+            index_teacher_list = teacher_list.index(t_name)#index番号を取得
+            t_name=teacher_list_space[index_teacher_list]#実際にデータベースで検索するスペースありの先生の名前
+        except:
+            form = find_teacher()
+            p = [0,0,0,0]
+            grade_list_sample = ['S','A','B','C']
+
+            teacher_search_params = {
+                'form':form,
+                'p':p,
+                'grade_list_sample':grade_list_sample,
+                'teacher_list':teacher_list,
+                'teacher_sub_dict':teacher_sub_dict,
+            }
+            return render(request, 'gv/teacher_search.html', teacher_search_params)
+        sub_obj = sub_obj.filter(teacher=t_name)
+        #授業のフィルター
+        if len(t_sub) is not 0:
+            sub_obj = sub_obj.filter(subjectname=t_sub)
+        num_sub = len(sub_obj)#その先生の授業数
+        grade_list_dict = OrderedDict({'Ｓ':0,'Ａ':0,'Ｂ':0,'Ｃ':0}) #順番がたぶん大事
+        grade_list = sub_obj.values_list('grade', flat=True)#成績判定を取得(重複あり)
+        grade_list_dict_new = Counter(grade_list) #授業の数
+        grade_list_dict.update(grade_list_dict_new) #辞書をupdate
+        nums = grade_list_dict.values()
+        try:#入力ミスのとき0で割られるのを防ぐ
+            p = [(num / mum) * 100 for num,mum in zip(nums,[num_sub]*len(nums))]#確立を計算
+            grade_list_sample = list(grade_list_dict.keys())
+            #計算結果を丸める
+            p = list(map(round, p, [0]*len(p)))
+
+            teacher_search_params = {
+                'message':'ok,',
+                'form':form,
+                'sub_obj':sub_obj,
+                'p':p,
+                'grade_list_sample':grade_list_sample,
+                'teacher_list':teacher_list,
+                'teacher_sub_dict':teacher_sub_dict,
+            }
+            return render(request, 'gv/teacher_search.html', teacher_search_params)
+        except:
+            form = find_teacher()
+            p = [0,0,0,0]
+            grade_list_sample = ['S','A','B','C']
+
+            teacher_search_params = {
+                'form':form,
+                'p':p,
+                'grade_list_sample':grade_list_sample,
+                'teacher_list':teacher_list,
+                'teacher_sub_dict':teacher_sub_dict,
+            }
+            return render(request, 'gv/teacher_search.html', teacher_search_params)
+
+    form = find_teacher()
+    p = [0,0,0,0]
+    grade_list_sample = ['S','A','B','C']
+
+    teacher_search_params = {
+        'message':'',
+        'form':form,
+        'p':p,
+        'grade_list_sample':grade_list_sample,
+        'teacher_list':teacher_list,
+        'teacher_sub_dict':teacher_sub_dict,
+    }
+    return render(request, 'gv/teacher_search.html', teacher_search_params)
+
+
 ###################################################################################
                                     #トップページ
 ######################################################################################

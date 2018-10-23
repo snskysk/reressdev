@@ -12,7 +12,9 @@ class find_course(forms.Form):
 
 
 class find_teacher(forms.Form):
+    t_sub_list = [['','全ての教科']]
     t_name = forms.CharField(label='先生')
+    t_sub = forms.ChoiceField(choices=t_sub_list, required = False)
 
 ##############################################
 

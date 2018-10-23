@@ -1,3 +1,5 @@
+
+
 body  {
         background: #ececec;
         font-family: 'Lato', sans-serif;
@@ -6,7 +8,8 @@ body  {
     }
 
 #suggest {
-    position: absolute;
+    /*position: absolute;*/
+    margin: 0 auto;
     background-color: #FFFFFF;
     border: 1px solid #CCCCFF;
     /*font-size: 90%;*/

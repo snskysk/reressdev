@@ -2,16 +2,20 @@
 {% load widget_tweaks %}
 {% load static %}
 {% block css %}
-<link rel='stylesheet' type='text/css' href='{% static 'gv/button/my_teacher_search.css' %}' />
-<link rel='stylesheet' type='text/css' href='{% static 'gv/button/button.css' %}' />
-<link rel='stylesheet' type='text/css' href='{% static 'gv/button/table.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/teacher_search/my_teacher_search.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/teacher_search/button.css' %}' />
+<!--<link rel='stylesheet' type='text/css' href='{% static 'gv/button/table.css' %}' />-->
 
 
 {% endblock%}
 
 {% block body %}
 <!--メインの部分-->
-  <h3 class="page-header" style="text-align:center;">教授の厳しさは？<br>教授別 成績判定統計</h3>
+  <h3 class="page-header page-title" style="text-align:center;">教授別<br>成績判定統計</h3>
+
+
+
+
 
   <!--<form action='{% url 'teacher_search' %}' method='post' name='teacher_search' onsubmit="return false;">-->
   <div class="row">
@@ -20,17 +24,17 @@
       {% csrf_token %}
       教授名入力（部分一致可）<br>
             <!-- 入力フォーム -->
-            {{form.t_name|attr:"autocomplete:off"}}
+            {{form.t_name|add_class:"teacher_input"|attr:"autocomplete:off"}}
             <!--<input id="text" type="text" name="pattern" value="" autocomplete="off" size="10" style="display: block">-->
             <!-- 補完候補を表示するエリア -->
-            <div id="suggest" style="display:none;"></div>
+            <div id="suggest" style="display:none;"></div><br>
+            {{form.t_sub|add_class:"t_sub_input"}}<br>
       <button class="hamon">
         教授を検索
       </button>
     </form>
     </div><!--col-xs-12 col-lg-8 col-lg-offset-2-->
   </div>
-
 
 
 
@@ -78,7 +82,7 @@
             legend: {
               labels: {
                 fontSize:13,
-                boxWidth: 0,
+                boxWidth: 10,
               }
             },
             scales: {
@@ -118,6 +122,39 @@
   window.addEventListener ?
     window.addEventListener('load', startSuggest, false) :
     window.attachEvent('onload', startSuggest);
+</script>
+
+<!--selectboxの選択肢をjsで変更-->
+<script>
+  var teacher_sub_dict = {{teacher_sub_dict|safe}};
+  var input_t_name = $('.teacher_input');
+
+  input_t_name.focus(function() {
+      $('.t_sub_input option:not(:first)').remove();
+    });
+
+  input_t_name.blur(function(){
+    var input_t_name_true = input_t_name.val();
+
+    if (teacher_sub_dict[input_t_name_true]) {
+      console.log('e');
+      var t_s_list = teacher_sub_dict[input_t_name_true];
+      for (i = 0; i < t_s_list.length; i++) {
+        $('.t_sub_input').append(`<option value=${t_s_list[i]}>${t_s_list[i]}</option>`);
+      }
+    };
+  });
+</script>
+
+
+
+<script>
+  var input_t_name = $('.teacher_input');
+  var message = "{{message|safe}}"
+  var length = message.length
+  if(length!=0){
+    $(input_t_name).focus();
+  }
 </script>
 
 {% endblock %}
