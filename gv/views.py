@@ -203,7 +203,7 @@ def index(request):
         'message':'学籍番号とパスワードを入力してください',
         }
 
-    return render(request, 'gv/index.html', index_params)
+    return render(request, 'gv/hp.html', index_params)
 
 def get(request):
     if request.method == 'POST':
@@ -225,7 +225,7 @@ def get(request):
             #もう一度入力してね♡'
             'message':error
             }
-            return render(request, 'gv/index.html', params)
+            return render(request, 'gv/hp.html', params)
 
 
         #result, list_pie, list_bar, table, personal_dataset= main.condact(value)
@@ -244,7 +244,7 @@ def get(request):
             'form':form,
             'message':str(e.args)
             }
-            return render(request, 'gv/index.html', params)
+            return render(request, 'gv/hp.html', params)
 
         #データベースに登録するかどうか
         stuobj = studentInfo.objects.all()
@@ -280,7 +280,7 @@ def get(request):
         'form':form,
         'message':'学籍番号とパスワードを入力しよう!'
         }
-        return render(request, 'gv/index.html', params)
+        return render(request, 'gv/hp.html', params)
 
 ###################################################################################
                                #メインのグラフを出力する画面
