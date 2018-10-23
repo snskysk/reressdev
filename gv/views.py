@@ -193,11 +193,9 @@ def hp(request):
 ###################################################################################
                                     #停止
 ##################################################################################
-"""
 def info(request):
     return render(request, 'gv/informations.html')
-"""
-"""
+
 def index(request):
     form = userInfoForm()
     index_params = {
@@ -206,8 +204,7 @@ def index(request):
         }
 
     return render(request, 'gv/index.html', index_params)
-"""
-"""
+
 def get(request):
     if request.method == 'POST':
         #formから学籍番号とパスワードの取得
@@ -284,7 +281,7 @@ def get(request):
         'message':'学籍番号とパスワードを入力しよう!'
         }
         return render(request, 'gv/index.html', params)
-"""
+
 ###################################################################################
                                #メインのグラフを出力する画面
 #####################################################################################
