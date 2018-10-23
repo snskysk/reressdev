@@ -122,60 +122,6 @@ def sirabasu(request):
     return HttpResponseRedirect('{}'.format(url))
     #return render(request, 'gv/teacher_search.html', sirabasu_params)
 
-"""
-def teacher_search(request):
-    sub_obj = subjectInfo.objects.all()
-    teacher_list = list(set(list(subjectInfo.objects.values_list('teacher', flat=True))))#すべての先生のリスト(重複なし)
-
-    if request.method == 'POST':
-        form = find_teacher(request.POST)
-        t_name = request.POST['t_name']
-        sub_obj = sub_obj.filter(teacher=t_name)
-        num_sub = len(sub_obj)#その先生の授業数
-        grade_list_dict = OrderedDict({'Ｓ':0,'Ａ':0,'Ｂ':0,'Ｃ':0}) #順番がたぶん大事
-        grade_list = sub_obj.values_list('grade', flat=True)#成績判定を取得(重複あり)
-        grade_list_dict_new = Counter(grade_list) #授業の数
-        grade_list_dict.update(grade_list_dict_new) #辞書をupdate
-        nums = grade_list_dict.values()
-        try:#入力ミスのとき0で割られるのを防ぐ
-            p = [(num / mum) * 100 for num,mum in zip(nums,[num_sub]*len(nums))]#確立を計算
-            grade_list_sample = list(grade_list_dict.keys())
-            #計算結果を丸める
-            p = list(map(round, p, [0]*len(p)))
-
-            teacher_search_params = {
-                'form':form,
-                'sub_obj':sub_obj,
-                'p':p,
-                'grade_list_sample':grade_list_sample,
-                'teacher_list':teacher_list,
-            }
-            return render(request, 'gv/teacher_search.html', teacher_search_params)
-        except:
-            form = find_teacher()
-            p = [0,0,0,0]
-            grade_list_sample = ['S','A','B','C']
-
-            teacher_search_params = {
-                'form':form,
-                'p':p,
-                'grade_list_sample':grade_list_sample,
-                'teacher_list':teacher_list,
-            }
-            return render(request, 'gv/teacher_search.html', teacher_search_params)
-
-    form = find_teacher()
-    p = [0,0,0,0]
-    grade_list_sample = ['S','A','B','C']
-
-    teacher_search_params = {
-        'form':form,
-        'p':p,
-        'grade_list_sample':grade_list_sample,
-        'teacher_list':teacher_list,
-    }
-    return render(request, 'gv/teacher_search.html', teacher_search_params)
-"""
 def teacher_search(request):
     sub_obj = subjectInfo.objects.all()
     teacher_list_space = list(set(list(subjectInfo.objects.values_list('teacher', flat=True))))#すべての先生のリスト(重複なし)
@@ -265,7 +211,7 @@ def teacher_search(request):
 ###################################################################################
                                     #トップページ
 ######################################################################################
-
+"""
 def hp(request):
     request.session.flush()
     form = userInfoForm()
@@ -275,7 +221,17 @@ def hp(request):
         }
 
     return render(request, 'gv/hp.html', index_params)
+"""
 
+def hp(request):
+    request.session.flush()
+    form = userInfoForm()
+    index_params = {
+        'form':form,
+        'message':'',
+        }
+
+    return render(request, 'gv/hp.html', index_params)
 
 ###################################################################################
                                     #停止

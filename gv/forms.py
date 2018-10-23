@@ -4,17 +4,7 @@ from . import models
 from .models import food_pool
 from django.forms.widgets import NumberInput
 
-###################### new ####################
-
-class find_course(forms.Form):
-    category1 = forms.ChoiceField(widget=forms.Select, choices = [('','全体')], required = False)
-
-
-
-class find_teacher(forms.Form):
-    t_sub_list = [['','全ての教科']]
-    t_name = forms.CharField(label='先生')
-    t_sub = forms.ChoiceField(choices=t_sub_list, required = False)
+##########################################
 
 ##############################################
 
@@ -89,3 +79,12 @@ class find_shop(forms.Form):
 
     shop_name = forms.CharField(label='科目名/先生', required = False)
     price = forms.ChoiceField(choices=price_list, required = False)
+
+
+class find_course(forms.Form):
+    category1 = forms.ChoiceField(widget=forms.Select, choices = [('','全体')], required = False)
+
+class find_teacher(forms.Form):
+    t_sub_list = [['','全ての教科']]
+    t_name = forms.CharField(label='先生')
+    t_sub = forms.ChoiceField(choices=t_sub_list, required = False)
