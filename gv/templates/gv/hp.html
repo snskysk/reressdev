@@ -2,42 +2,46 @@
 {% load static%}
 {% load widget_tweaks %}
 {% block css %}
-  <!--  #######css homepage & mainhome ##############   -->
-  <!--  #######js homepage & base ####################   -->
 
-  <!--  ##############################################   -->
-  <!--  ################    css    from    homepage  #########   -->
-  <!--  ##############################################   -->
   <link rel='stylesheet' type='text/css' href='{% static 'gv/homepage/homepage.css' %}' />
 
+  <!--ログインフォームはここが必要-->
+  <link rel="stylesheet" type="text/css" href='{% static 'gv/homepage/login/css/util.css' %}'>
+  <link rel="stylesheet" type="text/css" href='{% static 'gv/homepage/login/css/main.css' %}'>
 
-    <!--  ##############################################   -->
-    <!--  ################    css    from    mainhome  #########   -->
-    <!--  ##############################################   -->
+  <link rel="stylesheet" type="text/css" href='{% static 'gv/login/css/util.css' %}'>
+  <link rel="stylesheet" type="text/css" href='{% static 'gv/login/css/main.css' %}'>
 
-    <!-- Bootstrap Core CSS -->
-    <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/bootstrap.min.css' %}' />
-    <!--<link href="../css/bootstrap.min.css" rel="stylesheet">-->
 
-    <!-- MetisMenu CSS -->
-    <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/metisMenu.min.css' %}' />
-    <!--<link href="../css/metisMenu.min.css" rel="stylesheet">-->
+  <link rel='stylesheet' type='text/css' href='{% static 'gv/homepage/homepage.css' %}' />
 
-    <!-- Custom CSS -->
-    <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/startmin.css' %}' />
-    <!--<link href="../css/startmin.css" rel="stylesheet">-->
+  <!-- Bootstrap Core CSS -->
+  <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/bootstrap.min.css' %}' />
+  <!--<link href="../css/bootstrap.min.css" rel="stylesheet">-->
 
-    <!-- Morris Charts CSS -->
-    <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/morris.css' %}' />
-    <!--<link href="../css/morris.css" rel="stylesheet">-->
+  <!-- MetisMenu CSS -->
+  <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/metisMenu.min.css' %}' />
+  <!--<link href="../css/metisMenu.min.css" rel="stylesheet">-->
 
-    <!-- Custom Fonts -->
-    <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/font-awesome.min.css' %}' />
-    <!--<link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
+  <!-- Custom CSS -->
+  <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/startmin.css' %}' />
+  <!--<link href="../css/startmin.css" rel="stylesheet">-->
 
-    <!--  ##############################################   -->
-    <!--  ################    index     #########   -->
-    <!--  ##############################################   -->
+  <!-- Morris Charts CSS -->
+  <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/morris.css' %}' />
+  <!--<link href="../css/morris.css" rel="stylesheet">-->
+
+  <!-- Custom Fonts -->
+  <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/font-awesome.min.css' %}' />
+  <!--<link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
+
+  <!--ログインフォームのplacefolderの中央寄せ-->
+  <style type='text/css'>
+  .input100::-webkit-input-placeholder {
+    text-align: center;
+  }
+  </style>
+
 
     <!--===============================================================================================-->
 	<link rel="icon" type="image/png" href='{% static 'gv/login/images/icons/favicon.ico' %}'/>
@@ -58,259 +62,286 @@
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href='{% static 'gv/login/vendor/daterangepicker/daterangepicker.css' %}'>
 	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href='{% static 'gv/login/css/util.css' %}'>
-	<link rel="stylesheet" type="text/css" href='{% static 'gv/login/css/main.css' %}'>
-
-
-    <link rel='stylesheet' type='text/css' href='{% static 'gv/homepage/homepage.css' %}' />
-
-    <!-- Bootstrap Core CSS -->
-    <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/bootstrap.min.css' %}' />
-    <!--<link href="../css/bootstrap.min.css" rel="stylesheet">-->
-
-    <!-- MetisMenu CSS -->
-    <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/metisMenu.min.css' %}' />
-    <!--<link href="../css/metisMenu.min.css" rel="stylesheet">-->
-
-    <!-- Custom CSS -->
-    <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/startmin.css' %}' />
-    <!--<link href="../css/startmin.css" rel="stylesheet">-->
-
-    <!-- Morris Charts CSS -->
-    <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/morris.css' %}' />
-    <!--<link href="../css/morris.css" rel="stylesheet">-->
-
-    <!-- Custom Fonts -->
-    <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/font-awesome.min.css' %}' />
-    <!--<link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
 
 
 
-<!-- 自分のCSS -->
-{% endblock%}
 
 
-{% block body %}
+    <script>/*<!--いらないことが判明-->
+    <!--=======================================ログインのcss===================================================-->
+    <link rel="icon" type="image/png" href='{% static 'gv/login/images/icons/favicon.ico' %}' />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href='{% static 'gv/login/vendor/bootstrap/css/bootstrap.min.css' %}'>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href='{% static 'gv/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}'>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href='{% static 'gv/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}'>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href='{% static 'gv/login/vendor/animate/animate.css' %}'>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href='{% static 'gv/login/vendor/css-hamburgers/hamburgers.min.css' %}'>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href='{% static 'gv/login/vendor/animsition/css/animsition.min.css' %}'>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href='{% static 'gv/login/vendor/select2/select2.min.css' %}'>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href='{% static 'gv/login/vendor/daterangepicker/daterangepicker.css' %}'>
+    <!--===============================================================================================-->
+    */</script>
 
 
-<div id="page-wrapper" class='page-wrapper'>
-  <div class="row">
-    <div class="col-lg-12">
-      <!--h1 class="page-header">Re:Re:ss</h1-->
-      <div class="page-head">
-      <a href="{% url 'hp' %}"><img src="/static/gv/images/titlelogo.PNG" alt="Re:Re:ss" width="220" height="90" border="0" /></a>
-    </div>
-    </div>
-  </div>
-
-    <div class="copy-container">
-        <h4 id="jump-tag" class="sub-title">Re:Re:ss</h4><br>
-        <h3 id="hp-title2">  立教生のデータを繋ぐ<br>Re:Re:ss</h3><br>
-    </div>
-
-    <div>
-        <p id="under-linep">Re:Re:ssは、立教大学WEBシステムと連携して、成績データを履修登録に活用するためのシステムです。</p>
-    </div>
+    <!--===============================================スライド====================================================-->
+    <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>-->
+    <!--
+    <script src="{% static 'gv/homepage/slider/jquery.bxslider.min.js'%}"></script>
+    <link href="{% static 'gv/homepage/slider/jquery.bxslider.css'%}" rel="stylesheet" />-->
+    <!--===============================================================================================================-->
+    {% endblock%}
 
 
-    <div>
-        <h4 id="jump-tag" class="sub-title">LOGIN</h4><br>
-
-        <div class="limiter">
-          <div class="container-login100">
-              <div class="wrap-login100 p-t-50 p-b-90">
-                  <form class="login100-form validate-form flex-sb flex-w" action='{% url 'mainhome' %}' method='post', name = 'mainhome'>
-                      {% csrf_token %}
-                      <div id="jump201"></div>
-                      <span class="login100-form-title p-b-51">
-                          学生ログイン<br>
-                      </span>
-                      <div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
-                          {{form.stunum|add_class:"input100"|attr:"placeholder:学籍番号"}}
-                          <span class="focus-input100"></span>
-                      </div>
+    {% block body %}
 
 
-                      <div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-                          {{form.password|add_class:"input100"|attr:"placeholder:パスワード"}}
-                          <span class="focus-input100"></span>
-                      </div>
-
-                      <div class="container-login100-form-btn m-t-17">
-                          <button class="login100-form-btn">
-
-                              Commit
-                          </button>
-                      </div>
-                  </form>
-                  <span class="login100-form-title p-b-51">
-                      <h3>立教大学WEBシステムとの連携に数十秒かかります</h3>
-                  </span>
-              </div>
-          </div>
-        </div>
-
-    </div>
+    <!---いったん消しとく-->
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+        <div class="page-head" style="text-align:center;">
+          <a href="{% url 'hp' %}"><img src="/static/gv/homepage/images/titlelogo2.PNG" alt="Re:Re:ss" width="220" height="90" border="0" /></a>
+        </div><!--page-head-->
+        <div id="jump201"></div><!--飛んでくる場所-->
+        <!--<h4 class="jump-tag" class="sub-title">Re:Re:ss</h4><br><br>-->
+        <!--<h3 id="hp-title2">  立教生のデータを繋ぐ<br>Re:Re:ss</h3><br>-->
+        <!--<p class="under-linep">Re:Re:ssは、立教大学WEBシステムと連携して、成績データを履修登録に活用するためのシステムです。</p><br>-->
+      </div><!--col-lg-12-->
+    </div><!--row-->
 
 
-    <div>
-        <p id="under-linep"></p>
-        <h4 id="jump-tag" class="sub-title">TOOL  LIST</h4><br>
-
-        <ul>
-        <li><a href="#jump103"><h4>成績参照 グラフVer.</h4></a></li>
-        <li><a href="#jump104"><h4>成績参照 テーブルVer.</h4></a></li>
-        <li><a href="#jump101"><h4>学科別 人気授業統計</h4></a></li>
-        <li><a href="#jump102"><h4>教授別 成績判定統計</h4></a></li>
-        </ul>
-        <p id="under-linep">
-        </p>
-    </div>
 
 
-    <div>
-        <div class=".col-lg-pull-8 col-xs-12">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-                <div id="jump103"></div>
-                <h3 id="hp-boxhead">成績参照 グラフVer.</h3>
-            </div>
-            <div class="panel-body" id="panel-body-both">
-                <div>
-                    <div class="image101">
-                            <img src="{% static 'gv/images/graph_ex01.PNG'%}" width="100%"><br>
-                            <img src="{% static 'gv/images/graph_ex011.PNG'%}" width="95%">
-                            <a href="#jump201">
-                                <div class="container-login100-form-btn m-t-17">
-                                    <button class="login100-form-btn">
-                                        <h2 id="hp-boxhead">USE<h2>
-                                    </button>
-                                </div>
-                            </a>
-                    </div>
-            </div>
-          </div>
-        </div>
-    </div>
-
-    <div>
-        <div class=".col-lg-pull-8 col-xs-12">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-                <div id="jump104"></div>
-                <h3 id="hp-boxhead">成績参照 テーブルVer.</h3>
-        </div>
-            <div class="panel-body" id="panel-body-both">
-                <div>
-                    <div class="image101">
-                            <img src="{% static 'gv/images/graph_ex3.PNG'%}" width="100%"><br>
-                            <img src="{% static 'gv/images/graph_ex31.PNG'%}" width="95%">
-                            <a href="#jump201">
-                                <div class="container-login100-form-btn m-t-17">
-                                    <button class="login100-form-btn">
-                                        <h2 id="hp-boxhead">USE<h2>
-                                    </button>
-                                </div>
-                            </a>
-                    </div>
-            </div>
-          </div>
-        </div>
-    </div>
-
-    <div>
-        <div class=".col-lg-pull-8 col-xs-12">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-                <div id="jump101"></div>
-                <a href='{% url 'course' %}'><h3 id="hp-boxhead">学科別 人気授業統計</h3></a>
-
-        </div>
-            <div class="panel-body" id="panel-body-both">
-                <div>
-                    <div class="image101">
-                            <img src="{% static 'gv/images/graph_ex4.PNG'%}" width="100%"><br>
-                            <img src="{% static 'gv/images/graph_ex42.PNG'%}" width="95%">
-                            <a href='{% url 'course' %}'>
-                                <div class="container-login100-form-btn m-t-17">
-                                    <button class="login100-form-btn">
-                                        <h2 id="hp-boxhead">USE<h2>
-                                    </button>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+    <script>/*
+    <div class="row">
+      <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+        <div class="user-form">
+          <div class="limiter">
+            <!--<div class="container-login100">-->
+            <!--<div class="wrap-login100">-->
+              <form class="login100-form validate-form flex-sb flex-w" action='{% url 'mainhome' %}' method='post' , name='mainhome'>
+                {% csrf_token %}
+                <span class="login100-form-title">学生ログイン</span><br><br><br>
+                <div class="wrap-input100 validate-input m-b-16" data-validate="Username is required">
+                  {{form.stunum|add_class:"input100"|attr:"placeholder:学籍番号"}}
+                  <span class="focus-input100"></span>
                 </div>
-            </div>
-    </div>
+                <div class="wrap-input100 validate-input m-b-16" data-validate="Password is required">
+                  {{form.password|add_class:"input100"|attr:"placeholder:パスワード"}}
+                  <span class="focus-input100"></span>
+                </div><!--input100-->
+                <div class="container-login100-form-btn m-t-17">
+                  <button class="login100-form-btn">
+                    Commit
+                  </button><!--login100-form-btn-->
+                </div><!--container-login100-form-btn-->
+              </form>
+              <!--<span class="login100-form-title p-b-51">-->
+              <!--
+              <span class="login100-form-title">
+              <br><p class="under-linep">立教大学WEBシステムとの連携に数十秒かかります</p><br><br>
+            </span>-->
+            <!--</div>--><!--wrap-login100-->
+          </div><!--limiter-->
+        </div><!--user-form-->
+      </div><!--col-->
+    </div><!--row-->*/
+    </script>
 
-    <div>
-        <div class=".col-lg-pull-8 col-xs-12">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-                <div id="jump102"></div>
+    <script>/*もともとあったpanel
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <!--<div id="jump103"></div>-->
+                <h3 id="hp-boxhead">成績参照 グラフVer.</h3>
+              </div><!--panel-heading-->
+              <div class="panel-body" id="panel-body-both">
+                <div class="image101">
+                  <ul class="bxslider">
+                    <li><img src="{% static 'gv/images/f.PNG'%}" width="100%"></li>
+                    <li><img src="{% static 'gv/images/titlelogo.PNG'%}" width="100%"></li>
+                    <!--<li><img src="{% static 'gv/images/h.jpg'%}" width="100%"></li>-->
+                  </ul>
+                  <a href="#jump201">
+                    <div class="container-login100-form-btn m-t-17">
+                      <button class="login100-form-btn">
+                        <h2 id="hp-boxhead">USE<h2>
+                      </button>
+                    </div><!--container-login100-->
+                  </a><!--#jump-->
+                </div><!--image101-->
+              </div><!--panel-body-->
+            </div><!--panel-primary-->
+          </div><!--col-->
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <!--<div id="jump104"></div>-->
+                <h3 id="hp-boxhead">成績参照 テーブルVer.</h3>
+              </div><!--panel-heading-->
+              <div class="panel-body" id="panel-body-both">
+                  <div class="image101">
+                    <ul class="bxslider">
+                      <li><img src="{% static 'gv/images/f.PNG'%}" width="100%"></li>
+                      <li><img src="{% static 'gv/images/graph_ex2.PNG'%}" width="100%"></li>
+                    </ul>
+                    <a href="#jump201">
+                      <div class="container-login100-form-btn m-t-17">
+                        <button class="login100-form-btn">
+                          <h2 id="hp-boxhead">USE<h2>
+                        </button>
+                      </div>
+                    </a><!--#jump101-->
+                  </div><!--image101-->
+              </div><!--panel-body-->
+            </div><!--panel-heading-->
+          </div><!--col-->
+        </div><!--row-->
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <!--<div id="jump101"></div>-->
+                <a href='{% url 'course' %}'><h3 id="hp-boxhead">学科別 人気授業統計</h3></a>
+              </div><!--panel-heading-->
+              <div class="panel-body" id="panel-body-both">
+                <div class="image101">
+                  <img src="{% static 'gv/images/f.PNG'%}" width="100%"><br>
+                  <a href='#jump201'>
+                    <div class="container-login100-form-btn m-t-17">
+                      <button class="login100-form-btn">
+                        <h2 id="hp-boxhead">USE<h2>
+                      </button>
+                    </div><!--container-->
+                  </a><!--course-->
+                </div><!--image101-->
+              </div><!--panel-body-->
+            </div><!--panel-primary-->
+          </div><!--col-->
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <!--<div id="jump102"></div>-->
                 <a href='{% url 'teacher_search' %}'><h3 id="hp-boxhead">教師別 成績判定統計</h3></a>
-        </div>
-            <div class="panel-body" id="panel-body-both">
-                <div>
-                    <div class="image101">
-                            <img src="{% static 'gv/images/graph_ex15.PNG'%}" width="100%"><br>
-                            <img src="{% static 'gv/images/graph_ex152.PNG'%}" width="95%">
-                            <a href='{% url 'teacher_search' %}'>
-                                <div class="container-login100-form-btn m-t-17">
-                                    <button class="login100-form-btn">
-                                        <h2 id="hp-boxhead">USE<h2>
-                                    </button>
-                                </div>
-                            </a>
-                    </div>
+              </div><!--panel-heading-->
+              <div class="panel-body" id="panel-body-both">
+                <div class="image101">
+                  <img src="{% static 'gv/images/f.PNG'%}" width="100%"><br>
+                  <a href='jump201'>
+                    <div class="container-login100-form-btn m-t-17">
+                      <button class="login100-form-btn">
+                        <h2 id="hp-boxhead">USE<h2>
+                      </button>
+                    </div><!--container-->
+                  </a><!--teacher_search-->
+                </div><!--image101-->
+              </div><!--panel-body-->
+            </div><!--panel-primary-->
+          </div><!--col-->
+        </div><!--row-->
+      </div><!--col全体-->
+    </div><!--row-->
+    */</script>
+
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+
+        <div class="row">
+          <!--<a href="#jump201">-->
+            <div class="col-lg-12 no-padding">
+              <div class="form-div"><!--画像の中にログインformを埋め込む-->
+
+                <img src="{% static 'gv/homepage/images/hpmain.jpg'%}" class="mainimage" width="100%">
+                <div class="row form-in-img">
+                  <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+                    <div class="user-form">
+                      <div class="limiter">
+                        <form class="login100-form validate-form flex-sb flex-w" action='{% url 'mainhome' %}' method='post' , name='mainhome'>
+                          {% csrf_token %}
+                          <!--<span class="login100-form-title">学生ログイン</span><br><br><br>-->
+                          <div class="wrap-input100 validate-input m-b-16" data-validate="Username is required">
+                            {{form.stunum|add_class:"input100"|attr:"placeholder:学籍番号"}}
+                            <span class="focus-input100"></span>
+                          </div>
+                          <div class="wrap-input100 validate-input m-b-16" data-validate="Password is required">
+                            {{form.password|add_class:"input100"|attr:"placeholder:パスワード"}}
+                            <span class="focus-input100"></span>
+                          </div><!--input100-->
+                          <!--<div class="container-login100-form-btn m-t-17">-->
+                          <div class="container-login100-form-btn">
+                            <div class="zigzag">
+                              <button class="login100-form-btn">
+                                提出
+                              </button><!--login100-form-btn-->
+                            </div>
+                          </div><!--container-login100-form-btn-->
+                        </form>
+                      </div><!--limiter-->
+                    </div><!--user-form-->
+                  </div><!--col-->
+                </div><!--row form-in-img-->
+
+              </div><!--form-div-->
+            </div><!--col-->
+          <!--</a>--><!--jump-->
+          <a href="#jump201">
+            <div class="col-lg-6 no-padding">
+              <img src="{% static 'gv/homepage/images/hp1.jpg'%}" width="100%">
             </div>
-          </div>
-        </div>
-    </div>
+          </a><!--jump-->
+          <a href="#jump201">
+            <div class="col-lg-6 no-padding">
+              <img src="{% static 'gv/homepage/images/hp2.jpg'%}" width="100%">
+            </div>
+          </a><!--jump-->
+        </div><!--row-->
+        <div class="row">
+          <a href="#jump201">
+            <div class="col-lg-6 no-padding">
+              <img src="{% static 'gv/homepage/images/hp3.jpg'%}" width="100%">
+            </div>
+          </a><!--jump-->
+          <a href='{% url 'teacher_search' %}'>
+            <div class="col-lg-6 no-padding">
+              <img src="{% static 'gv/homepage/images/hp4.jpg'%}" width="100%">
+            </div>
+          </a>
+        </div><!--row-->
 
-
-    </div>
-    </div>
-</div>
-
-
-<!-- /main -->
-
-
-
-<div class="footer">
-  <div id="button"></div>
-<div id="f-container">
-<div id="cont">
-<div class="footer_center">
-        <h3>
-            <div class="image101">
-<a href="{% url 'info' %}"><img width=50 height=50 src="/static/gv/images/footer_info.PNG"></a>              <a href="{% url 'info' %}"><img width=100 height=50 src="/static/gv/images/footer_legal.PNG"></a>              <a href="{% url 'hp' %}"><img width=60 height=50 src="/static/gv/images/footer_support.PNG"></a><br>
-
-        </h3>
-</div>
-
-</div>
-</div>
-</div>
+      </div><!--col-->
+    </div><!--row-->
 
 
 
 
+      {% endblock%}
 
-{% endblock%}
+      {% block js %}
+    <!--スライド-->
+    <!--
+    <script type="text/javascript">
+    $(document).ready(function(){
+    $('.bxslider').bxSlider();
+    });
+    </script>
+    -->
 
-{% block js %}
+    <!--不正に入ろうとしたときにでるalert-->
+    <script>
+      var message = "{{message|safe}}"
+      var length = message.length
+      if(message!=0){
+      alert(message);
+      }
+    </script>
 
-<!--  ##############################################   -->
-<!--  ################    js    from    homepage  #########   -->
-<!--  ###################    1  content    ###############   -->
-
-
-<!--  ##############################################   -->
-<!--  ################    js    from    base  #########   -->
-<!--  ##############################################   -->
-
-
-{% endblock %}
+      {% endblock %}
