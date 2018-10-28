@@ -1,16 +1,15 @@
 {% extends 'gv/base.html' %}
 {% load static %}
-{% load widget_tweaks %}
 {% block css %}
 <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/style.css' %}' />
 {% endblock %}
 
 
 {% block body %}
-  <h1 class="page-header" style="text-align:center;">成績グラフ</h1>
+  <h3 class="page-header" style="text-align:center;">成績参照<br>グラフVer.</h3>
   <div class="row">
 
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
+    <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
           <div class="panel panel-info panel-main-color">
@@ -36,7 +35,7 @@
       </div>
     </div>
 
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
+    <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
           <div class="panel panel-info panel-main-color">
@@ -235,9 +234,9 @@ var chart = new Chart(myChart, {
             scales: {
           xAxes: [{
             ticks: {
-              fontSize: 10,
-              maxRotation: 100,
-              minRotation: 0
+              fontSize: 8,
+              //maxRotation: 100,
+              //minRotation: 0
             },
           }],
           yAxes: [{
