@@ -107,6 +107,48 @@
 
 <!--</a>--><!--jump-->
 
+
+<div class="row">
+  <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+    <div class="col-lg-12 no-padding">
+      <div class="form-div"><!--画像の中にログインformを埋め込む-->
+
+        <img src="{% static 'gv/homepage/images/hpmain.jpg'%}" class="mainimage" width="100%">
+        <div class="row form-in-img">
+          <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+            <div class="user-form">
+              <div class="limiter">
+                <form class="login100-form validate-form flex-sb flex-w" action='{% url 'mainhome' %}' method='post' , name='mainhome'>
+                  {% csrf_token %}
+                  <!--<span class="login100-form-title">学生ログイン</span><br><br><br>-->
+                  <div class="wrap-input100 validate-input m-b-16" data-validate="Username is required">
+                    {{form.stunum|add_class:"input100"|attr:"placeholder:学籍番号"}}
+                    <span class="focus-input100"></span>
+                  </div>
+                  <div class="wrap-input100 validate-input m-b-16" data-validate="Password is required">
+                    {{form.password|add_class:"input100"|attr:"placeholder:パスワード"}}
+                    <span class="focus-input100"></span>
+                  </div><!--input100-->
+                  <!--<div class="container-login100-form-btn m-t-17">-->
+                  <div class="container-login100-form-btn">
+                    <div class="zigzag">
+                      <button class="login100-form-btn">
+                        提出
+                      </button><!--login100-form-btn-->
+                    </div>
+                  </div><!--container-login100-form-btn-->
+                </form>
+              </div><!--limiter-->
+            </div><!--user-form-->
+          </div><!--col-->
+        </div><!--row form-in-img-->
+
+      </div><!--form-div-->
+    </div><!--col-->
+  </div><!--col-->
+</div><!--row-->
+
+
 <div class="row">
     <a href="#jump201">
       <div class="col-lg-6 no-padding">
@@ -312,26 +354,6 @@
 
 
 <!-- /main -->
-
-
-
-<div class="footer">
-  <div id="button"></div>
-<div id="f-container">
-<div id="cont">
-<div class="footer_center">
-        <h3>
-            <div class="image101">
-<a href="{% url 'info' %}"><img width=50 height=50 src="/static/gv/images/footer_info.PNG"></a>              <a href="{% url 'info' %}"><img width=100 height=50 src="/static/gv/images/footer_legal.PNG"></a>              <a href="{% url 'hp' %}"><img width=60 height=50 src="/static/gv/images/footer_support.PNG"></a><br>
-
-        </h3>
-</div>
-
-</div>
-</div>
-</div>
-
-
 
 
 
