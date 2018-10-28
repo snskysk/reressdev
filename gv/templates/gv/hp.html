@@ -92,6 +92,19 @@
 
 {% block body %}
 
+<div class="row">
+  <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+    <div class="page-head" style="text-align:center;">
+      <a href="{% url 'hp' %}"><img src="/static/gv/homepage/images/titlelogo2.PNG" alt="Re:Re:ss" width="220" height="90" border="0" /></a>
+    </div><!--page-head-->
+    <div id="jump201"></div><!--飛んでくる場所-->
+    <!--<h4 class="jump-tag" class="sub-title">Re:Re:ss</h4><br><br>-->
+    <!--<h3 id="hp-title2">  立教生のデータを繋ぐ<br>Re:Re:ss</h3><br>-->
+    <!--<p class="under-linep">Re:Re:ssは、立教大学WEBシステムと連携して、成績データを履修登録に活用するためのシステムです。</p><br>-->
+  </div><!--col-lg-12-->
+</div><!--row-->
+
+
 <!--</a>--><!--jump-->
 
 <div class="row">
@@ -118,15 +131,16 @@
 </div><!--row-->
 
 
-<div id="page-wrapper" class='page-wrapper'>
-  <div class="row">
+<div class="row">
     <div class="col-lg-12">
       <!--h1 class="page-header">Re:Re:ss</h1-->
       <div class="page-head">
-      <a href="{% url 'hp' %}"><img src="/static/gv/images/titlelogo.PNG" alt="Re:Re:ss" width="220" height="90" border="0" /></a>
-    </div>
-    </div>
-  </div>
+          <a href="{% url 'hp' %}">
+              <img src="/static/gv/images/titlelogo.PNG" alt="Re:Re:ss" width="220" height="90" border="0" />
+          </a>
+      </div><!--page-head-->
+    </div><!--col-->
+
 
     <div class="copy-container">
         <h4 id="jump-tag" class="sub-title">Re:Re:ss</h4><br>
@@ -294,10 +308,7 @@
         </div>
     </div>
 
-
-    </div>
-    </div>
-</div>
+</div><!--row-->
 
 
 <!-- /main -->
