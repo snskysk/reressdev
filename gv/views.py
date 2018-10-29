@@ -541,7 +541,6 @@ def mainhome_after_login(request):
     form = userInfoForm()
     index_params = {
         'form':form
-        'message':'学籍番号とパスワードを入力しよう'        
     }
     return render(request, 'gv/hp.html', index_params)
 
