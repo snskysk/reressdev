@@ -25,11 +25,6 @@ import os
 def func1(value):
     USER=value[0]
     PASS=value[1]
-    if USER=="systemcall":
-        USER="16bc046c"
-        PASS="emCHwBWs"
-    else:
-        pass
     URL="https://rs.rikkyo.ac.jp/"
 
     time.sleep(1)
