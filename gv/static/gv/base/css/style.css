@@ -105,19 +105,19 @@
 
 
 
+
+
 /*drowerの上部にスペースを与える*/
-/*
 .contents-space {
   height: 10px;
-}*/
+}
 
 
 .background {
-
   background-color: #FAFAFA;
   overflow: hidden;
-
 }
+
 
 
 
@@ -138,9 +138,48 @@
 .nav {
   box-shadow: 0 0 0 5px rgb(173,195,211);
   color: #fff;
-  z-index: 3;
 }
 
+
+
+
+/*ページタイトル*/
+/*
+.page-title {
+  border-bottom: double 5px #FFC778;
+  }
+*/
+
+/*************************************************************
+追加
+**************************************************************/
+/*
+#body-design2{
+    background-color:#CEE3F6;
+}
+#body-design3{
+    background-color:#E0ECF8;
+}
+*/
+
+
+
+
+/*divの大きさを確認するときに使用*/
+.line {
+  border: solid;
+}
+
+
+.li-d {
+  color: #2d8fdd;
+  border-left: solid 6px #2d8fdd;/*左側の線*/
+  background: #f1f8ff;/*背景色*/
+  /*margin-bottom: 3px;*//*下のバーとの余白*/
+ 	/*line-height: 1.5;*/
+  /*padding: 0.5em;*/
+  list-style-type: none!important;/*ポチ消す*/
+}
 
 
 
