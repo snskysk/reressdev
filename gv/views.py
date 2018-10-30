@@ -144,70 +144,77 @@ def teacher_search(request):
             t_name=teacher_list_space[index_teacher_list]#実際にデータベースで検索するスペースありの先生の名前
         except:
             form = find_teacher()
-            p = [0,0,0,0]
+            nums = [0,0,0,0]
             grade_list_sample = ['S','A','B','C']
 
             teacher_search_params = {
                 'form':form,
-                'p':p,
+                'nums':nums,
                 'grade_list_sample':grade_list_sample,
                 'teacher_list':teacher_list,
                 'teacher_sub_dict':teacher_sub_dict,
+                'r_form':'成績判定統計',
             }
             return render(request, 'gv/teacher_search.html', teacher_search_params)
         sub_obj = sub_obj.filter(teacher=t_name)
         #授業のフィルター
         if len(t_sub) is not 0:
             sub_obj = sub_obj.filter(subjectname=t_sub)
+
         num_sub = len(sub_obj)#その先生の授業数
         grade_list_dict = OrderedDict({'Ｓ':0,'Ａ':0,'Ｂ':0,'Ｃ':0}) #順番がたぶん大事
         grade_list = sub_obj.values_list('grade', flat=True)#成績判定を取得(重複あり)
         grade_list_dict_new = Counter(grade_list) #授業の数
         grade_list_dict.update(grade_list_dict_new) #辞書をupdate
         nums = grade_list_dict.values()
+        nums = list(nums)#リストにする
         try:#入力ミスのとき0で割られるのを防ぐ
-            p = [(num / mum) * 100 for num,mum in zip(nums,[num_sub]*len(nums))]#確立を計算
+            #p = [(num / mum) * 100 for num,mum in zip(nums,[num_sub]*len(nums))]#確立を計算
             grade_list_sample = list(grade_list_dict.keys())
             #計算結果を丸める
-            p = list(map(round, p, [0]*len(p)))
+            #p = list(map(round, p, [0]*len(p)))
 
             teacher_search_params = {
                 'message':'ok,',
                 'form':form,
                 'sub_obj':sub_obj,
-                'p':p,
+                'nums':nums,
                 'grade_list_sample':grade_list_sample,
                 'teacher_list':teacher_list,
                 'teacher_sub_dict':teacher_sub_dict,
+                'r_form':'{}  {}'.format(t_name,t_sub).replace('　','')
             }
             return render(request, 'gv/teacher_search.html', teacher_search_params)
         except:
             form = find_teacher()
-            p = [0,0,0,0]
+            nums = [0,0,0,0]
             grade_list_sample = ['S','A','B','C']
 
             teacher_search_params = {
                 'form':form,
-                'p':p,
+                'nums':nums,
                 'grade_list_sample':grade_list_sample,
                 'teacher_list':teacher_list,
                 'teacher_sub_dict':teacher_sub_dict,
+                'r_form':'成績判定統計',
             }
             return render(request, 'gv/teacher_search.html', teacher_search_params)
 
     form = find_teacher()
-    p = [0,0,0,0]
+    nums = [0,0,0,0]
     grade_list_sample = ['S','A','B','C']
 
     teacher_search_params = {
         'message':'',
         'form':form,
-        'p':p,
+        'nums':nums,
         'grade_list_sample':grade_list_sample,
         'teacher_list':teacher_list,
         'teacher_sub_dict':teacher_sub_dict,
+        'r_form':'成績判定統計',
     }
     return render(request, 'gv/teacher_search.html', teacher_search_params)
+
 
 
 ###################################################################################
