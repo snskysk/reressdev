@@ -573,14 +573,14 @@ def make_list(model_name,form_name,sn,form):
 
 def detail(request):
     try:
-        sn=request.session['stunum']
-        #sn = personal_dataset.loc[0,'user_id']   #ログイン中のユーザーの学籍番号
-        #sn = '16cb087l'
+        sn = request.session['stunum']
+
     #ログインしてからでなければ入れない
-    except Exception as e:
+    except Exception:
         form = userInfoForm()
         index_params = {
-            'form':form
+            'form':form,
+            'message':'学籍番号とパスワードを入力しよう'
         }
         return render(request, 'gv/hp.html', index_params)
 
@@ -590,11 +590,13 @@ def detail(request):
         make_list('year_int','year',sn,form)
         make_list('category1','category1',sn,form)
         filtered_sub = subjectInfo.objects.filter(user_id=sn)
+
         season = request.POST['season']
         grade = request.POST['grade']
         year = request.POST['year']
         category1 = request.POST['category1']
         subname_teacher = request.POST['subname_teacher']
+
 
         #季節のフィルター
         if len(season) is not 0:
