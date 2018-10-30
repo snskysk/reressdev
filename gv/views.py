@@ -610,26 +610,42 @@ def detail(request):
             y = int(year)
             filtered_sub = filtered_sub.filter(year_int=y)
 
-        result_score_int_sum = filtered_sub.aggregate(Sum('result_score_int'))['result_score_int__sum']
-        unit_int_sum = filtered_sub.aggregate(Sum('unit_int'))['unit_int__sum']
-        gpa = result_score_int_sum / unit_int_sum
+        filtered_sub_gpa = filtered_sub.exclude(grade = '履')
+        result_score_int_sum = filtered_sub_gpa.aggregate(Sum('result_score_int'))['result_score_int__sum']
+        unit_int_sum = filtered_sub_gpa.aggregate(Sum('unit_int'))['unit_int__sum']
+
 
         detail_params = {
-            'gpa_message':'該当科目のgpaは<b><u>'+str(round(gpa,2))+'</u></b><br>    ※Dがある場合正しく計算されません',
+            #'gpa_message':'該当科目のgpaは<b><u>'+str(round(gpa,2))+'</u></b><br>    ※Dがある場合正しく計算されません',
             'filtered_sub':filtered_sub,
             'form':form,
         }
         return render(request, 'gv/detail.html', detail_params)
+
+
     form = find_my_sub_Form()
-    filtered_sub = subjectInfo.objects.filter(user_id=sn)
-    result_score_int_sum = filtered_sub.aggregate(Sum('result_score_int'))['result_score_int__sum']
-    unit_int_sum = filtered_sub.aggregate(Sum('unit_int'))['unit_int__sum']
-    gpa = result_score_int_sum / unit_int_sum
-    make_list('year_int','year',sn,form)
-    make_list('category1','category1',sn,form)
+    filtered_sub = subjectInfo.objects.filter(user_id=sn)#userのみの授業の情報
+    filtered_sub_gpa = filtered_sub.exclude(grade = '履')
+    #result_score_int_sum = filtered_sub_gpa.aggregate(Sum('result_score_int'))['result_score_int__sum']
+    #unit_int_sum = filtered_sub_gpa.aggregate(Sum('unit_int'))['unit_int__sum']
+    #gpa = result_score_int_sum / unit_int_sum
+    make_list('year_int','year',sn,form)#formのリストの中身を変更
+    make_list('category1','category1',sn,form)#formのリストの中身を変更
+
+    #同じ学年、学科gpaの順位を計算
+    same_stu_gpa = sorted(list(studentInfo.objects.filter(user_id__contains=sn[:3]).values_list('gpa', flat=True)),reverse=True)#同じ学年学科のgpaのリスト
+    p_num = len(same_stu_gpa)#同じ学年学科の人数
+    my_gpa = studentInfo.objects.get(user_id=sn).gpa#自分のgpa
+    gpa_rank = same_stu_gpa.index(my_gpa) + 1#自分の順位
+
+
+    #同じ学年、学科での単位取得率の順位
+    #same_str_gpa =
+
     detail_params = {
         'form':form,
-        'filtered_sub':filtered_sub
+        'filtered_sub':filtered_sub,
+        #'gpa_message':'gpaは<b><u>'+str(round(gpa,2))+'</u></b><br>    ※Dがある場合正しく計算されません'
     }
     return render(request, 'gv/detail.html', detail_params)
 

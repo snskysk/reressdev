@@ -35,8 +35,9 @@ tr:nth-child(even) {
 *************************************/
 .cp_ipselect {
 	overflow: hidden;
-	width: 90%;
+	width: 100%;
 	margin: 2em auto;
+  height: 30px;
 	text-align: center;
 }
 .cp_ipselect select {
@@ -135,6 +136,7 @@ tr:nth-child(even) {
   text-align: center;
 }
 
+
 /************************************
        formの(展開)中央寄せ
 *************************************/
@@ -143,4 +145,72 @@ tr:nth-child(even) {
 }
 .detail_panel {
   text-align: center;
+}
+
+
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family:'Avenir','Helvetica, Neue','Helvetica','Arial';
+}
+
+
+
+/**********************************************
+モーダル
+*************************************************/
+/* モーダルCSS */
+.modalArea {
+  display: none;
+  position: fixed;
+  z-index: 10; /*サイトによってここの数値は調整 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modalBg {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(30,30,30,0.9);
+}
+
+.modalWrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%,-50%);
+  width: 80%;
+  max-width: 500px;
+  padding: 10px 30px;
+  background-color: #fff;
+}
+
+.closeModal {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  cursor: pointer;
+}
+
+.b-r {
+  position: relative;
+}
+
+/* 以下ボタンスタイル */
+#openModal {
+  /*background-color: #fff;*/
+  background-color: #FAFAFA;
+  /*border: 1px solid #282828;*/
+  /*border-radius: 2px;*/
+  cursor: pointer;
+  border: none;
+  outline: none;
+  padding: 0;
+  appearance: none;
+  position: absolute;
+  right: 10%;
+  top: 5%;
 }
