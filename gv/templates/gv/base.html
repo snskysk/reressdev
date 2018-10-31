@@ -22,6 +22,12 @@
   <script src='{% static 'gv/base/js/nav.js' %}'></script>
                               <!--▼▼自分のcss▼▼-->
   <link rel="stylesheet" href='{% static 'gv/base/css/style.css'%}'>
+
+<!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaスライダーaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+<script src="{% static 'gv/homepage/slider/jquery.bxslider.min.js'%}"></script>
+<link href="{% static 'gv/homepage/slider/jquery.bxslider.css'%}" rel="stylesheet" />
+
+
   <!--aタグの文字の色を指定-->
   <style type="text/css">
     a:link { color : #000000; }
@@ -89,128 +95,122 @@
 {% endblock %}
 
 
-<!--画面サイズによってフレームを出すか出さないか-->
-<script>
-
-/*スマホの時*/
-if(navigator.userAgent.match(/(iPhone|Android)/)){
-  $('.frame-img').remove();
-  $('.bg').unwrap();
-  $('.opa').unwrap();
-  $('.frame').unwrap();
-  $('.relative').unwrap();
-  $('.main').unwrap();
-  //$('.main').unwrap();
-  $('.button').remove();
-  $('.main').css('overflow','hidden');
-}
-
-
-$(window).resize(function(){
-    var w = $(window).width();
-    var x = 460;
-    if (w <= x) {
-      $('.frame-img').remove();
-      $('.bg').unwrap();
-      $('.opa').unwrap();
-      $('.frame').unwrap();
-      $('.relative').unwrap();
-      $('.main').unwrap();
-      //$('.main').unwrap();
-      $('.button').remove();
-
-    } else {
-      location.reload();
-      //$('.opa').append(parent_main);
-      //$('.opa').append(frame_img);
-      /*$('.drawer-contents').append(frame);
-      $('.drawer-contents').append(bg);
-      $('.drawer-contents').append(relative);
-      $('.drawer-contents').append(opa);
-      $('.drawer-contents').append(button);
-      $('.drawer-contents').append(frame_img);
-      $('.drawer-contents').append(main);*/
-    }
-});
-</script>
-<!--画面サイズによってフレームを出すか出さないか-->
-<script><!--画面サイズによってフレームを出すか出さないか-->
-
-/*スマホの時*/
-if(navigator.userAgent.match(/(iPhone|Android)/)){
-  $('.frame-img').remove();
-  $('.bg').unwrap();
-  $('.opa').unwrap();
-  $('.frame').unwrap();
-  $('.relative').unwrap();
-  $('.main').unwrap();
-  //$('.main').unwrap();
-  $('.button').remove();
-}
-
-
-$(window).resize(function(){
-    var w = $(window).width();
-    var x = 460;
-    if (w <= x) {
-      $('.frame-img').remove();
-      $('.bg').unwrap();
-      $('.opa').unwrap();
-      $('.frame').unwrap();
-      $('.relative').unwrap();
-      $('.main').unwrap();
-      //$('.main').unwrap();
-      $('.button').remove();
-
-    } else {
-      location.reload();
-      //$('.opa').append(parent_main);
-      //$('.opa').append(frame_img);
-      /*$('.drawer-contents').append(frame);
-      $('.drawer-contents').append(bg);
-      $('.drawer-contents').append(relative);
-      $('.drawer-contents').append(opa);
-      $('.drawer-contents').append(button);
-      $('.drawer-contents').append(frame_img);
-      $('.drawer-contents').append(main);*/
-    }
-});
-</script>
-
-
-
-
-<script>
-//ボタンを押すとgetで入りなおす
-$('.button').on('click',function(){
-  //location.reload();
-  var url = location.href;
-  window.location.href = url;
- });
-</script>
-
-
- <script>
- $(document).ready(function() {
-  $(".drawer").drawer({
+<!--スライダー-->
+<script type="text/javascript">
+  $(document).ready(function(){
+  $('#slider').bxSlider();
   });
-
-  var wH = $(window).height();
-  //div#exampleの高さを取得を取得して、変数divHに代入
-  var divH = $('.opa').innerHeight();
-  //console.log(divH);
-  //ボックス要素より画面サイズが大きければ実行
-  if(wH > divH){
-    //console.log('fs');
-  	// div#examplに高さを加える
-  	$('.opa').css('height',wH+'px');
-  //$('.window').css('height',wH+ 'px');
-  //$('.z').css('height','70%');
+  </script>
+  
+  <!--画面サイズによってフレームを出すか出さないか-->
+  <script>
+  
+  /*スマホの時*/
+  if(navigator.userAgent.match(/(iPhone|Android)/)){
+    $('.frame-img').remove();
+    $('.bg').unwrap();
+    $('.opa').unwrap();
+    $('.frame').unwrap();
+    $('.relative').unwrap();
+    $('.main').unwrap();
+    //$('.main').unwrap();
+    $('.button').remove();
+    $('.main').css('overflow','hidden');
   }
-});
-
-
-
- </script>
-</body>
-</html>
+  
+  
+  $(window).resize(function(){
+      var w = $(window).width();
+      var x = 460;
+      if (w <= x) {
+        $('.frame-img').remove();
+        $('.bg').unwrap();
+        $('.opa').unwrap();
+        $('.frame').unwrap();
+        $('.relative').unwrap();
+        $('.main').unwrap();
+        //$('.main').unwrap();
+        $('.button').remove();
+  
+      } else {
+        location.reload();
+        //$('.opa').append(parent_main);
+        //$('.opa').append(frame_img);
+        /*$('.drawer-contents').append(frame);
+        $('.drawer-contents').append(bg);
+        $('.drawer-contents').append(relative);
+        $('.drawer-contents').append(opa);
+        $('.drawer-contents').append(button);
+        $('.drawer-contents').append(frame_img);
+        $('.drawer-contents').append(main);*/
+      }
+  });
+  </script>
+  
+  
+  
+  
+  <script>
+  //ボタンを押すとgetで入りなおす
+  
+  
+  $('.button').on('click', function() {
+    var result = window.confirm('sessionを切ってもよろしいですか？');
+    if( result ) {
+        console.log('sessionが切れました');
+        //本番環境ではhomepageのurlに変更する///////////////////////////////////////////////////////////////////
+        location.href = 'https://grade-visualizer101.herokuapp.com/gv/hp/';
+    }
+    else {
+      console.log('キャンセルがクリックされました');
+    }
+  });
+  
+  $('.li-toppage').on('click', function() {
+    var result = window.confirm('sessionを切ってもよろしいですか？');
+    if( result ) {
+        console.log('sessionが切れました');
+        //本番環境ではhomepageのurlに変更する///////////////////////////////////////////////////////////////////
+        location.href = 'https://grade-visualizer101.herokuapp.com/gv/hp/';
+    }
+    else {
+      console.log('キャンセルがクリックされました');
+      return false;
+    }
+  });
+  
+  
+  
+  
+  
+  
+  
+  
+  </script>
+  
+  
+   <script>
+   $(document).ready(function() {
+    $(".drawer").drawer({
+    });
+  
+    var wH = $(window).height();
+    //div#exampleの高さを取得を取得して、変数divHに代入
+    var divH = $('.opa').innerHeight();
+    //console.log(divH);
+    //ボックス要素より画面サイズが大きければ実行
+    if(wH > divH){
+      //console.log('fs');
+      // div#examplに高さを加える
+      $('.opa').css('height',wH+'px');
+    //$('.window').css('height',wH+ 'px');
+    //$('.z').css('height','70%');
+    }
+  });
+  
+  
+  
+   </script>
+  </body>
+  </html>
+  
