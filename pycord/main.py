@@ -9,6 +9,7 @@ def condact(value):
     from pycord.base3_106 import func1
     result,kyoushoku_c=func1(uservalue)
 
+
     from pycord.myGraphstock_101 import piegraph_dataset
     dataset_pie=piegraph_dataset(result)
     #from myGraphstock_101 import show_piegraph

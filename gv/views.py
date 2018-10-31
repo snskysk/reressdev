@@ -437,7 +437,7 @@ def mainhome(request):
 
         try:
             #pythonからjsへの値の受け渡し
-            mainhome_params = pytojsMaterials(result, list_pie, list_bar, table,kyoushoku_c)
+            mainhome_params = pytojsMaterials(result, list_pie, list_bar, table, kyoushoku_c)
             for k in mainhome_params.keys():
                 request.session['{}'.format(k)] = str(mainhome_params[k])
         except Exception as e:
