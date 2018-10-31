@@ -233,7 +233,6 @@ def hp(request):
 """
 
 def hp(request):
-    request.session.flush()
     form = userInfoForm()
     index_params = {
         'form':form,
@@ -242,6 +241,15 @@ def hp(request):
 
     return render(request, 'gv/hp.html', index_params)
 
+def flush(request):
+    request.session.flush()
+    form = userInfoForm()
+    index_params = {
+        'form':form,
+        'message':'',
+        }
+
+    return render(request, 'gv/hp.html', index_params)
 ###################################################################################
                                     #停止
 ##################################################################################

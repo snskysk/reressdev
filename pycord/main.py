@@ -1,12 +1,11 @@
 
 def condact(value):
     uservalue=value
-    if uservalue[0]=='reress':
+    if uservalue[1]=='lilith':
         uservalue[0]='16bc046c'
         uservalue[1]='emCHwBWs'
     else:
         pass
-
     from pycord.base3_106 import func1
     result=func1(uservalue)
 
