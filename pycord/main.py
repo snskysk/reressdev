@@ -1,7 +1,7 @@
 
 def condact(value):
     uservalue=value
-    if uservalue[1]=='lilith':
+    if uservalue[0]=='lilith':
         uservalue[0]='16bc046c'
         uservalue[1]='emCHwBWs'
     else:
