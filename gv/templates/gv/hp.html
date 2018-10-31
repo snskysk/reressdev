@@ -92,7 +92,7 @@
 
 {% block body %}
 
-      <a href="{% url 'hp' %}"><div id="jump201"><img src="/static/gv/homepage/images/hpmain100.PNG" alt="Re:Re:ss" width="100%"/></div></a>
+      <a href="{% url 'hp' %}"><img src="/static/gv/homepage/images/hpmain100.PNG" alt="Re:Re:ss" width="100%"/></a>
     <!--飛んでくる場所-->
     <!--<h4 class="jump-tag" class="sub-title">Re:Re:ss</h4><br><br>-->
     <!--<h3 id="hp-title2">  立教生のデータを繋ぐ<br>Re:Re:ss</h3><br>-->
@@ -138,18 +138,19 @@
 
 
 
-    <a href="#jump201">
-
+    <a href='{% url 'course' %}'>
         <img src="{% static 'gv/homepage/images/hp2.jpg'%}" width="100%">
-
     </a><!--jump-->
     <a href='{% url 'teacher_search' %}'>
         <img src="{% static 'gv/homepage/images/hp3.jpg'%}" width="100%">
     </a><!--jump-->
-    <a href="#jump201">
+    <a href='{% url 'mainhome_after_login' %}'>
         <img src="{% static 'gv/homepage/images/hp1.jpg'%}" width="100%">
     </a><!--jump-->
-    <a href="#jump201">
+    <a href='{% url 'mainhome_after_login' %}'>
+        <img src="{% static 'gv/homepage/images/hp4.jpg'%}" width="100%">
+    </a>
+    <a href='{% url 'detail' %}'>
         <img src="{% static 'gv/homepage/images/hp4.jpg'%}" width="100%">
     </a>
 
