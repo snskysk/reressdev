@@ -1,8 +1,3 @@
-
-
-.no-padding{
-    padding:0px;
-}
 /************************************
         テーブルに関係するcss
 *************************************/
@@ -84,6 +79,54 @@ tr:nth-child(even) {
 .cp_ipselect.cp_sl04 select {
 	padding: 8px 38px 8px 8px;
 	color: #000000;
+}
+
+
+
+.no-padding {
+  padding: 0;
+}
+
+
+/*アニメーション*/
+.pi {
+  position: relative;
+}
+
+.animation {
+  /*margin-left: 10px;*/
+  background: red;
+  height: 4px;
+  width: 100%;
+  position: absolute;
+  top: 100%;
+  left: 0%;
+  /*bottom: 100%;*/
+}
+.absolute-ani {
+  position: relative;
+}
+.num {
+  margin-left:20px;
+  position: absolute;
+  bottom: 0px;
+  /*left: 159px;*/
+  font-size: 30px;
+}
+.ani-ex {
+  position: absolute;
+  margin: auto;
+  bottom: 0px;
+  top: 100px;
+  right: 0px;
+  left: 0px;
+  width: 180px;
+  height: 75px;
+}
+.gpa_p {
+  display: none;
+  text-align: center;
+  font-size: 18px;
 }
 
 
