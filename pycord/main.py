@@ -7,7 +7,7 @@ def condact(value):
     else:
         pass
     from pycord.base3_106 import func1
-    result=func1(uservalue)
+    result,kyoushoku_c=func1(uservalue)
 
     from pycord.myGraphstock_101 import piegraph_dataset
     dataset_pie=piegraph_dataset(result)
@@ -29,4 +29,4 @@ def condact(value):
     personal_dataset=personal_dataset_for_database(result,uservalue)
 
     #table=[database_dataset,personal_dataset]
-    return result, dataset_pie, dataset_bar, database_dataset, personal_dataset
+    return result, dataset_pie, dataset_bar, database_dataset, personal_dataset, kyoushoku_c

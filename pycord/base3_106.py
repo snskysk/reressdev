@@ -506,4 +506,4 @@ def func1(value):
 
 
     result=[user_info,gpa_info,df_rm,sub1_GI,main_unit]
-    return result
+    return result,kyoushoku_c

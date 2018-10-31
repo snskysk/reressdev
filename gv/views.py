@@ -422,7 +422,7 @@ def mainhome(request):
         #formから学籍番号とパスワードの取得
         #入力が正しいか
         try:
-            result, list_pie, list_bar, table, personal_dataset = condact(value)
+            result, list_pie, list_bar, table, personal_dataset, kyoushoku_c = condact(value)
         #正しくなかったら戻る
         except Exception as e:
             pprint.pprint(str(e.args))
@@ -437,7 +437,7 @@ def mainhome(request):
 
         try:
             #pythonからjsへの値の受け渡し
-            mainhome_params = pytojsMaterials(result, list_pie, list_bar, table)
+            mainhome_params = pytojsMaterials(result, list_pie, list_bar, table,kyoushoku_c)
             for k in mainhome_params.keys():
                 request.session['{}'.format(k)] = str(mainhome_params[k])
         except Exception as e:

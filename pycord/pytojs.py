@@ -1,9 +1,10 @@
-def pytojsMaterials(result, list_pie, list_bar, table):
+def pytojsMaterials(result, list_pie, list_bar, table, kyoushoku_c):
     #必要ライブラリのimport
     import re
 
     #戻り値の辞書
     params = {}
+
 
     #ローマ字で名前の取得
     #データフレームの名前部分の取得()
@@ -94,7 +95,7 @@ def pytojsMaterials(result, list_pie, list_bar, table):
 
     #ドーナッツグラフ用
     residual_num = np.sum(np.array(list_bar[1]['不足単位数']))
-    get_num = np.sum(np.array(lb1['修得単位数']))#修得単位数
+    get_num = np.sum(np.array(lb1['修得単位数']))-kyoushoku_c#修得単位数
     on_num = list_pie[6][6] - get_num -residual_num#list_pie[6][6]は必要単位数
     #もし必要単位を超えていたら修正
     if get_num > list_pie[6][6]:
