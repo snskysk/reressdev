@@ -11,7 +11,7 @@
 
 {% block body %}
 <!--メインの部分-->
-<img src="/static/gv/detail/images/zyuni.png" alt="Re:Re:ss" width="100%"/><button id="openModal"><i class="fa fa-search fa-3x" aria-hidden="true"></i></button>
+<img src="/static/gv/detail/images/zyuni.png" alt="Re:Re:ss" width="100%"/>
 
 
 
@@ -117,40 +117,86 @@
   </div><!--row-->
   */</script>
 
-      <div class="">
-        <table class='type06 table_center_class' id="report" width="100%">
-          <thead>
-            <tr>
-              <th>科目名</th>
-              <th>成績</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for message in filtered_sub %}
-            <tr>
-              <td>{{ message.subjectname }}</td>
-              <td>{{ message.grade }}</td>
-            </tr>
-            <tr>
-              <td colspan="40">
-                <div class="line">
-                  <p style="text-align: center;">
-                  ▲この授業の詳細▲<br>先生の名前:{{message.teacher}}<br>
-                  受講年度:{{message.year_int}}<br>季節:{{message.season}}
-                </p>
-                </div>
-              </td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div><!--line-->
+  <!--<h4 style="text-align:center">gpaランキング</h4>-->
+  <div class=pi>
+    <div class="ani-ex">
+      <p class="gpa_p">
+        <b>あなたのgpa:<span style='color:red;'>{{my_gpa}}</span></b><br>
+        <b>gpaの順位:<span style='color:red;'>{{gpa_rank_i}}</span>位/{{p_num}}人中</b>
+      </p>
+    </div>
+    <img alt="" src="{% static 'gv/detail/p.PNG'%}", width=100%>
+    <div class="animation">
+      <div class="absolute-ani">
+        <span class="num">{{gpa_rank_p|floatformat:1}}%</span>
+      </div>
+    </div>
+  </div>
 
+
+  <div class="pi">
+    <button id="openModal"><i class="fa fa-search fa-3x" aria-hidden="true"></i></button><!--ボタン-->
+    <table class='type06 table_center_class' id="report" width="100%">
+      <thead>
+        <tr>
+          <th>科目名</th>
+          <th>成績</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for message in filtered_sub %}
+        <tr>
+          <td>{{ message.subjectname }}</td>
+          <td>{{ message.grade }}</td>
+        </tr>
+        <tr>
+          <td colspan="40">
+            <div class="line">
+              <p style="text-align: center;">
+              ▲この授業の詳細▲<br>先生の名前:{{message.teacher}}<br>
+              受講年度:{{message.year_int}}<br>季節:{{message.season}}
+            </p>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div><!--line-->
 
 {% endblock %}
 
 
 {% block js %}
+
+
+<!--アニメーション-->
+
+<script>
+  var gpa_rank_p = "{{gpa_rank_p|safe}}"
+  var gpa_rank_width = "{{gpa_rank_width|safe}}"
+  $('.animation')
+    .animate({
+      top: gpa_rank_p + '%',
+      width:gpa_rank_width + '%'
+    }, 2000, 'swing', function () {
+        // アニメーション完了後に実行され
+        //alert('done!');
+        if (50<Number(gpa_rank_p)&&Number(gpa_rank_p)<75) {
+          $('.ani-ex').css('top','268px');
+        }
+        if (Number(gpa_rank_p)<10) {
+          $('.num').css('bottom','-50px');
+        }
+        $('.gpa_p').css('display','block');
+    });
+</script>
+
+
+
+
+
+
 <script>
 $(function () {
   $('#openModal').click(function(){
@@ -163,7 +209,8 @@ $(function () {
 </script>
 
 <!--テーブルをクリックすると拡大するjs-->
-<script src='{% static 'gv/detail/jExpand.js' %}'></script><!--tableを押すと列が拡大する-->
+<script src="{% static 'gv/detail/jExpand.js' %}"></script>
+<!--tableを押すと列が拡大する-->
 <script>
 $("#report tr:odd").addClass("master");
 $("#report tr:not(.master)").hide();
