@@ -12,8 +12,7 @@
 
 {% block body %}
 <!--メインの部分-->
-  <h3 class="page-header" style="text-align:center;">履修を考えよう<br>学科別 人気授業統計</h3>
-
+<img src="/static/gv/course/images/zyugyobunnseki.png" alt="Re:Re:ss" width="100%"/>
   <div class="row">
       <form action='{% url 'course' %}' method='post' name='course'>
         {% csrf_token %}
