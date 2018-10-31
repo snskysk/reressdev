@@ -102,6 +102,7 @@ if(navigator.userAgent.match(/(iPhone|Android)/)){
   $('.main').unwrap();
   //$('.main').unwrap();
   $('.button').remove();
+  $('.main').css('overflow','hidden');
 }
 
 
@@ -134,7 +135,6 @@ $(window).resize(function(){
 </script>
 <!--画面サイズによってフレームを出すか出さないか-->
 <script><!--画面サイズによってフレームを出すか出さないか-->
-<script>
 
 /*スマホの時*/
 if(navigator.userAgent.match(/(iPhone|Android)/)){
