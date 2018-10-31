@@ -17,4 +17,6 @@ urlpatterns = [
     path('sirabasu', views.sirabasu, name = 'sirabasu'),
     path('course/<int:num>', views.course, name='course'),
     path('flush', views.flush, name='flush'),
+    path('inquiry', views.inquiry, name='inquiry'),
+
 ]

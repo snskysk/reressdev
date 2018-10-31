@@ -18,6 +18,9 @@ from collections import Counter
 from collections import OrderedDict #順番付き辞書
 from django.core.paginator import Paginator
 
+
+import numpy as np
+
 # Create your views here.
 
 ###################################################################################
@@ -215,7 +218,9 @@ def teacher_search(request):
     }
     return render(request, 'gv/teacher_search.html', teacher_search_params)
 
-
+def inquiry(request):
+    inquiry_params = {}
+    return render(request, 'gv/inquiry.html', inquiry_params)
 
 ###################################################################################
                                     #トップページ
