@@ -28,6 +28,14 @@
     -moz-border-radius: 50%;
     outline: none;
   }
+  .backgroundbutton{
+  position:absolute;
+  top:47px;
+  left:164px;
+  width:152px;
+  height:21px;
+  border-radius:10px;
+  }
   .frame {
     /* スマホのフレーム画像を上下中央に表示 */
 		position: relative;

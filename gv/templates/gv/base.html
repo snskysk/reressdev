@@ -84,6 +84,7 @@
           </div><!--main-->
           <button class="button">
           </button>
+          <div class="backgroundbutton"></div>
         </div><!--relative-->
       </div><!--frame-->
     </div>
@@ -96,6 +97,24 @@
 
 
 <!--スライダー-->
+<script type="text/javascript">
+var num = 0;
+$(".ccc").click(function(){
+    $(this).data("click", ++num);
+    var click = $(this).data("click");
+    if(click % 3 == 1){
+      $('.bg').css('background-image', 'url("/static/gv/base/images/pc060992.JPG")')
+    }
+    else if(click % 3 == 2) {
+      $('.bg').css('background-image', 'url("/static/gv/base/images/pc060992.jpg")')
+    }
+    else {
+      $('.bg').css('background-image', 'url("/static/gv/base/images/pc060992.jpg")')
+    }
+    //return false;
+});
+</script>
+
 <script type="text/javascript">
   $(document).ready(function(){
   $('#slider').bxSlider();
