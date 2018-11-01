@@ -155,29 +155,29 @@
   
   
   $('.button').on('click', function() {
-    var result = window.confirm('トップに移動します。データをリセットしますか？');
+    var result = window.confirm('データをリセットせずにトップに移動します。');
     if( result ) {
+      console.log('キャンセルがクリックされました');
+      location.href = 'https://grade-visualizer101.herokuapp.com/gv/hp/';
+    }
+    else {
       console.log('sessionが切れました');
         //本番環境ではhomepageのurlに変更する///////////////////////////////////////////////////////////////////
         location.href = 'https://grade-visualizer101.herokuapp.com/gv/flush/';
-    }
-    else {
-        console.log('キャンセルがクリックされました');
-      location.href = 'https://grade-visualizer101.herokuapp.com/gv/hp/';
     }
   });
   
 /*
   $('.li-toppage').on('click', function() {
-    var result = window.confirm('トップに移動します。データをリセットしますか？');
+    var result = window.confirm('データをリセットせずにトップに移動します。');
     if( result ) {
+      console.log('キャンセルがクリックされました');
+      location.href = 'https://grade-visualizer101.herokuapp.com/gv/hp/';
+    }
+    else {
       console.log('sessionが切れました');
         //本番環境ではhomepageのurlに変更する///////////////////////////////////////////////////////////////////
         location.href = 'https://grade-visualizer101.herokuapp.com/gv/flush/';
-    }
-    else {
-        console.log('キャンセルがクリックされました');
-      location.href = 'https://grade-visualizer101.herokuapp.com/gv/hp/';
     }
   });
   */
