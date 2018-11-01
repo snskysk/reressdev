@@ -53,7 +53,7 @@
     <!-- ドロワーメニューの中身 -->
       <br>
       <img src="{% static 'gv/base/images/titlelogo.PNG'%}" width="100%"><br><br>
-      <li class="li-d li-toppage"><i class="fas fa-home fa-fw"></i>トップページ</li><br>
+      <li class="li-d li-toppage"><a href={% url 'hp' %}><i class="fas fa-home fa-fw"></i>トップページ</a></li><br>
       <!--<li class="li-d"><a href={% url 'index' %}><i class="fa fa-edit fa-fw"></i>ログイン</a></li><br>-->
       <!--<li class="li-d"><a href={% url 'shop_search' %}><i class="fa fa-edit fa-fw"></i>飲食店検索</a></li><br>-->
       <!--<li class="li-d"><a href={% url 'review' %}><i class="fa fa-edit fa-fw"></i>飲食店登録</a></li><br>-->
@@ -167,7 +167,7 @@
     }
   });
   
-
+/*
   $('.li-toppage').on('click', function() {
     var result = window.confirm('トップに移動します。データをリセットしますか？');
     if( result ) {
@@ -180,7 +180,7 @@
       location.href = 'https://grade-visualizer101.herokuapp.com/gv/hp/';
     }
   });
-
+  */
   
   
   

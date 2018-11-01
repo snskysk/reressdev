@@ -11,14 +11,15 @@
 
 {% block body %}
 <!--メインの部分-->
+<br>
 <a href="{% url 'flush' %}"><img src="/static/gv/teacher_search/images/kyozyubunnseki.png" alt="Re:Re:ss" width="100%"/></a>
-
+<br>
 
     <form action='{% url 'teacher_search' %}' method='post' name='teacher_search'>
       {% csrf_token %}
       教授名入力（部分一致可）<br>
             <!-- 入力フォーム -->
-            {{form.t_name|add_class:"teacher_input"|attr:"autocomplete:off"}}
+            {{form.t_name|add_class:"teacher_input"|attr:"autocomplete:off"}}<br>
             <!--<input id="text" type="text" name="pattern" value="" autocomplete="off" size="10" style="display: block">-->
             <!-- 補完候補を表示するエリア -->
             <div id="suggest" style="display:none;"></div><br>
