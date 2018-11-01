@@ -76,9 +76,11 @@ def course(request, num=1):
         sub_list = sub_obj.values_list('subjectname', flat=True)#授業名でリストを取得(重複あり)
         sub_list_counter = Counter(sub_list).most_common() #授業の数(多い順)
 
+        page=Paginator(sub_list_counter,10)
+
         course_params = {
             'form':form,
-            'sub_list_counter':sub_list_counter
+            'sub_list_counter':page.get_page(num),
         }
         return render(request, 'gv/course.html', course_params)
 

@@ -16,7 +16,7 @@ urlpatterns = [
     path('teacher_search', views.teacher_search, name = 'teacher_search'),
     path('sirabasu', views.sirabasu, name = 'sirabasu'),
     path('course/<int:num>', views.course, name='course'),
-    path('flush', views.flush, name='flush'),
+    path('flush/', views.flush, name='flush'),
     path('inquiry', views.inquiry, name='inquiry'),
 
 ]
