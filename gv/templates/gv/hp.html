@@ -123,9 +123,11 @@
                   <!--<div class="container-login100-form-btn m-t-17">-->
                   <div class="container-login100-form-btn">
                     <div class="zigzag">
-                      <button class="login100-form-btn">
-                        USE  Re:Re:ss
-                      </button><!--login100-form-btn-->
+                      <button id='load-checker'>
+                        <button class="login100-form-btn">
+                          USE  Re:Re:ss
+                        </button><!--login100-form-btn-->
+                      </button>
                     </div>
                   </div><!--container-login100-form-btn-->
                 </form>
@@ -180,6 +182,15 @@
   alert(message);
   }
 </script>
+
+<script>
+    window.onload = function() {
+      // 
+      var btn = document.getElementById('load-checker');
+      btn.onclick = function() {
+        notie.alert(1, '---読込中です お待ちください---', 2);
+      };
+    };</script>
 
 
 {% endblock %}
