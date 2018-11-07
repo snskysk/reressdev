@@ -611,6 +611,18 @@ def detail(request):
     #gpa_rank = same_stu_gpa.index(my_gpa) + 1#自分の順位
     gpa_rank_i = my_index + 1#gpaのランキング(順位)
 
+    #同じ学年gpaの順位を計算
+    same_stu_gpa = sorted(list(studentInfo.objects.filter(user_id__contains=sn[:2]).values_list('gpa', flat=True)),reverse=True)#同じ学年学科のgpaのリスト
+    #same_stu_gpa = np.array(sorted(list(studentInfo.objects.filter(user_id__contains=sn[:3]).values_list('gpa', flat=True)),reverse=True))#同じ学年学科のgpaのリスト
+    p_num = len(same_stu_gpa)#同じ学年学科の人数
+    my_gpa = studentInfo.objects.get(user_id=sn).gpa#自分のgpa
+    my_index = [i for i, x in enumerate(same_stu_gpa) if x == my_gpa][0]
+    gpa_rank_p = (my_index / p_num) * 100#gpaのランキング(%)
+    gpa_rank_width = 50 + (gpa_rank_p/100)*50
+    #gpa_rank = same_stu_gpa.index(my_gpa) + 1#自分の順位
+    gpa_rank_i = my_index + 1#gpaのランキング(順位)
+
+
 
     if request.method == 'POST':
         form = find_my_sub_Form(request.POST)
