@@ -443,7 +443,7 @@ def mainhome(request):
             form = userInfoForm()
             index_params = {
             'form':form,
-            'message':'サービスが対応していないユーザーである可能性があります。お手数ですが、よろしければ学年と学部学科、特殊な授業の履修履歴などがあれば明記の上お問い合わせください。'
+            'message':'お手数ですが、再度お試してください。それでもご利用になれない場合は、よろしければ学年と学部学科、特殊な授業の履修履歴などがあれば明記の上お問い合わせください。'
             }
             return render(request, 'gv/hp.html', index_params)
 

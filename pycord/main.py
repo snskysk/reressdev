@@ -8,7 +8,11 @@ def condact(value):
         pass
     from pycord.base3_106 import func1
     result,kyoushoku_c,passcheck=func1(uservalue)
-
+    if passcheck==1:
+        pass
+    else:
+        result, dataset_pie, dataset_bar, database_dataset, personal_dataset, kyoushoku_c, passcheck=[1,1,1,1,1,1,0]        
+        return result, dataset_pie, dataset_bar, database_dataset, personal_dataset, kyoushoku_c, passcheck
 
     from pycord.myGraphstock_101 import piegraph_dataset
     dataset_pie=piegraph_dataset(result)

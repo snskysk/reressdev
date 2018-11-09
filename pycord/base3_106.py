@@ -143,7 +143,9 @@ def func1(value):
     except:
         driver.quit()
         print('error確認!chromeを閉じるよ')
-        passcheck=0
+        result,kyoushoku_c,passcheck=[0,0,0]
+
+        return result,kyoushoku_c,passcheck
 
     zen=["Ｓ","Ａ","Ｂ","Ｃ"]
     #user_info=tables[2]
