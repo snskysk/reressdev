@@ -371,10 +371,10 @@ def mainhome(request):
 
             try:#もしsessionが残っているなら
                 mainhome_after_login_params = {}
-                str_name = request.session['str_name']
-                mainhome_after_login_params['str_name'] = str_name
-                gpa = request.session['gpa']
-                mainhome_after_login_params['gpa'] = gpa
+                ##str_name = request.session['str_name']
+                ##mainhome_after_login_params['str_name'] = str_name
+                ##gpa = request.session['gpa']
+                ##mainhome_after_login_params['gpa'] = gpa
                 #gradeAchievement = request.session['gradeAchievement']
                 #mainhome_after_login_params['gradeAchievement'] = gradeAchievement
                 kind_name = request.session['kind_name']
@@ -563,10 +563,10 @@ def mainhome_after_login(request):
         #mainhome_after_login = login
         #print(mainhome_after_login)
         mainhome_after_login_params = {}
-        str_name = request.session['str_name']
-        mainhome_after_login_params['str_name'] = str_name
-        gpa = request.session['gpa']
-        mainhome_after_login_params['gpa'] = gpa
+        ##str_name = request.session['str_name']
+        ##mainhome_after_login_params['str_name'] = str_name
+        ##gpa = request.session['gpa']
+        ##mainhome_after_login_params['gpa'] = gpa
         #gradeAchievement = request.session['gradeAchievement']
         #mainhome_after_login_params['gradeAchievement'] = gradeAchievement
         kind_name = request.session['kind_name']
