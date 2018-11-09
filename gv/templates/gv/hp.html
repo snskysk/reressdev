@@ -181,11 +181,12 @@
 </script>
 
 <script>
+    var message = "{{message|safe}}"
     window.onload = function() {
       // 
       var btn = document.getElementById('load-checker');
       btn.onclick = function() {
-        if(message!=0){
+        if(message==0){
         notie.alert(1, '---　読込中です お待ちください　---', 15);
         }
       };
