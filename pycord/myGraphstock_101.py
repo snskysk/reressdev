@@ -30,17 +30,22 @@ def piegraph_dataset(tables):
     npm_gpa=np.array(main_gpa.astype(float))
     gpa_value=npm_gpa[len(npm_gpa)-1,0]
 
-    for_D=sub1_GI.query('grade=="Ｓ"|grade=="Ａ"|grade=="Ｂ"|grade=="Ｃ"')[["unit","result_score"]]
-    for_D=(np.array(for_D.astype(int)))
-    for i in range(150):
-        for_D1=np.sum(for_D[:,1])
-        for_D0=np.sum(for_D[:,0])
-        if np.round((for_D1/(for_D0+i)),2)==gpa_value:
-            score_D=i
-            break
-        else:
-            pass
-    score_D
+    #　2015年以前入学者との場合分け　gpaは0としてあるため、0と一致した場合Dは0にしておく
+    if gpa_value==0:
+        score_D=0
+    else:
+
+        for_D=sub1_GI.query('grade=="Ｓ"|grade=="Ａ"|grade=="Ｂ"|grade=="Ｃ"')[["unit","result_score"]]
+        for_D=(np.array(for_D.astype(int)))
+        for i in range(150):
+            for_D1=np.sum(for_D[:,1])
+            for_D0=np.sum(for_D[:,0])
+            if np.round((for_D1/(for_D0+i)),2)==gpa_value:
+                score_D=i
+                break
+            else:
+                pass
+        score_D
 
     # 円グラフ用データの前処理
     zen=["Ｓ","Ａ","Ｂ","Ｃ"]

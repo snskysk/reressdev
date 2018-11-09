@@ -410,7 +410,8 @@ def func1(value):
     main_GI=pd.concat([main_GI,category2],axis=1)
 
     # unitの値（1か2か4しか持たないため）を利用して必要な行のみを抽出したデータフレームを作る
-    sub1_GI=main_GI.query('unit=="1"|unit=="2"|unit=="4"|unit=="6"|unit=="8"')
+    #sub1_GI=main_GI.query('unit=="1"|unit=="2"|unit=="4"|unit=="6"|unit=="8"')
+    sub1_GI=main_GI.query('unit=="1"|unit=="2"|unit=="4"|unit=="6"|unit=="8"|unit=="10"|unit=="12"|unit=="14"|unit=="16"|unit=="18"|unit=="20"|unit=="24"')
     sub1_GI
 
     columns01=np.array(sub1_GI.columns)
