@@ -429,13 +429,21 @@ def mainhome(request):
         #formから学籍番号とパスワードの取得
         #入力が正しいか
         try:
-            result, list_pie, list_bar, table, personal_dataset, kyoushoku_c = condact(value)
-        #正しくなかったら戻る
+            result, list_pie, list_bar, table, personal_dataset, kyoushoku_c, passcheck = condact(value)
+            if passcheck==1:
+                pass
+            else:
+                form = userInfoForm()
+                index_params = {
+                'form':form,
+                'message':'学生番号かパスワードが間違っている可能性があります'
+                }
+                return render(request, 'gv/hp.html', index_params)         #正しくなかったら戻る
         except Exception as e:
             form = userInfoForm()
             index_params = {
             'form':form,
-            'message':'学生番号かパスワードが間違っている可能性があります'
+            'message':'サービスが対応していないユーザーである可能性があります。お手数ですが、よろしければ学年と学部学科、特殊な授業の履修履歴などがあれば明記の上お問い合わせください。'
             }
             return render(request, 'gv/hp.html', index_params)
 

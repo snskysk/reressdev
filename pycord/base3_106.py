@@ -138,10 +138,12 @@ def func1(value):
         print("---Chromeをダウン---")
         print("---process all complete---")
         print("--------------------------")
+        passcheck=1
 
     except:
         driver.quit()
         print('error確認!chromeを閉じるよ')
+        passcheck=0
 
     zen=["Ｓ","Ａ","Ｂ","Ｃ"]
     #user_info=tables[2]
@@ -507,4 +509,4 @@ def func1(value):
 
 
     result=[user_info,gpa_info,df_rm,sub1_GI,main_unit]
-    return result,kyoushoku_c
+    return result,kyoushoku_c,passcheck
