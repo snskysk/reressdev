@@ -91,8 +91,9 @@
 
 
 {% block body %}
-
-      <a href="{% url 'hp' %}"><img src="/static/gv/homepage/images/hpmain102.PNG" alt="Re:Re:ss" width="100%"/></a>
+<script src='https://cdn.rawgit.com/jaredreich/notie.js/a9e4afbeea979c0e6ee50aaf5cb4ee80e65d225d/notie.js'></script>
+<div class="all">
+    <a href="{% url 'hp' %}"><img src="/static/gv/homepage/images/hpmain102.PNG" alt="Re:Re:ss" width="100%"/></a>
     <!--飛んでくる場所-->
     <!--<h4 class="jump-tag" class="sub-title">Re:Re:ss</h4><br><br>-->
     <!--<h3 id="hp-title2">  立教生のデータを繋ぐ<br>Re:Re:ss</h3><br>-->
@@ -101,7 +102,6 @@
 
 
 <!--</a>--><!--jump-->
-
 
 
     <div class="form-div"><!--画像の中にログインformを埋め込む-->
@@ -160,6 +160,8 @@
 
       <img src="{% static 'gv/homepage/images/hp6.PNG'%}" width="100%">
 
+</div>
+
 
 <!-- /main -->
 
@@ -168,7 +170,7 @@
 {% endblock%}
 
 {% block js %}
-<script src='https://cdn.rawgit.com/jaredreich/notie.js/a9e4afbeea979c0e6ee50aaf5cb4ee80e65d225d/notie.js'></script>
+
 <!--不正に入ろうとしたときにでるalert-->
 <script>
   var message = "{{message|safe}}"
