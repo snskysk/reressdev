@@ -124,7 +124,7 @@
                     <div class="container-login100-form-btn">
                       <div class="zigzag">
                          <!--<button id='load-checker'></button>-->
-                          <button class="login100-form-btn">
+                          <button class="login100-form-btn" id='load-checker'>
                               USE  Re:Re:ss
                             
                           </button><!--login100-form-btn-->                      
@@ -183,7 +183,7 @@
 <script>
     window.onload = function() {
       // 
-      var btn = document.getElementById('login100-form-btn');
+      var btn = document.getElementById('load-checker');
       btn.onclick = function() {
         notie.alert(1, '---読込中です お待ちください---', 13);
       };
