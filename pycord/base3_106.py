@@ -297,7 +297,31 @@ def func1(value):
             "gpa_data":gpa_data
         })
 
+    elif check_gpa==1:
+        gpa_np=0
+
+        gpa_data=[]
+        for s in range(len(npmain_GI)):
+            if npmain_GI[s,3]==zen[0]:
+                gpa_data.append(gpa_np)
+
+            elif npmain_GI[s,3]==zen[1]:
+                gpa_data.append(gpa_np)
+
+            elif npmain_GI[s,3]==zen[2]:
+                gpa_data.append(gpa_np)
+
+            elif npmain_GI[s,3]==zen[3]:
+                gpa_data.append(gpa_np)
+            else:
+                gpa_data.append("NaN")
+
+        gpa_data=np.array(gpa_data)
+        gpa_data=pd.DataFrame({
+            "gpa_data":gpa_data
+        })
     else:
+        #不要なコード11/09
         gpa_data=[]
         for s in range(len(npmain_GI)):
             if npmain_GI[s,3]==zen[0]:
