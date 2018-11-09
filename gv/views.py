@@ -432,11 +432,10 @@ def mainhome(request):
             result, list_pie, list_bar, table, personal_dataset, kyoushoku_c = condact(value)
         #正しくなかったら戻る
         except Exception as e:
-            pprint.pprint(str(e.args))
             form = userInfoForm()
             index_params = {
             'form':form,
-            'message':'正しく入力しなおしてください'
+            'message':'学生番号かパスワードが間違っている可能性があります'
             }
             return render(request, 'gv/hp.html', index_params)
 
