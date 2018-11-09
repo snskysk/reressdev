@@ -177,6 +177,7 @@ def func1(value):
             unit_info=tttt[4]
             gpa_info=tttt[5]
             grade_info=tttt[7]
+            check_gpa=0
         else:
 
             unit_info=tttt[3]
@@ -306,7 +307,7 @@ def func1(value):
                 gpa_data.append(3)
 
             elif npmain_GI[s,3]==zen[2]:
-                gpa_data.append(3)
+                gpa_data.append(2)
 
             elif npmain_GI[s,3]==zen[3]:
                 gpa_data.append(1)

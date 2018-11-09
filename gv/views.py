@@ -432,6 +432,38 @@ def mainhome(request):
             result, list_pie, list_bar, table, personal_dataset, kyoushoku_c, passcheck = condact(value)
             if passcheck==1:
                 pass
+            elif passcheck==2:
+                form = userInfoForm()
+                index_params = {
+                'form':form,
+                'message':'データ加工に失敗しました。対応していないユーザーである可能性があります。エラータイプ：フェーズ２'
+                }
+                return render(request, 'gv/hp.html', index_params)
+
+            elif passcheck==3:
+                form = userInfoForm()
+                index_params = {
+                'form':form,
+                'message':'データ加工に失敗しました。対応していないユーザーである可能性があります。エラータイプ：フェーズ３'
+                }
+                return render(request, 'gv/hp.html', index_params)
+
+            elif passcheck==4:
+                form = userInfoForm()
+                index_params = {
+                'form':form,
+                'message':'データ加工に失敗しました。対応していないユーザーである可能性があります。エラータイプ：フェーズ４'
+                }
+                return render(request, 'gv/hp.html', index_params)
+
+            elif passcheck==5:
+                form = userInfoForm()
+                index_params = {
+                'form':form,
+                'message':'データ加工に失敗しました。対応していないユーザーである可能性があります。エラータイプ：フェーズ５'
+                }
+                return render(request, 'gv/hp.html', index_params)
+
             else:
                 form = userInfoForm()
                 index_params = {
