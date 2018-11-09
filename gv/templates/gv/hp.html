@@ -122,11 +122,15 @@
                   </div><!--input100-->
                   <!--<div class="container-login100-form-btn m-t-17">-->
                     <div class="container-login100-form-btn">
+                      <button id='load-checker'>
                         <div class="zigzag">
                           <button class="login100-form-btn">
                             USE  Re:Re:ss
                           </button><!--login100-form-btn-->                      
-                        </div>                        
+                        </div>
+                      </button>
+                      <script src='https://cdn.rawgit.com/jaredreich/notie.js/a9e4afbeea979c0e6ee50aaf5cb4ee80e65d225d/notie.js'></script>
+                        
                     </div><!--container-login100-form-btn-->
                 </form>
               </div><!--limiter-->
@@ -176,12 +180,14 @@
 </script>
 
 <script>
-$('.login100-form-btn').on('click', function() {
-    var result = window.confirm('読み込み中です　お待ちください');
-    if( result ) {
-        console.log('OKがクリックされました');
-    }
-  });
+    window.onload = function() {
+      // 
+      var btn = document.getElementById('load-checker');
+      btn.onclick = function() {
+        notie.alert(1, '---読込中です お待ちください---', 10);
+      };
+    };
+    
 </script>
 
 {% endblock %}

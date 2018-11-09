@@ -204,8 +204,12 @@ def func1(value):
     unit_info.columns = ['区分名', '必要単位数', '修得単位数', '履修単位数', '不足単位数', '備考']
     main_unit=unit_info.query("index!=0&index!=1")
 
-    gpa_info.columns=["年度","春学期","秋学期","年度計","累計"]
+    try:
+        gpa_info.columns=["年度","春学期","秋学期","年度計","累計"]
+    except Exception as e:
+        result,kyoushoku_c,passcheck=[0,0,11]
 
+        return result,kyoushoku_c,passcheck        
 
     # 成績データにcolomnsを付与
     grade_info.columns = ['Num', 'subjectnum', 'subjectname', 'unit', 'grade', 'year', 'season','teacher','etcA','managementnum']
@@ -361,8 +365,12 @@ def func1(value):
             "gpa_data":gpa_data
         })
 
+    try:
+        main_GI=pd.concat([main_GI,gpa_data],axis=1)
+    except Exception as e:
+        result,kyoushoku_c,passcheck=[0,0,12]
 
-    main_GI=pd.concat([main_GI,gpa_data],axis=1)
+        return result,kyoushoku_c,passcheck        
 
     npsN=np.array(main_GI[["subjectname"]])
     mgt5=main_GI.query('subjectname.astype("str").str.contains("＊") or subjectname.astype("str").str.contains("◆")',engine="python")[["subjectname"]]

@@ -12,6 +12,14 @@ def condact(value):
         result,kyoushoku_c,passcheck=func1(uservalue)
         if passcheck==1:
             pass
+
+        elif passcheck==11:
+            result, dataset_pie, dataset_bar, database_dataset, personal_dataset, kyoushoku_c, passcheck=[1,1,1,1,1,1,11]        
+            return result, dataset_pie, dataset_bar, database_dataset, personal_dataset, kyoushoku_c, passcheck
+        elif passcheck==12:
+            result, dataset_pie, dataset_bar, database_dataset, personal_dataset, kyoushoku_c, passcheck=[1,1,1,1,1,1,12]        
+            return result, dataset_pie, dataset_bar, database_dataset, personal_dataset, kyoushoku_c, passcheck
+
         else:
             result, dataset_pie, dataset_bar, database_dataset, personal_dataset, kyoushoku_c, passcheck=[1,1,1,1,1,1,0]        
             return result, dataset_pie, dataset_bar, database_dataset, personal_dataset, kyoushoku_c, passcheck

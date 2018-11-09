@@ -464,6 +464,21 @@ def mainhome(request):
                 }
                 return render(request, 'gv/hp.html', index_params)
 
+            elif passcheck==11:
+                form = userInfoForm()
+                index_params = {
+                'form':form,
+                'message':'データ加工に失敗しました。対応していないユーザーである可能性があります。エラータイプ：フェーズ１１'
+                }
+                return render(request, 'gv/hp.html', index_params)
+            elif passcheck==12:
+                form = userInfoForm()
+                index_params = {
+                'form':form,
+                'message':'データ加工に失敗しました。対応していないユーザーである可能性があります。エラータイプ：フェーズ１２'
+                }
+                return render(request, 'gv/hp.html', index_params)
+
             else:
                 form = userInfoForm()
                 index_params = {
