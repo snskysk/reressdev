@@ -112,11 +112,11 @@
                 <form class="login100-form validate-form flex-sb flex-w" action='{% url 'mainhome' %}' method='post' , name='mainhome'>
                   {% csrf_token %}
                   <!--<span class="login100-form-title">学生ログイン</span><br><br><br>-->
-                  <div class="wrap-input100 validate-input m-b-16" data-validate="Username is required">
+                  <div class="wrap-input100 validate-input m-b-16" id="numofstu" data-validate="Username is required">
                     {{form.stunum|add_class:"input100"|attr:"placeholder:学生番号"}}
                     <span class="focus-input100"></span>
                   </div>
-                  <div class="wrap-input100 validate-input m-b-16" data-validate="Password is required">
+                  <div class="wrap-input100 validate-input m-b-16" id="passofstu" data-validate="Password is required">
                     {{form.password|add_class:"input100"|attr:"placeholder:パスワード"}}
                     <span class="focus-input100"></span>
                   </div><!--input100-->
@@ -172,20 +172,22 @@
 {% block js %}
 
 <!--不正に入ろうとしたときにでるalert-->
-
+<script>
+  var message = "{{message|safe}}"
+  var length = message.length
+  if(message!=0){
+  alert(message);
+  }
+</script>
 
 <script>
-    var message = "{{message|safe}}"
-    var length = message.length
     window.onload = function() {
       // 
       var btn = document.getElementById('load-checker');
       btn.onclick = function() {
-        if(message!=0){
-        alert(message);
-        }
-        else{notie.alert(1, '---　読込中です お待ちください　---', 15);
-        }
+      if(document.getElementById('numofstu').value != ""){
+      notie.alert(1, '-----　読込中です お待ちください　-----', 15);
+      }
       };
     };
     
