@@ -195,12 +195,12 @@
 <!--入力補完-->
 <script src='{% static 'gv/teacher_search/suggest.js' %}'></script>
 <script>
-  var teacher_list = {{teacher_list|safe}};
+  var teacher_list_space = {{teacher_list_space|safe}};
   function startSuggest() {
     new Suggest.Local(
           "id_t_name",    // 入力のエレメントID
           "suggest", // 補完候補を表示するエリアのID
-          teacher_list,      // 補完候補の検索対象となる配列
+          teacher_list_space,      // 補完候補の検索対象となる配列
           {dispMax: 10, interval: 1000}); // オプション
   }
 
