@@ -1,0 +1,13 @@
+
+
+<!--選択肢の中を変更-->
+<script>
+        var sub_list_unique = {{sub_list_unique|safe}}
+        var length = sub_list_unique.length;
+        if(length!=0){
+          for (var i = 0; i < length; i++) {
+            $(".t_sub_input").append($("<option>").val(sub_list_unique[i]).text(sub_list_unique[i]));
+          }
+        }
+      </script>
+      

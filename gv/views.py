@@ -129,6 +129,82 @@ def sirabasu(request):
     return HttpResponseRedirect('{}'.format(url))
     #return render(request, 'gv/teacher_search.html', sirabasu_params)
 
+def more(request):
+    input_t_name_true = request.GET.get('name')
+    sub_list = list(subjectInfo.objects.filter(teacher=input_t_name_true).values_list('subjectname', flat=True))
+    sub_list_unique = list(set(sub_list))
+
+
+    more_params = {
+        'sub_list':sub_list,
+        'sub_list_unique':sub_list_unique,
+    }
+    return render(request, 'gv/more.html', more_params)
+
+def teacher_search(request):
+    import time
+    start = time.time()##########################
+    sub_obj = subjectInfo.objects.all()
+    teacher_list_space = list(set(subjectInfo.objects.values_list('teacher', flat=True)))#すべての先生のリスト(重複なし)
+    #teacher_list = [i.replace('　', '') for i in teacher_list_space]#先生の名前スペースなし
+    #各先生の授業のリストを生成(ex:{'A先生':[B,C,D]})
+    #teacher_sub_dict = {teacher_name.replace('　', ''):list(set(subjectInfo.objects.filter(teacher__contains=teacher_name).values_list('subjectname', flat=True))) for teacher_name in teacher_list_space}
+
+
+    if request.method == 'POST':
+        form = find_teacher(request.POST)
+        t_name = request.POST['t_name']
+        t_sub = request.POST['t_sub']
+
+        sub_obj = sub_obj.filter(teacher=t_name)
+        #授業のフィルター
+        if len(t_sub) is not 0:
+            sub_obj = sub_obj.filter(subjectname=t_sub)
+
+        #num_sub = len(sub_obj)#その先生の授業数
+        grade_list_dict = OrderedDict({'Ｓ':0,'Ａ':0,'Ｂ':0,'Ｃ':0}) #順番がたぶん大事
+        grade_list = sub_obj.values_list('grade', flat=True)#成績判定を取得(重複あり)
+        grade_list_dict_new = Counter(grade_list) #授業の数
+        grade_list_dict.update(grade_list_dict_new) #辞書をupdate
+        nums = grade_list_dict.values()
+        nums = list(nums)#リストにする
+
+        grade_list_sample = list(grade_list_dict.keys())
+
+        elapsed_time = time.time() - start
+        teacher_search_params = {
+            'elapsed_time':elapsed_time,
+            'message':'ok,',
+            'form':form,
+            'sub_obj':sub_obj,
+            'nums':nums,
+            'grade_list_sample':grade_list_sample,
+            'teacher_list_space':teacher_list_space,
+            #'teacher_sub_dict':teacher_sub_dict,
+            'r_form':'{}  {}'.format(t_name,t_sub).replace('　','')
+        }
+        
+        return render(request, 'gv/teacher_search.html', teacher_search_params)
+
+    form = find_teacher()
+    nums = [0,0,0,0,0]
+    grade_list_sample = ['S','A','B','C','D']
+
+    elapsed_time = time.time() - start
+    teacher_search_params = {
+        'elapsed_time':elapsed_time,
+        'message':'',
+        'form':form,
+        'nums':nums,
+        'grade_list_sample':grade_list_sample,
+        'teacher_list_space':teacher_list_space,
+        #'teacher_sub_dict':teacher_sub_dict,
+        'r_form':'成績判定統計',
+    }
+    
+    return render(request, 'gv/teacher_search.html', teacher_search_params)
+
+"""
 def teacher_search(request):
     import time
     start = time.time()
@@ -224,7 +300,7 @@ def teacher_search(request):
         'keika_time':keika_time,
     }
     return render(request, 'gv/teacher_search.html', teacher_search_params)
-
+"""
 def inquiry(request):
     inquiry_params = {}
     return render(request, 'gv/inquiry.html', inquiry_params)

@@ -18,5 +18,6 @@ urlpatterns = [
     path('course/<int:num>', views.course, name='course'),
     path('flush/', views.flush, name='flush'),
     path('inquiry', views.inquiry, name='inquiry'),
+    path('more/', views.more, name='more'),
 
 ]
