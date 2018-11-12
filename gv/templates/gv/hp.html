@@ -86,12 +86,38 @@
 
 
 
-<!-- 自分のCSS -->
+<!-- 自分のCSS 11/13-->
+<link rel='stylesheet' type='text/css' href='{% static 'gv/homepage/hp_modal.css' %}' />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+
 {% endblock%}
 
 
 {% block body %}
-<script src='https://cdn.rawgit.com/jaredreich/notie.js/a9e4afbeea979c0e6ee50aaf5cb4ee80e65d225d/notie.js'></script>
+<!-- モーダルエリアここから -->
+<section id="modalArea" class="modalArea">
+    <div id="modalBg" class="modalBg"></div>
+    <div class="modalWrapper">
+      <div class="modalContents">
+        <h4>ログイン中</h4>
+        <p>15秒ほどお待ちください</p>
+        <p>同一ブラウザでは、次回以降ログイン不要です。</p>
+        <br>
+        <p>下記に当てはまる場合、ご利用になれない場合があります。</p>
+        <br>
+        <p>①2015年以前の入学者</p>
+        <p>②特殊授業の履修経験者</p>
+        <br>
+        <p>※教授分析機能は、例外なくご利用可能です。</p>
+                  
+    </div>
+      <div id="closeModal" class="closeModal">
+        ×
+      </div>
+    </div>
+  </section>
+  <!-- モーダルエリアここまで -->
+
 <div class="all">
     <a href="{% url 'hp' %}"><img src="/static/gv/homepage/images/hpmain102.PNG" alt="Re:Re:ss" width="100%"/></a>
     <!--飛んでくる場所-->
@@ -124,7 +150,7 @@
                     <div class="container-login100-form-btn">
                       <div class="zigzag">
                          <!--<button id='load-checker'></button>-->
-                          <button class="login100-form-btn" id='load-checker'>
+                          <button class="login100-form-btn" id='id="openModal"'>
                               USE  Re:Re:ss
                             
                           </button><!--login100-form-btn-->                      
@@ -191,7 +217,8 @@
     
 </script>
 
-<script>
+<!--
+    <script>
     window.onload = function() {
       // 
       var btn = document.getElementById('load-checker');
@@ -200,6 +227,18 @@
       };
     };
     
+</script>
+-->
+
+<script>
+$(function () {
+    $('#openModal').click(function(){
+        $('#modalArea').fadeIn();
+    });
+    $('#closeModal , #modalBg').click(function(){
+    $('#modalArea').fadeOut();
+    });
+});
 </script>
 
 
