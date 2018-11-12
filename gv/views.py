@@ -130,6 +130,8 @@ def sirabasu(request):
     #return render(request, 'gv/teacher_search.html', sirabasu_params)
 
 def teacher_search(request):
+    import time
+    start = time.time()
     sub_obj = subjectInfo.objects.all()
     teacher_list_space = list(set(list(subjectInfo.objects.values_list('teacher', flat=True))))#すべての先生のリスト(重複なし)
     teacher_list = [i.replace('　', '') for i in teacher_list_space]#先生の名前スペースなし
@@ -209,6 +211,8 @@ def teacher_search(request):
     nums = [0,0,0,0]
     grade_list_sample = ['S','A','B','C']
 
+
+    keika_time = time.time() - start
     teacher_search_params = {
         'message':'',
         'form':form,
@@ -217,6 +221,7 @@ def teacher_search(request):
         'teacher_list':teacher_list,
         'teacher_sub_dict':teacher_sub_dict,
         'r_form':'成績判定統計',
+        'keika_time':keika_time,
     }
     return render(request, 'gv/teacher_search.html', teacher_search_params)
 
