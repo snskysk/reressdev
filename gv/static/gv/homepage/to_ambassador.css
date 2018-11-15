@@ -4,13 +4,13 @@
 
 #to_ambassador{
     position:fixed;
-    bottom:370px;
+    bottom:430px;
     right:10px;
     z-index:1000;
   }
 #to_ambassador2{
     position:fixed;
-    bottom:400px;
+    bottom:460px;
     right:10px;
     z-index:1000;
   }
