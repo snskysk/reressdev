@@ -96,6 +96,7 @@
 
 {% block body %}
 <h3 class="safety-color" id="to_ambassador">safety</h3>
+<h3 class="safety-color" id="to_ambassador2"><a href='{% url 'mainhome_after_login' %}'>ログイン済みの方</a></h3>
 <!-- モーダルエリアここから -->
 <section id="modalArea2" class="modalArea">
     <div id="modalBg2" class="modalBg"></div>
@@ -281,7 +282,7 @@ $(function () {
         var topBtn = $('#to_ambassador'); 
         topBtn.hide();
         $(window).on('load scroll', function(){
-            if ($(this).scrollTop() < 1000) {/*100は表示されるタイミングを適当に*/
+            if ($(this).scrollTop() < 400) {/*100は表示されるタイミングを適当に*/
                 topBtn.fadeIn();
             } else {
                 topBtn.fadeOut();
@@ -289,6 +290,18 @@ $(function () {
         });
     });
     </script>
-    
+<script>
+    $(function() {
+        var topBtn = $('#to_ambassador2'); 
+        topBtn.hide();
+        $(window).on('load scroll', function(){
+            if ($(this).scrollTop() < 400) {/*100は表示されるタイミングを適当に*/
+                topBtn.fadeIn();
+            } else {
+                topBtn.fadeOut();
+            }
+        });
+    });
+    </script>
 
 {% endblock %}
