@@ -281,7 +281,7 @@ $(function () {
         var topBtn = $('#to_ambassador'); 
         topBtn.hide();
         $(window).on('load scroll', function(){
-            if ($(this).scrollTop() > 10) {/*100は表示されるタイミングを適当に*/
+            if ($(this).scrollTop() < 1000) {/*100は表示されるタイミングを適当に*/
                 topBtn.fadeIn();
             } else {
                 topBtn.fadeOut();
