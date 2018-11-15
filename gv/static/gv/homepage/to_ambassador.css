@@ -1,0 +1,10 @@
+/*#body-design4{
+    background-color:#000000;
+}*/
+
+#to_ambassador{
+    position:fixed;
+    bottom:50px;
+    right:20px;
+    z-index:1000;
+  }
