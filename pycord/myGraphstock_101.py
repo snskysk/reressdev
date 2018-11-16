@@ -5,7 +5,7 @@
 
 
 # 円ブラフのでデータセットを返す関数
-def piegraph_dataset(tables):
+def piegraph_dataset(tables,passcheck):
 
     import numpy as np
     import pandas as pd
@@ -31,7 +31,7 @@ def piegraph_dataset(tables):
     gpa_value=npm_gpa[len(npm_gpa)-1,0]
 
     #　2015年以前入学者との場合分け　gpaは0としてあるため、0と一致した場合Dは0にしておく
-    if gpa_value==0:
+    if passcheck==401:
         score_D=0
     else:
 

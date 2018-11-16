@@ -622,6 +622,7 @@ def func1(value):
         gpa_info=before_dm0
         
         result=[user_info,gpa_info,df_rm,sub1_GI,main_unit]
+        passcheck=401
     else:
         pass
 

@@ -12,6 +12,8 @@ def condact(value):
         result,kyoushoku_c,passcheck=func1(uservalue)
         if passcheck==1:
             pass
+        elif passcheck==401:
+            pass
 
         elif passcheck==11:
             result, dataset_pie, dataset_bar, database_dataset, personal_dataset, kyoushoku_c, passcheck=[1,1,1,1,1,1,11]        
@@ -30,7 +32,7 @@ def condact(value):
 
     try:
         from pycord.myGraphstock_101 import piegraph_dataset
-        dataset_pie=piegraph_dataset(result)
+        dataset_pie=piegraph_dataset(result,passcheck)
         #from myGraphstock_101 import show_piegraph
         #show_piegraph(dataset_pie)
     
@@ -54,7 +56,6 @@ def condact(value):
     except Exception as e:
         result, dataset_pie, dataset_bar, database_dataset, personal_dataset, kyoushoku_c, passcheck=[1,1,1,1,1,1,4]        
         return result, dataset_pie, dataset_bar, database_dataset, personal_dataset, kyoushoku_c, passcheck        
-
 
     try:
         from pycord.dataset_for_database import personal_dataset_for_database
