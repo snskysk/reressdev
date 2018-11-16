@@ -70,5 +70,9 @@ def condact(value):
         result, dataset_pie, dataset_bar, database_dataset, personal_dataset, kyoushoku_c, passcheck=[1,1,1,1,1,1,5]        
         return result, dataset_pie, dataset_bar, database_dataset, personal_dataset, kyoushoku_c, passcheck        
 
+    if passcheck==401:
+        passcheck=1
+    else:
+        pass
     #table=[database_dataset,personal_dataset]
     return result, dataset_pie, dataset_bar, database_dataset, personal_dataset, kyoushoku_c, passcheck

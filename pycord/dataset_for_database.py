@@ -28,7 +28,7 @@ def dataset_for_database(result,uservalue,passcheck):
 
     table=pd.concat([table,user_id],axis=1)
     table=pd.concat([table,last_login],axis=1)
-    table=table.query('unit=="1"|unit=="2"|unit=="4"|unit=="6"|unit=="8"')
+    table=table.query('unit=="1"|unit=="2"|unit=="4"|unit=="6"|unit=="8"|unit=="10"|unit=="12"|unit=="14"|unit=="16"|unit=="18"|unit=="20"|unit=="24"')
 
     # 09/14
     c=table.query('unit!="NaN"')[["unit"]].astype(int)
