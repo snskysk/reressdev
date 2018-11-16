@@ -23,6 +23,13 @@ def piegraph_dataset(tables,passcheck):
     enterYear=np.array(enterYear.astype(int))
     userGrade=userGrade[0,0]
 
+    if passcheck==401:
+        data,label,dfdata,dflabel,score_data,score_label,dfscore_data,dfscore_label=[1,1,1,1,1,1,1,1]
+        result=[data,label,dfdata,dflabel,score_data,score_label,dfscore_data,dfscore_label]
+        return result
+    else:
+        pass
+
     # 成績表の科目合計を返す
     subject_total=len(sub1_GI[["unit"]])
 
@@ -30,12 +37,6 @@ def piegraph_dataset(tables,passcheck):
     npm_gpa=np.array(main_gpa.astype(float))
     gpa_value=npm_gpa[len(npm_gpa)-1,0]
 
-    if passcheck==401:
-        data,label,dfdata,dflabel,score_data,score_label,dfscore_data,dfscore_label=[1,1,1,1,1,1,1,1]
-        result=[data,label,dfdata,dflabel,score_data,score_label,dfscore_data,dfscore_label]
-        return result
-    else:
-        pass
     #　2015年以前入学者との場合分け　gpaは0としてあるため、0と一致した場合Dは0にしておく
     if passcheck==401:
         score_D=0
