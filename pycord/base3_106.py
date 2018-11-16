@@ -198,7 +198,7 @@ def func1(value):
         enterYear=user_info.query("index==2")[["enterYear"]]
         enterYear=np.array(enterYear.astype(int)) 
         if enterYear<2016:
-            check_gpa=1
+            check_gpa=2
         else:
             check_gpa=0
     elif len(tttt)==7:
@@ -214,7 +214,7 @@ def func1(value):
             enterYear=user_info.query("index==2")[["enterYear"]]
             enterYear=np.array(enterYear.astype(int)) 
             if enterYear<2016:
-                check_gpa=1
+                check_gpa=2
             else:
                 check_gpa=0
 
