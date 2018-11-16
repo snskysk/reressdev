@@ -193,7 +193,14 @@ def func1(value):
         unit_info=tttt[4]
         gpa_info=tttt[5]
         grade_info=tttt[7]
-        check_gpa=0
+
+        user_info.columns=['Major&Grade', 'ID&Class', 'userName', 'enterYear', 'seasons']
+        enterYear=user_info.query("index==2")[["enterYear"]]
+        enterYear=np.array(enterYear.astype(int)) 
+        if enterYear<2016:
+            check_gpa=1
+        else:
+            check_gpa=0
     elif len(tttt)==7:
         user_info=tttt[2]
         check=tttt[3]
@@ -202,7 +209,14 @@ def func1(value):
             unit_info=tttt[3]
             gpa_info=tttt[4]
             grade_info=tttt[6]
-            check_gpa=0
+        
+            user_info.columns=['Major&Grade', 'ID&Class', 'userName', 'enterYear', 'seasons']
+            enterYear=user_info.query("index==2")[["enterYear"]]
+            enterYear=np.array(enterYear.astype(int)) 
+            if enterYear<2016:
+                check_gpa=1
+            else:
+                check_gpa=0
 
         else:#調整中四年生以上
             user_info=tttt[2]
@@ -249,6 +263,7 @@ def func1(value):
         check_gpa=1
 
     user_info.columns=['Major&Grade', 'ID&Class', 'userName', 'enterYear', 'seasons']
+  
 
     unit_info.columns = ['区分名', '必要単位数', '修得単位数', '履修単位数', '不足単位数', '備考']
     main_unit=unit_info.query("index!=0&index!=1")
