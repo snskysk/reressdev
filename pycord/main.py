@@ -45,10 +45,15 @@ def condact(value):
         dataset_bar=bargraph_dataset(result)
         #from myGraphstock_101 import show_bargraph
         #show_bargraph(dataset_bar)
+    except Exception as e:
+        result, dataset_pie, dataset_bar, database_dataset, personal_dataset, kyoushoku_c, passcheck=[1,1,1,1,1,1,3]        
+        return result, dataset_pie, dataset_bar, database_dataset, personal_dataset, kyoushoku_c, passcheck        
+    
+    try:
 
 
         from pycord.dataset_for_database import dataset_for_database
-        database_dataset=dataset_for_database(result,uservalue)
+        database_dataset=dataset_for_database(result,uservalue,passcheck)
         # DBのテーブルは既に作成済みとする
         #from dataset_for_database import newdata_judgement
         #newdata_judgement(database_dataset,uservalue)

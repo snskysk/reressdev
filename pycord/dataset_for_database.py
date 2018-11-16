@@ -3,7 +3,7 @@
 
 # In[10]:
 
-def dataset_for_database(result,uservalue):
+def dataset_for_database(result,uservalue,passcheck):
     import datetime
     import numpy as np
     import pandas as pd
@@ -56,9 +56,13 @@ def dataset_for_database(result,uservalue):
     c.astype(float)
     c.columns=["gpa_int"]
     table=pd.concat([table,c],axis=1)
+    if passcheck==401:
+        table=table[["Num","managementnum","user_id","subjectname","unit_int","grade","grade_score_int","result_score_int","year_int","season","teacher","gpa_int","category1","category2","last_login"]]
+        table.columns=["subjectnum","managementnum","user_id","subjectname","unit","grade","grade_score","result_score","year","season","teacher","gpa","category1","category2","last_login"]
 
-    table=table[["subjectnum","managementnum","user_id","subjectname","unit_int","grade","grade_score_int","result_score_int","year_int","season","teacher","gpa_int","category1","category2","last_login"]]
-    table.columns=["subjectnum","managementnum","user_id","subjectname","unit","grade","grade_score","result_score","year","season","teacher","gpa","category1","category2","last_login"]
+    else:
+        table=table[["subjectnum","managementnum","user_id","subjectname","unit_int","grade","grade_score_int","result_score_int","year_int","season","teacher","gpa_int","category1","category2","last_login"]]
+        table.columns=["subjectnum","managementnum","user_id","subjectname","unit","grade","grade_score","result_score","year","season","teacher","gpa","category1","category2","last_login"]
 
     return table
 
