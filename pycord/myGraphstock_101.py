@@ -23,13 +23,6 @@ def piegraph_dataset(tables,passcheck):
     enterYear=np.array(enterYear.astype(int))
     userGrade=userGrade[0,0]
 
-    if passcheck==401:
-        data,label,dfdata,dflabel,score_data,score_label,dfscore_data,dfscore_label=[1,1,1,1,1,1,1,1]
-        result=[data,label,dfdata,dflabel,score_data,score_label,dfscore_data,dfscore_label]
-        return result
-    else:
-        pass
-
     # 成績表の科目合計を返す
     subject_total=len(sub1_GI[["unit"]])
 
@@ -106,6 +99,14 @@ def piegraph_dataset(tables,passcheck):
 
     result=[data,label,dfdata,dflabel,score_data,score_label,dfscore_data,dfscore_label]
     return result
+"""
+    if passcheck==401:
+        data,label,dfdata,dflabel,score_data,score_label,dfscore_data,dfscore_label=[1,1,1,1,1,1,1,1]
+        result=[data,label,dfdata,dflabel,score_data,score_label,dfscore_data,dfscore_label]
+        return result
+    else:
+        pass
+"""
 
 # 円グラフの描画関数
 def show_piegraph(rsl):
