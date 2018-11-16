@@ -49,26 +49,24 @@ def piegraph_dataset(tables,passcheck):
 
     # 円グラフ用データの前処理
     zen=["Ｓ","Ａ","Ｂ","Ｃ"]
-    if check_gpa==401:
-        data,label,dfdata,dflabel=[1,1,1,1]
-    else:
-        # graph1
-        grade_S=len(sub1_GI.query('grade=="Ｓ"'))
-        grade_A=len(sub1_GI.query('grade=="Ａ"'))
-        grade_B=len(sub1_GI.query('grade=="Ｂ"'))
-        grade_C=len(sub1_GI.query('grade=="Ｃ"'))
-        grade_Q=len(sub1_GI.query('grade=="Ｑ"'))
 
-        data=[grade_S,grade_A,grade_B,grade_C,grade_Q]
-        label=["S","A","B","C","stop"]
+    # graph1
+    grade_S=len(sub1_GI.query('grade=="Ｓ"'))
+    grade_A=len(sub1_GI.query('grade=="Ａ"'))
+    grade_B=len(sub1_GI.query('grade=="Ｂ"'))
+    grade_C=len(sub1_GI.query('grade=="Ｃ"'))
+    grade_Q=len(sub1_GI.query('grade=="Ｑ"'))
 
-        dfdata=[grade_S,grade_A,grade_B,grade_C,grade_Q]
-        dflabel=["S","A","B","C","履修中止"]
-        totalscore=0
-        for s in dfdata:
-        totalscore=totalscore+s
-        dfdata.append(totalscore)
-        dflabel.append("total")
+    data=[grade_S,grade_A,grade_B,grade_C,grade_Q]
+    label=["S","A","B","C","stop"]
+
+    dfdata=[grade_S,grade_A,grade_B,grade_C,grade_Q]
+    dflabel=["S","A","B","C","履修中止"]
+    totalscore=0
+    for s in dfdata:
+    totalscore=totalscore+s
+    dfdata.append(totalscore)
+    dflabel.append("total")
 
     # number2pie-graph
     score_S=np.array(sub1_GI.query('grade=="Ｓ"')[["unit","grade_score"]].astype(int))
