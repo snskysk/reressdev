@@ -90,7 +90,7 @@ def course(request, num=1):
 
     sub_list = sub_obj.values_list('subjectname', flat=True)#授業名でリストを取得(重複あり)
     #pagenationがうまくいかないため今だけ変更
-    sub_list_counter = Counter(sub_list).most_common()[:30] #授業の数(多い順)
+    sub_list_counter = Counter(sub_list).most_common()[:50] #授業の数(多い順)
 
     ###############paginator######################
     #page = Paginator(sub_list_counter,10)
