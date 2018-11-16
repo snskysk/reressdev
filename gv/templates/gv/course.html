@@ -13,58 +13,60 @@
 {% block body %}
 <!--メインの部分-->
 <img src="/static/gv/course/images/zyugyobunnseki.png" alt="Re:Re:ss" width="100%"/>
-  <div class="row">
-      <form action='{% url 'course' %}' method='post' name='course'>
-        {% csrf_token %}
-          <div class="row" id="category-box">
-              <div class="col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1">
-                  <div class="cp_ipselect cp_sl04 line">
-                      {{ form.category1 }}
-                  </div>
-              </div><!--col-xs-6-->
-          </div><!--row-->
-            <button class="hamon">
-              絞りこみ
-            </button>
-      </form>
-  </div>
+<form action='{% url 'course' %}' method='post' name='course'>
+  {% csrf_token %}
+    <div class="row" id="category-box">
+      <div class="col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1">
+          <div class="cp_ipselect cp_sl04 line">
+              {{form.category1|add_class:"category1_input"}}
+          </div>
+      </div><!--col-xs-6-->
+    </div><!--row-->
+      <button class="hamon">
+        絞りこみ
+      </button>
+</form>
 <br>
 
-  <table>
-    <thead>
-      <tr>
-        <th>　  あなたの学科で人気の授業<br>（クリックで授業の詳細を表示）</th>
-        <th>履修者<br>数合計</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for message in sub_list_counter %}
-      <tr>
-        <td>
-          <form method="POST" action="{% url 'sirabasu' %}" target="_blank">
-            {% csrf_token %}
-            <input type="hidden" name="sub-name" value="{{message.0}}">
-            <a href="javascript:void(0)" onclick="this.parentNode.submit()">{{message.0}}</a>
-          </form>
-        </td>
-        <td>{{ message.1 }}人</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  <div class="pagination">
-    {% if sub_list_counter.has_previous %}
-      <a href="{% url 'course' %}">&laquo;first</a>
-      <a href="{% url 'course' %}/{{sub_list_counter.previous_page_number}}">&laquo;prev</a>
-    {% endif %}
-    <span class"current">
-      [{{sub_list_counter.number}}/{{sub_list_counter.paginator.num_pages}}]
-    </span>
-    {% if sub_list_counter.has_next %}
-      <a href="{% url 'course' %}/{{sub_list_counter.next_page_number}}">next&raquo;</a>
-      <a href="{% url 'course' %}/{{sub_list_counter.paginator.num_pages}}">last&raquo;</a>
-    {% endif %}
-  </div><!--pagination-->
+<table>
+<thead>
+<tr>
+  <th>　  あなたの学科で人気の授業<br>（クリックで授業の詳細を表示）</th>
+  <th>履修者<br>数合計</th>
+</tr>
+</thead>
+<tbody>
+{% for message in sub_list_counter %}
+<tr>
+  <td>
+    <form method="post" action="{% url 'sirabasu' %}" target="_blank">
+      {% csrf_token %}
+      <input type="hidden" name="sub-name" value="{{message.0}}">
+      <a href="javascript:void(0)" onclick="this.parentNode.submit()">{{message.0}}</a>
+    </form>
+  </td>
+  <td>{{ message.1 }}人</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+<!--
+<div class="pagination">
+{% if sub_list_counter.has_previous %}
+<a href="{% url 'course' %}">&laquo;first</a>
+<a href="{% url 'course' %}{{sub_list_counter.previous_page_number}}">&laquo;prev</a>
+{% endif %}
+<span class"current">
+[{{sub_list_counter.number}}/{{sub_list_counter.paginator.num_pages}}]
+</span>
+{% if sub_list_counter.has_next %}
+<a href="{% url 'course' %}{{sub_list_counter.next_page_number}}">next&raquo;</a>
+<span class="next_page">next&raquo;</span>
+<a href="{% url 'course' %}{{sub_list_counter.paginator.num_pages}}">last&raquo;</a>
+{% endif %}
+</div>--><!--pagination-->
+<div id="result"></div>
+
 
 {% endblock %}
 
@@ -72,21 +74,41 @@
 
 
 
-
-
-
-
 {% block js %}
+
+
+
+
+
+<!--検索候補-->
+<!--
 <script>
 $(document).ready(function() {
-
-
- var texts = $(".sub-name").map(function(){
-     return $(this).text();
- }).get();
- console.log(texts[0])
-
+var texts = $(".sub-name").map(function(){
+return $(this).text();
+}).get();
 });
+</script>-->
+
+<script>
+/*
+var now_sub_list_counter = "{{sub_list_counter|safe}}"[6];
+$('.next_page').on('click', function() {
+var now_category1_input = $('.category1_input').val()
+console.log(now_category1_input)
+var data = `category1:${now_category1_input}`
+console.log(data);
+//$.post('localhost:8000/gv/course/', data )
+//alert("クリックされました");
+var category1 = "category1=" + encodeURIComponent(now_category1_input);
+var url = "http://localhost:8000/gv/course/";
+var request = new XMLHttpRequest();
+//var request = createXMLHttpRequest();
+request.open("POST", url, true);
+request.send(category1);
+});
+*/
+
 
 
 

@@ -51,12 +51,12 @@ def course(request, num=1):
         sn = request.session['stunum']  #学籍番号をsessionから持ってくる
     except:
         form = userInfoForm()
-        index_params = {
+        hp_params = {
             'form':form,
             'message':'学籍番号とパスワードを入力しよう'
 
             }
-        return render(request, 'gv/hp.html', index_params)
+        return render(request, 'gv/hp.html', hp_params)
     enter_year = sn[:2]   #学籍番号から入学年度の取得
     facu_depa = sn[2:4]  #学籍番号から学部学科の取得
     stu_obj = studentInfo.objects.filter(user_id__contains=facu_depa) #データベースから同じ学部学科の人を取得
@@ -76,21 +76,24 @@ def course(request, num=1):
         sub_list = sub_obj.values_list('subjectname', flat=True)#授業名でリストを取得(重複あり)
         sub_list_counter = Counter(sub_list).most_common() #授業の数(多い順)
 
-        page=Paginator(sub_list_counter,10)
+        ###############paginator######################
+        #page = Paginator(sub_list_counter,10)
+        ##############################################
+
 
         course_params = {
             'form':form,
-            'sub_list_counter':page.get_page(num),
+            'sub_list_counter':sub_list_counter,
         }
         return render(request, 'gv/course.html', course_params)
 
 
     sub_list = sub_obj.values_list('subjectname', flat=True)#授業名でリストを取得(重複あり)
-    sub_list_counter = Counter(sub_list).most_common() #授業の数(多い順)
-
+    #pagenationがうまくいかないため今だけ変更
+    sub_list_counter = Counter(sub_list).most_common()[:30] #授業の数(多い順)
 
     ###############paginator######################
-    page = Paginator(sub_list_counter,10)
+    #page = Paginator(sub_list_counter,10)
     ##############################################
 
     form = find_course()
@@ -103,7 +106,7 @@ def course(request, num=1):
         'sub_obj':sub_obj,
         'form':form,
         #'sub_list_counter':sub_list_counter,
-        'sub_list_counter':page.get_page(num),
+        'sub_list_counter':sub_list_counter,
         }
     return render(request, 'gv/course.html', course_params)
 
