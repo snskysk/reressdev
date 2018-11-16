@@ -30,6 +30,12 @@ def piegraph_dataset(tables,passcheck):
     npm_gpa=np.array(main_gpa.astype(float))
     gpa_value=npm_gpa[len(npm_gpa)-1,0]
 
+    if passcheck==401:
+        data,label,dfdata,dflabel,score_data,score_label,dfscore_data,dfscore_label=[1,1,1,1,1,1,1,1]
+        result=[data,label,dfdata,dflabel,score_data,score_label,dfscore_data,dfscore_label]
+        return result
+    else:
+        pass
     #　2015年以前入学者との場合分け　gpaは0としてあるため、0と一致した場合Dは0にしておく
     if passcheck==401:
         score_D=0
@@ -82,6 +88,7 @@ def piegraph_dataset(tables,passcheck):
 
     score_data=[score_S,score_A,score_B,score_C,score_D]
     score_label=["S","A","B","C","D"]
+
 
     totalscore=0
     for s in range(len(score_data)-1):

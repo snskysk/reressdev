@@ -40,13 +40,13 @@ def condact(value):
         result, dataset_pie, dataset_bar, database_dataset, personal_dataset, kyoushoku_c, passcheck=[1,1,1,1,1,1,3]        
         return result, dataset_pie, dataset_bar, database_dataset, personal_dataset, kyoushoku_c, passcheck        
     
-
-    from pycord.myGraphstock_101 import bargraph_dataset
-    dataset_bar=bargraph_dataset(result)
-    #from myGraphstock_101 import show_bargraph
-    #show_bargraph(dataset_bar)
-
     try:
+        from pycord.myGraphstock_101 import bargraph_dataset
+        dataset_bar=bargraph_dataset(result)
+        #from myGraphstock_101 import show_bargraph
+        #show_bargraph(dataset_bar)
+
+
         from pycord.dataset_for_database import dataset_for_database
         database_dataset=dataset_for_database(result,uservalue)
         # DBのテーブルは既に作成済みとする
