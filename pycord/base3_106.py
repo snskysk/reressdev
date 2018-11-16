@@ -20,6 +20,31 @@ import os
 #import matplotlib.cm as cm
 #from matplotlib.font_manager import FontProperties
 
+def special(result):
+    import numpy as np
+
+    g_S=len(sub1_GI.query('grade=="Ｓ"'))
+    g_A=len(sub1_GI.query('grade=="Ａ"'))
+    g_B=len(sub1_GI.query('grade=="Ｂ"'))
+    g_C=len(sub1_GI.query('grade=="Ｃ"'))
+
+    gpa=np.round((g_S*4+g_A*3+g_B*2+g_C*1)/(g_S+g_A+g_B+g_C),2)
+    berore15_0123=["GPA状況","年度","2016<"]
+    berore15_4=["GPA状況","年度",gpa]
+    before_dm0=pd.DataFrame({
+        "berfore15_0123":berore15_0123
+    })
+    before_dm1=pd.DataFrame({
+        "berfore15_4":berore15_4
+    })
+    before_dm0=pd.concat([before_dm0,before_dm1],axis=1)
+    before_dm0=pd.concat([before_dm0,before_dm1],axis=1)
+    before_dm0=pd.concat([before_dm0,before_dm1],axis=1)
+    before_dm0=pd.concat([before_dm0,before_dm1],axis=1)
+    gpa_info=before_dm0
+    
+    result=[user_info,gpa_info,df_rm,sub1_GI,main_unit]
+    return result
 
 
 def func1(value):
@@ -140,7 +165,7 @@ def func1(value):
         print("--------------------------")
         passcheck=1
 
-    except:
+    except Exception as e:
         driver.quit()
         print('error確認!chromeを閉じるよ')
         result,kyoushoku_c,passcheck=[0,0,0]
@@ -163,25 +188,29 @@ def func1(value):
     #unit_info=tttt[4]
     #gpa_info=tttt[5]
     #grade_info=tttt[7]
-    if len(tttt)>6:
+    if len(tttt)==8:#調整中通常生徒
         user_info=tttt[2]
-        unit_info=tttt[3]
-        gpa_info=tttt[4]
-        grade_info=tttt[6]
+        unit_info=tttt[4]
+        gpa_info=tttt[5]
+        grade_info=tttt[7]
         check_gpa=0
-    else:
+    elif len(tttt)==7:
         user_info=tttt[2]
         check=tttt[3]
         for_check=(np.array(check.query('index==0')))
-        if len(for_check[0])!=5:
-            unit_info=tttt[4]
-            gpa_info=tttt[5]
-            grade_info=tttt[7]
-            check_gpa=0
-        else:
-
+        if len(for_check[0])>3:#通常
             unit_info=tttt[3]
-            grade_info=tttt[5]
+            gpa_info=tttt[4]
+            grade_info=tttt[6]
+            check_gpa=0
+
+        else:#調整中四年生以上
+            user_info=tttt[2]
+
+
+
+            unit_info=tttt[4]
+            grade_info=tttt[6]
 
             berore15_0123=["GPA状況","年度","2016<"]
             berore15_4=["GPA状況","年度","0.00"]
@@ -198,6 +227,26 @@ def func1(value):
             gpa_info=before_dm0
 
             check_gpa=1
+    else:#通常四年生以上
+        user_info=tttt[2]
+        unit_info=tttt[3]
+        grade_info=tttt[5]
+
+        berore15_0123=["GPA状況","年度","2016<"]
+        berore15_4=["GPA状況","年度","0.00"]
+        before_dm0=pd.DataFrame({
+            "berfore15_0123":berore15_0123
+        })
+        before_dm1=pd.DataFrame({
+            "berfore15_4":berore15_4
+        })
+        before_dm0=pd.concat([before_dm0,before_dm1],axis=1)
+        before_dm0=pd.concat([before_dm0,before_dm1],axis=1)
+        before_dm0=pd.concat([before_dm0,before_dm1],axis=1)
+        before_dm0=pd.concat([before_dm0,before_dm1],axis=1)
+        gpa_info=before_dm0
+
+        check_gpa=1
 
     user_info.columns=['Major&Grade', 'ID&Class', 'userName', 'enterYear', 'seasons']
 
@@ -211,11 +260,18 @@ def func1(value):
 
         return result,kyoushoku_c,passcheck        
 
-    # 成績データにcolomnsを付与
-    grade_info.columns = ['Num', 'subjectnum', 'subjectname', 'unit', 'grade', 'year', 'season','teacher','etcA','managementnum']
+    if check_gpa==0:#通常
+        # 成績データにcolomnsを付与
+        grade_info.columns = ['Num', 'subjectnum', 'subjectname', 'unit', 'grade', 'year', 'season','teacher','etcA','managementnum']
 
-    # 主要データのみを抽出してデータフレームを作る
-    main_GI=grade_info[['subjectnum','subjectname', 'unit', 'grade', 'year', 'season','teacher','managementnum']]
+        # 主要データのみを抽出してデータフレームを作る
+        main_GI=grade_info[['subjectnum','subjectname', 'unit', 'grade', 'year', 'season','teacher','managementnum']]
+    else:#四年生以上
+        # 成績データにcolomnsを付与
+        grade_info.columns = ['Num', 'subjectname', 'unit', 'grade', 'year', 'season','teacher','etcA','managementnum']
+
+        # 主要データのみを抽出してデータフレームを作る
+        main_GI=grade_info[['Num','subjectname', 'unit', 'grade', 'year', 'season','teacher','managementnum']]
 
     # 成績データのアルファベットから数値への変換
     grade_info_grade=main_GI[["grade"]]
@@ -544,4 +600,9 @@ def func1(value):
 
 
     result=[user_info,gpa_info,df_rm,sub1_GI,main_unit]
+    if check_gpa==1:
+        result=special(result)
+    else:
+        pass
+
     return result,kyoushoku_c,passcheck
