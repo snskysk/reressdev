@@ -49,7 +49,7 @@ def piegraph_dataset(tables,passcheck):
 
     # 円グラフ用データの前処理
     zen=["Ｓ","Ａ","Ｂ","Ｃ"]
-    if check_gpa==401:
+    if passcheck==401:
         data,label,dfdata,dflabel=[1,1,1,1]
     else:
         # graph1
