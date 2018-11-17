@@ -738,27 +738,31 @@ def detail(request):
         }
         return render(request, 'gv/hp.html', index_params)
 
-    #同じ学年、学科gpaの順位を計算
-    same_stu_gpa = sorted(list(studentInfo.objects.filter(user_id__contains=sn[:4]).values_list('gpa', flat=True)),reverse=True)#同じ学年学科のgpaのリスト
-    #same_stu_gpa = np.array(sorted(list(studentInfo.objects.filter(user_id__contains=sn[:3]).values_list('gpa', flat=True)),reverse=True))#同じ学年学科のgpaのリスト
-    p_num = len(same_stu_gpa)#同じ学年学科の人数
-    my_gpa = studentInfo.objects.get(user_id=sn).gpa#自分のgpa
-    my_index = [i for i, x in enumerate(same_stu_gpa) if x == my_gpa][0]
-    gpa_rank_p = (my_index / p_num) * 100#gpaのランキング(%)
-    gpa_rank_width = 50 + (gpa_rank_p/100)*50
-    #gpa_rank = same_stu_gpa.index(my_gpa) + 1#自分の順位
-    gpa_rank_i = my_index + 1#gpaのランキング(順位)
 
-    #同じ学年gpaの順位を計算
-    same_stu_gpa = sorted(list(studentInfo.objects.filter(user_id__contains=sn[:2]).values_list('gpa', flat=True)),reverse=True)#同じ学年学科のgpaのリスト
+    #同じ学年
+    same_stu_gpa1 = sorted(list(studentInfo.objects.filter(user_id__contains=sn[:2]).values_list('gpa', flat=True)),reverse=True)#同じ学年学科のgpaのリスト
+    print(same_stu_gpa1)
     #same_stu_gpa = np.array(sorted(list(studentInfo.objects.filter(user_id__contains=sn[:3]).values_list('gpa', flat=True)),reverse=True))#同じ学年学科のgpaのリスト
-    p_num = len(same_stu_gpa)#同じ学年学科の人数
-    my_gpa = studentInfo.objects.get(user_id=sn).gpa#自分のgpa
-    my_index = [i for i, x in enumerate(same_stu_gpa) if x == my_gpa][0]
-    gpa_rank_p = (my_index / p_num) * 100#gpaのランキング(%)
-    gpa_rank_width = 50 + (gpa_rank_p/100)*50
+    p_num1 = len(same_stu_gpa1)#同じ学年学科の人数
+    my_gpa1 = studentInfo.objects.get(user_id=sn).gpa#自分のgpa
+    my_index1 = [i for i, x in enumerate(same_stu_gpa1) if x == my_gpa1][0]
+    gpa_rank_p1 = (my_index1 / p_num1) * 100#gpaのランキング(%)
+    gpa_rank_width1 = 50 + (gpa_rank_p1/100)*50
     #gpa_rank = same_stu_gpa.index(my_gpa) + 1#自分の順位
-    gpa_rank_i = my_index + 1#gpaのランキング(順位)
+    gpa_rank_i1 = my_index1 + 1#gpaのランキング(順位)
+    ran_1 = [p_num1, my_gpa1, gpa_rank_p1, gpa_rank_width1, gpa_rank_i1]#ランキングに必要なデータの配列
+
+    #同じ学年、学科gpaの順位を計算
+    same_stu_gpa2 = sorted(list(studentInfo.objects.filter(user_id__contains=sn[:4]).values_list('gpa', flat=True)),reverse=True)#同じ学年学科のgpaのリスト
+    #same_stu_gpa = np.array(sorted(list(studentInfo.objects.filter(user_id__contains=sn[:3]).values_list('gpa', flat=True)),reverse=True))#同じ学年学科のgpaのリスト
+    p_num2 = len(same_stu_gpa2)#同じ学年学科の人数
+    my_gpa2 = studentInfo.objects.get(user_id=sn).gpa#自分のgpa
+    my_index2 = [i for i, x in enumerate(same_stu_gpa2) if x == my_gpa2][0]
+    gpa_rank_p2 = (my_index2 / p_num2) * 100#gpaのランキング(%)
+    gpa_rank_width2 = 50 + (gpa_rank_p2/100)*50
+    #gpa_rank = same_stu_gpa.index(my_gpa) + 1#自分の順位
+    gpa_rank_i2 = my_index2 + 1#gpaのランキング(順位)
+    ran_2 = [p_num2, my_gpa2, gpa_rank_p2, gpa_rank_width2, gpa_rank_i2]#ランキングに必要なデータの配列
 
 
 
@@ -805,11 +809,10 @@ def detail(request):
             #'gpa_message':'該当科目のgpaは<b><u>'+str(round(gpa,2))+'</u></b><br>    ※Dがある場合正しく計算されません',
             'filtered_sub':filtered_sub,
             'form':form,
-            'gpa_rank_p':gpa_rank_p,
-            'gpa_rank_i':gpa_rank_i,
-            'gpa_rank_width':gpa_rank_width,
-            'my_gpa':my_gpa,
-            'p_num':p_num,
+            'sn':sn,
+            'ran_1':ran_1,
+            'ran_2':ran_2,
+
         }
         return render(request, 'gv/detail.html', detail_params)
 
@@ -822,14 +825,14 @@ def detail(request):
     make_list('category1','category1',sn,form)#formのリストの中身を変更
 
 
+
     detail_params = {
         'form':form,
         'filtered_sub':filtered_sub,
-        'gpa_rank_p':gpa_rank_p,
-        'gpa_rank_i':gpa_rank_i,
-        'gpa_rank_width':gpa_rank_width,
-        'my_gpa':my_gpa,
-        'p_num':p_num,
+        'sn':sn,
+        'ran_1':ran_1,
+        'ran_2':ran_2,
+
         #'gpa_message':'gpaは<b><u>'+str(round(gpa,2))+'</u></b><br>    ※Dがある場合正しく計算されません'
     }
     return render(request, 'gv/detail.html', detail_params)
