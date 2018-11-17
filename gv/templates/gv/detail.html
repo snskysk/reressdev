@@ -3,6 +3,8 @@
 {% load static %}
 {% block css %}
 <link rel='stylesheet' type='text/css' href='{% static 'gv/detail/detail.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/detail/button.css' %}' />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
 
 
@@ -89,13 +91,12 @@
         </div>
       </div>
 
-      <div class="col-xs-6 no-padding">
-        <div class="cp_ipselect cp_sl04 line">
-          <select class="select-select">
-          </select>
-        </div>
-      </div>
-      <button id="openModal"><i class="fa fa-search fa-3x" aria-hidden="true"></i></button><!--ボタン-->
+      <select class="select-select" style="text-align: center;">
+      </select>
+      <br>
+      <button id="openModal" class="hamon">
+        成績表検索
+      </button><!--ボタン-->
       <br>
 
       <div id="report2" class="pi">
