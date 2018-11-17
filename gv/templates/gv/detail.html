@@ -20,7 +20,7 @@
   <div id="modalBg" class="modalBg"></div>
   <div class="modalWrapper">
     <div class="modalContents">
-      <form action='{% url 'detail' %}' method='post' name='detail'>
+      <form action="{% url 'detail' %}#report" method='post' name='detail'>
         {% csrf_token %}
           <div class="row">
             <div class="col-xs-12">
@@ -134,7 +134,7 @@
   </div>
 
 
-  <div class="pi">
+  <div id="report" class="pi">
     <button id="openModal"><i class="fa fa-search fa-3x" aria-hidden="true"></i></button><!--ボタン-->
     <table class='type06 table_center_class' id="report" width="100%">
       <thead>
