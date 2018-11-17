@@ -724,7 +724,7 @@ def make_list(model_name,form_name,sn,form):
 ######################################################################################
                                      #詳細画面
 ###################################################################################
-
+"""
 def detail(request):
     try:
         sn = request.session['stunum']
@@ -833,6 +833,120 @@ def detail(request):
         #'gpa_message':'gpaは<b><u>'+str(round(gpa,2))+'</u></b><br>    ※Dがある場合正しく計算されません'
     }
     return render(request, 'gv/detail.html', detail_params)
+"""
+
+def detail(request):
+    try:
+        sn = request.session['stunum']
+
+    #ログインしてからでなければ入れない
+    except Exception:
+        form = userInfoForm()
+        index_params = {
+            'form':form,
+            'message':'学籍番号とパスワードを入力しよう'
+        }
+        return render(request, 'gv/hp.html', index_params)
+
+
+    #同じ学年
+    same_stu_gpa1 = sorted(list(studentInfo.objects.filter(user_id__contains=sn[:2]).values_list('gpa', flat=True)),reverse=True)#同じ学年学科のgpaのリスト
+    print(same_stu_gpa1)
+    #same_stu_gpa = np.array(sorted(list(studentInfo.objects.filter(user_id__contains=sn[:3]).values_list('gpa', flat=True)),reverse=True))#同じ学年学科のgpaのリスト
+    p_num1 = len(same_stu_gpa1)#同じ学年学科の人数
+    my_gpa1 = studentInfo.objects.get(user_id=sn).gpa#自分のgpa
+    my_index1 = [i for i, x in enumerate(same_stu_gpa1) if x == my_gpa1][0]
+    gpa_rank_p1 = (my_index1 / p_num1) * 100#gpaのランキング(%)
+    gpa_rank_width1 = 50 + (gpa_rank_p1/100)*50
+    #gpa_rank = same_stu_gpa.index(my_gpa) + 1#自分の順位
+    gpa_rank_i1 = my_index1 + 1#gpaのランキング(順位)
+    ran_1 = [p_num1, my_gpa1, gpa_rank_p1, gpa_rank_width1, gpa_rank_i1]#ランキングに必要なデータの配列
+
+    #同じ学年、学科gpaの順位を計算
+    same_stu_gpa2 = sorted(list(studentInfo.objects.filter(user_id__contains=sn[:4]).values_list('gpa', flat=True)),reverse=True)#同じ学年学科のgpaのリスト
+    #same_stu_gpa = np.array(sorted(list(studentInfo.objects.filter(user_id__contains=sn[:3]).values_list('gpa', flat=True)),reverse=True))#同じ学年学科のgpaのリスト
+    p_num2 = len(same_stu_gpa2)#同じ学年学科の人数
+    my_gpa2 = studentInfo.objects.get(user_id=sn).gpa#自分のgpa
+    my_index2 = [i for i, x in enumerate(same_stu_gpa2) if x == my_gpa2][0]
+    gpa_rank_p2 = (my_index2 / p_num2) * 100#gpaのランキング(%)
+    gpa_rank_width2 = 50 + (gpa_rank_p2/100)*50
+    #gpa_rank = same_stu_gpa.index(my_gpa) + 1#自分の順位
+    gpa_rank_i2 = my_index2 + 1#gpaのランキング(順位)
+    ran_2 = [p_num2, my_gpa2, gpa_rank_p2, gpa_rank_width2, gpa_rank_i2]#ランキングに必要なデータの配列
+
+
+
+    if request.method == 'POST':
+        form = find_my_sub_Form(request.POST)
+        make_list('year_int','year',sn,form)
+        make_list('category1','category1',sn,form)
+        filtered_sub = subjectInfo.objects.filter(user_id=sn)
+
+        season = request.POST['season']
+        grade = request.POST['grade']
+        year = request.POST['year']
+        category1 = request.POST['category1']
+        subname_teacher = request.POST['subname_teacher']
+
+
+        #季節のフィルター
+        if len(season) is not 0:
+            filtered_sub = filtered_sub.filter(season__contains=season)
+        #成績のフィルター
+        if len(grade) is not 0:
+            g = int(grade)
+            filtered_sub = filtered_sub.filter(grade_score_int=g)
+        #科目名か先生の名前
+        if len(subname_teacher) is not 0:
+            filtered_sub = filtered_sub.filter(
+                Q(subjectname__contains=subname_teacher)|
+                Q(teacher__contains=subname_teacher)
+                ).distinct()
+        #category1のフィルター
+        if len(category1) is not 0:
+            filtered_sub = filtered_sub.filter(category1=category1)
+        #受講年度のフィルター
+        if len(year) is not 0:
+            y = int(year)
+            filtered_sub = filtered_sub.filter(year_int=y)
+
+        filtered_sub_gpa = filtered_sub.exclude(grade = '履')
+        result_score_int_sum = filtered_sub_gpa.aggregate(Sum('result_score_int'))['result_score_int__sum']
+        unit_int_sum = filtered_sub_gpa.aggregate(Sum('unit_int'))['unit_int__sum']
+
+
+        detail_params = {
+            #'gpa_message':'該当科目のgpaは<b><u>'+str(round(gpa,2))+'</u></b><br>    ※Dがある場合正しく計算されません',
+            'filtered_sub':filtered_sub,
+            'form':form,
+            'sn':sn,
+            'ran_1':ran_1,
+            'ran_2':ran_2,
+
+        }
+        return render(request, 'gv/detail.html', detail_params)
+
+
+    form = find_my_sub_Form()
+    filtered_sub = subjectInfo.objects.filter(user_id=sn)#userのみの授業の情報
+    filtered_sub_gpa = filtered_sub.exclude(grade = '履')
+
+    make_list('year_int','year',sn,form)#formのリストの中身を変更
+    make_list('category1','category1',sn,form)#formのリストの中身を変更
+
+
+
+    detail_params = {
+        'form':form,
+        'filtered_sub':filtered_sub,
+        'sn':sn,
+        'ran_1':ran_1,
+        'ran_2':ran_2,
+
+        #'gpa_message':'gpaは<b><u>'+str(round(gpa,2))+'</u></b><br>    ※Dがある場合正しく計算されません'
+    }
+    return render(request, 'gv/detail.html', detail_params)
+
 
 ######################################################################################
                                      #飲食店レビュー

@@ -11,7 +11,13 @@
 
 {% block body %}
 <!--メインの部分-->
-<img src="/static/gv/detail/images/zyuni.png" alt="Re:Re:ss" width="100%"/>
+  <img alt="" src="{% static 'gv/detail/images/zyuni.png'%}" width='100%'>
+
+
+
+
+  <!--<h3 class="page-header b-r" style="text-align:center;">成績参照<br>テーブルVer.</h3>-->
+  <!--<button id="openModal"><i class="fa fa-search fa-3x" aria-hidden="true"></i></button>-->
 
 
 
@@ -20,34 +26,34 @@
   <div id="modalBg" class="modalBg"></div>
   <div class="modalWrapper">
     <div class="modalContents">
-      <form action="{% url 'detail' %}#report" method='post' name='detail'>
+      <form action="{% url 'detail' %}#report2" method='post' name='detail'>
         {% csrf_token %}
           <div class="row">
-            <div class="col-xs-12">
+            <!--<div class="col-xs-12">-->
               <div class="detail-search">
                 {{form.subname_teacher|add_class:"field"|attr:"placeholder:教科名/先生"}}
               </div><!--detail-search-->
-            </div><!--col-xs-12-->
+            <!--</div>--><!--col-xs-12-->
             <div class="col-xs-6 no-padding">
               <div class="cp_ipselect cp_sl04 line">
                 {{ form.year }}
               </div><!--cp_ipselect cp_sl04-->
-            </div><!--col-xs-6 no-padding-->
+            </div><!--col-xs-6-->
             <div class="col-xs-6 no-padding">
               <div class="cp_ipselect cp_sl04 line">
                 {{ form.season }}
               </div><!--cp_ipselect cp_sl04-->
-            </div><!--col-xs-6 no-padding-->
+            </div><!--col-xs-6-->
             <div class="col-xs-6 no-padding">
               <div class="cp_ipselect cp_sl04 line">
                 {{ form.category1 }}
               </div><!--cp_ipselect cp_sl04-->
-            </div><!--col-xs-6 no-padding-->
+            </div><!--col-xs-6-->
             <div class="col-xs-6 no-padding">
               <div class="cp_ipselect cp_sl04 line">
                 {{ form.grade }}
               </div><!--cp_ipselect cp_sl04-->
-            </div><!--col-xs-6 no-padding-->
+            </div><!--col-xs-6-->
           </div><!--row-->
         <div><!--button-->
           <div class="detail_button_div">
@@ -66,103 +72,58 @@
 <!-- モーダルエリアここまで -->
 
 
-  <script>/*
-  <div class="row">
-    <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
-      <div class="panel panel-info">
-    	   <div class="panel-heading" style="text-align:center;">
-           成績詳細
-    	    </div><!--panel-heading-->
-    	    <div class="panel-body detail_panel">
-            <form action='{% url 'detail' %}' method='post' name='detail'>
-              {% csrf_token %}
-                <div class="row">
-                  <div class="col-xs-12">
-                    <div class="detail-search">
-                      {{form.subname_teacher|add_class:"field"|attr:"placeholder:教科名/先生"}}
-                    </div><!--detail-search-->
-                  </div><!--col-xs-12-->
-                  <div class="col-xs-6">
-                    <div class="cp_ipselect cp_sl04 line">
-                      {{ form.year }}
-                    </div><!--cp_ipselect cp_sl04-->
-                  </div><!--col-xs-6-->
-                  <div class="col-xs-6">
-                    <div class="cp_ipselect cp_sl04 line">
-                      {{ form.season }}
-                    </div><!--cp_ipselect cp_sl04-->
-                  </div><!--col-xs-6-->
-                  <div class="col-xs-6">
-                    <div class="cp_ipselect cp_sl04 line">
-                      {{ form.category1 }}
-                    </div><!--cp_ipselect cp_sl04-->
-                  </div><!--col-xs-6-->
-                  <div class="col-xs-6">
-                    <div class="cp_ipselect cp_sl04 line">
-                      {{ form.grade }}
-                    </div><!--cp_ipselect cp_sl04-->
-                  </div><!--col-xs-6-->
-                </div><!--row-->
-              <div><!--button-->
-                <div class="detail_button_div">
-                  <button class="detail_button">
-                    成績を見る
-                  </button>
-                </div><!--detail-button-div-->
-              </div><!--button-->
-            </form>
-    	    </div><!--panel-body-->
-      </div><!--panel-primary-->
-    </div><!--col-->
-  </div><!--row-->
-  */</script>
-
   <!--<h4 style="text-align:center">gpaランキング</h4>-->
-  <div class=pi>
-    <div class="ani-ex">
-      <p class="gpa_p">
-        <b>あなたのGPA:<span style='color:red;'>{{my_gpa}}</span></b><br>
-        <b>学年順位:<span style='color:red;'>{{gpa_rank_i}}</span>位/{{p_num}}人中</b>
-      </p>
-    </div>
-    <img alt="" src="{% static 'gv/detail/p.PNG'%}", width=100%>
-    <div class="animation">
-      <div class="absolute-ani">
-        <span class="num">{{gpa_rank_p|floatformat:1}}%</span>
+      <div class="pi reset-ani">
+        <div class="ani-ex">
+          <p class="gpa_p">
+            <!--<b>あなたのgpa:<span style='color:red;'>{{ran_1.1|safe}}</span></b><br>-->
+            <b>あなたのgpa:<span class="red" style='color:red;'><span class="1"></span></span></b><br>
+            <b>gpaの順位:<span class="red" style='color:red;'><span class="4"></span></span>位/<span class="0"></span>人中</b>
+          </p>
+        </div>
+        <img alt="" src="{% static 'gv/detail/p.PNG'%}", width=100%>
+        <div class="animation">
+          <div class="absolute-ani">
+            <span class="num"><span class="2"></span></span>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+
+      <select class="select-select">
+      </select>
+      <button id="openModal"><i class="fa fa-search fa-3x" aria-hidden="true"></i></button><!--ボタン-->
 
 
-  <div id="report" class="pi">
-    <button id="openModal"><i class="fa fa-search fa-3x" aria-hidden="true"></i></button><!--ボタン-->
-    <table class='type06 table_center_class' id="report" width="100%">
-      <thead>
-        <tr>
-          <th>科目名</th>
-          <th>成績</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for message in filtered_sub %}
-        <tr>
-          <td>{{ message.subjectname }}</td>
-          <td>{{ message.grade }}</td>
-        </tr>
-        <tr>
-          <td colspan="40">
-            <div class="line">
-              <p style="text-align: center;">
-              ▲この授業の詳細▲<br>先生の名前:{{message.teacher}}<br>
-              受講年度:{{message.year_int}}<br>季節:{{message.season}}
-            </p>
-            </div>
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div><!--line-->
+      <div id="report2" class="pi">
+        <!--<button id="openModal"><i class="fa fa-search fa-3x" aria-hidden="true"></i></button>ボタン-->
+        <table class='type06 table_center_class' id="report" width="100%">
+          <thead>
+            <tr>
+              <th>科目名</th>
+              <th>成績</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for message in filtered_sub %}
+            <tr>
+              <td>{{ message.subjectname }}</td>
+              <td>{{ message.grade }}</td>
+            </tr>
+            <tr>
+              <td colspan="40">
+                <div class="line">
+                  <p style="text-align: center;">
+                  ▲この授業の詳細▲<br>先生の名前:{{message.teacher}}<br>
+                  受講年度:{{message.year_int}}<br>季節:{{message.season}}
+                </p>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div><!--line-->
+
 
 {% endblock %}
 
@@ -170,30 +131,60 @@
 {% block js %}
 
 
-<!--アニメーション-->
+<!--アニメーション関数-->
 
 <script>
-  var gpa_rank_p = "{{gpa_rank_p|safe}}"
-  var gpa_rank_width = "{{gpa_rank_width|safe}}"
+  function make_rank(ran_1) {
   $('.animation')
     .animate({
-      top: gpa_rank_p + '%',
-      width:gpa_rank_width + '%'
+      top: ran_1[2] + '%',
+      width:ran_1[3] + '%'
     }, 2000, 'swing', function () {
         // アニメーション完了後に実行され
         //alert('done!');
-        if (50<Number(gpa_rank_p)&&Number(gpa_rank_p)<75) {
+        if (50<Number(ran_1[2])&&Number(ran_1[2])<75) {
           $('.ani-ex').css('top','268px');
         }
-        if (Number(gpa_rank_p)<10) {
+        if (Number(ran_1[2])<10) {
           $('.num').css('bottom','-50px');
         }
+        $(".0").text(ran_1[0])//全体の人数
+        $(".1").text(ran_1[1])//自分のgpa
+        $(".2").text(ran_1[2].toFixed(1) + '%')//自分のgpa
+        $(".4").text(ran_1[4])//自分の順位
         $('.gpa_p').css('display','block');
     });
+  }
 </script>
 
+<!--セレクトボックスの中身を変更-->
+<script>
+  var sn = "{{sn}}"
+  $('.select-select').append($('<option>').html(sn.slice(0,2)+"年度入学者").val(sn.slice(0,2)));
+  $('.select-select').append($('<option>').html(sn.slice(0,2)+"年度入学の"+sn.slice(2,4)+"に属するもの").val(sn.slice(0,4)));
+  var ran_1 = {{ran_1|safe}}//配列
+  make_rank(ran_1);
+</script>
+
+<!--セレクトボックスの値によって変更する-->
+<script>
+$(".select-select").change(function () {
+var str = $(this).val();
+if (str==sn.slice(0,4)) {
+  var ran_2 = {{ran_2|safe}}
+  $('.reset-ani *').removeAttr('style');
+  $('.red').css('color','red');
+  make_rank(ran_2);
+} else if (str==sn.slice(0,2)) {
+  var ran_1 = {{ran_1|safe}}
+  $('.reset-ani *').removeAttr('style');
+  $('.red').css('color','red');
+  make_rank(ran_1);
+}
 
 
+})
+</script>
 
 
 
