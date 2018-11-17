@@ -247,9 +247,10 @@ body {
 }
 
 /* 以下ボタンスタイル */
-#openModal {
+
+#openModal_stop {
   /*background-color: #fff;*/
-  background-color: #FAFAFA;
+  background-color: rgb(134, 132, 132);
   /*border: 1px solid #282828;*/
   /*border-radius: 2px;*/
   cursor: pointer;
