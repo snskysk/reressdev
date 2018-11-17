@@ -171,8 +171,8 @@
 <!--セレクトボックスの中身を変更-->
 <script>
   var sn = "{{sn}}"
-  $('.select-select').append($('<option>').html("GPA比較範囲:20"+sn.slice(0,2)+"年度入学者").val(sn.slice(0,2)));
-  $('.select-select').append($('<option>').html("GPA比較範囲:20"+sn.slice(0,2)+"年度入学 学科コード"+sn.slice(2,4)+"所属者").val(sn.slice(0,4)));
+  $('.select-select').append($('<option>').html("20"+sn.slice(0,2)+"年度入学者").val(sn.slice(0,2)));
+  $('.select-select').append($('<option>').html("同学年 学科コード "+sn.slice(2,4)+"所属者").val(sn.slice(0,4)));
   var ran_1 = {{ran_1|safe}}//配列
   make_rank(ran_1);
 </script>
