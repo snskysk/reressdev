@@ -168,11 +168,14 @@
   }
 </script>
 
+
+
 <!--セレクトボックスの中身を変更-->
 <script>
   var sn = "{{sn}}"
-  $('.select-select').append($('<option>').html("20"+sn.slice(0,2)+"年度入学者").val(sn.slice(0,2)));
-  $('.select-select').append($('<option>').html("同学年同学科に絞る").val(sn.slice(0,4)));
+  var belongs = "{{belongs}}"///////変更1番//////////////////////////////////////////////////////////////////////////////////////////////
+  $('.select-select').append($('<option>').html("20"+sn.slice(0,2)+"年度入学者").val(sn.slice(0,2)));  //$('.select-select').append($('<option>').html(sn.slice(0,2)+"年度入学の"+sn.slice(2,4)+"に属するもの").val(sn.slice(0,4)));
+  $('.select-select').append($('<option>').html("20"+sn.slice(0,2)+"年度入学の"+belongs).val(sn.slice(0,4)));//変更2番//////////////////////////////////////////////////////
   var ran_1 = {{ran_1|safe}}//配列
   make_rank(ran_1);
 </script>
