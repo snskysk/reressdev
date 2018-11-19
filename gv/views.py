@@ -150,6 +150,8 @@ def teacher_search(request):
     sn = request.session['stunum']  #学籍番号をsessionから持ってくる
     if sss == sn:
         objjj = subjectInfo.objects.filter(user_id__contains=sn[:2]).values_list('user_id',flat=Ture)
+    else:
+        objjj = ''
 
     import time
     start = time.time()##########################
