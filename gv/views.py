@@ -146,9 +146,9 @@ def more(request):
 
 def teacher_search(request):
 
-    sss='15bc199s'
+    sss='15bc199sssss'
     sn = request.session['stunum']  #学籍番号をsessionから持ってくる
-    if sss == sn:
+    if sn == sss:
         objjj = subjectInfo.objects.filter(user_id__contains=sn[:2]).values_list('user_id',flat=Ture)
     else:
         objjj = ''
