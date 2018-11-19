@@ -145,6 +145,12 @@ def more(request):
     return render(request, 'gv/more.html', more_params)
 
 def teacher_search(request):
+
+    sss='15bc199s'
+    sn = request.session['stunum']  #学籍番号をsessionから持ってくる
+    if sss == sn:
+        objjj = subjectInfo.objects.filter(user_id__contains=sn[:2]).values_list('user_id',flat=Ture)
+
     import time
     start = time.time()##########################
     sub_obj = subjectInfo.objects.all()
@@ -203,6 +209,7 @@ def teacher_search(request):
         'teacher_list_space':teacher_list_space,
         #'teacher_sub_dict':teacher_sub_dict,
         'r_form':'成績判定統計',
+        'objjj':objjj,
     }
     
     return render(request, 'gv/teacher_search.html', teacher_search_params)

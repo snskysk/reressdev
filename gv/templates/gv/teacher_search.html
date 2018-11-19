@@ -15,6 +15,7 @@
 <img src="/static/gv/teacher_search/images/kyozyubunnseki.png" alt="Re:Re:ss" width="100%"/>
 <br>
 <!--経過時間：{{elapsed_time}} で表示-->
+{{objjj}}
     <form action='{% url 'teacher_search' %}' method='post' name='teacher_search'>
       {% csrf_token %}
       教授名入力（部分一致可）<br>
