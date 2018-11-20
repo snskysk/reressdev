@@ -624,7 +624,6 @@ def func1(value):
         g_C=len(sub1_GI.query('grade=="Ｃ"'))
 
         gpa=np.round((g_S*4+g_A*3+g_B*2+g_C*1)/(g_S+g_A+g_B+g_C),2)
-
         berore15_0123=["GPA状況","年度","2016<"]
         berore15_4=["GPA状況","年度",gpa]
         before_dm0=pd.DataFrame({
@@ -639,6 +638,8 @@ def func1(value):
         before_dm0=pd.concat([before_dm0,before_dm1],axis=1)
         gpa_info=before_dm0
         gpa_info.columns=["年度","春学期","秋学期","年度計","累計"]
+
+
         
         result=[user_info,gpa_info,df_rm,sub1_GI,main_unit]
         passcheck=401
