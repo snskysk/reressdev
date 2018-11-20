@@ -622,10 +622,8 @@ def func1(value):
         g_A=len(sub1_GI.query('grade=="Ａ"'))
         g_B=len(sub1_GI.query('grade=="Ｂ"'))
         g_C=len(sub1_GI.query('grade=="Ｃ"'))
-        try:
-            gpa=np.round(result_score_copy/(g_S+g_A+g_B+g_C),2)
-        except:
-            gpa=np.round((g_S*4+g_A*3+g_B*2+g_C*1)/(g_S+g_A+g_B+g_C),2)
+
+        gpa=np.round((g_S*4+g_A*3+g_B*2+g_C*1)/(g_S+g_A+g_B+g_C),2)
 
         berore15_0123=["GPA状況","年度","2016<"]
         berore15_4=["GPA状況","年度",gpa]
