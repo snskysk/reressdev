@@ -623,7 +623,11 @@ def func1(value):
         g_B=len(sub1_GI.query('grade=="Ｂ"'))
         g_C=len(sub1_GI.query('grade=="Ｃ"'))
         
-        gpa=np.round((g_S*4+g_A*3+g_B*2+g_C*1)/(g_S+g_A+g_B+g_C),2)
+        try:
+            result_score_copy=np.sum(result_score_copy)
+            gpa=np.round(result_score_copy/(g_S+g_A+g_B+g_C),2)    
+        except:
+            gpa=np.round((g_S*4+g_A*3+g_B*2+g_C*1)/(g_S+g_A+g_B+g_C),2)
 
         before15_0123=["GPA状況","年度","2016<"]
         before15_4=["GPA状況","年度",gpa]
@@ -648,28 +652,3 @@ def func1(value):
     return result,kyoushoku_c,passcheck
 
 
-def special(result):
-    import numpy as np
-
-    g_S=len(sub1_GI.query('grade=="Ｓ"'))
-    g_A=len(sub1_GI.query('grade=="Ａ"'))
-    g_B=len(sub1_GI.query('grade=="Ｂ"'))
-    g_C=len(sub1_GI.query('grade=="Ｃ"'))
-
-    gpa=np.round((g_S*4+g_A*3+g_B*2+g_C*1)/(g_S+g_A+g_B+g_C),2)
-    berore15_0123=["GPA状況","年度","2016<"]
-    berore15_4=["GPA状況","年度",gpa]
-    before_dm0=pd.DataFrame({
-        "berfore15_0123":berore15_0123
-    })
-    before_dm1=pd.DataFrame({
-        "berfore15_4":berore15_4
-    })
-    before_dm0=pd.concat([before_dm0,before_dm1],axis=1)
-    before_dm0=pd.concat([before_dm0,before_dm1],axis=1)
-    before_dm0=pd.concat([before_dm0,before_dm1],axis=1)
-    before_dm0=pd.concat([before_dm0,before_dm1],axis=1)
-    gpa_info=before_dm0
-    
-    result=[user_info,gpa_info,df_rm,sub1_GI,main_unit]
-    return result
