@@ -89,7 +89,10 @@ def func1(value):
     #driver = webdriver.Chrome( chrome_options=opts)
     #driver = webdriver.Chrome(executable_path='chromedriver', chrome_options=opts)
     #driver = webdriver.Chrome( executable_path = CHROME_DRIVER_PATH , chrome_options = opts)
-    driver = webdriver.PhantomJS()
+    try:
+        driver = webdriver.PhantomJS()
+    except:#ローカルはphantomJSが使えないのでchromeに
+        driver = webdriver.Chrome()
     #これは間違ってるらしい
 
     #chrome_bin = GOOGLE_CHROME_SHIM
@@ -117,7 +120,10 @@ def func1(value):
         driver.find_element_by_css_selector("#passwordInput").send_keys(PASS)
         driver.find_element_by_css_selector("#passwordInput").send_keys(Keys.RETURN)
 
-        driver.find_element_by_css_selector("#submitButton").click()
+        try:#phantomJSの時のみ
+            driver.find_element_by_css_selector("#submitButton").click()
+        except:#ローカルのchromedriverの時の処理
+            pass
         print("---ユーザ情報入力完了　―　ページ遷移---")
 
         time.sleep(1)
