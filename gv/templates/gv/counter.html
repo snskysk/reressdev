@@ -15,9 +15,15 @@
 <!--<img src="/static/gv/teacher_search/images/kyozyubunnseki.png" alt="Re:Re:ss" width="100%"/>-->
 <br>
 <!--経過時間：{{elapsed_time}} で表示-->
+<a href={% url 'counter' %}>to counter as counter</a><br>
+<a href={% url 'hp' %}>to homepage with DATA</a><br>
+<a href={% url 'flush' %}>to homepage with FLUSH</a><br>
 
-現在の利用者数：{{numbers}}人
-
+<br>現在の利用者数：{{numbers}}人
+<br>1年生の利用者数：{{st_1}}人
+<br>2年生の利用者数：{{st_2}}人
+<br>3年生の利用者数：{{st_3}}人
+<br>4年生の利用者数：{{st_4}}人
 
 {% endblock %}
 

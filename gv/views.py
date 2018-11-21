@@ -446,8 +446,21 @@ def get(request):
 def counter(request):
     stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
     numbers=len(stuobj)
+
+    #enter_year = sn[:2]   #学籍番号から入学年度の取得
+    #facu_depa = sn[2:4]  #学籍番号から学部学科の取得
+    #stu_obj = studentInfo.objects.filter(user_id__contains=facu_depa) #データベースから同じ学部学科の人を取得
+    st_1,st_2,st_3,st_4=[18,17,16,15]
+    st_1 = len(studentInfo.objects.filter(user_id__startswith=st_1))
+    st_2 = len(studentInfo.objects.filter(user_id__startswith=st_2))
+    st_3 = len(studentInfo.objects.filter(user_id__startswith=st_3))
+    st_4 = len(studentInfo.objects.filter(user_id__startswith=st_4))
     counter_params={
         'numbers':numbers,
+        'st_1':st_1,
+        'st_2':st_2,
+        'st_3':st_3,
+        'st_4':st_4,
     }
 
     return render(request,'gv/counter.html',counter_params)
@@ -469,7 +482,18 @@ def mainhome(request):
             short_cut_sn = value[0].lower()
         else:
             short_cut_sn = value[0]
+
         stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
+        if value[0]=='counter':
+            numbers=len(stuobj)
+            counter_params={
+                'numbers':numbers,
+            }
+
+            return render(request,'gv/counter.html',counter_params)            
+        else:
+            pass
+
         if short_cut_sn in stuobj:#もしすでに登録されているなら
 
             try:#もしsessionが残っているなら
@@ -873,7 +897,8 @@ def detail(request):
 
 
     #同じ学年
-    same_stu_gpa1 = sorted(list(studentInfo.objects.filter(user_id__contains=sn[:2]).values_list('gpa', flat=True)),reverse=True)#同じ学年学科のgpaのリスト
+    #same_stu_gpa1 = sorted(list(studentInfo.objects.filter(user_id__contains=sn[:2]).values_list('gpa', flat=True)),reverse=True)#同じ学年学科のgpaのリスト
+    same_stu_gpa1 = sorted(list(studentInfo.objects.filter(user_id__startswith=sn[:2]).values_list('gpa', flat=True)),reverse=True)#同じ学年学科のgpaのリスト
     #same_stu_gpa = np.array(sorted(list(studentInfo.objects.filter(user_id__contains=sn[:3]).values_list('gpa', flat=True)),reverse=True))#同じ学年学科のgpaのリスト
     p_num1 = len(same_stu_gpa1)#同じ学年学科の人数
     my_gpa1 = studentInfo.objects.get(user_id=sn).gpa#自分のgpa
@@ -885,7 +910,8 @@ def detail(request):
     ran_1 = [p_num1, my_gpa1, gpa_rank_p1, gpa_rank_width1, gpa_rank_i1]#ランキングに必要なデータの配列
 
     #同じ学年、学科gpaの順位を計算
-    same_stu_gpa2 = sorted(list(studentInfo.objects.filter(user_id__contains=sn[:4]).values_list('gpa', flat=True)),reverse=True)#同じ学年学科のgpaのリスト
+    #same_stu_gpa2 = sorted(list(studentInfo.objects.filter(user_id__contains=sn[:4]).values_list('gpa', flat=True)),reverse=True)#同じ学年学科のgpaのリスト
+    same_stu_gpa2 = sorted(list(studentInfo.objects.filter(user_id__startswith=sn[:4]).values_list('gpa', flat=True)),reverse=True)#同じ学年学科のgpaのリスト
     #same_stu_gpa = np.array(sorted(list(studentInfo.objects.filter(user_id__contains=sn[:3]).values_list('gpa', flat=True)),reverse=True))#同じ学年学科のgpaのリスト
     p_num2 = len(same_stu_gpa2)#同じ学年学科の人数
     my_gpa2 = studentInfo.objects.get(user_id=sn).gpa#自分のgpa
