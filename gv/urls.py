@@ -19,5 +19,5 @@ urlpatterns = [
     path('flush/', views.flush, name='flush'),
     path('inquiry', views.inquiry, name='inquiry'),
     path('more/', views.more, name='more'),
-
+    path('counter/', views.counter, name='counter'),
 ]

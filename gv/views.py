@@ -442,6 +442,16 @@ def get(request):
         }
         return render(request, 'gv/hp.html', params)
 
+
+def counter(request):
+    stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
+    numbers=len(stuobj)
+    counter_params={
+        'numbers':numbers,
+    }
+
+    return render(request,'gv/counter.html',counter_params)
+
 ###################################################################################
                                #メインのグラフを出力する画面
 #####################################################################################
