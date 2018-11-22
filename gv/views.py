@@ -479,7 +479,9 @@ def counter(request):
         if gakunenn == 0:
             pass
         else:    
-            gakunenn_filter = len(studentInfo.objects.filter(user_id__startswith=gakunenn))
+
+            gg_name=str(gakunenn)+str(gg_name)
+            ggs_numbers = len(studentInfo.objects.filter(user_id__contains=gg_name))
 
 
     else:
