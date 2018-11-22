@@ -461,37 +461,56 @@ def counter(request):
     st_2 = len(studentInfo.objects.filter(user_id__startswith=st_2))
     st_3 = len(studentInfo.objects.filter(user_id__startswith=st_3))
     st_4 = len(studentInfo.objects.filter(user_id__startswith=st_4))
+    
 
     #####  
     gg_lists = {'aa':'キリスト教学科','ac':'史学科','ae':'教育学科','am':'文学科{英米文学専修}','an':'文学科{ドイツ文学専修}','as':'文学科{フランス文学専修}','at':'文学科{日本文学専修}','au':'文学部{文系・思想専修}','ba':'経済学科','bc':'会計ファイナンス学科','bd':'経済政策学科','bm':'経営学科','bn':'国際経営学科','ca':'数学科','cb':'物理学科','cc':'化学科','cd':'生命理学科','da':'社会学科','dd':'現代文化学科','de':'メディア社会学科','dm':'異文化コミュニケーション学科','ea':'法学科','ec':'政治学科','ed':'国際ビジネス法学科','ib':'福祉学科','ic':'コミュニティ政策学科','id':'スポーツウエルネス学科','hm':'心理学科','hn':'映像身体学科','ha':'観光学科','hb':'交流文化学科'}
     ggobj = []
     for gg_list,k in gg_lists.items():
         ggsn = len(studentInfo.objects.filter(user_id__contains=gg_list))
-        result=[k,gg_list,ggsn]
+        same_stu_gpa2 = sorted(list(studentInfo.objects.filter(user_id__contains=gg_list).values_list('gpa', flat=True)),reverse=True)    
+        g_ave=np.sum(same_stu_gpa2)/len(same_stu_gpa2)
+        g_ave=np.round(g_ave,2)            
+        result=[k,gg_list,ggsn,g_ave]
         ggobj.append(result)
     
     ggobj.sort(key=itemgetter(2),reverse=True)
 
     if request.method == 'POST':
         gg_name = request.POST['gg_name']
-        ggs_numbers = len(studentInfo.objects.filter(user_id__contains=gg_name))
         gakunenn = request.POST['gakunenn']
+        ggs_numbers = len(studentInfo.objects.filter(user_id__contains=gg_name))
+        print(ggs_numbers)
+        #gpa平均を出す
+        same_stu_gpa2 = sorted(list(studentInfo.objects.filter(user_id__contains=gg_name).values_list('gpa', flat=True)),reverse=True)    
+        gpa_ave=np.sum(same_stu_gpa2)/len(same_stu_gpa2)
+        print(gpa_ave)
+        
         if gakunenn == 0:
             pass
         else:    
-
             gg_name=str(gakunenn)+str(gg_name)
             ggs_numbers = len(studentInfo.objects.filter(user_id__contains=gg_name))
+            print(ggs_numbers)
+            #gpa平均を出す
+            same_stu_gpa2 = sorted(list(studentInfo.objects.filter(user_id__startswith=gg_name).values_list('gpa', flat=True)),reverse=True)    
+            gpa_ave=np.sum(same_stu_gpa2)/len(same_stu_gpa2)
+            print(gpa_ave)
 
 
     else:
         ggs_numbers = 0
         gakunenn = 0
+        gpa_ave = 0
+    gpa_ave=np.round(gpa_ave,2)
+    #####
 
+    
     counter_params={
         'form':form,
         'ggs_numbers':ggs_numbers,
         'gakunenn':gakunenn,
+        'gpa_ave':gpa_ave,
         'ggobj_counter':ggobj,
         'numbers':numbers,
         'st_1':st_1,

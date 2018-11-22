@@ -26,7 +26,7 @@
 <br>3年生の利用者数：{{st_3}}人
 <br>4年生の利用者数：{{st_4}}人
 <br><br>
-<br><h3>利用者数検索機能</h3>
+<br><h3>利用者数/GPA検索機能</h3>
 <form action='{% url 'counter' %}' method='post' name='counter'>
   {% csrf_token %}
   {{form.gg_name.label}}<br>{{form.gg_name}}<br><br>
@@ -40,6 +40,7 @@
 </form>
 
 <br>該当学科の利用者数：{{ggs_numbers}}人
+<br>該当利用者のGPA平均：{{gpa_ave}}
 <br>
 
 <table>
@@ -48,6 +49,7 @@
     <th>学科名</th>
     <th>コード</th>
     <th>利用者数</th>
+    <th>GPA平均</th>
   </tr>
   </thead>
   <tbody>
@@ -59,6 +61,7 @@
     </td>
     <td>{{ message.1 }}</td>
     <td>{{ message.2 }}人</td>
+    <td>{{ message.3 }}</td>
   </tr>
   {% endfor %}
   </tbody>
