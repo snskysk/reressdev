@@ -88,3 +88,15 @@ class find_teacher(forms.Form):
     t_sub_list = [['','全ての教科']]
     t_name = forms.CharField(label='先生')
     t_sub = forms.ChoiceField(choices=t_sub_list, required = False)
+
+class ggs_counter_Form(forms.Form):
+    gakunenn_list = [
+    (0,'全学年'),
+    (18,'1年生'),
+    (17,'2年生'),
+    (16,'3年生'),
+    (15,'4年生'),
+        ]
+
+    gg_name = forms.CharField(label='学科コードを入力')
+    gakunenn = forms.ChoiceField(choices=gakunenn_list, required = False,label='学年で絞る')

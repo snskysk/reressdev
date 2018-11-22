@@ -2,8 +2,9 @@
 {% load widget_tweaks %}
 {% load static %}
 {% block css %}
-<link rel='stylesheet' type='text/css' href='{% static 'gv/teacher_search/my_teacher_search.css' %}' />
-<link rel='stylesheet' type='text/css' href='{% static 'gv/teacher_search/button.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/counter/my_teacher_search.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/counter/button.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/counter/table.css' %}' />
 <!--<link rel='stylesheet' type='text/css' href='{% static 'gv/button/table.css' %}' />-->
 
 
@@ -15,15 +16,56 @@
 <!--<img src="/static/gv/teacher_search/images/kyozyubunnseki.png" alt="Re:Re:ss" width="100%"/>-->
 <br>
 <!--経過時間：{{elapsed_time}} で表示-->
-<a href={% url 'counter' %}>to counter as counter</a><br>
-<a href={% url 'hp' %}>to homepage with DATA</a><br>
-<a href={% url 'flush' %}>to homepage with FLUSH</a><br>
+<h2><a href={% url 'counter' %}>データベースを読み込む</a></h2><br>
+<a href={% url 'hp' %}>To toppage with DATA</a><br>
+<a href={% url 'flush' %}>To toppage with FLUSH</a><br>
 
 <br>現在の利用者数：{{numbers}}人
 <br>1年生の利用者数：{{st_1}}人
 <br>2年生の利用者数：{{st_2}}人
 <br>3年生の利用者数：{{st_3}}人
 <br>4年生の利用者数：{{st_4}}人
+<br><br>
+<br><h3>利用者数検索機能</h3>
+<form action='{% url 'counter' %}' method='post' name='counter'>
+  {% csrf_token %}
+  {{form.gg_name.label}}<br>{{form.gg_name}}<br><br>
+    {{form.gakunenn.label}}<br>{{form.gakunenn}}<br><br>
+
+  <div><!--button-->
+    <button type="submit" class="hamon">
+      利用者数検索
+    </button>
+  </div><!--button-->
+</form>
+
+<br>該当学科の利用者数：{{ggs_numbers}}人
+<br>
+
+<table>
+  <thead>
+  <tr>
+    <th>学科名</th>
+    <th>コード</th>
+    <th>利用者数</th>
+  </tr>
+  </thead>
+  <tbody>
+  {% for message in ggobj_counter %}
+  <tr>
+    <td>
+        <input type="hidden" name="sub-name" value="{{message.0}}">
+        {{message.0}}
+    </td>
+    <td>{{ message.1 }}</td>
+    <td>{{ message.2 }}人</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+  </table>
+
+
+
 
 {% endblock %}
 
