@@ -100,3 +100,8 @@ class ggs_counter_Form(forms.Form):
 
     gg_name = forms.CharField(label='学科コードを入力')
     gakunenn = forms.ChoiceField(choices=gakunenn_list, required = False,label='学年で絞る')
+
+
+
+class find_sub(forms.Form):
+    s_name = forms.CharField(label='教科')

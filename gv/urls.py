@@ -20,4 +20,5 @@ urlpatterns = [
     path('inquiry', views.inquiry, name='inquiry'),
     path('more/', views.more, name='more'),
     path('counter/', views.counter, name='counter'),
+    path('sub_search/', views.sub_search, name='sub_search'),
 ]

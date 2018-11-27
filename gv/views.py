@@ -6,7 +6,7 @@ import time
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 #from .forms import userInfoForm, findForm, find_my_sub_Form, food_pool_Form, find_shop
-from .forms import userInfoForm, findForm, find_my_sub_Form, food_pool_Form, find_shop, find_course, find_teacher
+from .forms import userInfoForm, findForm, find_my_sub_Form, food_pool_Form, find_shop, find_course, find_teacher, find_sub
 from .models import studentInfo, subjectInfo, food_pool
 from pycord.main import condact
 from pycord.pytojs import pytojsMaterials
@@ -25,6 +25,75 @@ from operator import itemgetter
 from .forms import ggs_counter_Form
 #
 # Create your views here.
+
+
+
+
+
+####################################################################################
+                            #授業分析(11月27日)new!!!
+###############################################################################
+def sub_search(request):
+
+
+    all_sub_list = list(set(subjectInfo.objects.values_list('subjectname', flat=True)))#すべての授業のリスト(重複なし)
+    if request.method == 'POST':
+        form = find_sub(request.POST)
+        s_name = request.POST['s_name']
+
+        sub_obj = subjectInfo.objects.filter(subjectname=s_name)
+
+
+        #num_sub = len(sub_obj)#その先生の授業数
+        grade_list_dict = OrderedDict({'Ｓ':0,'Ａ':0,'Ｂ':0,'Ｃ':0}) #順番がたぶん大事
+        grade_list = sub_obj.values_list('grade', flat=True)#成績判定を取得(重複あり)
+        grade_list_dict_new = Counter(grade_list) #授業の数
+        grade_list_dict.update(grade_list_dict_new) #辞書をupdate
+        nums = grade_list_dict.values()
+        nums = list(nums)#リストにする
+        grade_list_sample = list(grade_list_dict.keys())
+
+
+        #その授業の先生のリスト
+        t_list = list(sub_obj.values_list('teacher',flat=True))
+        t_list = [a.replace('\u3000', '') for a in t_list]
+        t_dict = Counter(t_list).most_common()
+        len_t_dict = len(t_list)
+        print(len_t_dict)
+        t_dict = [(a[0],a[1]/len_t_dict*100) for a in t_dict]
+        print(t_dict)
+
+
+        sub_search_params = {
+            't_dict':t_dict,
+            'form':form,
+            #'sub_obj':sub_obj,
+            'nums':nums,
+            'grade_list_sample':grade_list_sample,
+            'all_sub_list':all_sub_list,
+            #'teacher_sub_dict':teacher_sub_dict,
+            'r_form':'{}'.format(s_name).replace('　','')
+        }
+
+        return render(request, 'gv/sub_search.html', sub_search_params)
+
+    form = find_sub()
+    nums = [0,0,0,0,0]
+    grade_list_sample = ['S','A','B','C','D']
+    sub_search_params = {
+        'all_sub_list':all_sub_list,
+        'nums':nums,
+        'grade_list_sample':grade_list_sample,
+        'r_form':'授業分析',
+        'form':form,
+    }
+    return render(request, 'gv/sub_search.html', sub_search_params)
+
+
+
+
+
+
 
 ###################################################################################
                                     #2重サブミット防止
