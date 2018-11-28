@@ -52,6 +52,9 @@ def sub_search(request):
         nums = grade_list_dict.values()
         nums = list(nums)#リストにする
         grade_list_sample = list(grade_list_dict.keys())
+        for i in range(len(grade_list_sample)):
+            if grade_list_sample[i]=="履":
+                grade_list_sample[i]="履修中"
 
         #その授業のGPA
 
@@ -64,11 +67,19 @@ def sub_search(request):
         t_list = [a.replace('\u3000', '　') for a in t_list]
         t_dict = Counter(t_list).most_common()
         len_t_dict = len(t_list)
-        print(t_dict)
-        print(len_t_dict)
-        t_dict = [(a[0],np.round(a[1]/len_t_dict*100),2) for a in t_dict]
-        print(t_dict)
-
+        t_dict = [(a[0],np.round(a[1]/len_t_dict*100,1)) for a in t_dict]#先生名、担当率
+        ##################### 11/28 new added 先生名でDB検索し、単位取得済みの評価平均を数値化（GPA化）
+        t_dict_message01 = np.array(t_dict)
+        np_t_list = t_dict_message01[:,0]        
+        zgpa = []
+        for i in range(len(np_t_list)):
+            teacher_name = np_t_list[i]         
+            zyugyo_gpa = list(sub_obj.filter(teacher=teacher_name).values_list('grade_score_int', flat=True).exclude(grade__contains='履'))
+            zgpa_ave=np.round(np.sum(zyugyo_gpa)/len(zyugyo_gpa),2)
+            zgpa.append(zgpa_ave)
+        t_dict_message2 = np.array(zgpa)
+        t_dict_message2=np.reshape(t_dict_message2, (t_dict_message2.shape[0], 1))
+        t_dict = np.hstack([t_dict_message01,t_dict_message2])
 
         sub_search_params = {
             't_dict':t_dict,
@@ -277,7 +288,6 @@ def teacher_search(request):
         t_sub = request.POST['t_sub']
 
         sub_obj = sub_obj.filter(teacher=t_name)
-        print(t_sub)
         #授業のフィルター
         if len(t_sub) is not 0:
             sub_obj = sub_obj.filter(subjectname=t_sub)
@@ -289,9 +299,16 @@ def teacher_search(request):
         grade_list_dict.update(grade_list_dict_new) #辞書をupdate
         nums = grade_list_dict.values()
         nums = list(nums)#リストにする
-
         grade_list_sample = list(grade_list_dict.keys())
+        for i in range(len(grade_list_sample)):
+            if grade_list_sample[i]=="履":
+                grade_list_sample[i]="履修中"
+        
+        ################# 11/28 new added その先生のGPA
+        zyugyo_gpa = list(sub_obj.filter(teacher=t_name).values_list('grade_score_int', flat=True).exclude(grade__contains='履'))
+        k_gpa = np.round(np.sum(zyugyo_gpa)/len(zyugyo_gpa),2)
 
+        ######################################
         elapsed_time = time.time() - start
         teacher_search_params = {
             'elapsed_time':elapsed_time,
@@ -302,7 +319,8 @@ def teacher_search(request):
             'grade_list_sample':grade_list_sample,
             'teacher_list_space':teacher_list_space,
             #'teacher_sub_dict':teacher_sub_dict,
-            'r_form':'{}  {}'.format(t_name,t_sub).replace('　','')
+            'r_form':'{}  {}'.format(t_name,t_sub).replace('　',''),
+            'k_gpa':k_gpa,
         }
 
         return render(request, 'gv/teacher_search.html', teacher_search_params)
