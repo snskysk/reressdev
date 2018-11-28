@@ -150,8 +150,8 @@ def course(request, num=1):
     enter_year = sn[:2]   #学籍番号から入学年度の取得
     facu_depa = sn[2:4]  #学籍番号から学部学科の取得
     stu_obj = studentInfo.objects.filter(user_id__contains=facu_depa) #データベースから同じ学部学科の人を取得
-    sub_obj = subjectInfo.objects.filter(user_id__contains=facu_depa) #データベースから同じ学部学科の授業を取得
-    sub_obj = sub_obj.exclude(category1__contains='必') #必修を除く
+    sub_obj_origin = subjectInfo.objects.filter(user_id__contains=facu_depa) #データベースから同じ学部学科の授業を取得
+    sub_obj = sub_obj_origin.exclude(category1__contains='必') #必修を除く
 
     if request.method == 'POST':
         form = find_course(request.POST)
@@ -171,7 +171,7 @@ def course(request, num=1):
         zgpa = []
         for i in range(len(np_sub_list)):
             zg_name = np_sub_list[i] #授業名でDB検索し、単位取得済みの評価平均を数値化（GPA化）         
-            zyugyo_gpa = list(sub_obj.filter(subjectname=zg_name).values_list('grade_score_int', flat=True).exclude(grade__contains='履'))
+            zyugyo_gpa = list(sub_obj_origin.filter(subjectname=zg_name).values_list('grade_score_int', flat=True).exclude(grade__contains='履'))
             zgpa_ave=np.round(np.sum(zyugyo_gpa)/len(zyugyo_gpa),2)
             zgpa.append(zgpa_ave)
 
