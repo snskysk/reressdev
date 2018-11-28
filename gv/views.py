@@ -55,7 +55,8 @@ def sub_search(request):
 
         #その授業のGPA
 
-        s_gpa = list(sub_obj.filter(subjectname=s_name).values_list('grade_score_int', flat=True))
+        s_gpa = list(sub_obj.filter(subjectname=s_name).values_list('grade_score_int', flat=True).exclude(grade__contains='履'))
+        #s_gpa = s_gpa.exclude(grade__contains='履')
         s_gpa = np.round(np.sum(s_gpa)/len(s_gpa),2)
 
         #その授業の先生のリスト
@@ -159,7 +160,7 @@ def course(request, num=1):
         zgpa = []
         for i in range(len(np_sub_list)):
             zg_name = np_sub_list[i] #授業名でDB検索し、単位取得済みの評価平均を数値化（GPA化）         
-            zyugyo_gpa = list(sub_obj.filter(subjectname=zg_name).values_list('grade_score_int', flat=True))
+            zyugyo_gpa = list(sub_obj.filter(subjectname=zg_name).values_list('grade_score_int', flat=True).exclude(grade__contains='履'))
             zgpa_ave=np.round(np.sum(zyugyo_gpa)/len(zyugyo_gpa),2)
             zgpa.append(zgpa_ave)
 
@@ -187,7 +188,7 @@ def course(request, num=1):
     zgpa = []
     for i in range(len(np_sub_list)):
         zg_name = np_sub_list[i] #授業名でDB検索し、単位取得済みの評価平均を数値化（GPA化）         
-        zyugyo_gpa = list(sub_obj.filter(subjectname=zg_name).values_list('grade_score_int', flat=True))
+        zyugyo_gpa = list(sub_obj.filter(subjectname=zg_name).values_list('grade_score_int', flat=True).exclude(grade__contains='履'))
         zgpa_ave=np.round(np.sum(zyugyo_gpa)/len(zyugyo_gpa),2)
         zgpa.append(zgpa_ave)
 
