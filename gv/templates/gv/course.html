@@ -31,21 +31,23 @@
 <table>
 <thead>
 <tr>
-  <th>　  あなたの学科で人気の授業<br>（クリックでシラバスへ）</th>
-  <th>履修者<br>多い順</th>
+  <th>　  あなたの学科で人気の授業<br>（クリックで授業分析へ）</th>
+  <th>履修者多い順</th>
+  <th>科目別GPA</th>
 </tr>
 </thead>
 <tbody>
 {% for message in sub_list_counter %}
 <tr>
   <td>
-    <form method="post" action="{% url 'sirabasu' %}" target="_blank">
+    <form method="post" action="{% url 'sub_search' %}">
       {% csrf_token %}
-      <input type="hidden" name="sub-name" value="{{message.0}}">
+      <input type="hidden" name="s_name" value="{{message.0}}">
       <a href="javascript:void(0)" onclick="this.parentNode.submit()">{{message.0}}</a>
     </form>
   </td>
   <td>{{ message.1 }}人</td>
+  <td>{{ message.2 }}</td>
 </tr>
 {% endfor %}
 </tbody>

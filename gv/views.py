@@ -56,11 +56,12 @@ def sub_search(request):
 
         #その授業の先生のリスト
         t_list = list(sub_obj.values_list('teacher',flat=True))
-        t_list = [a.replace('\u3000', '') for a in t_list]
+        t_list = [a.replace('\u3000', '　') for a in t_list]
         t_dict = Counter(t_list).most_common()
         len_t_dict = len(t_list)
+        print(t_dict)
         print(len_t_dict)
-        t_dict = [(a[0],a[1]/len_t_dict*100) for a in t_dict]
+        t_dict = [(a[0],np.round(a[1]/len_t_dict*100),2) for a in t_dict]
         print(t_dict)
 
 
@@ -147,7 +148,19 @@ def course(request, num=1):
             sub_obj = sub_obj.filter(category1=category1)
         sub_list = sub_obj.values_list('subjectname', flat=True)#授業名でリストを取得(重複あり)
         sub_list_counter = Counter(sub_list).most_common() #授業の数(多い順)
+        ###############11/27 new added 科目別GPA######################
+        slc_message01 = np.array(sub_list_counter)
+        np_sub_list = slc_message01[:,0]        
+        zgpa = []
+        for i in range(len(np_sub_list)):
+            zg_name = np_sub_list[i] #授業名でDB検索し、単位取得済みの評価平均を数値化（GPA化）         
+            zyugyo_gpa = list(sub_obj.filter(subjectname=zg_name).values_list('grade_score_int', flat=True))
+            zgpa_ave=np.round(np.sum(zyugyo_gpa)/len(zyugyo_gpa),2)
+            zgpa.append(zgpa_ave)
 
+        slc_message2 = np.array(zgpa)
+        slc_message2=np.reshape(slc_message2, (slc_message2.shape[0], 1))
+        sub_list_counter = np.hstack([slc_message01,slc_message2])        
         ###############paginator######################
         #page = Paginator(sub_list_counter,10)
         ##############################################
@@ -163,6 +176,19 @@ def course(request, num=1):
     sub_list = sub_obj.values_list('subjectname', flat=True)#授業名でリストを取得(重複あり)
     #pagenationがうまくいかないため今だけ変更
     sub_list_counter = Counter(sub_list).most_common()[:50] #授業の数(多い順)
+    ###############11/27 new added  科目別GPA######################
+    slc_message01 = np.array(sub_list_counter)
+    np_sub_list = slc_message01[:,0]        
+    zgpa = []
+    for i in range(len(np_sub_list)):
+        zg_name = np_sub_list[i] #授業名でDB検索し、単位取得済みの評価平均を数値化（GPA化）         
+        zyugyo_gpa = list(sub_obj.filter(subjectname=zg_name).values_list('grade_score_int', flat=True))
+        zgpa_ave=np.round(np.sum(zyugyo_gpa)/len(zyugyo_gpa),2)
+        zgpa.append(zgpa_ave)
+
+    slc_message2 = np.array(zgpa)
+    slc_message2=np.reshape(slc_message2, (slc_message2.shape[0], 1))
+    sub_list_counter = np.hstack([slc_message01,slc_message2])        
 
     ###############paginator######################
     #page = Paginator(sub_list_counter,10)
@@ -184,7 +210,12 @@ def course(request, num=1):
 
 def sirabasu(request):
     sub_name=request.POST['sub-name']#授業名を取得
-    subinfo = subjectInfo.objects.filter(subjectname=sub_name)[0]#データベースから該当する授業を取得
+    ################## 11/28 new added #################
+    try:#特殊授業以外はうまくいく想定
+        subinfo = subjectInfo.objects.filter(subjectname=sub_name)[0]#データベースから該当する授業を取得
+    except:# ゼミナール　Aなどの時エラー回避
+        url = 'https://sy.rikkyo.ac.jp/timetable/slbsskgr.do'
+        return HttpResponseRedirect('{}'.format(url))
     sub_num = subinfo.subjectnum#教科番号を取得
     #now_url = get_sirabasu(sub_name, sub_num)
 
@@ -240,6 +271,7 @@ def teacher_search(request):
         t_sub = request.POST['t_sub']
 
         sub_obj = sub_obj.filter(teacher=t_name)
+        print(t_sub)
         #授業のフィルター
         if len(t_sub) is not 0:
             sub_obj = sub_obj.filter(subjectname=t_sub)

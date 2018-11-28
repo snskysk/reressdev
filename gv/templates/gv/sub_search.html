@@ -2,45 +2,59 @@
 {% load widget_tweaks %}
 {% load static %}
 {% block css %}
-<!-- <link rel='stylesheet' type='text/css' href='{% static 'gv/teacher_search/my_teacher_search.css' %}' />
-<link rel='stylesheet' type='text/css' href='{% static 'gv/teacher_search/button.css' %}' /> -->
-<!--<link rel='stylesheet' type='text/css' href='{% static 'gv/button/table.css' %}' />-->
+<link rel='stylesheet' type='text/css' href='{% static 'gv/sub_search/my_teacher_search.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/sub_search/button.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/sub_search/table.css' %}' />
 
 
 {% endblock%}
 
 {% block body %}
 <!--メインの部分-->
-<br>
-<img src="/static/gv/teacher_search/images/kyozyubunnseki.png" alt="Re:Re:ss" width="100%"/>
+<img src="/static/gv/sub_search/images/zyugyoubunnseki.png" alt="Re:Re:ss" width="100%"/>
 <br>
 
     <form action='{% url "sub_search" %}' method='post' name='sub_search'>
       {% csrf_token %}
-      教科名入力（部分一致可）<br>
+      教科名入力（部分一致で予測変換）<br>
             <!-- 入力フォーム -->
             {{form.s_name|add_class:"sub_input"|attr:"autocomplete:off"}}<br>
             <!--<input id="text" type="text" name="pattern" value="" autocomplete="off" size="10" style="display: block">-->
             <!-- 補完候補を表示するエリア -->
             <div id="suggest" class="suggest_input" style="display:none;"></div><br>
-            <!-- {{form.t_sub|add_class:"t_sub_input"}}<br> -->
+            <!-- {{form.t_sub|add_class:"t_sub_input"}}<br> -->   
       <button class="hamon">
-        授業を検索
+        授業を検索する
       </button>
+    </form>
+    <div><canvas id="bar-chart"></canvas></div>
+    <form method="post" action="{% url 'sirabasu' %}" target="_blank">
+      {% csrf_token %}
+      <input type="hidden" name="sub-name" value="{{r_form}}">       
+      <a href="javascript:void(0)" onclick="this.parentNode.submit()"><button class="hamon">シラバスへ飛ぶ</button>
+      </a>
     </form>
     <div id='t_list'>
       <br>
       <table>
       <thead>
       <tr>
-        <th>a</th>
-        <th>b</th>
+        <th>専任名</th>
+        <th>担当率</th>
       </tr>
       </thead>
       <tbody>
       {% for message in t_dict %}
       <tr>
-        <td>{{message.0}}</td>
+        <td>
+          <!--<form method="post" action="{% url 'teacher_search' %}" target="_blank">-->
+          <form method="post" action="{% url 'teacher_search' %}">
+             {% csrf_token %}
+             <input type="hidden" name="t_name" value="{{message.0}}">
+             <input type="hidden" name="t_sub" value="">
+             <a href="javascript:void(0)" onclick="this.parentNode.submit()">{{message.0}}</a>          
+          </form>
+        </td>
         <td>{{ message.1 }}%</td>
       </tr>
       {% endfor %}
@@ -49,7 +63,7 @@
       <br>
     </div>
 
-    <div><canvas id="bar-chart"></canvas></div>
+
 
 
 {% endblock %}
