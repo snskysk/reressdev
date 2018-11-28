@@ -53,6 +53,10 @@ def sub_search(request):
         nums = list(nums)#リストにする
         grade_list_sample = list(grade_list_dict.keys())
 
+        #その授業のGPA
+
+        s_gpa = list(sub_obj.filter(subjectname=s_name).values_list('grade_score_int', flat=True))
+        s_gpa = np.round(np.sum(s_gpa)/len(s_gpa),2)
 
         #その授業の先生のリスト
         t_list = list(sub_obj.values_list('teacher',flat=True))
@@ -73,7 +77,8 @@ def sub_search(request):
             'grade_list_sample':grade_list_sample,
             'all_sub_list':all_sub_list,
             #'teacher_sub_dict':teacher_sub_dict,
-            'r_form':'{}'.format(s_name).replace('　','')
+            'r_form':'{}'.format(s_name).replace('　',''),
+            's_gpa':s_gpa,
         }
 
         return render(request, 'gv/sub_search.html', sub_search_params)

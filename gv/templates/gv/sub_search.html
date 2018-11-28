@@ -16,7 +16,7 @@
 
     <form action='{% url "sub_search" %}' method='post' name='sub_search'>
       {% csrf_token %}
-      教科名入力（部分一致で予測変換）<br>
+      教科名入力(<strong class="non-class" style="border-top: 2px dotted #66ff66;">部分一致で予測変換</strong>)<br>
             <!-- 入力フォーム -->
             {{form.s_name|add_class:"sub_input"|attr:"autocomplete:off"}}<br>
             <!--<input id="text" type="text" name="pattern" value="" autocomplete="off" size="10" style="display: block">-->
@@ -27,6 +27,8 @@
         授業を検索する
       </button>
     </form>
+    <br>
+    <div class="non-class" style="text-align: center;">該当科目のGPA：<strong class="non-class" style="background: linear-gradient(transparent 60%, #ff99ff 60%);">{{s_gpa}}</strong></div>
     <div><canvas id="bar-chart"></canvas></div>
     <form method="post" action="{% url 'sirabasu' %}" target="_blank">
       {% csrf_token %}
@@ -35,11 +37,10 @@
       </a>
     </form>
     <div id='t_list'>
-      <br>
       <table>
       <thead>
       <tr>
-        <th>専任名</th>
+        <th>専任名(<strong class="non-class" style="background: linear-gradient(transparent 60%, #ff99ff 60%);">クリックで教授分析へ</strong>)</th>
         <th>担当率</th>
       </tr>
       </thead>

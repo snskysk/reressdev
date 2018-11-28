@@ -18,7 +18,7 @@
 <!-- {{objjj}} -->
     <form action='{% url 'teacher_search' %}' method='post' name='teacher_search'>
       {% csrf_token %}
-      教授名入力（部分一致で予測変換）<br>
+      教授名入力(<strong class="non-class" style="border-top: 2px dotted #66ff66;">部分一致で予測変換</strong>)<br>
             <!-- 入力フォーム -->
             {{form.t_name|add_class:"teacher_input"|attr:"autocomplete:off"}}<br>
             <!--<input id="text" type="text" name="pattern" value="" autocomplete="off" size="10" style="display: block">-->
