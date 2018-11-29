@@ -56,7 +56,7 @@ background: repeating-linear-gradient(-45deg, #cce7ff, #cce7ff 3px,#e9f4ff 3px, 
 
 .form-div .form-in-img {
   position: absolute;
-  top: 2%;
+  top: -2%;
   left: 0;
   height: 50%;
 }

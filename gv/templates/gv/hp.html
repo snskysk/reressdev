@@ -96,7 +96,7 @@
 
 {% block body %}
 <h4 class="safety-color" id="to_ambassador">safety</h4>
-<a href='{% url 'mainhome_after_login' %}'><h4 class="safety-color" id="to_ambassador2">ログイン済みの方</h4></a>
+<a href='{% url 'site_map' %}'><h4 class="safety-color" id="to_ambassador2">ログイン済みの方</h4></a>
 <!-- モーダルエリアここから -->
 <section id="modalArea2" class="modalArea">
     <div id="modalBg2" class="modalBg"></div>
@@ -155,12 +155,13 @@
 
 
 <!--</a>--><!--jump-->
-
     <div class="form-div"><!--画像の中にログインformを埋め込む-->
         <img src="{% static 'gv/homepage/images/hpmain101b.PNG'%}" class="mainimage" width="100%">
         <div class="row form-in-img">
             <div class="user-form">
               <div class="limiter">
+                <h3 style="color: antiquewhite; text-align: center;">現在の登録者数：{{numbers}}人</h3>
+    
                 <form class="login100-form validate-form flex-sb flex-w" action='{% url 'mainhome' %}' method='post' , name='mainhome'>
                   {% csrf_token %}
                   <!--<span class="login100-form-title">学生ログイン</span><br><br><br>-->
@@ -184,11 +185,102 @@
                         
                     </div><!--container-login100-form-btn-->
                 </form>
+                <h5 style="color: antiquewhite; text-align: center;">※初回は15秒ほどお待ちください</h5>
               </div><!--limiter-->
             </div><!--user-form-->
         </div><!--row form-in-img-->
 
       </div><!--form-div-->
+
+      <div class="row" width=50%>
+            <div class="panel panel-primary panel-main-color">
+              <div class="panel-heading panel-color" style="text-align:center;" width="50%">
+                <span>成績参照機能</span>
+              </div><!--panel-heaing-->
+              <div class="panel-body">
+                <div class="col-lg-6 col-xs-6">
+                  <div class="panel panel-info panel-main-color">
+                    <div class="panel-heading">
+                        <a href={% url 'detail' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">GPAランキング</span></h5></a>
+                    </div>
+                    <div class="panel-body">
+                      <div class="image101">
+                          <img src="{% static 'gv/site_map/images/site_map_2.PNG'%}" width="80%">
+                      </div>
+                      <h6>学年順位や学科内順位を確認しよう<br>成績表ソート機能も</h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-xs-6">
+                  <div class="panel panel-info panel-main-color">
+                    <div class="panel-heading">
+                      <a href={% url 'mainhome_after_login' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">成績グラフ</span></h5></a>
+                    </div>
+                    <div class="panel-body">
+                      <div class="image101">
+                          <img src="{% static 'gv/site_map/images/site_map_1.PNG'%}" width="80%">
+                      </div>
+                      <h6>成績の各種達成率を<br>グラフ化</h6>
+                    </div>
+                  </div>
+                </div>
+              </div><!--panel-body-->
+            </div><!--panel panel-info panel-main-color-->
+          </div>
+          
+          
+          <div class="row" width=50%>
+            <div class="panel panel-primary panel-main-color">
+              <div class="panel-heading panel-color" style="text-align:center;" width="50%">
+                <span>履修登録補助機能</span>
+              </div><!--panel-heaing-->
+              <div class="panel-body">
+                <div class="col-lg-6 col-xs-6">
+                  <div class="panel panel-info panel-main-color">
+                    <div class="panel-heading">
+                      <a href={% url 'course' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">人気授業分析</span></h5></a>
+                    </div>
+                    <div class="panel-body">
+                      <div class="image101">
+                          <img src="{% static 'gv/site_map/images/site_map_3.PNG'%}" width="80%">
+                      </div>
+                      <h6>あなたの学科の人気授業をランキング化<br>授業名クリックで授業分析を確認しよう</h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-xs-6">
+                  <div class="panel panel-info panel-main-color">
+                    <div class="panel-heading">
+                      <a href={% url 'sub_search' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">授業分析</span></h5></a>
+                    </div>
+                    <div class="panel-body">
+                      <div class="image101">
+                          <img src="{% static 'gv/site_map/images/site_map_4.PNG'%}" width="80%">
+                      </div>
+                      <h6>授業の難易度をGPAやグラフで可視化<br>担当教授クリックで教授分析を確認しよう<br><br>シラバスにも接続可能</h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-xs-6">
+                  <div class="panel panel-info panel-main-color">
+                    <div class="panel-heading">
+                      <a href={% url 'teacher_search' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">教授分析</span></h5></a>
+                    </div>
+                    <div class="panel-body">
+                      <div class="image101">
+                          <img src="{% static 'gv/site_map/images/site_map_5.PNG'%}" width="80%">
+                      </div>
+                      <h6>教授の厳しさをGPAやグラフで可視化<br></h6>
+                    </div>
+                  </div>
+                </div>
+          
+              </div><!--panel-body-->
+            </div><!--panel panel-info panel-main-color-->
+          </div>
+          
+
+
 
       <a href='{% url 'course' %}'>
           <img src="{% static 'gv/homepage/images/hp2.jpg'%}" width="100%">
@@ -281,7 +373,7 @@ $(function () {
         var topBtn = $('#to_ambassador'); 
         topBtn.hide();
         $(window).on('load scroll', function(){
-            if ($(this).scrollTop() < 400) {/*100は表示されるタイミングを適当に*/
+            if ($(this).scrollTop() < 600) {/*100は表示されるタイミングを適当に*/
                 topBtn.fadeIn();
             } else {
                 topBtn.fadeOut();
@@ -294,7 +386,7 @@ $(function () {
         var topBtn = $('#to_ambassador2'); 
         topBtn.hide();
         $(window).on('load scroll', function(){
-            if ($(this).scrollTop() < 400) {/*100は表示されるタイミングを適当に*/
+            if ($(this).scrollTop() < 600) {/*100は表示されるタイミングを適当に*/
                 topBtn.fadeIn();
             } else {
                 topBtn.fadeOut();

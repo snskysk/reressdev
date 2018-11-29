@@ -488,9 +488,12 @@ def hp(request):
 
 def hp(request):
     form = userInfoForm()
+    stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
+    numbers=len(stuobj)
     index_params = {
         'form':form,
         'message':'',
+        'numbers':numbers,
         }
 
     return render(request, 'gv/hp.html', index_params)
