@@ -28,6 +28,32 @@ from .forms import ggs_counter_Form
 
 
 
+def site_map(request):
+    try:#sessionが切れていないか確認
+        sn = request.session['stunum']  #学籍番号をsessionから持ってくる
+    except:
+        form = userInfoForm()
+        hp_params = {
+            'form':form,
+            'message':'学籍番号とパスワードを入力しよう'
+
+            }
+        return render(request, 'gv/hp.html', hp_params)
+
+    stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
+    numbers=len(stuobj)
+
+    if request.method == 'POST':
+        site_map_params = {
+        'numbers':numbers,
+        }
+        return render(request, 'gv/site_map.html', site_map_params)
+    
+    site_map_params = {
+    'numbers':numbers,
+    }
+    return render(request, 'gv/site_map.html', site_map_params)
+
 
 
 ####################################################################################
@@ -853,7 +879,7 @@ def mainhome(request):
 
 
         #ログインしたことの証拠,mainhome_after_loginで使用
-        return render(request, 'gv/mainhome.html', mainhome_params)
+        return render(request, 'gv/site_map.html', mainhome_params)
 
     #getでmainhomeにアクセスしてしまった時の処理
     else:
