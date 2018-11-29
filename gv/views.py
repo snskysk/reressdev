@@ -29,19 +29,20 @@ from .forms import ggs_counter_Form
 
 
 def site_map(request):
+    stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
+    numbers=len(stuobj)
     try:#sessionが切れていないか確認
         sn = request.session['stunum']  #学籍番号をsessionから持ってくる
     except:
         form = userInfoForm()
+
         hp_params = {
             'form':form,
-            'message':'学籍番号とパスワードを入力しよう'
+            'message':'学籍番号とパスワードを入力しよう',
+            'numbers':numbers,
 
             }
         return render(request, 'gv/hp.html', hp_params)
-
-    stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
-    numbers=len(stuobj)
 
     if request.method == 'POST':
         site_map_params = {
@@ -754,7 +755,7 @@ def mainhome(request):
                 mainhome_after_login_params['residual_unit_bou'] = residual_unit_bou
                 on_course_bou = request.session['on_course_bou']
                 mainhome_after_login_params['on_course_bou'] = on_course_bou
-                return render(request, 'gv/mainhome.html', mainhome_after_login_params)
+                return render(request, 'gv/site_map.html', mainhome_after_login_params)
 
             except:
                 pass
@@ -891,9 +892,14 @@ def mainhome(request):
     #getでmainhomeにアクセスしてしまった時の処理
     else:
         form = userInfoForm()
+        stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
+        numbers=len(stuobj)
+
         index_params = {
-        'form':form,
-        'message':'学籍番号とパスワードを入力しよう!'
+            'form':form,
+            'message':'学籍番号とパスワードを入力しよう',
+            'numbers':numbers,
+
         }
         return render(request, 'gv/hp.html', index_params)
 
@@ -957,9 +963,14 @@ def mainhome_after_login(request):
         #return render(request, 'gv/mainhome.html', mainhome_params)
     #else:
     form = userInfoForm()
+    stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
+    numbers=len(stuobj)
+
     index_params = {
         'form':form,
-        'message':'学籍番号とパスワードを入力しよう'
+        'message':'学籍番号とパスワードを入力しよう',
+        'numbers':numbers,
+
     }
     return render(request, 'gv/hp.html', index_params)
 
