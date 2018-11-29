@@ -43,7 +43,7 @@
     <form method="post" action="{% url 'sub_search' %}">
       {% csrf_token %}
       <input type="hidden" name="s_name" value="{{message.0}}">
-      <a href="javascript:void(0)" onclick="this.parentNode.submit()">{{message.0}}</a>
+      <a href="javascript:void(0)" onclick="this.parentNode.submit()"><span class="non-class" style="background: linear-gradient(transparent 97%, #000 50%);">{{message.0}}</span></a>
     </form>
   </td>
   <td>{{ message.1 }}人</td>
