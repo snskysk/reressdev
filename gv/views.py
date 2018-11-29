@@ -164,13 +164,16 @@ def exists_submit_token(request):
                                      #履修を考えるcourse
 ###################################################################################
 def course(request, num=1):
+    stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
+    numbers=len(stuobj)
     try:#sessionが切れていないか確認
         sn = request.session['stunum']  #学籍番号をsessionから持ってくる
     except:
         form = userInfoForm()
         hp_params = {
             'form':form,
-            'message':'学籍番号とパスワードを入力しよう'
+            'message':'学籍番号とパスワードを入力しよう',
+            'numbers':numbers,
 
             }
         return render(request, 'gv/hp.html', hp_params)
@@ -1109,6 +1112,8 @@ def detail(request):
 """
 
 def detail(request):
+    stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
+    numbers=len(stuobj)
     try:
         sn = request.session['stunum']
 
@@ -1117,7 +1122,8 @@ def detail(request):
         form = userInfoForm()
         index_params = {
             'form':form,
-            'message':'学籍番号とパスワードを入力しよう'
+            'message':'学籍番号とパスワードを入力しよう',
+            'numbers':numbers,
         }
         return render(request, 'gv/hp.html', index_params)
 
