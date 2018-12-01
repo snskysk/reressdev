@@ -189,7 +189,7 @@ def course(request, num=1):
         Q(category1='＊学びの精神＊')|
         Q(category1='＊多彩な学び，スポ＊')
     ).exclude(grade='履').values_list('subjectname',flat=True)).most_common()[:20]
-    zenkari_ranking = [(a[0],a[1],np.round(np.average(list(subjectInfo.objects.filter(subjectname=a[0]).values_list('grade_score_int',flat=True))),1)) for a in zenkari_ranking]    
+    zenkari_ranking = [(a[0],a[1],np.round(np.average(list(subjectInfo.objects.filter(subjectname=a[0]).values_list('grade_score_int',flat=True))),2)) for a in zenkari_ranking]    
 
 
 
