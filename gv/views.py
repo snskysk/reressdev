@@ -169,8 +169,17 @@ def exists_submit_token(request):
                 #履修を考えるcourseで他学科を見るときに使う関数
 ###################################################################################
 def course_more(request):
-    return
-
+    gakka = request.GET.get('name')
+    sub_obj_origin = subjectInfo.objects.filter(user_id__contains=gakka) #データベースから同じ学部学科の授業を取得
+    sub_obj = sub_obj_origin.exclude(category1__contains='必').exclude(grade='履') #必修と履修中を除く
+    sub_list = sub_obj.values_list('subjectname', flat=True)#授業名でリストを取得(重複あり)
+    sub_list_counter = Counter(sub_list).most_common()[:20] #授業の数(多い順)
+    sub_list_counter = [(a[0],a[1],np.round(np.average(list(sub_obj.filter(subjectname=a[0]).values_list('grade_score_int',flat=True))),2)) for a in sub_list_counter]
+    course_more_params = {
+        'sub_list_counter':sub_list_counter,
+        'gakka':gakka,
+    }
+    return render(request, 'gv/course_more.html', course_more_params)
 
 ######################################################################################
                                      #履修を考えるcourse
@@ -1167,7 +1176,7 @@ def detail(request):
 
         #########################追加する部分1番###################################################################################################################################################################################################################################################
     gglist = {
-        'a':[{'gakubu':'文学部','a':'キリスト教学科','c':'史学科','e':'教育学科','m':'文学科{英米文学専修}','n':'文学科{ドイツ文学専修}','s':'文学科{フランス文学専修}','t':'文学科{日本文学専修}','u':'文学部{文系・思想専修}'}],
+        'a':[{'gakubu':'文学部','a':'キリスト教学科','c':'史学科','e':'教育学科','m':'文学科{英米文学専修}','n':'文学科{ドイツ文学専修}','s':'文学科{フランス文学専修}','t':'文学科{日本文学専修}','u':'文学部{文芸・思想専修}'}],
         'b':[{'gakubu':'経済学部','a':'経済学科','c':'会計ファイナンス学科','d':'経済政策学科'},{'gakubu':'経営学部','m':'経営学科','n':'国際経営学科'}],
         'c':[{'gakubu':'理学部','a':'数学科','b':'物理学科','c':'化学科','d':'生命理学科'}],
         'd':[{'gakubu':'社会学科','a':'社会学科','d':'現代文化学科','e':'メディア社会学科'},{'gakubu':'異文化コミュニケーション学科','m':'異文化コミュニケーション学科'}],

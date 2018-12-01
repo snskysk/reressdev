@@ -107,7 +107,73 @@
     </table>
   </div><!--tab2-->
   <div id="tab3" class="tab">
-    どこの学科が見たいですか?
+    <select class="parent" name="foo">
+      <option value="" selected="selected">学部を選択</option>
+      <option value="文学部">文学部</option>
+      <option value="経済学部">経済学部</option>
+      <option value="経営学部">経営学部</option>
+      <option value="理学部">理学部</option>
+      <option value="社会学部">社会学部</option>
+      <option value="異文化コミュニケーション学部">異文化コミュニケーション学部</option>
+      <option value="法学部">法学部</option>
+      <option value="コミュニティ福祉学部">コミュニティ福祉学部</option>
+      <option value="現代心理学部">現代心理学部</option>
+      <option value="観光学部">観光学部</option>
+    </select>
+
+  <select id="gakka" class="children" name="bar" disabled>
+    <option value="" selected="selected">学科を選択</option>
+    <option value="" data-val="文学部">学科を選択</option>
+    <option value="aa" data-val="文学部">キリスト教学科</option>
+    <option value="ac" data-val="文学部">史学科</option>
+    <option value="ae" data-val="文学部">教育学科</option>
+    <option value="am" data-val="文学部">文学科{英米文学専修}</option>
+    <option value="an" data-val="文学部">文学科{ドイツ文学専修}</option>
+    <option value="as" data-val="文学部">文学科{フランス文学専修}</option>
+    <option value="at" data-val="文学部">文学科{日本文学専修}</option>
+    <option value="au" data-val="文学部">文学科{文芸・思考専修}</option>
+
+    <option value="" data-val="経済学部">学科を選択</option>
+    <option value="ba" data-val="経済学部">経済学科</option>
+    <option value="bc" data-val="経済学部">会計ファイナンス学科</option>
+    <option value="bd" data-val="経済学部">経済政策学科</option>
+
+    <option value="" data-val="経営学部">学科を選択</option>
+    <option value="bm" data-val="経営学部">経営学科</option>
+    <option value="bn" data-val="経営学部">国際経営学科</option>
+
+    <option value="" data-val="理学部">学科を選択</option>
+    <option value="ca" data-val="理学部">数学科</option>
+    <option value="cb" data-val="理学部">物理学科</option>
+    <option value="cc" data-val="理学部">化学科</option>
+    <option value="cd" data-val="理学部">生命理学化</option>
+
+    <option value="" data-val="社会学部">学科を選択</option>
+    <option value="da" data-val="社会学部">社会学科</option>
+    <option value="dd" data-val="社会学部">現代文化学科</option>
+    <option value="de" data-val="社会学部">メディア社会学科</option>
+
+    <option value="" data-val="異文化コミュニケーション学部">学科を選択</option>
+    <option value="dm" data-val="異文化コミュニケーション学部">異文化コミュニケーション学科</option>
+
+    <option value="" data-val="法学部">学科を選択</option>
+    <option value="ea" data-val="法学部">法学科</option>
+    <option value="ec" data-val="法学部">政治学科</option>
+    <option value="ed" data-val="法学部">国際ビジネス法学科</option>
+
+    <option value="" data-val="コミュニティ福祉学部">学科を選択</option>
+    <option value="ic" data-val="コミュニティ福祉学部">コミュニティ政策学科</option>
+    <option value="ib" data-val="コミュニティ福祉学部">福祉学科</option>
+    <option value="id" data-val="コミュニティ福祉学部">スポーツウエルネス学科</option>
+
+    <option value="" data-val="現代心理学部">学科を選択</option>
+    <option value="hm" data-val="現代心理学部">心理学科</option>
+    <option value="hn" data-val="現代心理学部">映像身体学科</option>
+
+    <option value="" data-val="観光学部">学科を選択</option>
+    <option value="ha" data-val="観光学部">観光学科</option>
+    <option value="hm" data-val="観光学部">交流文化学科</option>
+  </select>
 
     <div id=course_more></div><!--ajaxが入る場所-->
   </div>
@@ -134,6 +200,49 @@
 
 {% block js %}
 
+
+
+<!-- 他学科検索のセレクトボックスの連動 -->
+<script>
+  $(function() {
+    var $children = $('.children');
+    var original = $children.html();
+
+    $('.parent').change(function() {
+      var val1 = $(this).val();
+
+      $children.html(original).find('option').each(function() {
+        var val2 = $(this).data('val');
+        if (val1 != val2) {
+          $(this).not('optgroup,.msg').remove();
+        }
+      });
+
+      if ($(this).val() === '') {
+        $children.attr('disabled', 'disabled');
+      } else {
+        $children.removeAttr('disabled');
+      }
+
+    });
+  });
+</script>
+
+<script>
+$('#gakka').change(function() {
+    var gakka = $('#gakka').val()
+    $.ajax({
+      type: "GET",
+      // url: "https://grade-visualizer101.herokuapp.com/gv/more/",
+      url: "http://localhost:8000/gv/course_more/",
+       data: { name: gakka},
+       success　: function(data){
+         $('#course_more').html(data);//A
+      },
+      // datatype:'json',
+    });
+});
+</script>
 
 
 
