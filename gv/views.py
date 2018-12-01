@@ -85,10 +85,11 @@ def sub_search(request):
 
         #その授業のGPA
 
-        s_gpa = list(sub_obj.filter(subjectname=s_name).values_list('grade_score_int', flat=True).exclude(grade__contains='履').exclude(grade='Q'))
+        s_gpa = list(sub_obj.filter(subjectname=s_name).exclude(grade__contains='履').exclude(grade='Q').values_list('grade_score_int', flat=True))
         #s_gpa = s_gpa.exclude(grade__contains='履')
         #s_gpa = np.round(np.sum(s_gpa)/len(s_gpa),2)
         s_gpa = np.round(np.average(s_gpa),2)
+
 
         #その授業の先生のリスト
         t_list = list(sub_obj.values_list('teacher',flat=True))
@@ -192,7 +193,9 @@ def course(request, num=1):
     ).exclude(grade='履').exclude(grade='Q').values_list('subjectname',flat=True)).most_common()[:20]
     zenkari_ranking = [(a[0],a[1],np.round(np.average(list(subjectInfo.objects.filter(subjectname=a[0]).values_list('grade_score_int',flat=True))),2)) for a in zenkari_ranking]
 
-
+    aaa = subjectInfo.objects.filter(grade='履').filter(user_id__contains=('cb087l'))
+    aaa = subjectInfo.objects.filter(grade='Q')
+    print(aaa)
 
     if request.method == 'POST':
         form = find_course(request.POST)
