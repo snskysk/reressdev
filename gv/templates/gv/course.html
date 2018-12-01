@@ -233,8 +233,8 @@ $('#gakka').change(function() {
     var gakka = $('#gakka').val()
     $.ajax({
       type: "GET",
-      // url: "https://grade-visualizer101.herokuapp.com/gv/more/",
-      url: "http://localhost:8000/gv/course_more/",
+      url: "https://grade-visualizer101.herokuapp.com/gv/course_more/",
+      // url: "http://localhost:8000/gv/course_more/",
        data: { name: gakka},
        success　: function(data){
          $('#course_more').html(data);//A
