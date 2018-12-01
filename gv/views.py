@@ -494,6 +494,19 @@ def hp(request):
     form = userInfoForm()
     stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
     numbers=len(stuobj)
+    try:#sessionが切れていないか確認
+        sn = request.session['stunum']  #学籍番号をsessionから持ってくる
+        return render(request, 'gv/site_map.html')
+    except:
+        form = userInfoForm()
+        hp_params = {
+            'form':form,
+            #'message':'学籍番号とパスワードを入力しよう',
+            'numbers':numbers,
+
+            }
+        return render(request, 'gv/hp.html', hp_params)
+
     index_params = {
         'form':form,
         'message':'',

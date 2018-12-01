@@ -1,4 +1,4 @@
-{% extends 'gv/base.html' %}
+{% extends 'gv/basetop.html' %}
 {% load widget_tweaks %}
 {% load static %}
 {% block css %}
@@ -102,7 +102,41 @@
   </div><!--panel panel-info panel-main-color-->
 </div>
 
-
+<div class="row" width=50%>
+    <div class="panel panel-primary panel-main-color">
+      <div class="panel-heading panel-color" style="text-align:center;" width="50%">
+        <span>その他機能</span>
+      </div><!--panel-heaing-->
+      <div class="panel-body">
+        <div class="col-lg-6 col-xs-6">
+          <div class="panel panel-info panel-main-color">
+            <div class="panel-heading">
+                <a href={% url 'inquiry' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">ABOUT　US</span></h5></a>
+            </div>
+            <div class="panel-body">
+              <div class="image101">
+                  <!--<img src="{% static 'gv/site_map/images/site_map_2.PNG'%}" width="80%">-->
+              </div>
+              <h6>お問い合わせやtwitterはこちらから</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-xs-6">
+          <div class="panel panel-info panel-main-color">
+            <div class="panel-heading">
+              <a href={% url 'flush' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">ログアウト</span></h5></a>
+            </div>
+            <div class="panel-body">
+              <div class="image101">
+                  <!--<img src="{% static 'gv/site_map/images/site_map_1.PNG'%}" width="80%">-->
+              </div>
+              <h6>ユーザーを変更する場合はこちらから再度ログインしてください</h6>
+            </div>
+          </div>
+        </div>
+      </div><!--panel-body-->
+    </div><!--panel panel-info panel-main-color-->
+  </div>
 
 
 {% endblock %}
