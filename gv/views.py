@@ -165,11 +165,18 @@ def exists_submit_token(request):
     return status
 
 
+######################################################################################
+                #履修を考えるcourseで他学科を見るときに使う関数
+###################################################################################
+def course_more(request):
+    return
+
 
 ######################################################################################
                                      #履修を考えるcourse
 ###################################################################################
 def course(request, num=1):
+    gg_lists = {'aa':'キリスト教学科','ac':'史学科','ae':'教育学科','am':'文学科{英米文学専修}','an':'文学科{ドイツ文学専修}','as':'文学科{フランス文学専修}','at':'文学科{日本文学専修}','au':'文学部{文系・思想専修}','ba':'経済学科','bc':'会計ファイナンス学科','bd':'経済政策学科','bm':'経営学科','bn':'国際経営学科','ca':'数学科','cb':'物理学科','cc':'化学科','cd':'生命理学科','da':'社会学科','dd':'現代文化学科','de':'メディア社会学科','dm':'異文化コミュニケーション学科','ea':'法学科','ec':'政治学科','ed':'国際ビジネス法学科','ib':'福祉学科','ic':'コミュニティ政策学科','id':'スポーツウエルネス学科','hm':'心理学科','hn':'映像身体学科','ha':'観光学科','hb':'交流文化学科'}
     stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
     numbers=len(stuobj)
     try:#sessionが切れていないか確認
@@ -234,6 +241,7 @@ def course(request, num=1):
     new_field = [e for e in now_field if '必' not in e[1]]
     form.fields['category1'].choices = new_field
     course_params = {
+        'gakka':gg_lists[sn[2:4]],
         'sub_obj':sub_obj,
         'form':form,
         #'sub_list_counter':sub_list_counter,

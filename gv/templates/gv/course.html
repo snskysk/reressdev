@@ -24,7 +24,7 @@
   /* ▼ タブごとの配色設定 */
   p.tabs a.tab1 {text-decoration:none; background-color:#fafafa;border-right:1px solid #dcdcdc;border-left:1px solid #dcdcdc;border-top: 3px solid rgba(170, 0, 0, 0.85);  color: #666; font-weight:600;}
   p.tabs a.tab2 {text-decoration:none; background-color:#fafafa;border-right:1px solid #dcdcdc;border-left:1px solid #dcdcdc;border-top: 3px solid rgba(0, 170, 0, 0.85);  color: #666; font-weight:600;}
-  /* p.tabs a.tab3 {text-decoration:none; background-color:#fafafa;border-right:1px solid #dcdcdc;border-left:1px solid #dcdcdc;border-top: 3px solid rgba(0, 0, 170, 0.85);  color: #666; font-weight:600;} */
+  p.tabs a.tab3 {text-decoration:none; background-color:#fafafa;border-right:1px solid #dcdcdc;border-left:1px solid #dcdcdc;border-top: 3px solid rgba(0, 0, 170, 0.85);  color: #666; font-weight:600;}
   p.tabs a:hover {opacity:0.7;filter:alpha(opacity=70);}
   /* ▼ タブ中身のボックス */
   div.tab {
@@ -49,8 +49,9 @@
 
 <div class="tabbox">
   <p class="tabs">
-    <a href="#tab1" class="tab1" onclick="ChangeTab('tab1'); return false;">同学科のランキング</a>
+    <a href="#tab1" class="tab1" onclick="ChangeTab('tab1'); return false;">{{gakka}}の人気ランキング</a>
     <a href="#tab2" class="tab2" onclick="ChangeTab('tab2'); return false;">全カリ人気ランキング</a>
+    <a href="#tab3" class="tab3" onclick="ChangeTab('tab3'); return false;">他学科の人気ランキング</a>
   </p>
   <div id="tab1" class="tab">
     <table>
@@ -105,6 +106,11 @@
       </tbody>
     </table>
   </div><!--tab2-->
+  <div id="tab3" class="tab">
+    どこの学科が見たいですか?
+
+    <div id=course_more></div><!--ajaxが入る場所-->
+  </div>
 </div><!-- tabbox -->
 
 
@@ -138,7 +144,7 @@
      // タブメニュー実装
      document.getElementById('tab1').style.display = 'none';
      document.getElementById('tab2').style.display = 'none';
-     // document.getElementById('tab3').style.display = 'none';
+     document.getElementById('tab3').style.display = 'none';
      // タブメニュー実装
      document.getElementById(tabname).style.display = 'block';
   }
