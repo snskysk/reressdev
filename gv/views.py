@@ -83,6 +83,8 @@ def sub_search(request):
         for i in range(len(grade_list_sample)):
             if grade_list_sample[i]=="履":
                 grade_list_sample[i]="履修中"
+            if grade_list_sample[i] == 'Q':
+                grade_list_sample[i] == '履修中止'
 
         #その授業のGPA
 
@@ -193,11 +195,7 @@ def course(request, num=1):
         Q(category1='＊学びの精神＊')|
         Q(category1='＊多彩な学び，スポ＊')
     ).exclude(grade='履').exclude(grade='Q').values_list('subjectname',flat=True)).most_common()[:20]
-    zenkari_ranking = [(a[0],a[1],np.round(np.average(list(subjectInfo.objects.filter(subjectname=a[0]).exclude(grade='履修').exclude(grade='Q').values_list('grade_score_int',flat=True))),2)) for a in zenkari_ranking]
-
-    aaa = subjectInfo.objects.filter(grade='履').filter(user_id__contains=('cb087l'))
-    aaa = subjectInfo.objects.filter(grade='Q')
-    print(aaa)
+    zenkari_ranking = [(a[0],a[1],np.round(np.average(list(subjectInfo.objects.filter(subjectname=a[0]).exclude(grade='履').exclude(grade='Q').values_list('grade_score_int',flat=True))),2)) for a in zenkari_ranking]
 
     if request.method == 'POST':
         form = find_course(request.POST)
