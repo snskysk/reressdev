@@ -85,9 +85,10 @@ def sub_search(request):
 
         #その授業のGPA
 
-        s_gpa = list(sub_obj.filter(subjectname=s_name).values_list('grade_score_int', flat=True).exclude(grade__contains='履'))
+        s_gpa = list(sub_obj.filter(subjectname=s_name).values_list('grade_score_int', flat=True).exclude(grade='履').exclude(grade='Q'))
         #s_gpa = s_gpa.exclude(grade__contains='履')
-        s_gpa = np.round(np.sum(s_gpa)/len(s_gpa),2)
+        #s_gpa = np.round(np.sum(s_gpa)/len(s_gpa),2)
+        s_gpa = np.average(s_gpa)
 
         #その授業の先生のリスト
         t_list = list(sub_obj.values_list('teacher',flat=True))
