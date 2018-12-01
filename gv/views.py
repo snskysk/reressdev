@@ -49,7 +49,7 @@ def site_map(request):
         'numbers':numbers,
         }
         return render(request, 'gv/site_map.html', site_map_params)
-    
+
     site_map_params = {
     'numbers':numbers,
     }
@@ -97,10 +97,10 @@ def sub_search(request):
         t_dict = [(a[0],np.round(a[1]/len_t_dict*100,1)) for a in t_dict]#先生名、担当率
         ##################### 11/28 new added 先生名でDB検索し、単位取得済みの評価平均を数値化（GPA化）
         t_dict_message01 = np.array(t_dict)
-        np_t_list = t_dict_message01[:,0]        
+        np_t_list = t_dict_message01[:,0]
         zgpa = []
         for i in range(len(np_t_list)):
-            teacher_name = np_t_list[i]         
+            teacher_name = np_t_list[i]
             zyugyo_gpa = list(sub_obj.filter(teacher=teacher_name).values_list('grade_score_int', flat=True).exclude(grade__contains='履'))
             zgpa_ave=np.round(np.sum(zyugyo_gpa)/len(zyugyo_gpa),2)
             zgpa.append(zgpa_ave)
@@ -181,7 +181,17 @@ def course(request, num=1):
     facu_depa = sn[2:4]  #学籍番号から学部学科の取得
     stu_obj = studentInfo.objects.filter(user_id__contains=facu_depa) #データベースから同じ学部学科の人を取得
     sub_obj_origin = subjectInfo.objects.filter(user_id__contains=facu_depa) #データベースから同じ学部学科の授業を取得
-    sub_obj = sub_obj_origin.exclude(category1__contains='必') #必修を除く
+    sub_obj = sub_obj_origin.exclude(category1__contains='必').exclude(grade='履') #必修を除く
+
+
+    #追加(12月1日)全カリ用
+    zenkari_ranking = Counter(subjectInfo.objects.filter(
+        Q(category1='＊学びの精神＊')|
+        Q(category1='＊多彩な学び，スポ＊')
+    ).exclude(grade='履').values_list('subjectname',flat=True)).most_common()[:20]
+    zenkari_ranking = [(a[0],a[1],np.round(np.average(list(subjectInfo.objects.filter(subjectname=a[0]).values_list('grade_score_int',flat=True))),1)) for a in zenkari_ranking]    
+
+
 
     if request.method == 'POST':
         form = find_course(request.POST)
@@ -194,52 +204,24 @@ def course(request, num=1):
         if len(category1) is not 0:
             sub_obj = sub_obj.filter(category1=category1)
         sub_list = sub_obj.values_list('subjectname', flat=True)#授業名でリストを取得(重複あり)
-        sub_list_counter = Counter(sub_list).most_common() #授業の数(多い順)
-        ###############11/27 new added 科目別GPA######################
-        slc_message01 = np.array(sub_list_counter)
-        np_sub_list = slc_message01[:,0]        
-        zgpa = []
-        for i in range(len(np_sub_list)):
-            zg_name = np_sub_list[i] #授業名でDB検索し、単位取得済みの評価平均を数値化（GPA化）         
-            zyugyo_gpa = list(sub_obj_origin.filter(subjectname=zg_name).values_list('grade_score_int', flat=True).exclude(grade__contains='履'))
-            zgpa_ave=np.round(np.sum(zyugyo_gpa)/len(zyugyo_gpa),2)
-            zgpa.append(zgpa_ave)
-
-        slc_message2 = np.array(zgpa)
-        slc_message2=np.reshape(slc_message2, (slc_message2.shape[0], 1))
-        sub_list_counter = np.hstack([slc_message01,slc_message2])        
-        ###############paginator######################
-        #page = Paginator(sub_list_counter,10)
-        ##############################################
-
+        sub_list_counter = Counter(sub_list).most_common()[:20] #授業の数(多い順)
+        #変更された1行(読みずらいが高速)
+        sub_list_counter = [(a[0],a[1],np.round(np.average(list(sub_obj.filter(subjectname=a[0]).values_list('grade_score_int',flat=True))),2)) for a in sub_list_counter]
 
         course_params = {
             'form':form,
             'sub_list_counter':sub_list_counter,
+            'zenkari_ranking':zenkari_ranking,
         }
         return render(request, 'gv/course.html', course_params)
 
 
     sub_list = sub_obj.values_list('subjectname', flat=True)#授業名でリストを取得(重複あり)
     #pagenationがうまくいかないため今だけ変更
-    sub_list_counter = Counter(sub_list).most_common()[:50] #授業の数(多い順)
-    ###############11/27 new added  科目別GPA######################
-    slc_message01 = np.array(sub_list_counter)
-    np_sub_list = slc_message01[:,0]        
-    zgpa = []
-    for i in range(len(np_sub_list)):
-        zg_name = np_sub_list[i] #授業名でDB検索し、単位取得済みの評価平均を数値化（GPA化）         
-        zyugyo_gpa = list(sub_obj.filter(subjectname=zg_name).values_list('grade_score_int', flat=True).exclude(grade__contains='履'))
-        zgpa_ave=np.round(np.sum(zyugyo_gpa)/len(zyugyo_gpa),2)
-        zgpa.append(zgpa_ave)
+    sub_list_counter = Counter(sub_list).most_common()[:20] #授業の数(多い順)
 
-    slc_message2 = np.array(zgpa)
-    slc_message2=np.reshape(slc_message2, (slc_message2.shape[0], 1))
-    sub_list_counter = np.hstack([slc_message01,slc_message2])        
-
-    ###############paginator######################
-    #page = Paginator(sub_list_counter,10)
-    ##############################################
+    #変更された1行(読みずらいが高速)
+    sub_list_counter = [(a[0],a[1],np.round(np.average(list(sub_obj.filter(subjectname=a[0]).values_list('grade_score_int',flat=True))),2)) for a in sub_list_counter]
 
     form = find_course()
     make_list('category1','category1',sn,form)
@@ -252,6 +234,7 @@ def course(request, num=1):
         'form':form,
         #'sub_list_counter':sub_list_counter,
         'sub_list_counter':sub_list_counter,
+        'zenkari_ranking':zenkari_ranking,
         }
     return render(request, 'gv/course.html', course_params)
 
@@ -333,7 +316,7 @@ def teacher_search(request):
         for i in range(len(grade_list_sample)):
             if grade_list_sample[i]=="履":
                 grade_list_sample[i]="履修中"
-        
+
         ################# 11/28 new added その先生のGPA
         zyugyo_gpa = list(sub_obj.filter(teacher=t_name).values_list('grade_score_int', flat=True).exclude(grade__contains='履'))
         k_gpa = np.round(np.sum(zyugyo_gpa)/len(zyugyo_gpa),2)
@@ -386,7 +369,7 @@ def teacher_search(request):
 
 
     if request.method == 'POST':
-        form = find_teacher(request.POST)
+        form = find_teacher(reuest.POST)
         t_name = request.POST['t_name']
         t_sub = request.POST['t_sub']
         #もしスペースありで入力されたら訂正
