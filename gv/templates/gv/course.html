@@ -59,15 +59,15 @@
   </p>
   <div id="tab1" class="tab">
     <br><br><br>
-    <div class="tri">
-      <div id='triangleDown1'></div>
-      <div id='triangleDown2'></div>
+    <div class="my_gakka_tri">
+      <div id='my_gakka_triangleDown1'></div>
+      <div id='my_gakka_triangleDown2'></div>
     </div>
     <table id="my_gakka_table1">
       <thead>
       <tr>
-        <th>あなたの学科で人気の授業<br>(<strong class="non-class" style="background: linear-gradient(transparent 60%, #ff99ff 60%);">クリックで授業分析へ</strong>)</th>
-        <th>履修者<br>数順</th>
+        <th>{{gakka}}の人気の授業<br>履修者順<br>(<strong class="non-class" style="background: linear-gradient(transparent 60%, #ff99ff 60%);">クリックで授業分析へ</strong>)</th>
+        <th>履修者数</th>
         <th>評価平均<br>(GPA)</th>
       </tr>
       </thead>
@@ -90,8 +90,8 @@
     <table id=my_gakka_table2>
       <thead>
       <tr>
-        <th>あなたの学科で人気の授業<br>(<strong class="non-class" style="background: linear-gradient(transparent 60%, #ff99ff 60%);">クリックで授業分析へ</strong>)</th>
-        <th>履修者<br>数順</th>
+        <th>{{gakka}}の人気の授業<br>GPA順<br>(<strong class="non-class" style="background: linear-gradient(transparent 60%, #ff99ff 60%);">クリックで授業分析へ</strong>)</th>
+        <th>履修者数</th>
         <th>評価平均<br>(GPA)</th>
       </tr>
       </thead>
@@ -113,17 +113,47 @@
     </table>
   </div>
   <div id="tab2" class="tab">
-    <table>
+    <br><br><br>
+    <div class="zenkari_tri">
+      <div id='zenkari_triangleDown1'></div>
+      <div id='zenkari_triangleDown2'></div>
+    </div>
+    <table id=zenkari_table1>
       <thead>
       <tr>
-        <th>人気の全カリランキング<br>(<strong class="non-class" style="background: linear-gradient(transparent 60%, #ff99ff 60%);">クリックで授業分析へ</strong>)</th>
-        <th>履修者<br>数順</th>
+        <th>人気の全カリランキング<br>履修者順<br>(<strong class="non-class" style="background: linear-gradient(transparent 60%, #ff99ff 60%);">クリックで授業分析へ</strong>)</th>
+        <th>履修者数</th>
         <th>評価平均<br>(GPA)</th>
         <!-- <th>評価平均<br>(GPA)</th> -->
       </tr>
       </thead>
       <tbody>
       {% for message in zenkari_ranking %}
+      <tr>
+        <td>
+          <form method="post" action="{% url 'sub_search' %}">
+            {% csrf_token %}
+            <input type="hidden" name="s_name" value="{{message.0}}">
+            <a href="javascript:void(0)" onclick="this.parentNode.submit()"><span class="non-class" style="background: linear-gradient(transparent 97%, #000 50%);">{{message.0}}</span></a>
+          </form>
+        </td>
+        <td>{{ message.1 }}人</td>
+        <td>{{ message.2 }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <table id=zenkari_table2>
+      <thead>
+      <tr>
+        <th>人気の全カリランキング<br>GPA順<br>(<strong class="non-class" style="background: linear-gradient(transparent 60%, #ff99ff 60%);">クリックで授業分析へ</strong>)</th>
+        <th>履修者数</th>
+        <th>評価平均<br>(GPA)</th>
+        <!-- <th>評価平均<br>(GPA)</th> -->
+      </tr>
+      </thead>
+      <tbody>
+      {% for message in zenkari_ranking_sorted_gpa %}
       <tr>
         <td>
           <form method="post" action="{% url 'sub_search' %}">
@@ -313,22 +343,41 @@ $('#gakka').change(function() {
 
 <!-- 自分の学科をソートする。 -->
 <script>
-  $('#triangleDown1').click(function() {
+  $('#my_gakka_triangleDown1').click(function() {
     $('#my_gakka_table1').css('display','inline-block');
     $('#my_gakka_table2').css('display','none');
-    $('#triangleDown1').css('border-top','33px solid #FF0000');
-    $('#triangleDown2').css('border-top','33px solid #CCCCCC');
+    $('#my_gakka_triangleDown1').css('border-top','33px solid #FF0000');
+    $('#my_gakka_triangleDown2').css('border-top','33px solid #CCCCCC');
    });
-  $('#triangleDown2').click(function() {
+  $('#my_gakka_triangleDown2').click(function() {
     $('#my_gakka_table1').css('display','none');
     $('#my_gakka_table2').css('display','inline-block');
-    $('#triangleDown1').css('border-top','33px solid #CCCCCC');
-    $('#triangleDown2').css('border-top','33px solid #FF0000');
+    $('#my_gakka_triangleDown1').css('border-top','33px solid #CCCCCC');
+    $('#my_gakka_triangleDown2').css('border-top','33px solid #FF0000');
    });
   $('#my_gakka_table2').css('display','none');
-  $('#triangleDown1').css('border-top','33px solid #FF0000');
-
+  $('#my_gakka_triangleDown1').css('border-top','33px solid #FF0000');
  </script>
+
+<!-- 全カリをソートする。 -->
+  <script>
+     $('#zenkari_triangleDown1').click(function() {
+       $('#zenkari_table1').css('display','inline-block');
+       $('#zenkari_table2').css('display','none');
+       $('#zenkari_triangleDown1').css('border-top','33px solid #FF0000');
+       $('#zenkari_triangleDown2').css('border-top','33px solid #CCCCCC');
+    //   console.log('1fjlkasjdfalkjf')
+      });
+     $('#zenkari_triangleDown2').click(function() {
+       $('#zenkari_table1').css('display','none');
+       $('#zenkari_table2').css('display','inline-block');
+       $('#zenkari_triangleDown1').css('border-top','33px solid #CCCCCC');
+       $('#zenkari_triangleDown2').css('border-top','33px solid #FF0000');
+      });
+    $('#zenkari_table2').css('display','none');
+    $('#zenkari_triangleDown1').css('border-top','33px solid #FF0000');
+
+   </script>
 
 
 {% endblock %}

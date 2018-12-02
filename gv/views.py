@@ -206,12 +206,16 @@ def course(request, num=1):
     sub_obj = sub_obj_origin.exclude(category1__contains='必').exclude(grade='履') #必修を除く
 
 
+
     #追加(12月1日)全カリ用
     zenkari_ranking = Counter(subjectInfo.objects.filter(
         Q(category1='＊学びの精神＊')|
         Q(category1='＊多彩な学び，スポ＊')
     ).exclude(grade='履').exclude(grade='Q').values_list('subjectname',flat=True)).most_common()[:20]
     zenkari_ranking = [(a[0],a[1],np.round(np.average(list(subjectInfo.objects.filter(subjectname=a[0]).exclude(grade='履').exclude(grade='Q').values_list('grade_score_int',flat=True))),2)) for a in zenkari_ranking]
+
+    #gpa順にソートした全カリのリスト
+    zenkari_ranking_sorted_gpa = sorted(zenkari_ranking, key=lambda zenkari_ranking: zenkari_ranking[2], reverse=True)
 
     if request.method == 'POST':
         form = find_course(request.POST)
@@ -258,8 +262,9 @@ def course(request, num=1):
         'form':form,
         #'sub_list_counter':sub_list_counter,
         'sub_list_counter':sub_list_counter,
-        'zenkari_ranking':zenkari_ranking,
         'sub_list_counter_sorted_gpa':sub_list_counter_sorted_gpa,
+        'zenkari_ranking':zenkari_ranking,
+        'zenkari_ranking_sorted_gpa':zenkari_ranking_sorted_gpa,
         }
     return render(request, 'gv/course.html', course_params)
 
