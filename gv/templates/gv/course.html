@@ -196,8 +196,6 @@
   </button>
 </form> -->
 
-
-
 {% block js %}
 
 
@@ -244,19 +242,32 @@ $('#gakka').change(function() {
 });
 </script>
 
-
-
-
 <!-- 追加部分(12月1日)js -->
 <script type="text/javascript">
   function ChangeTab(tabname) {
-     // タブメニュー実装
-     document.getElementById('tab1').style.display = 'none';
-     document.getElementById('tab2').style.display = 'none';
-     document.getElementById('tab3').style.display = 'none';
-     // タブメニュー実装
-     document.getElementById(tabname).style.display = 'block';
-  }
+    // タブメニュー実装
+    document.getElementById('tab1').style.display = 'none';
+    document.getElementById('tab2').style.display = 'none';
+    document.getElementById('tab3').style.display = 'none';
+    // タブメニュー実装
+    document.getElementById(tabname).style.display = 'block';
+    if (tabname=='tab1') {
+      $('.tab1').css('background-color','#DDFFFF');
+      $('.tab2').css('background-color','#fafafa');
+      $('.tab3').css('background-color','#fafafa');
+    }
+    else if (tabname=='tab2') {
+      $('.tab1').css('background-color','#fafafa');
+      $('.tab2').css('background-color','#DDFFFF');
+      $('.tab3').css('background-color','#fafafa');
+    }
+    else{
+
+      $('.tab1').css('background-color','#fafafa');
+      $('.tab2').css('background-color','#fafafa');
+      $('.tab3').css('background-color','#DDFFFF');
+    }
+    }
 
 
 </script>
