@@ -296,9 +296,16 @@
 <script>
 $('#gakka').change(function() {
     var gakka = $('#gakka').val()
+    var now_url = location.href ;
+    //urlをlocakと本番に対応
+    url = "https://grade-visualizer101.herokuapp.com/gv/course_more/"
+    if ("http://localhost:8000/gv/course_more/".match(now_url)){
+      url = "http://localhost:8000/gv/course_more/"
+    }
     $.ajax({
       type: "GET",
-      url: "https://grade-visualizer101.herokuapp.com/gv/course_more/",
+      // url: "https://grade-visualizer101.herokuapp.com/gv/course_more/",
+       url: url,
       // url: "http://localhost:8000/gv/course_more/",
        data: { name: gakka},
        success　: function(data){
