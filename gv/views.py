@@ -56,7 +56,6 @@ def site_map(request):
     return render(request, 'gv/site_map.html', site_map_params)
 
 
-
 ####################################################################################
                             #授業分析(11月27日)new!!!
 ###############################################################################
@@ -139,10 +138,6 @@ def sub_search(request):
         'form':form,
     }
     return render(request, 'gv/sub_search.html', sub_search_params)
-
-
-
-
 
 
 
@@ -389,103 +384,6 @@ def teacher_search(request):
 
     return render(request, 'gv/teacher_search.html', teacher_search_params)
 
-"""
-def teacher_search(request):
-    import time
-    start = time.time()
-    sub_obj = subjectInfo.objects.all()
-    teacher_list_space = list(set(list(subjectInfo.objects.values_list('teacher', flat=True))))#すべての先生のリスト(重複なし)
-    teacher_list = [i.replace('　', '') for i in teacher_list_space]#先生の名前スペースなし
-    #各先生の授業のリストを生成(ex:{'A先生':[B,C,D]})
-    teacher_sub_dict = {teacher_name.replace('　', ''):list(set(subjectInfo.objects.filter(teacher__contains=teacher_name).values_list('subjectname', flat=True))) for teacher_name in teacher_list_space}
-
-
-    if request.method == 'POST':
-        form = find_teacher(reuest.POST)
-        t_name = request.POST['t_name']
-        t_sub = request.POST['t_sub']
-        #もしスペースありで入力されたら訂正
-        if '　' in t_name:
-            t_name = t_name.replace('　','')
-        try:
-            index_teacher_list = teacher_list.index(t_name)#index番号を取得
-            t_name=teacher_list_space[index_teacher_list]#実際にデータベースで検索するスペースありの先生の名前
-        except:
-            form = find_teacher()
-            nums = [0,0,0,0]
-            grade_list_sample = ['S','A','B','C']
-
-            teacher_search_params = {
-                'form':form,
-                'nums':nums,
-                'grade_list_sample':grade_list_sample,
-                'teacher_list':teacher_list,
-                'teacher_sub_dict':teacher_sub_dict,
-                'r_form':'成績判定統計',
-            }
-            return render(request, 'gv/teacher_search.html', teacher_search_params)
-        sub_obj = sub_obj.filter(teacher=t_name)
-        #授業のフィルター
-        if len(t_sub) is not 0:
-            sub_obj = sub_obj.filter(subjectname=t_sub)
-
-        num_sub = len(sub_obj)#その先生の授業数
-        grade_list_dict = OrderedDict({'Ｓ':0,'Ａ':0,'Ｂ':0,'Ｃ':0}) #順番がたぶん大事
-        grade_list = sub_obj.values_list('grade', flat=True)#成績判定を取得(重複あり)
-        grade_list_dict_new = Counter(grade_list) #授業の数
-        grade_list_dict.update(grade_list_dict_new) #辞書をupdate
-        nums = grade_list_dict.values()
-        nums = list(nums)#リストにする
-        try:#入力ミスのとき0で割られるのを防ぐ
-            #p = [(num / mum) * 100 for num,mum in zip(nums,[num_sub]*len(nums))]#確立を計算
-            grade_list_sample = list(grade_list_dict.keys())
-            #計算結果を丸める
-            #p = list(map(round, p, [0]*len(p)))
-
-            teacher_search_params = {
-                'message':'ok,',
-                'form':form,
-                'sub_obj':sub_obj,
-                'nums':nums,
-                'grade_list_sample':grade_list_sample,
-                'teacher_list':teacher_list,
-                'teacher_sub_dict':teacher_sub_dict,
-                'r_form':'{}  {}'.format(t_name,t_sub).replace('　','')
-            }
-            return render(request, 'gv/teacher_search.html', teacher_search_params)
-        except:
-            form = find_teacher()
-            nums = [0,0,0,0]
-            grade_list_sample = ['S','A','B','C']
-
-            teacher_search_params = {
-                'form':form,
-                'nums':nums,
-                'grade_list_sample':grade_list_sample,
-                'teacher_list':teacher_list,
-                'teacher_sub_dict':teacher_sub_dict,
-                'r_form':'成績判定統計',
-            }
-            return render(request, 'gv/teacher_search.html', teacher_search_params)
-
-    form = find_teacher()
-    nums = [0,0,0,0]
-    grade_list_sample = ['S','A','B','C']
-
-
-    keika_time = time.time() - start
-    teacher_search_params = {
-        'message':'',
-        'form':form,
-        'nums':nums,
-        'grade_list_sample':grade_list_sample,
-        'teacher_list':teacher_list,
-        'teacher_sub_dict':teacher_sub_dict,
-        'r_form':'成績判定統計',
-        'keika_time':keika_time,
-    }
-    return render(request, 'gv/teacher_search.html', teacher_search_params)
-"""
 def inquiry(request):
     inquiry_params = {}
     return render(request, 'gv/inquiry.html', inquiry_params)
@@ -493,17 +391,6 @@ def inquiry(request):
 ###################################################################################
                                     #トップページ
 ######################################################################################
-"""
-def hp(request):
-    request.session.flush()
-    form = userInfoForm()
-    index_params = {
-        'form':form,
-        'message':'学籍番号とパスワードを入力してください',
-        }
-
-    return render(request, 'gv/hp.html', index_params)
-"""
 
 def hp(request):
     form = userInfoForm()
@@ -637,86 +524,78 @@ def get(request):
 
 
 def counter(request):
-
+    sn = request.session['stunum']  #学籍番号をsessionから持ってくる
     form = ggs_counter_Form()
-
-
     ######
     stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
-    numbers=len(stuobj)
-
-
-    st_1,st_2,st_3,st_4=[18,17,16,15]
-    st_1 = len(studentInfo.objects.filter(user_id__startswith=st_1))
-    st_2 = len(studentInfo.objects.filter(user_id__startswith=st_2))
-    st_3 = len(studentInfo.objects.filter(user_id__startswith=st_3))
-    st_4 = len(studentInfo.objects.filter(user_id__startswith=st_4))
-
-
+    numbers=len(stuobj)   #　↓　利用者の入学年度を重複を省いてリスト化
+    list_y = sorted([int(str(list(set(studentInfo.objects.values_list('enteryear', flat=True)))[i])[2:4]) for i in range(len(list(set(studentInfo.objects.values_list('enteryear', flat=True)))))],reverse=True)
+    users_by_year = [(i,len(studentInfo.objects.filter(user_id__startswith=i))) for i in list_y]#学年別利用者人数を動的に生成
+    
     #####
     gg_lists = {'aa':'キリスト教学科','ac':'史学科','ae':'教育学科','am':'文学科{英米文学専修}','an':'文学科{ドイツ文学専修}','as':'文学科{フランス文学専修}','at':'文学科{日本文学専修}','au':'文学部{文系・思想専修}','ba':'経済学科','bc':'会計ファイナンス学科','bd':'経済政策学科','bm':'経営学科','bn':'国際経営学科','ca':'数学科','cb':'物理学科','cc':'化学科','cd':'生命理学科','da':'社会学科','dd':'現代文化学科','de':'メディア社会学科','dm':'異文化コミュニケーション学科','ea':'法学科','ec':'政治学科','ed':'国際ビジネス法学科','ib':'福祉学科','ic':'コミュニティ政策学科','id':'スポーツウエルネス学科','hm':'心理学科','hn':'映像身体学科','ha':'観光学科','hb':'交流文化学科'}
-    ggobj = []
-    for gg_list,k in gg_lists.items():
-        ggsn = len(studentInfo.objects.filter(user_id__contains=gg_list))
-        same_stu_gpa2 = sorted(list(studentInfo.objects.filter(user_id__contains=gg_list).values_list('gpa', flat=True)),reverse=True)
-        g_ave=np.sum(same_stu_gpa2)/len(same_stu_gpa2)
-        g_ave=np.round(g_ave,2)
-        result=[k,gg_list,ggsn,g_ave]
-        ggobj.append(result)
-
-    ggobj.sort(key=itemgetter(2),reverse=True)
-
+    #  ↓　　表の中身のパラメータを生成
+    ggobj = [(key,gg_list,len(studentInfo.objects.filter(user_id__contains=gg_list)),np.round(np.average(sorted(list(studentInfo.objects.filter(user_id__contains=gg_list).values_list('gpa', flat=True)),reverse=True)),2)) for gg_list,key in gg_lists.items()]
+    ggobj.sort(key=itemgetter(2),reverse=True)#履修者数順
+    ggobj2 = sorted(ggobj,key=itemgetter(3,2),reverse=True)#GPA順且つ履修者も降順
     if request.method == 'POST':
         gg_name = request.POST['gg_name']
         gakunenn = request.POST['gakunenn']
         ggs_numbers = len(studentInfo.objects.filter(user_id__contains=gg_name))
-        print(ggs_numbers)
-        #gpa平均を出す
-        same_stu_gpa2 = sorted(list(studentInfo.objects.filter(user_id__contains=gg_name).values_list('gpa', flat=True)),reverse=True)
-        gpa_ave=np.sum(same_stu_gpa2)/len(same_stu_gpa2)
-        print(gpa_ave)
-
+        # フォームで指定された条件のgpa平均を出す
+        gpa_ave = np.average(sorted(list(studentInfo.objects.filter(user_id__contains=gg_name).values_list('gpa', flat=True)),reverse=True))
         if gakunenn == 0:
             pass
         else:
             gg_name=str(gakunenn)+str(gg_name)
             ggs_numbers = len(studentInfo.objects.filter(user_id__contains=gg_name))
-            print(ggs_numbers)
             #gpa平均を出す
-            same_stu_gpa2 = sorted(list(studentInfo.objects.filter(user_id__startswith=gg_name).values_list('gpa', flat=True)),reverse=True)
-            gpa_ave=np.sum(same_stu_gpa2)/len(same_stu_gpa2)
-            print(gpa_ave)
-
-
+            gpa_ave = np.average(sorted(list(studentInfo.objects.filter(user_id__contains=gg_name).values_list('gpa', flat=True)),reverse=True))
     else:
-        ggs_numbers = 0
-        gakunenn = 0
-        gpa_ave = 0
+        ggs_numbers, gakunenn, gpa_ave = [0,0,0]
     gpa_ave=np.round(gpa_ave,2)
     #####
-
-
     counter_params={
         'form':form,
         'ggs_numbers':ggs_numbers,
         'gakunenn':gakunenn,
         'gpa_ave':gpa_ave,
         'ggobj_counter':ggobj,
+        'ggobj_counter2':ggobj2,
         'numbers':numbers,
-        'st_1':st_1,
-        'st_2':st_2,
-        'st_3':st_3,
-        'st_4':st_4,
+        'users_by_year':users_by_year,
     }
-
-
     return render(request,'gv/counter.html',counter_params)
+
+def new_data_register(st_data,sub_data,judgement_number,personal_number):#状況に応じてデータを保存
+    #user情報の保存
+    if judgement_number == 1:
+        stuinfo = studentInfo(user_id=personal_number, student_grade=st_data[1],
+        enteryear=st_data[2], seasons=st_data[3], gpa=st_data[4])
+        stuinfo.save()
+    elif judgement_number == 2:
+        studentInfo.objects.filter(user_id__contains=personal_number).delete() #生徒情報を一度削除
+        stuinfo = studentInfo(user_id=personal_number, student_grade=st_data[1],
+        enteryear=st_data[2], seasons=st_data[3], gpa=st_data[4])
+        stuinfo.save()
+    else:
+        pass
+    #教科情報の保存
+    for i in range(len(sub_data)):
+        s = list(sub_data.iloc[i])
+        subjectInfomation = subjectInfo(subjectnum=s[0],managementnum=s[1],
+        user_id=personal_number,subjectname=s[3],unit_int=s[4],grade=s[5],
+        grade_score_int=s[6],result_score_int=s[7],year_int=s[8],
+        season=s[9],teacher=s[10],gpa_int=s[11],
+        category1=s[12],category2=s[13],last_login=s[14],stu_id=stuinfo)
+        subjectInfomation.save()
 
 ###################################################################################
                                #メインのグラフを出力する画面
 #####################################################################################
 #from django.utils.functional import cached_property
 #@cached_property
+
 def mainhome(request):
 
     if request.method == 'POST':
@@ -899,24 +778,38 @@ def mainhome(request):
 
 
         if lowerd_sn not in stuobj:
-            print('保存-------------------------------------------------------------------')
-            #user情報の保存
-            stuinfo = studentInfo(user_id=lowerd_sn, student_grade=t[1],
-            enteryear=t[2], seasons=t[3], gpa=t[4])
-            stuinfo.save()
-
-
-            #教科情報の保存
-            for i in range(len(table)):
-                s = list(table.iloc[i])
-                subjectInfomation = subjectInfo(subjectnum=s[0],managementnum=s[1],
-                user_id=lowerd_sn,subjectname=s[3],unit_int=s[4],grade=s[5],
-                grade_score_int=s[6],result_score_int=s[7],year_int=s[8],
-                season=s[9],teacher=s[10],gpa_int=s[11],
-                category1=s[12],category2=s[13],last_login=s[14],stu_id=stuinfo)
-                subjectInfomation.save()
-
-
+            print('新規ユーザーのデータを保存-----------------------------------------------------------')
+            new_data_register(t,table,1,lowerd_sn)
+        else:
+            ndc = len(table)#new_data_count
+            old_data = subjectInfo.objects.filter(user_id__contains=lowerd_sn)  #old_data変数として以後使うため2フェーズに分けている
+            odc = len(old_data)#old_data_count
+            nd_taking = len(table[table.iloc[:,5]=="履"])  #new_dataに含まれる「履」の数
+            od_taking = len(old_data.filter(grade="履"))   #old_dataに含まれる「履」の数
+            if ndc > odc:
+                old_data.exclude(grade='Ｄ').delete()
+                new_data_register(t,table,2,lowerd_sn)
+                print("すでに登録されているが新たなデータが古いデータより多いパターン")
+            elif ndc <= odc and nd_taking < od_taking:
+                nd_normal = len(table[table.iloc[:,5]!="履"][table.iloc[:,5]!="Ｑ"][table.iloc[:,5]!="Ｄ"][table.iloc[:,5]!="欠"])
+                od_normal = len(subjectInfo.objects.filter(user_id__contains=lowerd_sn).exclude(grade='履').exclude(grade='Ｑ').exclude(grade='Ｄ').exclude(grade='欠'))    
+                if nd_normal == od_normal:
+                    old_data.filter(grade="履").delete()
+                    old_data.filter(grade="Ｑ").delete()
+                    table[table.iloc[:,5]=="履"][table.iloc[:,5]=="Ｑ"]
+                    new_data_register(t,table,0,lowerd_sn)
+                    print("すでに登録されているが履が「Ｑ」になった授業があるパターン")
+                elif nd_normal > od_normal:
+                    old_data.exclude(grade='Ｄ').delete()
+                    new_data_register(t,table,2,lowerd_sn)
+                    print("すでに登録されており、履の成績結果がでて内容が書き換わったパターン")
+                else:
+                    print("想定外のパターン1")
+            elif ndc < odc and nd_taking == od_taking:
+                print("すでに登録されており、過去にとったＤが成績表から消えてしまった場合")
+            else:
+                print("すでに登録されており、データに何の変化もないパターン")
+        
         #ログインしたことの証拠,mainhome_after_loginで使用
         return render(request, 'gv/site_map.html', mainhome_params)
 
@@ -1024,120 +917,6 @@ def make_list(model_name,form_name,sn,form):
 ######################################################################################
                                      #詳細画面
 ###################################################################################
-"""
-def detail(request):
-    try:
-        sn = request.session['stunum']
-
-    #ログインしてからでなければ入れない
-    except Exception:
-        form = userInfoForm()
-        index_params = {
-            'form':form,
-            'message':'学籍番号とパスワードを入力しよう'
-        }
-        return render(request, 'gv/hp.html', index_params)
-
-
-    #同じ学年
-    same_stu_gpa1 = sorted(list(studentInfo.objects.filter(user_id__contains=sn[:2]).values_list('gpa', flat=True)),reverse=True)#同じ学年学科のgpaのリスト
-    print(same_stu_gpa1)
-    #same_stu_gpa = np.array(sorted(list(studentInfo.objects.filter(user_id__contains=sn[:3]).values_list('gpa', flat=True)),reverse=True))#同じ学年学科のgpaのリスト
-    p_num1 = len(same_stu_gpa1)#同じ学年学科の人数
-    my_gpa1 = studentInfo.objects.get(user_id=sn).gpa#自分のgpa
-    my_index1 = [i for i, x in enumerate(same_stu_gpa1) if x == my_gpa1][0]
-    gpa_rank_p1 = (my_index1 / p_num1) * 100#gpaのランキング(%)
-    gpa_rank_width1 = 50 + (gpa_rank_p1/100)*50
-    #gpa_rank = same_stu_gpa.index(my_gpa) + 1#自分の順位
-    gpa_rank_i1 = my_index1 + 1#gpaのランキング(順位)
-    ran_1 = [p_num1, my_gpa1, gpa_rank_p1, gpa_rank_width1, gpa_rank_i1]#ランキングに必要なデータの配列
-
-    #同じ学年、学科gpaの順位を計算
-    same_stu_gpa2 = sorted(list(studentInfo.objects.filter(user_id__contains=sn[:4]).values_list('gpa', flat=True)),reverse=True)#同じ学年学科のgpaのリスト
-    #same_stu_gpa = np.array(sorted(list(studentInfo.objects.filter(user_id__contains=sn[:3]).values_list('gpa', flat=True)),reverse=True))#同じ学年学科のgpaのリスト
-    p_num2 = len(same_stu_gpa2)#同じ学年学科の人数
-    my_gpa2 = studentInfo.objects.get(user_id=sn).gpa#自分のgpa
-    my_index2 = [i for i, x in enumerate(same_stu_gpa2) if x == my_gpa2][0]
-    gpa_rank_p2 = (my_index2 / p_num2) * 100#gpaのランキング(%)
-    gpa_rank_width2 = 50 + (gpa_rank_p2/100)*50
-    #gpa_rank = same_stu_gpa.index(my_gpa) + 1#自分の順位
-    gpa_rank_i2 = my_index2 + 1#gpaのランキング(順位)
-    ran_2 = [p_num2, my_gpa2, gpa_rank_p2, gpa_rank_width2, gpa_rank_i2]#ランキングに必要なデータの配列
-
-
-
-    if request.method == 'POST':
-        form = find_my_sub_Form(request.POST)
-        make_list('year_int','year',sn,form)
-        make_list('category1','category1',sn,form)
-        filtered_sub = subjectInfo.objects.filter(user_id=sn)
-
-        season = request.POST['season']
-        grade = request.POST['grade']
-        year = request.POST['year']
-        category1 = request.POST['category1']
-        subname_teacher = request.POST['subname_teacher']
-
-
-        #季節のフィルター
-        if len(season) is not 0:
-            filtered_sub = filtered_sub.filter(season__contains=season)
-        #成績のフィルター
-        if len(grade) is not 0:
-            g = int(grade)
-            filtered_sub = filtered_sub.filter(grade_score_int=g)
-        #科目名か先生の名前
-        if len(subname_teacher) is not 0:
-            filtered_sub = filtered_sub.filter(
-                Q(subjectname__contains=subname_teacher)|
-                Q(teacher__contains=subname_teacher)
-                ).distinct()
-        #category1のフィルター
-        if len(category1) is not 0:
-            filtered_sub = filtered_sub.filter(category1=category1)
-        #受講年度のフィルター
-        if len(year) is not 0:
-            y = int(year)
-            filtered_sub = filtered_sub.filter(year_int=y)
-
-        filtered_sub_gpa = filtered_sub.exclude(grade = '履')
-        result_score_int_sum = filtered_sub_gpa.aggregate(Sum('result_score_int'))['result_score_int__sum']
-        unit_int_sum = filtered_sub_gpa.aggregate(Sum('unit_int'))['unit_int__sum']
-
-
-        detail_params = {
-            #'gpa_message':'該当科目のgpaは<b><u>'+str(round(gpa,2))+'</u></b><br>    ※Dがある場合正しく計算されません',
-            'filtered_sub':filtered_sub,
-            'form':form,
-            'sn':sn,
-            'ran_1':ran_1,
-            'ran_2':ran_2,
-
-        }
-        return render(request, 'gv/detail.html', detail_params)
-
-
-    form = find_my_sub_Form()
-    filtered_sub = subjectInfo.objects.filter(user_id=sn)#userのみの授業の情報
-    filtered_sub_gpa = filtered_sub.exclude(grade = '履')
-
-    make_list('year_int','year',sn,form)#formのリストの中身を変更
-    make_list('category1','category1',sn,form)#formのリストの中身を変更
-
-
-
-    detail_params = {
-        'form':form,
-        'filtered_sub':filtered_sub,
-        'sn':sn,
-        'ran_1':ran_1,
-        'ran_2':ran_2,
-
-        #'gpa_message':'gpaは<b><u>'+str(round(gpa,2))+'</u></b><br>    ※Dがある場合正しく計算されません'
-    }
-    return render(request, 'gv/detail.html', detail_params)
-
-"""
 
 def detail(request):
     stuobj = list(studentInfo.objects.values_list('user_id', flat=True))

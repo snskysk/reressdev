@@ -8,24 +8,64 @@
 <!--<link rel='stylesheet' type='text/css' href='{% static 'gv/button/table.css' %}' />-->
 
 
+<style type="text/css">
+  /* ▼ タブメニュー全体の設定 */
+  div.tabbox { margin: 0 0 0 0; padding: 0px; width:100%; height:100%;}
+  /* ▼ タブ部分のマージンとパディング領域を設定 */
+  /* p.tabs { margin: 0px; padding: 0px; } */
+  p.tabs a {
+     /* ▼ リンクをタブのように見せる */
+     display: block; width: 100px; float: left;
+     margin: 0px 3px 0px 0px; padding: 3px;
+     text-align: center;
+     font-size:12px;
+  }
+  /* ▼ タブごとの配色設定 */
+  p.tabs a.tab1 {text-decoration:none; background-color:#fafafa;border-right:1px solid #dcdcdc;border-left:1px solid #dcdcdc;border-top: 3px solid rgba(170, 0, 0, 0.85);  color: #666; font-weight:600;}
+  p.tabs a.tab2 {text-decoration:none; background-color:#fafafa;border-right:1px solid #dcdcdc;border-left:1px solid #dcdcdc;border-top: 3px solid rgba(0, 170, 0, 0.85);  color: #666; font-weight:600;}
+  p.tabs a.tab3 {text-decoration:none; background-color:#fafafa;border-right:1px solid #dcdcdc;border-left:1px solid #dcdcdc;border-top: 3px solid rgba(0, 0, 170, 0.85);  color: #666; font-weight:600;}
+  p.tabs a:hover {opacity:0.7;filter:alpha(opacity=70);}
+  /* ▼ タブ中身のボックス */
+  div.tab {
+     /* ▼ ボックス共通の装飾 */
+     height: 100%;  clear: left;
+  }
+  /* ▼ 各ボックスの配色設定 */
+  div#tab1 { border: 2px solid #FFFFFF; background-color: #FFFFFF; }
+  div#tab2 { border: 2px solid #FFFFFF; background-color: #FFFFFF; }
+  div#tab3 { border: 2px solid #FFFFFF; background-color: #FFFFFF; }
+  div.tab p { margin: 0.5em; }
+
+</style>
+
 {% endblock%}
 
 {% block body %}
 <!--メインの部分-->
-<br>
 <!--<img src="/static/gv/teacher_search/images/kyozyubunnseki.png" alt="Re:Re:ss" width="100%"/>-->
-<br>
 <!--経過時間：{{elapsed_time}} で表示-->
-<h2><a href={% url 'counter' %}>データベースを読み込む</a></h2><br>
-<a href={% url 'hp' %}>To toppage with DATA</a><br>
-<a href={% url 'flush' %}>To toppage with FLUSH</a><br>
+<h2><a href={% url 'counter' %}>データベースを読み込む</a></h2>
+<br><h2 style="text-align: center;">現在の利用者数：{{numbers}}人</h2>
+<table>
+  <thead>
+  <tr>
+    <th>学年</th>
+    <th>利用者数</th>
+  </tr>
+  </thead>
+  <tbody>
+  {% for message in users_by_year %}
+  <tr>
+    <td>
+        <input type="hidden" name="sub-name" value="{{message.0}}">
+        {{message.0}}年度入学者の利用者数
+    </td>
+    <td>{{ message.1 }}人</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
 
-<br>現在の利用者数：{{numbers}}人
-<br>1年生の利用者数：{{st_1}}人
-<br>2年生の利用者数：{{st_2}}人
-<br>3年生の利用者数：{{st_3}}人
-<br>4年生の利用者数：{{st_4}}人
-<br><br>
 <br><h3>利用者数/GPA検索機能</h3>
 <form action='{% url 'counter' %}' method='post' name='counter'>
   {% csrf_token %}
@@ -39,36 +79,67 @@
   </div><!--button-->
 </form>
 
-<br>該当学科の利用者数：{{ggs_numbers}}人
-<br>該当利用者のGPA平均：{{gpa_ave}}
+<br><h4>該当学科の利用者数：{{ggs_numbers}}人</h4>
+<h4>該当利用者のGPA平均：{{gpa_ave}}</h4>
 <br>
+<div class="tabbox">
+    <p class="tabs">
+      <a href="#tab1" class="tab1" onclick="ChangeTab('tab1'); return false;">履修者順</a>
+      <a href="#tab2" class="tab2" onclick="ChangeTab('tab2'); return false;">GPA順</a>
+    </p>
+  <div id="tab1" class="tab">
+    <table>
+      <thead>
+      <tr>
+        <th>学科名</th>
+        <th>コード</th>
+        <th>利用者数</th>
+        <th>GPA平均</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for message in ggobj_counter %}
+      <tr>
+        <td>
+            <input type="hidden" name="sub-name" value="{{message.0}}">
+            {{message.0}}
+        </td>
+        <td>{{ message.1 }}</td>
+        <td>{{ message.2 }}人</td>
+        <td>{{ message.3 }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
 
-<table>
-  <thead>
-  <tr>
-    <th>学科名</th>
-    <th>コード</th>
-    <th>利用者数</th>
-    <th>GPA平均</th>
-  </tr>
-  </thead>
-  <tbody>
-  {% for message in ggobj_counter %}
-  <tr>
-    <td>
-        <input type="hidden" name="sub-name" value="{{message.0}}">
-        {{message.0}}
-    </td>
-    <td>{{ message.1 }}</td>
-    <td>{{ message.2 }}人</td>
-    <td>{{ message.3 }}</td>
-  </tr>
-  {% endfor %}
-  </tbody>
-  </table>
-
-
-
+  <div id="tab2" class="tab">
+    <table>
+      <thead>
+      <tr>
+        <th>学科名</th>
+        <th>コード</th>
+        <th>利用者数</th>
+        <th>GPA平均</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for message in ggobj_counter2 %}
+      <tr>
+        <td>
+            <input type="hidden" name="sub-name" value="{{message.0}}">
+            {{message.0}}
+        </td>
+        <td>{{ message.1 }}</td>
+        <td>{{ message.2 }}人</td>
+        <td>{{ message.3 }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div><!--tab-box-->
+  
 
 {% endblock %}
 
@@ -77,47 +148,65 @@
 
 <script>
     $('.suggest_input').click(function() {
-      $('.teacher_input').blur();
+    $('.teacher_input').blur();
     })
-  </script>
+</script>
   
   
   
-  <script>
+<script>
   
-      $('.teacher_input').focusout(function(){
-        var input_t_name_true = $('.teacher_input').val();
-        //$(".t_sub_input").css("display", "block");
-        //$(".t_sub_input").css("text-align", "center");
-        $.ajax({
-          type: "GET",
-          url: "https://grade-visualizer101.herokuapp.com/gv/more/",
-          data: { name: input_t_name_true},
-          success　: function(data){
-            $('#result').html(data);//A
-          },
-          datatype:'json',
-        });
+    $('.teacher_input').focusout(function(){
+      var input_t_name_true = $('.teacher_input').val();
+      //$(".t_sub_input").css("display", "block");
+      //$(".t_sub_input").css("text-align", "center");
+      $.ajax({
+        type: "GET",
+        url: "https://grade-visualizer101.herokuapp.com/gv/more/",
+        data: { name: input_t_name_true},
+        success　: function(data){
+          $('#result').html(data);//A
+        },
+        datatype:'json',
       });
-  </script>
+    });
+</script>
   
-  <script>
-    $('.teacher_input').focus(function() {
-        $('.t_sub_input option:not(:first)').remove();
-      });
-  </script>
+<script>
+  $('.teacher_input').focus(function() {
+  $('.t_sub_input option:not(:first)').remove();
+    });
+</script>
   
   
   <!--入った瞬間focus-->
-  <script>
-    var input_t_name = $('.teacher_input');
-    var message = "{{message|safe}}"
-    var length = message.length
-    if(length!=0){
-      $(input_t_name).focus();
-      $(input_t_name).blur();  }
-  </script>
-  
+<script>
+  var input_t_name = $('.teacher_input');
+  var message = "{{message|safe}}"
+  var length = message.length
+  if(length!=0){
+    $(input_t_name).focus();
+    $(input_t_name).blur();  }
+</script>
+
+<!--テーブル切り替え-->
+<script type="text/javascript">
+  function ChangeTab(tabname) {
+     // タブメニュー実装
+     document.getElementById('tab1').style.display = 'none';
+     document.getElementById('tab2').style.display = 'none';
+     // タブメニュー実装
+     document.getElementById(tabname).style.display = 'block';
+  }
+
+
+</script>
+
+<!-- ページを開いた際の最初に表示されるタブの選択 -->
+<script type="text/javascript">
+  ChangeTab('tab1');
+</script>
+
 <!--
 <script>
     var teacher_sub_dict = {{teacher_sub_dict|safe}};
