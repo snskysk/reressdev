@@ -84,3 +84,8 @@ body  {
   width: 100%;
   height: 30px;
 }
+
+
+.small_size {
+  font-size: 12px;
+}
