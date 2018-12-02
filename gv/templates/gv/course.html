@@ -21,6 +21,7 @@
      text-align: center;
      font-size:12px;
   }
+
   /* ▼ タブごとの配色設定 */
   p.tabs a.tab1 {text-decoration:none; background-color:#fafafa;border-right:3px solid #dcdcdc;border-left:3px solid #dcdcdc;border-bottom:3px solid #dcdcdc;border-top: 3px solid rgba(170, 0, 0, 0.85);  color: #666; font-weight:600;}
   p.tabs a.tab2 {text-decoration:none; background-color:#fafafa;border-right:3px solid #dcdcdc;border-left:3px solid #dcdcdc;border-bottom:3px solid #dcdcdc;border-top: 3px solid rgba(0, 170, 0, 0.85);  color: #666; font-weight:600;}
@@ -29,7 +30,10 @@
   /* ▼ タブ中身のボックス */
   div.tab {
      /* ▼ ボックス共通の装飾 */
-     height: 100%;  clear: left;
+     height: 100%;
+     /* clear: left; */
+     width: 100%;
+
   }
   /* ▼ 各ボックスの配色設定 */
   div#tab1 { border: 2px solid #FFFFFF; background-color: #FFFFFF; }
@@ -54,7 +58,12 @@
     <a href="#tab3" class="tab3" onclick="ChangeTab('tab3'); return false;">他学科の人気<br>ランキング</a>
   </p>
   <div id="tab1" class="tab">
-    <table>
+    <br><br><br>
+    <div class="tri">
+      <div id='triangleDown1'></div>
+      <div id='triangleDown2'></div>
+    </div>
+    <table id="my_gakka_table1">
       <thead>
       <tr>
         <th>あなたの学科で人気の授業<br>(<strong class="non-class" style="background: linear-gradient(transparent 60%, #ff99ff 60%);">クリックで授業分析へ</strong>)</th>
@@ -64,6 +73,30 @@
       </thead>
       <tbody>
       {% for message in sub_list_counter %}
+      <tr>
+        <td>
+          <form method="post" action="{% url 'sub_search' %}">
+            {% csrf_token %}
+            <input type="hidden" name="s_name" value="{{message.0}}">
+            <a href="javascript:void(0)" onclick="this.parentNode.submit()"><span class="non-class" style="background: linear-gradient(transparent 97%, #000 50%);">{{message.0}}</span></a>
+          </form>
+        </td>
+        <td>{{ message.1 }}人</td>
+        <td>{{ message.2 }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <table id=my_gakka_table2>
+      <thead>
+      <tr>
+        <th>あなたの学科で人気の授業<br>(<strong class="non-class" style="background: linear-gradient(transparent 60%, #ff99ff 60%);">クリックで授業分析へ</strong>)</th>
+        <th>履修者<br>数順</th>
+        <th>評価平均<br>(GPA)</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for message in sub_list_counter_sorted_gpa %}
       <tr>
         <td>
           <form method="post" action="{% url 'sub_search' %}">
@@ -200,6 +233,7 @@
 
 
 
+
 <!-- 他学科検索のセレクトボックスの連動 -->
 <script>
   $(function() {
@@ -275,6 +309,26 @@ $('#gakka').change(function() {
 <script type="text/javascript">
    ChangeTab('tab1');
 </script>
+
+
+<!-- 自分の学科をソートする。 -->
+<script>
+  $('#triangleDown1').click(function() {
+    $('#my_gakka_table1').css('display','inline-block');
+    $('#my_gakka_table2').css('display','none');
+    $('#triangleDown1').css('border-top','33px solid #FF0000');
+    $('#triangleDown2').css('border-top','33px solid #CCCCCC');
+   });
+  $('#triangleDown2').click(function() {
+    $('#my_gakka_table1').css('display','none');
+    $('#my_gakka_table2').css('display','inline-block');
+    $('#triangleDown1').css('border-top','33px solid #CCCCCC');
+    $('#triangleDown2').css('border-top','33px solid #FF0000');
+   });
+  $('#my_gakka_table2').css('display','none');
+  $('#triangleDown1').css('border-top','33px solid #FF0000');
+
+ </script>
 
 
 {% endblock %}

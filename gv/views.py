@@ -243,6 +243,9 @@ def course(request, num=1):
     #変更された1行(読みずらいが高速)
     sub_list_counter = [(a[0],a[1],np.round(np.average(list(sub_obj.filter(subjectname=a[0]).values_list('grade_score_int',flat=True))),2)) for a in sub_list_counter]
 
+    #gpa順にソートしたリスト
+    sub_list_counter_sorted_gpa = sorted(sub_list_counter, key=lambda sub_list_counter: sub_list_counter[2], reverse=True)
+
     form = find_course()
     make_list('category1','category1',sn,form)
     now_field = form.fields['category1'].choices
@@ -256,6 +259,7 @@ def course(request, num=1):
         #'sub_list_counter':sub_list_counter,
         'sub_list_counter':sub_list_counter,
         'zenkari_ranking':zenkari_ranking,
+        'sub_list_counter_sorted_gpa':sub_list_counter_sorted_gpa,
         }
     return render(request, 'gv/course.html', course_params)
 
