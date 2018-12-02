@@ -30,6 +30,7 @@ body  {
   /* background-color: 'black'; */
   position: absolute;
   right:29%;
+  top: 15px;
 }
 /* 三角形のcss */
 #my_gakka_triangleDown2{
@@ -42,6 +43,7 @@ body  {
   display: inline-block;
   position: absolute;
   right: 9%;
+  top: 15px;
   /* background-color: 'black'; */
 }
 
@@ -58,6 +60,7 @@ body  {
   /* background-color: 'black'; */
   position: absolute;
   right:29%;
+  top: 15px;
 }
 /* 三角形のcss */
 #zenkari_triangleDown2{
@@ -70,6 +73,7 @@ body  {
   display: inline-block;
   position: absolute;
   right: 9%;
+  top: 15px;
   /* background-color: 'black'; */
 }
 
