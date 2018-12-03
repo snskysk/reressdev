@@ -15,8 +15,8 @@ def pytojsMaterials(result, list_pie, list_bar, table,kyoushoku_c):
     kind_name = list(list_bar[2].index)
     #文字列を取得しシングルクォーテーションを消す
     str_kind_name = str(kind_name)[1:-2].replace("'","")
-    print(kind_name)
-    print(str_kind_name)
+    #print(kind_name)
+    #print(str_kind_name)
     #※マークを消すための2行
     kome = str_kind_name[0]
     str_kind_name = str_kind_name.replace(kome,'')

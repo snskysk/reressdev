@@ -20,7 +20,11 @@ from django.core.paginator import Paginator
 
 import numpy as np
 from operator import itemgetter
-
+####### 高速化実験 #######
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
+##############
 #
 from .forms import ggs_counter_Form
 #
@@ -28,33 +32,59 @@ from .forms import ggs_counter_Form
 
 
 
-def site_map(request):
+###################################################################################
+                                    #トップページ
+######################################################################################
+
+def hp(request):
+    form = userInfoForm()
     stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
     numbers=len(stuobj)
+    request.session['numbers'] = numbers
+
     try:#sessionが切れていないか確認
         sn = request.session['stunum']  #学籍番号をsessionから持ってくる
+        site_map_params = {
+            'numbers':numbers,
+        }
+        return render(request, 'gv/site_map.html',site_map_params)
     except:
         form = userInfoForm()
-
         hp_params = {
             'form':form,
-            'message':'学籍番号とパスワードを入力しよう',
+            #'message':'学籍番号とパスワードを入力しよう',
             'numbers':numbers,
 
             }
         return render(request, 'gv/hp.html', hp_params)
 
-    if request.method == 'POST':
-        site_map_params = {
+    index_params = {
+        'form':form,
+        'message':'',
         'numbers':numbers,
         }
-        return render(request, 'gv/site_map.html', site_map_params)
 
-    site_map_params = {
-    'numbers':numbers,
-    }
-    return render(request, 'gv/site_map.html', site_map_params)
+    return render(request, 'gv/hp.html', index_params)
 
+def flush(request):
+    request.session.flush()
+    form = userInfoForm()
+    stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
+    numbers=len(stuobj)
+    #URL="https://rs.rikkyo.ac.jp/"
+    #try:
+    #    driver = webdriver.PhantomJS()
+    #except:#ローカルはphantomJSが使えないのでchromeに
+    #    driver = webdriver.Chrome()
+    #driver.get(URL)
+    #driver.close()
+    index_params = {
+        'form':form,
+        'message':'',
+        'numbers':numbers,
+        }
+
+    return render(request, 'gv/hp.html', index_params)
 
 ####################################################################################
                             #授業分析(11月27日)new!!!
@@ -63,6 +93,18 @@ def sub_search(request):
 
 
     all_sub_list = list(set(subjectInfo.objects.values_list('subjectname', flat=True)))#すべての授業のリスト(重複なし)
+    try:#sessionが切れていないか確認
+        sn = request.session['stunum']  #学籍番号をsessionから持ってくる
+    except:
+        numbers = request.session['numbers']
+        form = userInfoForm()
+        hp_params = {
+            'form':form,
+            'message':'学籍番号とパスワードを入力しよう',
+            'numbers':numbers,
+
+            }
+        return render(request, 'gv/hp.html', hp_params)
     if request.method == 'POST':
         form = find_sub(request.POST)
         s_name = request.POST['s_name']
@@ -138,8 +180,6 @@ def sub_search(request):
         'form':form,
     }
     return render(request, 'gv/sub_search.html', sub_search_params)
-
-
 
 ###################################################################################
                                     #2重サブミット防止
@@ -306,13 +346,18 @@ def more(request):
 
 def teacher_search(request):
 
-    sss='15bc199sssss'
-    sn = request.session['stunum']  #学籍番号をsessionから持ってくる
-    if sn == sss:
-        objjj = subjectInfo.objects.filter(user_id__contains=sn[:2]).values_list('user_id',flat=Ture)
-    else:
-        objjj = ''
+    try:#sessionが切れていないか確認
+        sn = request.session['stunum']  #学籍番号をsessionから持ってくる
+    except:
+        numbers = request.session['numbers']
+        form = userInfoForm()
+        hp_params = {
+            'form':form,
+            'message':'学籍番号とパスワードを入力しよう',
+            'numbers':numbers,
 
+            }
+        return render(request, 'gv/hp.html', hp_params)
     import time
     start = time.time()##########################
     sub_obj = subjectInfo.objects.all()
@@ -320,7 +365,6 @@ def teacher_search(request):
     #teacher_list = [i.replace('　', '') for i in teacher_list_space]#先生の名前スペースなし
     #各先生の授業のリストを生成(ex:{'A先生':[B,C,D]})
     #teacher_sub_dict = {teacher_name.replace('　', ''):list(set(subjectInfo.objects.filter(teacher__contains=teacher_name).values_list('subjectname', flat=True))) for teacher_name in teacher_list_space}
-
 
     if request.method == 'POST':
         form = find_teacher(request.POST)
@@ -379,155 +423,15 @@ def teacher_search(request):
         'teacher_list_space':teacher_list_space,
         #'teacher_sub_dict':teacher_sub_dict,
         'r_form':'成績判定統計',
-        #'objjj':objjj,
     }
 
     return render(request, 'gv/teacher_search.html', teacher_search_params)
 
-def inquiry(request):
-    inquiry_params = {}
-    return render(request, 'gv/inquiry.html', inquiry_params)
-
-###################################################################################
-                                    #トップページ
-######################################################################################
-
-def hp(request):
-    form = userInfoForm()
-    stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
-    numbers=len(stuobj)
-    try:#sessionが切れていないか確認
-        sn = request.session['stunum']  #学籍番号をsessionから持ってくる
-        site_map_params = {
-            'numbers':numbers,
-        }
-        return render(request, 'gv/site_map.html',site_map_params)
-    except:
-        form = userInfoForm()
-        hp_params = {
-            'form':form,
-            #'message':'学籍番号とパスワードを入力しよう',
-            'numbers':numbers,
-
-            }
-        return render(request, 'gv/hp.html', hp_params)
-
-    index_params = {
-        'form':form,
-        'message':'',
-        'numbers':numbers,
-        }
-
-    return render(request, 'gv/hp.html', index_params)
-
-def flush(request):
-    request.session.flush()
-    form = userInfoForm()
-    stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
-    numbers=len(stuobj)
-
-    index_params = {
-        'form':form,
-        'message':'',
-        'numbers':numbers,
-        }
-
-    return render(request, 'gv/hp.html', index_params)
-###################################################################################
-                                    #停止
-##################################################################################
-def info(request):
-    return render(request, 'gv/informations.html')
-
-def index(request):
-    form = userInfoForm()
-    index_params = {
-        'form':form,
-        'message':'学籍番号とパスワードを入力してください',
-        }
-
-    return render(request, 'gv/hp.html', index_params)
-
-def get(request):
-    if request.method == 'POST':
-        #formから学籍番号とパスワードの取得
-        value = [request.POST['stunum'], request.POST['password']]
-        #入力が正しいか
-
-        try:
-            result, list_pie, list_bar, table, personal_dataset= main.condact(value)
-        #正しくなかったら戻る
-        except:
-            form = userInfoForm()
-            #error = str(e.args)
-            #error = str(sys.exc_info()[-1].tb_lineno)
-            error=traceback.format_exc()
-            params = {
-            'form':form,
-            #'message':'学籍番号かパスワードがまちがえてるよ♡<br>\
-            #もう一度入力してね♡'
-            'message':error
-            }
-            return render(request, 'gv/hp.html', params)
-
-
-        #result, list_pie, list_bar, table, personal_dataset= main.condact(value)
-
-
-        #正しくデータを整形することができるかどうか。
-        try:
-            #pythonからjsへの値の受け渡し
-            params = pytojsMaterials(result, list_pie, list_bar, table)
-
-
-        except Exception as e:
-            print("エラーの種類:", e.args)
-            form = userInfoForm()
-            params = {
-            'form':form,
-            'message':str(e.args)
-            }
-            return render(request, 'gv/hp.html', params)
-
-        #データベースに登録するかどうか
-        stuobj = studentInfo.objects.all()
-        t = list(personal_dataset.iloc[0])
-        if t[0] not in str(stuobj):
-            print('なかったからsaveするよ')
-            #user情報の保存
-            stuinfo = studentInfo(user_id=t[0], student_grade=t[1],
-            enteryear=t[2], seasons=t[3], gpa=t[4])
-            stuinfo.save()
-            #studentInfo(*t).save()
-
-            #教科情報の保存
-            for i in range(len(table)):
-                s = list(table.iloc[i])
-                subjectInfomation = subjectInfo(subjectnum=s[0],managementnum=s[1],
-                user_id=s[2],subjectname=s[3],unit_int=s[4],grade=s[5],
-                grade_score_int=s[6],result_score_int=s[7],year_int=s[8],
-                season=s[9],teacher=s[10],gpa_int=s[11],
-                category1=s[12],category2=s[13],last_login=s[14],stu_id=stuinfo)
-                subjectInfomation.save()
-
-        #データベースから情報を取得
-        #後々新しいpyファイルを作成する
-        #gpaの順位
-        gpaobj = studentInfo.objects.filter(gpa__gt = float(params['gpa']))
-        rank = len(gpaobj) + 1
-        params['rank'] = rank
-        return render(request, 'gv/get.html', params)
-    else:
-        form = userInfoForm()
-        params = {
-        'form':form,
-        'message':'学籍番号とパスワードを入力しよう!'
-        }
-        return render(request, 'gv/hp.html', params)
-
-
+####################################################################################
+                                #利用者の詳細を確認するためのカウンター
+####################################################################################
 def counter(request):
-    sn = request.session['stunum']  #学籍番号をsessionから持ってくる
+    #sn = request.session['stunum']  #学籍番号をsessionから持ってくる
     form = ggs_counter_Form()
     ######
     stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
@@ -570,7 +474,10 @@ def counter(request):
     }
     return render(request,'gv/counter.html',counter_params)
 
-def new_data_register(st_data,sub_data,judgement_number,personal_number):#状況に応じてデータを保存
+####################################################################################
+                                #状況に応じてデータベースへ保存または削除＆上書き
+####################################################################################
+def new_data_register(st_data,sub_data,judgement_number,personal_number):
     #user情報の保存
     if judgement_number == 1:
         stuinfo = studentInfo(user_id=personal_number, student_grade=st_data[1],
@@ -593,16 +500,13 @@ def new_data_register(st_data,sub_data,judgement_number,personal_number):#状況
         category1=s[12],category2=s[13],last_login=s[14],stu_id=stuinfo)
         subjectInfomation.save()
 
-###################################################################################
-                               #メインのグラフを出力する画面
-#####################################################################################
-#from django.utils.functional import cached_property
-#@cached_property
-
+####################################################################################
+                                #メインのグラフを出力する画面
+####################################################################################
 def mainhome(request):
     stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
     numbers=len(stuobj)
-
+    start = time.time()
     if request.method == 'POST':
         value = [request.POST['stunum'], request.POST['password']]
 
@@ -794,7 +698,7 @@ def mainhome(request):
 
 
         if lowerd_sn not in stuobj:
-            print('新規ユーザーのデータを保存-----------------------------------------------------------')
+            print('---新規ユーザーのデータを保存------------------------------------')
             new_data_register(t,table,1,lowerd_sn)
         else:
             ndc = len(table)#new_data_count
@@ -805,7 +709,7 @@ def mainhome(request):
             if ndc > odc:
                 old_data.exclude(grade='Ｄ').delete()
                 new_data_register(t,table,2,lowerd_sn)
-                print("すでに登録されているが新たなデータが古いデータより多いパターン")
+                print("---すでに登録されているが新たなデータが古いデータより多いパターン---")
             elif ndc <= odc and nd_taking < od_taking:
                 nd_normal = len(table[table.iloc[:,5]!="履"][table.iloc[:,5]!="Ｑ"][table.iloc[:,5]!="Ｄ"][table.iloc[:,5]!="欠"])
                 od_normal = len(subjectInfo.objects.filter(user_id__contains=lowerd_sn).exclude(grade='履').exclude(grade='Ｑ').exclude(grade='Ｄ').exclude(grade='欠'))    
@@ -814,18 +718,20 @@ def mainhome(request):
                     old_data.filter(grade="Ｑ").delete()
                     table[table.iloc[:,5]=="履"][table.iloc[:,5]=="Ｑ"]
                     new_data_register(t,table,0,lowerd_sn)
-                    print("すでに登録されているが履が「Ｑ」になった授業があるパターン")
+                    print("---すでに登録されているが、「履」が「Ｑ」になった授業があるパターン---")
                 elif nd_normal > od_normal:
                     old_data.exclude(grade='Ｄ').delete()
                     new_data_register(t,table,2,lowerd_sn)
-                    print("すでに登録されており、履の成績結果がでて内容が書き換わったパターン")
+                    print("---すでに登録されており、「履」の成績結果が出て内容が書き換わったパターン---")
                 else:
-                    print("想定外のパターン1")
+                    print("---想定外のパターン1---")
             elif ndc < odc and nd_taking == od_taking:
-                print("すでに登録されており、過去にとったＤが成績表から消えてしまった場合")
+                print("---すでに登録されており、過去にとったＤが成績表から消えてしまった場合---")
             else:
-                print("すでに登録されており、データに何の変化もないパターン")
+                print("---すでに登録されており、データに何の変化もないパターン---")
         
+        elapsed_time = np.round(time.time() - start,1)
+        print('---mainhome全プロセス経過時間 {0}秒---'.format(elapsed_time))
         #ログインしたことの証拠,mainhome_after_loginで使用
         return render(request, 'gv/site_map.html', mainhome_params)
 
@@ -1077,6 +983,21 @@ def detail(request):
 
 
 
+def inquiry(request):
+    inquiry_params = {}
+    return render(request, 'gv/inquiry.html', inquiry_params)
+
+
+
+
+
+
+###################################################################################
+                                    #停止
+##################################################################################
+
+
+
 ######################################################################################
                                      #飲食店レビュー
 ###################################################################################
@@ -1120,3 +1041,93 @@ def shop_search(request):
         'shop_obj':shop_obj
     }
     return render(request, 'gv/shop_search.html', shop_search_params)
+
+
+def info(request):
+    return render(request, 'gv/informations.html')
+
+def index(request):
+    form = userInfoForm()
+    index_params = {
+        'form':form,
+        'message':'学籍番号とパスワードを入力してください',
+        }
+
+    return render(request, 'gv/hp.html', index_params)
+
+def get(request):
+    if request.method == 'POST':
+        #formから学籍番号とパスワードの取得
+        value = [request.POST['stunum'], request.POST['password']]
+        #入力が正しいか
+
+        try:
+            result, list_pie, list_bar, table, personal_dataset= main.condact(value)
+        #正しくなかったら戻る
+        except:
+            form = userInfoForm()
+            #error = str(e.args)
+            #error = str(sys.exc_info()[-1].tb_lineno)
+            error=traceback.format_exc()
+            params = {
+            'form':form,
+            #'message':'学籍番号かパスワードがまちがえてるよ♡<br>\
+            #もう一度入力してね♡'
+            'message':error
+            }
+            return render(request, 'gv/hp.html', params)
+
+
+        #result, list_pie, list_bar, table, personal_dataset= main.condact(value)
+
+
+        #正しくデータを整形することができるかどうか。
+        try:
+            #pythonからjsへの値の受け渡し
+            params = pytojsMaterials(result, list_pie, list_bar, table)
+
+
+        except Exception as e:
+            print("エラーの種類:", e.args)
+            form = userInfoForm()
+            params = {
+            'form':form,
+            'message':str(e.args)
+            }
+            return render(request, 'gv/hp.html', params)
+
+        #データベースに登録するかどうか
+        stuobj = studentInfo.objects.all()
+        t = list(personal_dataset.iloc[0])
+        if t[0] not in str(stuobj):
+            print('なかったからsaveするよ')
+            #user情報の保存
+            stuinfo = studentInfo(user_id=t[0], student_grade=t[1],
+            enteryear=t[2], seasons=t[3], gpa=t[4])
+            stuinfo.save()
+            #studentInfo(*t).save()
+
+            #教科情報の保存
+            for i in range(len(table)):
+                s = list(table.iloc[i])
+                subjectInfomation = subjectInfo(subjectnum=s[0],managementnum=s[1],
+                user_id=s[2],subjectname=s[3],unit_int=s[4],grade=s[5],
+                grade_score_int=s[6],result_score_int=s[7],year_int=s[8],
+                season=s[9],teacher=s[10],gpa_int=s[11],
+                category1=s[12],category2=s[13],last_login=s[14],stu_id=stuinfo)
+                subjectInfomation.save()
+
+        #データベースから情報を取得
+        #後々新しいpyファイルを作成する
+        #gpaの順位
+        gpaobj = studentInfo.objects.filter(gpa__gt = float(params['gpa']))
+        rank = len(gpaobj) + 1
+        params['rank'] = rank
+        return render(request, 'gv/get.html', params)
+    else:
+        form = userInfoForm()
+        params = {
+        'form':form,
+        'message':'学籍番号とパスワードを入力しよう!'
+        }
+        return render(request, 'gv/hp.html', params)

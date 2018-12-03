@@ -20,6 +20,7 @@ import os
 #import matplotlib.cm as cm
 #from matplotlib.font_manager import FontProperties
 
+
 def special(result):
     import numpy as np
 
@@ -51,10 +52,8 @@ def func1(value):
     USER=value[0]
     PASS=value[1]
     URL="https://rs.rikkyo.ac.jp/"
-
-    time.sleep(1)
     print("---Chromeを起動---")
-
+    start = time.time()
     #options = Options()
     # Heroku以外ではNone
     #if chrome_binary_path: options.binary_location = chrome_binary_path
@@ -89,10 +88,7 @@ def func1(value):
     #driver = webdriver.Chrome( chrome_options=opts)
     #driver = webdriver.Chrome(executable_path='chromedriver', chrome_options=opts)
     #driver = webdriver.Chrome( executable_path = CHROME_DRIVER_PATH , chrome_options = opts)
-    try:
-        driver = webdriver.PhantomJS()
-    except:#ローカルはphantomJSが使えないのでchromeに
-        driver = webdriver.Chrome()
+    
     #これは間違ってるらしい
 
     #chrome_bin = GOOGLE_CHROME_SHIM
@@ -109,10 +105,17 @@ def func1(value):
     #options.add_argument('--headless')
     #driver = webdriver.Chrome(chrome_options=options)
 
+
+    try:
+        driver = webdriver.PhantomJS()
+    except:#ローカルはphantomJSが使えないのでchromeに
+        driver = webdriver.Chrome()
+    
     try:
         print("---https://rs.rikkyo.ac.jp/にアクセス---")
         driver.get(URL)
-
+        access_time = np.round(time.time() - start,1)
+        print('---アクセス時間 {0}秒---'.format(access_time))        
         print("---ユーザ情報を入力---")
         driver.find_element_by_css_selector("#userNameInput").send_keys(USER)
         driver.find_element_by_css_selector("#userNameInput").send_keys(Keys.RETURN)
@@ -126,7 +129,7 @@ def func1(value):
             pass
         print("---ユーザ情報入力完了　―　ページ遷移---")
 
-        time.sleep(1)
+        time.sleep(0.8)
 
         #print("---スクリーンショットの保存---")
         #driver.save_screenshot("gv/static/gv/images/test101.png")
@@ -134,23 +137,17 @@ def func1(value):
         print("---ページ遷移---")
         driver.find_element_by_css_selector("#MainContent_Contents_MenuCtrl_lnkSeiseki").click()
 
-        print('a')
         data = driver.page_source.encode('utf-8')
-        print('b')
         #soup = BeautifulSoup(data, 'html.parser')
 
         #tableを取得
         #tables = soup.find_all('table')
         tttt = pd.read_html(data)
         urlda = driver.current_url
-        print('aaa')
         #tttt = pd.read_html(ulrda)
-        dfdf = pd.Series([1,2,3,4,5])
-        print(type(dfdf))
 
         print("---ページソースを取得---")
         #html=driver.page_source
-        print('fdf')
 
         print("---ページソースからテーブル要素を取得---")
         #tables = pd.io.html.read_html(html, flavor='bs4')
@@ -161,19 +158,20 @@ def func1(value):
 
 
         #print("---全"+str(len(tables))+"個のテーブルを取得---")
-        print('完了')
         time.sleep(1)
 
 
         driver.close()
         print("---Chromeをダウン---")
-        print("---process all complete---")
+        print("---scraping process all complete---")
+        elapsed_time = np.round(time.time() - start,1)
+        print('---スクレイピング経過時間 {0}秒---'.format(elapsed_time))
         print("--------------------------")
         passcheck=1
 
     except Exception as e:
         driver.quit()
-        print('error確認!chromeを閉じるよ')
+        print('error確認---chromeをshutdown')
         result,kyoushoku_c,passcheck=[0,0,0]
 
         return result,kyoushoku_c,passcheck
@@ -189,7 +187,6 @@ def func1(value):
     #gpa_info=tables[5]
     #grade_info=tables[7]
 
-    print('ここまできてる')
     #user_info=tttt[2]
     #unit_info=tttt[4]
     #gpa_info=tttt[5]

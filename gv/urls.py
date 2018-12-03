@@ -21,7 +21,7 @@ urlpatterns = [
     path('more/', views.more, name='more'),
     path('counter/', views.counter, name='counter'),
     path('sub_search/', views.sub_search, name='sub_search'),
-    path('site_map/', views.site_map, name='site_map'),
+    #path('site_map/', views.site_map, name='site_map'),
     path('course_more/', views.course_more, name='course_more'),
 
 ]
