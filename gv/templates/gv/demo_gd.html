@@ -1,0 +1,1380 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0046)https://rs.rikkyo.ac.jp/rs/Record/Rec0100.aspx -->
+<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml"><head id="Head1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="content-style-type" content="text/css"><meta http-equiv="content-script-type" content="text/javascript"><meta http-equiv="imagetoolbar" content="no"><title>
+Rikkyo Web System
+</title><link charset="utf-8" href="./Rikkyo Web System_files/common.css" type="text/css" rel="stylesheet" media="all"><link charset="utf-8" href="./Rikkyo Web System_files/style.css" type="text/css" rel="stylesheet" media="all"><link charset="utf-8" href="./Rikkyo Web System_files/individual.css" type="text/css" rel="stylesheet" media="all"><link charset="utf-8" href="./Rikkyo Web System_files/button.css" media="all" rel="stylesheet" type="text/css"><link charset="utf-8" href="./Rikkyo Web System_files/menu.css" media="all" rel="Stylesheet" type="text/css"><!--<link charset="utf-8" href="../css/popupwindow.css" media="all" rel="stylesheet" type="text/css" />--><link charset="utf-8" href="./Rikkyo Web System_files/jquery-ui-1.10.4.custom.min.css" media="all" rel="stylesheet" type="text/css"><link charset="utf-8" href="./Rikkyo Web System_files/timeout-block.css" type="text/css" rel="stylesheet" media="all"><link charset="utf-8" href="./Rikkyo Web System_files/fixedMenu.css" media="all" rel="stylesheet" type="text/css"><link charset="utf-8" href="./Rikkyo Web System_files/li-scroller.css" media="all" rel="stylesheet" type="text/css"><script charset="utf-8" src="./Rikkyo Web System_files/jquery-1.11.1.min.js.ダウンロード" type="text/javascript"></script><script charset="utf-8" src="./Rikkyo Web System_files/jquery.fixedMenu.js.ダウンロード" type="text/javascript"></script><script charset="utf-8" src="./Rikkyo Web System_files/jquery.li-scroller.1.0.js.ダウンロード" type="text/javascript"></script><script charset="utf-8" src="./Rikkyo Web System_files/popupwindow-1.8.1.js.ダウンロード" type="text/javascript"></script><script charset="utf-8" src="./Rikkyo Web System_files/pageLockCheck.js.ダウンロード" type="text/javascript"></script><script charset="utf-8" src="./Rikkyo Web System_files/utility.js.ダウンロード" type="text/javascript"></script><script charset="shift-jis" src="./Rikkyo Web System_files/validation.js.ダウンロード" type="text/javascript"></script><script charset="utf-8" src="./Rikkyo Web System_files/common.js.ダウンロード" type="text/javascript"></script><meta http-equiv="Imagetoolbar" content="no"><script type="text/javascript">
+//<![CDATA[
+$(function () {
+// サイト上部へ
+var topBtn = $('#floatnav2');
+topBtn.hide();
+$(window).scroll(function () {
+if ($(this).scrollTop() > 10) {
+topBtn.fadeIn();
+} else {
+topBtn.fadeOut();
+}
+});
+// ページトップに戻るときぬるぬる動くように
+$('a[href^=#page-top]').click(function () {
+var speed = 500;
+var href = $(this).attr("href");
+var target = $(href == "#page-top" || href == "" ? 'html' : href);
+var position = target.offset().top;
+$("html, body").animate({ scrollTop: position }, speed, "swing");
+return false;
+});
+$('a.disabled').click(function () {
+return false;
+});
+// 
+$('.pmenu').fixedMenu();
+});
+//]]></script><script type="text/javascript">
+//<![CDATA[
+function targetMeBlank() {
+document.forms[0].target = "_blank";
+}
+//]]></script></head><body><div style="height: 0;"></div><div id="floatnav2" style="display: none;"><a href="https://rs.rikkyo.ac.jp/rs/Record/Rec0100.aspx#page-top"><img src="./Rikkyo Web System_files/float_top.png" alt="ページトップへ" width="40" height="40"></a></div><div id="container"><form method="post" action="https://rs.rikkyo.ac.jp/rs/Record/Rec0100.aspx" id="formX" class="home"><div class="aspNetHidden"><input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value=""><input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value=""><input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="kem8/iFW52GbCCco+Qa5Il73HV2+2+4XPHoz5FgfDlQCihvJb8DBCqek3YGwLgw8wAMji07XeyfU1OUS2QihKhaPm3PaKvIccW5wL8HBeQeSvICxXzsIR8L0oWwXzNYz"></div><script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['formX'];
+if (!theForm) {
+theForm = document.formX;
+}
+function __doPostBack(eventTarget, eventArgument) {
+if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+theForm.__EVENTTARGET.value = eventTarget;
+theForm.__EVENTARGUMENT.value = eventArgument;
+theForm.submit();
+}
+}
+//]]></script><script src="./Rikkyo Web System_files/WebResource.axd" type="text/javascript"></script><script type="text/javascript">
+//<![CDATA[
+var __cultureInfo = {"name":"ja-JP","numberFormat":{"CurrencyDecimalDigits":0,"CurrencyDecimalSeparator":".","IsReadOnly":false,"CurrencyGroupSizes":[3],"NumberGroupSizes":[3],"PercentGroupSizes":[3],"CurrencyGroupSeparator":",","CurrencySymbol":"¥","NaNSymbol":"NaN (非数値)","CurrencyNegativePattern":1,"NumberNegativePattern":1,"PercentPositivePattern":1,"PercentNegativePattern":1,"NegativeInfinitySymbol":"-∞","NegativeSign":"-","NumberDecimalDigits":2,"NumberDecimalSeparator":".","NumberGroupSeparator":",","CurrencyPositivePattern":0,"PositiveInfinitySymbol":"+∞","PositiveSign":"+","PercentDecimalDigits":2,"PercentDecimalSeparator":".","PercentGroupSeparator":",","PercentSymbol":"%","PerMilleSymbol":"‰","NativeDigits":["0","1","2","3","4","5","6","7","8","9"],"DigitSubstitution":1},"dateTimeFormat":{"AMDesignator":"午前","Calendar":{"MinSupportedDateTime":"\/Date(-62135596800000)\/","MaxSupportedDateTime":"\/Date(253402268399999)\/","AlgorithmType":1,"CalendarType":1,"Eras":[1],"TwoDigitYearMax":2029,"IsReadOnly":false},"DateSeparator":"/","FirstDayOfWeek":0,"CalendarWeekRule":0,"FullDateTimePattern":"yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 H:mm:ss","LongDatePattern":"yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027","LongTimePattern":"H:mm:ss","MonthDayPattern":"M\u0027月\u0027d\u0027日\u0027","PMDesignator":"午後","RFC1123Pattern":"ddd, dd MMM yyyy HH\u0027:\u0027mm\u0027:\u0027ss \u0027GMT\u0027","ShortDatePattern":"yyyy/MM/dd","ShortTimePattern":"H:mm","SortableDateTimePattern":"yyyy\u0027-\u0027MM\u0027-\u0027dd\u0027T\u0027HH\u0027:\u0027mm\u0027:\u0027ss","TimeSeparator":":","UniversalSortableDateTimePattern":"yyyy\u0027-\u0027MM\u0027-\u0027dd HH\u0027:\u0027mm\u0027:\u0027ss\u0027Z\u0027","YearMonthPattern":"yyyy\u0027年\u0027M\u0027月\u0027","AbbreviatedDayNames":["日","月","火","水","木","金","土"],"ShortestDayNames":["日","月","火","水","木","金","土"],"DayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"AbbreviatedMonthNames":["1","2","3","4","5","6","7","8","9","10","11","12",""],"MonthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月",""],"IsReadOnly":false,"NativeCalendarName":"西暦 (日本語)","AbbreviatedMonthGenitiveNames":["1","2","3","4","5","6","7","8","9","10","11","12",""],"MonthGenitiveNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月",""]},"eras":[1,"西暦",null,0]};//]]></script><script src="./Rikkyo Web System_files/ScriptResource.axd" type="text/javascript"></script><script src="./Rikkyo Web System_files/ScriptResource(1).axd" type="text/javascript"></script><script src="./Rikkyo Web System_files/js" type="text/javascript"></script><!-- ヘッダー --><div id="headerArea"><div id="header"><!-- ロゴ --><h1><img id="imgCampusLogo" src="./Rikkyo Web System_files/logo.png" style="height:55px;width:340px;"></h1><!-- / ロゴ --><!-- 言語選択 --><h2 id="homeNowTime" class="c" style="color: black;"><input type="image" name="ctl00$ctl00$btnJpn" id="btnJpn" src="./Rikkyo Web System_files/lang1.png"><input type="image" name="ctl00$ctl00$btnEng" id="btnEng" src="./Rikkyo Web System_files/lang2.png"></h2><!-- / 言語選択 --></div><!-- メインナビゲーション --><div id="mainnav"><table border="0" style="width:100%"><tbody><tr><td style="padding-left:15px; padding-top:10px; text-align:left; width:150px; "></td><td style="padding-top:10px; text-align:right; "><div id="mainnav1"><span id="lblUserName">安木　駿介</span></div></td><td style="padding-top:10px; padding-right:20px; text-align:right; width:150px; "><a id="btnLogout" class="button blue" href="javascript:__doPostBack(&#39;ctl00$ctl00$btnLogout&#39;,&#39;&#39;)" style="width:80px;">ログアウト</a></td></tr></tbody></table></div><div id="menunav"><div id="menunav1"><div id="step"></div><input type="hidden" name="ctl00$ctl00$Guideline$hdnBackFlg" id="Guideline_hdnBackFlg"></div></div><!-- / ステップ --></div><!-- / ヘッダー --><div id="main"><div id="main"><div class="cnti"><script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ctl00$MainContent$Contents$MenuCtrl$ScriptManager1', 'formX', ['tctl00$ctl00$MainContent$Contents$uplF220List','MainContent_Contents_uplF220List'], [], [], 0, 'ctl00$ctl00');
+//]]></script><div class="ticker" rel="slide" style="height: 21px;"><ul><li style="top: 0px; left: 0px; position: absolute; display: block; opacity: 1; z-index: 99;" class="showlist"><span id="MainContent_Contents_MenuCtrl_lvRisyuList_Label1_2"></span></li><li class="" style="top: 0px; left: -910px; position: absolute; display: block; opacity: 0; z-index: 98;"><span id="MainContent_Contents_MenuCtrl_lvRisyuList_Label1_0">画面が動かない場合は「JavaScript」の有効を確認してください。（不明点はヘルプデスクへお問い合わせください）</span></li><li style="top: 0px; left: -910px; position: absolute; display: block; opacity: 0; z-index: 98;" class=""><span id="MainContent_Contents_MenuCtrl_lvRisyuList_Label1_1">推奨ブラウザ：Internet Explorer 8.x、FireFox 3.6、Safari 5.x 以上（※IE7以下では処理が遅く画面が崩れます）</span></li></ul></div><div class="cnti mrgnb" style="width: 880px;"><br><ul id="MainContent_Contents_MenuCtrl_Ul1" class="tabmenu clrfx" style="width: 880px;"><li id="MainContent_Contents_MenuCtrl_liTop"><a id="MainContent_Contents_MenuCtrl_lnkBase" href="javascript:__doPostBack(&#39;ctl00$ctl00$MainContent$Contents$MenuCtrl$lnkBase&#39;,&#39;&#39;)">基本情報</a></li><li id="MainContent_Contents_MenuCtrl_liCmp0100"><a onclick="return PageLockHandle(&#39;Cmp0100&#39;); ;" id="MainContent_Contents_MenuCtrl_lnkRishu" href="javascript:__doPostBack(&#39;ctl00$ctl00$MainContent$Contents$MenuCtrl$lnkRishu&#39;,&#39;&#39;)">履修登録状況</a></li><li id="MainContent_Contents_MenuCtrl_liRec0100" class="current" onclick=""><a onclick="return PageLockHandle(&#39;Rec0100&#39;); ;" id="MainContent_Contents_MenuCtrl_lnkSeiseki" href="javascript:__doPostBack(&#39;ctl00$ctl00$MainContent$Contents$MenuCtrl$lnkSeiseki&#39;,&#39;&#39;)">成績参照</a></li></ul><input type="hidden" name="ctl00$ctl00$MainContent$Contents$MenuCtrl$hdnCmp0100Enable" id="MainContent_Contents_MenuCtrl_hdnCmp0100Enable" value="0"><input type="hidden" name="ctl00$ctl00$MainContent$Contents$MenuCtrl$hdnRec0100Enable" id="MainContent_Contents_MenuCtrl_hdnRec0100Enable" value="0"><input type="hidden" name="ctl00$ctl00$MainContent$Contents$MenuCtrl$hdnCmp0200Enable" id="MainContent_Contents_MenuCtrl_hdnCmp0200Enable" value="0"><input type="hidden" name="ctl00$ctl00$MainContent$Contents$MenuCtrl$hdnPageEnableMsg" id="MainContent_Contents_MenuCtrl_hdnPageEnableMsg"><input type="hidden" name="ctl00$ctl00$MainContent$Contents$MenuCtrl$hdnNowPageId" id="MainContent_Contents_MenuCtrl_hdnNowPageId" value="Rec0100"><input type="hidden" name="ctl00$ctl00$MainContent$Contents$MenuCtrl$hdnDaigakuKbn" id="MainContent_Contents_MenuCtrl_hdnDaigakuKbn" value="0"><input type="hidden" name="ctl00$ctl00$MainContent$Contents$MenuCtrl$hdnGakusekiNo" id="MainContent_Contents_MenuCtrl_hdnGakusekiNo" value="16BC046C"><input type="hidden" name="ctl00$ctl00$MainContent$Contents$MenuCtrl$hdnLanguage" id="MainContent_Contents_MenuCtrl_hdnLanguage" value="1"><input type="hidden" name="ctl00$ctl00$MainContent$Contents$MenuCtrl$ExHiddenField1" id="MainContent_Contents_MenuCtrl_ExHiddenField1"><input type="hidden" name="ctl00$ctl00$MainContent$Contents$MenuCtrl$hdnLgInKbn" id="MainContent_Contents_MenuCtrl_hdnLgInKbn" value="1"></div></div><div id="MainContent_Contents_stdHeader1_divRishu"><div class="mrgn" style="margin-top: 0px;"><div id="MainContent_Contents_StudentIntoCtrl1_pblPrintLastDate"><table class="" border="0" style="margin-bottom: 0px; text-align:center"><tbody><tr><td class="btnspc" style="width: 150px"><div class="mrgnh clrfx"><a onclick="win = window.open(&#39;Rec0100Prn.aspx&#39;, &#39;&#39;, &#39;modal=yes, directories=no, menubar=no, toolbar=no,scrollbars=yes,location=no,resizable =no,width=970&#39;); win.focus(); return false;" id="MainContent_Contents_StudentIntoCtrl1_btnPrint" class="button blue" href="javascript:__doPostBack(&#39;ctl00$ctl00$MainContent$Contents$StudentIntoCtrl1$btnPrint&#39;,&#39;&#39;)" style="width:70px">印　　刷</a></div></td><td style="width: 750px; text-align:right; color:red; font-weight:bold "><span id="MainContent_Contents_lblRenewDate"><span id="MainContent_Contents_StudentIntoCtrl1_lblHdUpdDate">最終更新日</span> : <span id="MainContent_Contents_StudentIntoCtrl1_lblLastUpdDate">2018/11/02</span></span></td></tr></tbody></table></div><input type="hidden" name="ctl00$ctl00$MainContent$Contents$StudentIntoCtrl1$hdnPrintBtnClicked" id="MainContent_Contents_StudentIntoCtrl1_hdnPrintBtnClicked"><table id="tblStudent" class="ipt cnti" style="width: 900px"><tbody><tr><th rowspan="2"><span id="MainContent_Contents_StudentIntoCtrl1_lblHdBelong">所属</span></th><th style="width:100px" rowspan="2"><span id="MainContent_Contents_StudentIntoCtrl1_lblHdStudentNo">学生番号</span></th><th style="width:205px" rowspan="2"><span id="MainContent_Contents_StudentIntoCtrl1_lblHdStudentName">氏名</span></th><th style="width:95px"><span id="MainContent_Contents_StudentIntoCtrl1_lblHdTekiyouYear">ｶﾘｷｭﾗﾑ適用年</span></th><th style="width:95px"><span id="MainContent_Contents_StudentIntoCtrl1_lblHdZaiGakuki">在学学期</span></th></tr><tr><th style="width:95px"><span id="MainContent_Contents_StudentIntoCtrl1_lblHdGakunen">年次</span></th><th style="width:95px"><span id="MainContent_Contents_StudentIntoCtrl1_lblHdClass">クラス</span></th></tr><tr><td rowspan="2" style="vertical-align:middle"><span id="MainContent_Contents_StudentIntoCtrl1_lblSyozoku">経済学部<br>会計ファイナンス学科</span></td><td rowspan="2"><span id="MainContent_Contents_StudentIntoCtrl1_lblGakusekiNo">16BC046C</span></td><td rowspan="2"><span id="MainContent_Contents_StudentIntoCtrl1_lblGakuseiName">安木　駿介</span><br><span id="MainContent_Contents_StudentIntoCtrl1_lblGakuseiNameEng">YASUKI SHUNSUKE</span></td><td style="width:95px;text-align:center"><span id="MainContent_Contents_StudentIntoCtrl1_lblTekiouNen">2016</span></td><td style="width:95px;text-align:center"><span id="MainContent_Contents_StudentIntoCtrl1_lblZaiGakuki">06</span></td></tr><tr><td style="width:95px;text-align:center"><span id="MainContent_Contents_StudentIntoCtrl1_lblGakunen">3</span></td><td style="width:95px;text-align:center"><span id="MainContent_Contents_StudentIntoCtrl1_lblClass">B</span></td></tr></tbody></table></div><div class="mrgn" style="margin-top: 0px;"><table border="0" style="text-align:center"><tbody><tr><td class="btnspc" style="width: 900px;text-align:center"><div class="mrgnh clrfx"></div></td></tr></tbody></table><input type="hidden" name="ctl00$ctl00$MainContent$Contents$QuestionButtonTop$hidPageId" id="MainContent_Contents_QuestionButtonTop_hidPageId" value="Rec0100"><input type="hidden" name="ctl00$ctl00$MainContent$Contents$QuestionButtonTop$hidTopBottomKbn" id="MainContent_Contents_QuestionButtonTop_hidTopBottomKbn" value="1"><input type="hidden" name="ctl00$ctl00$MainContent$Contents$QuestionButtonTop$hidQestionBtnShow" id="MainContent_Contents_QuestionButtonTop_hidQestionBtnShow" value="0"><div id="MainContent_Contents_divQuestion" style="width: 900px;"><div style="float: right;"><a id="MainContent_Contents_hlkQuestion" href="https://r.rikkyo.ac.jp/GS0030_situgi.html" target="_blank" style="color:Blue;font-size:10pt;text-decoration:underline;"><span id="MainContent_Contents_lblLinkQuestion">疑問・質問等がある場合</span></a></div></div><input type="hidden" name="ctl00$ctl00$MainContent$Contents$AnnounceTopCtrl1$hidPageId" id="MainContent_Contents_AnnounceTopCtrl1_hidPageId" value="Rec0100"><input type="hidden" name="ctl00$ctl00$MainContent$Contents$AnnounceTopCtrl1$hidAnnounceFlg" id="MainContent_Contents_AnnounceTopCtrl1_hidAnnounceFlg" value="0"><div id="MainContent_Contents_pnlF200List"><div class="" style="width: 900px; margin-right: auto; margin-right: auto; clear: both; height: 5px;"><div style="float: right;"><a id="MainContent_Contents_hlkTaniSyutoku" href="https://r.rikkyo.ac.jp/GS0030_tanni.html" target="_blank" style="color:Blue;font-size:10pt;text-decoration:underline;"><span id="MainContent_Contents_lblLinkTaniSyutoku">単位修得状況について</span></a></div></div><br><table id="tblF200List" class="ipt cnti" style="width: 900px"><tbody><tr><th colspan="6"><span id="MainContent_Contents_lblTitleTaniSyutoku">単位修得状況</span></th></tr><tr><th class="Bgray"><span id="MainContent_Contents_lblHdKbn">区分名</span></th><th class="BgrayW100"><span id="MainContent_Contents_lblHdHituyouTani">必要単位数</span></th><th class="BgrayW100"><span id="MainContent_Contents_lblSsyutokuTani">修得単位数</span></th><th class="BgrayW100"><span id="MainContent_Contents_lblHdRisyuTani">履修単位数</span></th><th class="BgrayW100"><span id="MainContent_Contents_lblHdFuzokuTani">不足単位数</span></th><th class="BgrayW100"><span id="MainContent_Contents_lblHdBiko">備考</span></th></tr><tr><td>
+＊必）言語Ａ＊</td><td align="center">
+6</td><td align="center">
+6</td><td align="center">
+0</td><td align="center">
+0</td><td></td></tr><tr><td>
+＊必）言語Ｂ＊</td><td align="center">
+4</td><td align="center">
+4</td><td align="center">
+0</td><td align="center">
+0</td><td></td></tr><tr><td>
+＊専門必修科目＊</td><td align="center">
+12</td><td align="center">
+10</td><td align="center">
+2</td><td align="center">
+0</td><td></td></tr><tr><td>
+＊学びの精神＊</td><td align="center">
+4</td><td align="center">
+4</td><td align="center">
+0</td><td align="center">
+0</td><td></td></tr><tr><td>
+＊多彩な学び，スポ＊</td><td align="center">
+14</td><td align="center">
+14</td><td align="center">
+0</td><td align="center">
+0</td><td></td></tr><tr><td>
+＊共通選択科目１＊</td><td align="center">
+14</td><td align="center">
+14</td><td align="center">
+0</td><td align="center">
+0</td><td></td></tr><tr><td>
+＊共通選択科目２＊</td><td align="center">
+12</td><td align="center">
+12</td><td align="center">
+0</td><td align="center">
+0</td><td></td></tr><tr><td>
+＊選択：アカウンティ</td><td align="center">
+8</td><td align="center">
+4</td><td align="center">
+4</td><td align="center">
+0</td><td></td></tr><tr><td>
+＊選択：ファイナンス</td><td align="center">
+8</td><td align="center">
+8</td><td align="center">
+0</td><td align="center">
+0</td><td></td></tr><tr><td>
+＊選択：マネジメント</td><td align="center">
+4</td><td align="center">
+4</td><td align="center">
+0</td><td align="center">
+0</td><td></td></tr><tr><td>
+＊選択：全体＊</td><td align="center">
+12</td><td align="center">
+6</td><td align="center">
+6</td><td align="center">
+0</td><td></td></tr><tr><td>
+＊自由科目＊</td><td align="center">
+26</td><td align="center">
+16</td><td align="center">
+10</td><td align="center">
+0</td><td></td></tr></tbody></table></div><div id="MainContent_Contents_pnlF210Gpa"><br><div class="" style="width: 900px; margin-right: auto; margin-right: auto; clear: both; height: 5px;"><div style="float: right;"><a id="MainContent_Contents_hlkGpa" href="https://r.rikkyo.ac.jp/GS0030_gpa.html" target="_blank" style="color:Blue;font-size:10pt;text-decoration:underline;"><span id="MainContent_Contents_lblLinkGPA">GPA状況について</span></a></div></div><br><table id="tblZenki3" class="ipt cnti" style="width: 900px"><tbody><tr><th colspan="5"><span id="MainContent_Contents_lblTitleGPA">GPA状況</span></th></tr><tr><th class="BgrayW20p"><span id="MainContent_Contents_lblHdYear">年度</span></th><th class="BgrayW20p"><span id="MainContent_Contents_lblHdSpringSem">春学期</span></th><th class="BgrayW20p"><span id="MainContent_Contents_lblHdFallSem">秋学期</span></th><th class="BgrayW20p"><span id="MainContent_Contents_lblHdSumYear">年度計</span></th><th class="BgrayW20p"><span id="MainContent_Contents_lblHdSum">累計</span></th></tr><tr align="center"><td>
+2016</td><td>
+2.43</td><td>
+2.86</td><td>
+2.64</td><td>
+2.64</td></tr><tr align="center"><td>
+2017</td><td>
+1.67</td><td>
+2.67</td><td>
+2.17</td><td>
+2.39</td></tr><tr align="center"><td>
+2018</td><td>
+2.00</td><td>
+*.**</td><td>
+2.00</td><td>
+2.32</td></tr></tbody></table></div><div id="MainContent_Contents_uplF220List"><br><table style="width: 900px"><tbody><tr><td><div class="" style="margin-right: auto; margin-right: auto; clear: both; height: 5px;"><div style="float: right;"><a id="MainContent_Contents_hlkSeiseki" href="https://r.rikkyo.ac.jp/GS0030_seiseki1.html" target="_blank" style="color:Blue;font-size:10pt;text-decoration:underline;"><span id="MainContent_Contents_lblLinkSeiseki">成績修得状況について</span></a>&nbsp;&nbsp;&nbsp; 
+<a id="MainContent_Contents_hlkSeisekiHeika" href="https://r.rikkyo.ac.jp/GS0030_seiseki2.html" target="_blank" style="color:Blue;font-size:10pt;text-decoration:underline;"><span id="MainContent_Contents_lblLinkSeisekiHeika">成績評価調査制度について</span></a></div></div></td></tr></tbody></table><div id="MainContent_Contents_lvF220List_pnlData_0"></div><div id="MainContent_Contents_lvF220List_pnlData_1"></div><div id="MainContent_Contents_lvF220List_pnlData_2"></div><div id="MainContent_Contents_lvF220List_pnlData_3"></div><div id="MainContent_Contents_lvF220List_pnlData_4"></div><div id="MainContent_Contents_lvF220List_pnlData_5"></div><div id="MainContent_Contents_lvF220List_pnlData_6"></div><div id="MainContent_Contents_lvF220List_pnlData_7"></div><div id="MainContent_Contents_lvF220List_pnlData_8"></div><div id="MainContent_Contents_lvF220List_pnlData_9"></div><div id="MainContent_Contents_lvF220List_pnlData_10"></div><div id="MainContent_Contents_lvF220List_pnlData_11"></div><div id="MainContent_Contents_lvF220List_pnlData_12"></div><div id="MainContent_Contents_lvF220List_pnlData_13"></div><div id="MainContent_Contents_lvF220List_pnlData_14"></div><div id="MainContent_Contents_lvF220List_pnlData_15"></div><div id="MainContent_Contents_lvF220List_pnlData_16"></div><div id="MainContent_Contents_lvF220List_pnlData_17"></div><div id="MainContent_Contents_lvF220List_pnlData_18"></div><div id="MainContent_Contents_lvF220List_pnlData_19"></div><div id="MainContent_Contents_lvF220List_pnlData_20"></div><div id="MainContent_Contents_lvF220List_pnlData_21"></div><div id="MainContent_Contents_lvF220List_pnlData_22"></div><div id="MainContent_Contents_lvF220List_pnlData_23"></div><div id="MainContent_Contents_lvF220List_pnlData_24"></div><div id="MainContent_Contents_lvF220List_pnlData_25"></div><div id="MainContent_Contents_lvF220List_pnlData_26"></div><div id="MainContent_Contents_lvF220List_pnlData_27"></div><div id="MainContent_Contents_lvF220List_pnlData_28"></div><div id="MainContent_Contents_lvF220List_pnlData_29"></div><div id="MainContent_Contents_lvF220List_pnlData_30"></div><div id="MainContent_Contents_lvF220List_pnlData_31"></div><div id="MainContent_Contents_lvF220List_pnlData_32"></div><div id="MainContent_Contents_lvF220List_pnlData_33"></div><div id="MainContent_Contents_lvF220List_pnlData_34"></div><div id="MainContent_Contents_lvF220List_pnlData_35"></div><div id="MainContent_Contents_lvF220List_pnlData_36"></div><div id="MainContent_Contents_lvF220List_pnlData_37"></div><div id="MainContent_Contents_lvF220List_pnlData_38"></div><div id="MainContent_Contents_lvF220List_pnlData_39"></div><div id="MainContent_Contents_lvF220List_pnlData_40"></div><div id="MainContent_Contents_lvF220List_pnlData_41"></div><div id="MainContent_Contents_lvF220List_pnlData_42"></div><div id="MainContent_Contents_lvF220List_pnlData_43"></div><div id="MainContent_Contents_lvF220List_pnlData_44"></div><div id="MainContent_Contents_lvF220List_pnlData_45"></div><div id="MainContent_Contents_lvF220List_pnlData_46"></div><div id="MainContent_Contents_lvF220List_pnlData_47"></div><div id="MainContent_Contents_lvF220List_pnlData_48"></div><div id="MainContent_Contents_lvF220List_pnlData_49"></div><div id="MainContent_Contents_lvF220List_pnlData_50"></div><div id="MainContent_Contents_lvF220List_pnlData_51"></div><div id="MainContent_Contents_lvF220List_pnlData_52"></div><div id="MainContent_Contents_lvF220List_pnlData_53"></div><div id="MainContent_Contents_lvF220List_pnlData_54"></div><div id="MainContent_Contents_lvF220List_pnlData_55"></div><div id="MainContent_Contents_lvF220List_pnlData_56"></div><div id="MainContent_Contents_lvF220List_pnlData_57"></div><div id="MainContent_Contents_lvF220List_pnlData_58"></div><div id="MainContent_Contents_lvF220List_pnlData_59"></div><div id="MainContent_Contents_lvF220List_pnlData_60"></div><div id="MainContent_Contents_lvF220List_pnlData_61"></div><div id="MainContent_Contents_lvF220List_pnlData_62"></div><div id="MainContent_Contents_lvF220List_pnlData_63"></div><div id="MainContent_Contents_lvF220List_pnlData_64"></div><div id="MainContent_Contents_lvF220List_pnlData_65"></div><div id="MainContent_Contents_lvF220List_pnlData_66"></div><div id="MainContent_Contents_lvF220List_pnlData_67"></div><div id="MainContent_Contents_lvF220List_pnlData_68"></div><div id="MainContent_Contents_lvF220List_pnlData_69"></div><div id="MainContent_Contents_lvF220List_pnlData_70"></div><div id="MainContent_Contents_lvF220List_pnlData_71"></div><div id="MainContent_Contents_lvF220List_pnlData_72"></div><div id="MainContent_Contents_lvF220List_pnlData_73"></div><div id="MainContent_Contents_lvF220List_pnlData_74"></div><div id="MainContent_Contents_lvF220List_pnlData_75"></div><div id="MainContent_Contents_lvF220List_pnlData_76"></div><div id="MainContent_Contents_lvF220List_pnlData_77"></div><div id="MainContent_Contents_lvF220List_pnlData_78"></div><div id="MainContent_Contents_lvF220List_pnlData_79"></div><table id="itemPlaceholderContainer" class="ipt cnti" style="width: 900px"><tbody><tr><th colspan="10"><span id="MainContent_Contents_lvF220List_lblTitleSeiseki">成績修得状況</span></th></tr><tr><th class="Bgray" width="35px"><a id="MainContent_Contents_lvF220List_lnkNo" href="javascript:__doPostBack(&#39;ctl00$ctl00$MainContent$Contents$lvF220List$lnkNo&#39;,&#39;&#39;)">No</a><input type="image" name="ctl00$ctl00$MainContent$Contents$lvF220List$imbF220No" id="MainContent_Contents_lvF220List_imbF220No" disabled="disabled" class="aspNetDisabled" src="./Rikkyo Web System_files/asc.png"></th><th id="MainContent_Contents_lvF220List_thKamokuNum" class="Bgray" width="85px"><a id="MainContent_Contents_lvF220List_lnkKamokuNum" href="javascript:__doPostBack(&#39;ctl00$ctl00$MainContent$Contents$lvF220List$lnkKamokuNum&#39;,&#39;&#39;)"><span id="MainContent_Contents_lvF220List_lblHdKamokuNum">科目ﾅﾝﾊﾞﾘﾝｸﾞ</span></a></th><th class="Bgray"><a id="MainContent_Contents_lvF220List_lnkKamokuNm" href="javascript:__doPostBack(&#39;ctl00$ctl00$MainContent$Contents$lvF220List$lnkKamokuNm&#39;,&#39;&#39;)"><span id="MainContent_Contents_lvF220List_lblHdKamokuNm">科目名</span></a></th><th class="Bgray" width="35px"><a id="MainContent_Contents_lvF220List_lnkTani" href="javascript:__doPostBack(&#39;ctl00$ctl00$MainContent$Contents$lvF220List$lnkTani&#39;,&#39;&#39;)"><span id="MainContent_Contents_lvF220List_lblHdTani">単位</span></a></th><th class="Bgray" width="45px"><a id="MainContent_Contents_lvF220List_lnkSeiseki" href="javascript:__doPostBack(&#39;ctl00$ctl00$MainContent$Contents$lvF220List$lnkSeiseki&#39;,&#39;&#39;)"><span id="MainContent_Contents_lvF220List_lblHdExamResult">成績</span></a></th><th class="Bgray" width="45px"><a id="MainContent_Contents_lvF220List_lnkNendo" href="javascript:__doPostBack(&#39;ctl00$ctl00$MainContent$Contents$lvF220List$lnkNendo&#39;,&#39;&#39;)"><span id="MainContent_Contents_lvF220List_lblHdRisyuNendo">年度</span></a></th><th class="Bgray" width="65px"><a id="MainContent_Contents_lvF220List_lnkKikan" href="javascript:__doPostBack(&#39;ctl00$ctl00$MainContent$Contents$lvF220List$lnkKikan&#39;,&#39;&#39;)"><span id="MainContent_Contents_lvF220List_lblHdKikan">学期</span></a></th><th class="Bgray" width="105px"><a id="MainContent_Contents_lvF220List_lnkKyoin" href="javascript:__doPostBack(&#39;ctl00$ctl00$MainContent$Contents$lvF220List$lnkKyoin&#39;,&#39;&#39;)"><span id="MainContent_Contents_lvF220List_lblHdKyoin">担当教員</span></a></th><th class="Bgray" width="55px"><a id="MainContent_Contents_lvF220List_lnkFurikaesaki" href="javascript:__doPostBack(&#39;ctl00$ctl00$MainContent$Contents$lvF220List$lnkFurikaesaki&#39;,&#39;&#39;)"><span id="MainContent_Contents_lvF220List_lblHdFurikaesaki">振替先</span></a></th><th class="Bgray" width="90px"><a id="MainContent_Contents_lvF220List_lnkKanriCd" href="javascript:__doPostBack(&#39;ctl00$ctl00$MainContent$Contents$lvF220List$lnkKanriCd&#39;,&#39;&#39;)"><span id="MainContent_Contents_lvF220List_lblHdKanriCd">管理ｺｰﾄﾞ</span></a></th></tr><tr style="background-color:#F4F4F4;"><td class="BtrsAc" style="font-size: small;">
+1
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_0" class="Btrs"></td><td class="Btrs">
+◆◆必修科目◆◆
+</td><td class="BtrsAc"></td><td class="BtrsAc" style="font-size: medium;"></td><td class="BtrsAc"></td><td class="BtrsAc"></td><td class="Btrs"></td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;"></td></tr><tr style="background-color:#F4F4F4;"><td class="BtrsAc" style="font-size: small;">
+2
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_1" class="Btrs"></td><td class="Btrs">
+＊必）言語Ａ＊
+</td><td class="BtrsAc"></td><td class="BtrsAc" style="font-size: medium;"></td><td class="BtrsAc"></td><td class="BtrsAc"></td><td class="Btrs"></td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;"></td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+3
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_2" class="Btrs">
+LNE1001
+</td><td class="Btrs">
+英語ディスカッション１
+</td><td class="BtrsAc">
+1
+</td><td class="BtrsAc" style="font-size: medium;">
+Ａ
+</td><td class="BtrsAc">
+2016
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+大橋　勝一郎
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+FS173FK10110
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+4
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_3" class="Btrs">
+LNE1011
+</td><td class="Btrs">
+英語リーディング＆ライティング１（Ｒ）
+</td><td class="BtrsAc">
+1
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｓ
+</td><td class="BtrsAc">
+2016
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+レイゼル，Ｍ．
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+FK083FK11116
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+5
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_4" class="Btrs">
+LNE1023
+</td><td class="Btrs">
+英語ｅラーニング
+</td><td class="BtrsAc">
+1
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｃ
+</td><td class="BtrsAc">
+2016
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+小山　亘
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+FK453FK13110
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+6
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_5" class="Btrs">
+LNE1001
+</td><td class="Btrs">
+英語ディスカッション２
+</td><td class="BtrsAc">
+1
+</td><td class="BtrsAc" style="font-size: medium;">
+Ａ
+</td><td class="BtrsAc">
+2016
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+オールドリッチ
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+FT170FK10210
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+7
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_6" class="Btrs">
+LNE1011
+</td><td class="Btrs">
+英語リーディング＆ライティング２（Ｗ）
+</td><td class="BtrsAc">
+1
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｂ
+</td><td class="BtrsAc">
+2016
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+ランギ，Ｅ．
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+FJ083FK11216
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+8
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_7" class="Btrs">
+LNE1011
+</td><td class="Btrs">
+英語プレゼンテーション
+</td><td class="BtrsAc">
+1
+</td><td class="BtrsAc" style="font-size: medium;">
+Ａ
+</td><td class="BtrsAc">
+2016
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+堀内　香織
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+FJ353FK12116
+</td></tr><tr style="background-color:#F4F4F4;"><td class="BtrsAc" style="font-size: small;">
+9
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_8" class="Btrs"></td><td class="Btrs">
+＊必）言語Ｂ＊
+</td><td class="BtrsAc"></td><td class="BtrsAc" style="font-size: medium;"></td><td class="BtrsAc"></td><td class="BtrsAc"></td><td class="Btrs"></td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;"></td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+10
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_9" class="Btrs">
+LNF1010
+</td><td class="Btrs">
+フランス語基礎１
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｓ
+</td><td class="BtrsAc">
+2016
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+島田　薫
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+FM124FM10008
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+11
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_10" class="Btrs">
+LNF1010
+</td><td class="Btrs">
+フランス語基礎２
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｓ
+</td><td class="BtrsAc">
+2016
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+島田　薫
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+FM224FM20008
+</td></tr><tr style="background-color:#F4F4F4;"><td class="BtrsAc" style="font-size: small;">
+12
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_11" class="Btrs"></td><td class="Btrs">
+＊専門必修科目＊
+</td><td class="BtrsAc"></td><td class="BtrsAc" style="font-size: medium;"></td><td class="BtrsAc"></td><td class="BtrsAc"></td><td class="Btrs"></td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;"></td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+13
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_12" class="Btrs">
+ECX1110
+</td><td class="Btrs">
+経済学１
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｂ
+</td><td class="BtrsAc">
+2016
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+飯島　寛之
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX021BX00201
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+14
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_13" class="Btrs">
+ECX1110
+</td><td class="Btrs">
+経済学２
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ａ
+</td><td class="BtrsAc">
+2016
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+関口　智
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX022BX00202
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+15
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_14" class="Btrs">
+ECX1810
+</td><td class="Btrs">
+簿記１
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｓ
+</td><td class="BtrsAc">
+2017
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+松田　真由美
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX068BX00101
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+16
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_15" class="Btrs">
+ECX1810
+</td><td class="Btrs">
+簿記２
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｓ
+</td><td class="BtrsAc">
+2017
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+松田　真由美
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX069BX00102
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+17
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_16" class="Btrs">
+ECX2910
+</td><td class="Btrs">
+会計学１
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ａ
+</td><td class="BtrsAc">
+2018
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+山田　康裕
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX063BX01301
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+18
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_17" class="Btrs">
+ECX2910
+</td><td class="Btrs">
+会計学２
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+履
+</td><td class="BtrsAc">
+2018
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+山田　康裕
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX064BX01302
+</td></tr><tr style="background-color:#F4F4F4;"><td class="BtrsAc" style="font-size: small;">
+19
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_18" class="Btrs"></td><td class="Btrs">
+◆◆選択科目◆◆
+</td><td class="BtrsAc"></td><td class="BtrsAc" style="font-size: medium;"></td><td class="BtrsAc"></td><td class="BtrsAc"></td><td class="Btrs"></td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;"></td></tr><tr style="background-color:#F4F4F4;"><td class="BtrsAc" style="font-size: small;">
+20
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_19" class="Btrs"></td><td class="Btrs">
+＊学びの精神＊
+</td><td class="BtrsAc"></td><td class="BtrsAc" style="font-size: medium;"></td><td class="BtrsAc"></td><td class="BtrsAc"></td><td class="Btrs"></td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;"></td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+21
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_20" class="Btrs">
+CMP1100
+</td><td class="Btrs">
+文学を生み出すキリスト教
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｃ
+</td><td class="BtrsAc">
+2016
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+大澤　千恵子
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+FH112FH72016
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+22
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_21" class="Btrs">
+CMP1100
+</td><td class="Btrs">
+大学生の学び・社会で学ぶこと
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｂ
+</td><td class="BtrsAc">
+2016
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+辻　英之
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+FH168FH81016
+</td></tr><tr style="background-color:#F4F4F4;"><td class="BtrsAc" style="font-size: small;">
+23
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_22" class="Btrs"></td><td class="Btrs">
+＊多彩な学び，スポ＊
+</td><td class="BtrsAc"></td><td class="BtrsAc" style="font-size: medium;"></td><td class="BtrsAc"></td><td class="BtrsAc"></td><td class="Btrs"></td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;"></td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+24
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_23" class="Btrs">
+CMP2200
+</td><td class="Btrs">
+現代のビジネスを学ぶ
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｃ
+</td><td class="BtrsAc">
+2016
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+山崎　秀雄
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+FB115FB13716
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+25
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_24" class="Btrs">
+CMP2200
+</td><td class="Btrs">
+入門・経済教室
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｓ
+</td><td class="BtrsAc">
+2016
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+内野　一樹
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+FB103FB24016
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+26
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_25" class="Btrs">
+CMP2110
+</td><td class="Btrs">
+ボランティア論
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｃ
+</td><td class="BtrsAc">
+2017
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+平野　方紹
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+FA185FA50416
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+27
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_26" class="Btrs">
+CMP2500
+</td><td class="Btrs">
+情報科学Ｂ
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｃ
+</td><td class="BtrsAc">
+2017
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+佐藤　尚
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+FE126FE29106
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+28
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_27" class="Btrs">
+CMP2500
+</td><td class="Btrs">
+都市と自然
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｂ
+</td><td class="BtrsAc">
+2017
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+横田　樹広
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+FE128FE62216
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+29
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_28" class="Btrs">
+CMP2100
+</td><td class="Btrs">
+論理的思考法
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｃ
+</td><td class="BtrsAc">
+2017
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+津留　竜馬
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+FA112FA06006
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+30
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_29" class="Btrs">
+CMP2500
+</td><td class="Btrs">
+数学の世界
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ａ
+</td><td class="BtrsAc">
+2017
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+大下　範幸
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+FE103FE25006
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+31
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_30" class="Btrs">
+CMP2500
+</td><td class="Btrs">
+情報科学Ａ
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｂ
+</td><td class="BtrsAc">
+2017
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+佐藤　尚
+</td><td class="Btrs">
+自由
+</td><td class="Btrs" style="font-size: 9px;">
+FE125FE29006
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+32
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_31" class="Btrs">
+CMP2500
+</td><td class="Btrs">
+情報科学Ａ
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+欠
+</td><td class="BtrsAc">
+2018
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+古賀　ひろみ
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+FE125FE29006
+</td></tr><tr style="background-color:#F4F4F4;"><td class="BtrsAc" style="font-size: small;">
+33
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_32" class="Btrs"></td><td class="Btrs">
+＊共通選択科目１＊
+</td><td class="BtrsAc"></td><td class="BtrsAc" style="font-size: medium;"></td><td class="BtrsAc"></td><td class="BtrsAc"></td><td class="Btrs"></td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;"></td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+34
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_33" class="Btrs">
+ECX1810
+</td><td class="Btrs">
+経営学１
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｃ
+</td><td class="BtrsAc">
+2016
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+関　智一
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX012BX01261
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+35
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_34" class="Btrs">
+ECX1310
+</td><td class="Btrs">
+統計学１
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｓ
+</td><td class="BtrsAc">
+2016
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+萩原　里紗
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX287BX10561
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+36
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_35" class="Btrs">
+ECX1040
+</td><td class="Btrs">
+情報処理入門１
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ａ
+</td><td class="BtrsAc">
+2016
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+吉原　千鶴
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX339BX33016
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+37
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_36" class="Btrs">
+ECX1020
+</td><td class="Btrs">
+基礎ゼミナール１
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｓ
+</td><td class="BtrsAc">
+2016
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+齋藤　邦明
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX511BX40010
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+38
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_37" class="Btrs">
+ECX1810
+</td><td class="Btrs">
+経営学２
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｃ
+</td><td class="BtrsAc">
+2016
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+関　智一
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX014BX01262
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+39
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_38" class="Btrs">
+ECX1310
+</td><td class="Btrs">
+統計学２
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ａ
+</td><td class="BtrsAc">
+2016
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+萩原　里紗
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX288BX10562
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+40
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_39" class="Btrs">
+ECX1040
+</td><td class="Btrs">
+情報処理入門２
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ａ
+</td><td class="BtrsAc">
+2016
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+吉原　千鶴
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX350BX33007
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+41
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_40" class="Btrs">
+ECX1020
+</td><td class="Btrs">
+基礎ゼミナール２
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｓ
+</td><td class="BtrsAc">
+2016
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+齋藤　邦明
+</td><td class="Btrs">
+自由
+</td><td class="Btrs" style="font-size: 9px;">
+BX546BX40020
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+42
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_41" class="Btrs">
+ECX2110
+</td><td class="Btrs">
+初級マクロ経済学１
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｂ
+</td><td class="BtrsAc">
+2017
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+藤原　新
+</td><td class="Btrs">
+自由
+</td><td class="Btrs" style="font-size: 9px;">
+BX095BX08502
+</td></tr><tr style="background-color:#F4F4F4;"><td class="BtrsAc" style="font-size: small;">
+43
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_42" class="Btrs"></td><td class="Btrs">
+＊共通選択科目２＊
+</td><td class="BtrsAc"></td><td class="BtrsAc" style="font-size: medium;"></td><td class="BtrsAc"></td><td class="BtrsAc"></td><td class="Btrs"></td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;"></td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+44
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_43" class="Btrs">
+ECX1610
+</td><td class="Btrs">
+ファイナンス基礎
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ａ
+</td><td class="BtrsAc">
+2016
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+渡辺　茂
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX080BX07706
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+45
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_44" class="Btrs">
+EAF2340
+</td><td class="Btrs">
+財務情報処理Ａ
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｓ
+</td><td class="BtrsAc">
+2017
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+藤野　裕
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX391BX39061
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+46
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_45" class="Btrs">
+ECX2033
+</td><td class="Btrs">
+経済英語３
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｃ
+</td><td class="BtrsAc">
+2017
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+岩田　達明
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX567BX56716
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+47
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_46" class="Btrs">
+ECX2110
+</td><td class="Btrs">
+初級マクロ経済学２
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｃ
+</td><td class="BtrsAc">
+2017
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+藤原　新
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX096BX10301
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+48
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_47" class="Btrs">
+EAF2340
+</td><td class="Btrs">
+財務情報処理Ｂ
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ａ
+</td><td class="BtrsAc">
+2017
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+藤野　裕
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX392BX39062
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+49
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_48" class="Btrs">
+ECX2810
+</td><td class="Btrs">
+経営分析論１
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｂ
+</td><td class="BtrsAc">
+2018
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+田村　八十一
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX237BX23761
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+50
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_49" class="Btrs">
+ECX2033
+</td><td class="Btrs">
+経済英語２
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ａ
+</td><td class="BtrsAc">
+2018
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+湊　照宏
+</td><td class="Btrs">
+自由
+</td><td class="Btrs" style="font-size: 9px;">
+BX576BX56616
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+51
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_50" class="Btrs">
+ECX2810
+</td><td class="Btrs">
+経営分析論２
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+履
+</td><td class="BtrsAc">
+2018
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+田村　八十一
+</td><td class="Btrs">
+自由
+</td><td class="Btrs" style="font-size: 9px;">
+BX238BX23762
+</td></tr><tr style="background-color:#F4F4F4;"><td class="BtrsAc" style="font-size: small;">
+52
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_51" class="Btrs"></td><td class="Btrs">
+＊選択：アカウンティ
+</td><td class="BtrsAc"></td><td class="BtrsAc" style="font-size: medium;"></td><td class="BtrsAc"></td><td class="BtrsAc"></td><td class="Btrs"></td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;"></td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+53
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_52" class="Btrs">
+ECX2910
+</td><td class="Btrs">
+財務会計論１
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｂ
+</td><td class="BtrsAc">
+2018
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+倉田　幸路
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX239BX23961
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+54
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_53" class="Btrs">
+ECX2910
+</td><td class="Btrs">
+会計監査論１
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｄ
+</td><td class="BtrsAc">
+2018
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+小澤　康裕
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX250BX25061
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+55
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_54" class="Btrs">
+ECX2910
+</td><td class="Btrs">
+原価計算論１
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ａ
+</td><td class="BtrsAc">
+2018
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+内野　一樹
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX254BX25461
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+56
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_55" class="Btrs">
+ECX3910
+</td><td class="Btrs">
+環境会計論
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+履
+</td><td class="BtrsAc">
+2018
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+松田　真由美
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX244BX244
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+57
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_56" class="Btrs">
+ECX2910
+</td><td class="Btrs">
+会計情報論２
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+履
+</td><td class="BtrsAc">
+2018
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+坂上　学
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX249BX24862
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+58
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_57" class="Btrs">
+ECX2910
+</td><td class="Btrs">
+原価計算論２
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+履
+</td><td class="BtrsAc">
+2018
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+内野　一樹
+</td><td class="Btrs">
+選全体
+</td><td class="Btrs" style="font-size: 9px;">
+BX255BX25462
+</td></tr><tr style="background-color:#F4F4F4;"><td class="BtrsAc" style="font-size: small;">
+59
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_58" class="Btrs"></td><td class="Btrs">
+＊選択：ファイナンス
+</td><td class="BtrsAc"></td><td class="BtrsAc" style="font-size: medium;"></td><td class="BtrsAc"></td><td class="BtrsAc"></td><td class="Btrs"></td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;"></td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+60
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_59" class="Btrs">
+ECX2310
+</td><td class="Btrs">
+計量経済学１
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｂ
+</td><td class="BtrsAc">
+2017
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+萩原　里紗
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX113BX11361
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+61
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_60" class="Btrs">
+ECX2310
+</td><td class="Btrs">
+計量経済学２
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｓ
+</td><td class="BtrsAc">
+2017
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+萩原　里紗
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX114BX11362
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+62
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_61" class="Btrs">
+ECX2610
+</td><td class="Btrs">
+証券市場論
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ａ
+</td><td class="BtrsAc">
+2017
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+三谷　進
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX227BX22662
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+63
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_62" class="Btrs">
+ECX2610
+</td><td class="Btrs">
+証券経済論
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｃ
+</td><td class="BtrsAc">
+2018
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+三谷　進
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX226BX22661
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+64
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_63" class="Btrs">
+ECX2610
+</td><td class="Btrs">
+コーポレート・ファイナンス１
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｂ
+</td><td class="BtrsAc">
+2018
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+渡辺　茂
+</td><td class="Btrs">
+選全体
+</td><td class="Btrs" style="font-size: 9px;">
+BX234BX23461
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+65
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_64" class="Btrs">
+ECX3610
+</td><td class="Btrs">
+保険論
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+履
+</td><td class="BtrsAc">
+2018
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+岡村　国和
+</td><td class="Btrs">
+選全体
+</td><td class="Btrs" style="font-size: 9px;">
+BX236BX23608
+</td></tr><tr style="background-color:#F4F4F4;"><td class="BtrsAc" style="font-size: small;">
+66
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_65" class="Btrs"></td><td class="Btrs">
+＊選択：マネジメント
+</td><td class="BtrsAc"></td><td class="BtrsAc" style="font-size: medium;"></td><td class="BtrsAc"></td><td class="BtrsAc"></td><td class="Btrs"></td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;"></td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+67
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_66" class="Btrs">
+ECX2810
+</td><td class="Btrs">
+コーポレートガバナンス論１
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｂ
+</td><td class="BtrsAc">
+2017
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+三和　裕美子
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX274BX27461
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+68
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_67" class="Btrs">
+ECX2010
+</td><td class="Btrs">
+企業法１
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｃ
+</td><td class="BtrsAc">
+2017
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+森川　隆
+</td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;">
+BX305BX30561
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+69
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_68" class="Btrs">
+ECX2810
+</td><td class="Btrs">
+コーポレートガバナンス論２
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｂ
+</td><td class="BtrsAc">
+2017
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+三和　裕美子
+</td><td class="Btrs">
+選全体
+</td><td class="Btrs" style="font-size: 9px;">
+BX275BX27462
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+70
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_69" class="Btrs">
+ECX2010
+</td><td class="Btrs">
+企業法２
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｃ
+</td><td class="BtrsAc">
+2017
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+森川　隆
+</td><td class="Btrs">
+選全体
+</td><td class="Btrs" style="font-size: 9px;">
+BX306BX30562
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+71
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_70" class="Btrs">
+ECX2810
+</td><td class="Btrs">
+マ－ケティング論２
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+履
+</td><td class="BtrsAc">
+2018
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+兼村　栄哲
+</td><td class="Btrs">
+選全体
+</td><td class="Btrs" style="font-size: 9px;">
+BX279BX27862
+</td></tr><tr style="background-color:#F4F4F4;"><td class="BtrsAc" style="font-size: small;">
+72
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_71" class="Btrs"></td><td class="Btrs">
+◆◆自由科目◆◆
+</td><td class="BtrsAc"></td><td class="BtrsAc" style="font-size: medium;"></td><td class="BtrsAc"></td><td class="BtrsAc"></td><td class="Btrs"></td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;"></td></tr><tr style="background-color:#F4F4F4;"><td class="BtrsAc" style="font-size: small;">
+73
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_72" class="Btrs"></td><td class="Btrs">
+＊言語自由科目＊
+</td><td class="BtrsAc"></td><td class="BtrsAc" style="font-size: medium;"></td><td class="BtrsAc"></td><td class="BtrsAc"></td><td class="Btrs"></td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;"></td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+74
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_73" class="Btrs">
+LNE2001
+</td><td class="Btrs">
+Ｅｎｇ　Ｃｏｍｍ　２
+</td><td class="BtrsAc">
+4
+</td><td class="BtrsAc" style="font-size: medium;">
+履
+</td><td class="BtrsAc">
+2018
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+山本　有香
+</td><td class="Btrs">
+自由
+</td><td class="Btrs" style="font-size: 9px;">
+FU710FK72211
+</td></tr><tr style="background-color:#F4F4F4;"><td class="BtrsAc" style="font-size: small;">
+75
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_74" class="Btrs"></td><td class="Btrs">
+＊自由選択科目１＊
+</td><td class="BtrsAc"></td><td class="BtrsAc" style="font-size: medium;"></td><td class="BtrsAc"></td><td class="BtrsAc"></td><td class="Btrs"></td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;"></td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+76
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_75" class="Btrs">
+ECX1710
+</td><td class="Btrs">
+経済史２
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ａ
+</td><td class="BtrsAc">
+2016
+</td><td class="BtrsAc">
+秋学期
+</td><td class="Btrs">
+岡部　桂史
+</td><td class="Btrs">
+自由
+</td><td class="Btrs" style="font-size: 9px;">
+BX020BX00402
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+77
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_76" class="Btrs">
+ECX2020
+</td><td class="Btrs">
+ゼミナール　Ａ
+</td><td class="BtrsAc">
+4
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｓ
+</td><td class="BtrsAc">
+2017
+</td><td class="BtrsAc">
+通年
+</td><td class="Btrs">
+須永　徳武
+</td><td class="Btrs">
+自由
+</td><td class="Btrs" style="font-size: 9px;">
+BX647BX60106
+</td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+78
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_77" class="Btrs">
+ECX2020
+</td><td class="Btrs">
+ゼミナール　Ａ
+</td><td class="BtrsAc">
+4
+</td><td class="BtrsAc" style="font-size: medium;">
+履
+</td><td class="BtrsAc">
+2018
+</td><td class="BtrsAc">
+通年
+</td><td class="Btrs">
+須永　徳武
+</td><td class="Btrs">
+自由
+</td><td class="Btrs" style="font-size: 9px;">
+BX647BX60106
+</td></tr><tr style="background-color:#F4F4F4;"><td class="BtrsAc" style="font-size: small;">
+79
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_78" class="Btrs"></td><td class="Btrs">
+＊他学部科目＊
+</td><td class="BtrsAc"></td><td class="BtrsAc" style="font-size: medium;"></td><td class="BtrsAc"></td><td class="BtrsAc"></td><td class="Btrs"></td><td class="Btrs"></td><td class="Btrs" style="font-size: 9px;"></td></tr><tr style="background-color:white;"><td class="BtrsAc" style="font-size: small;">
+80
+</td><td id="MainContent_Contents_lvF220List_tdKamokuNum_79" class="Btrs">
+PHY2710
+</td><td class="Btrs">
+情報処理
+</td><td class="BtrsAc">
+2
+</td><td class="BtrsAc" style="font-size: medium;">
+Ｓ
+</td><td class="BtrsAc">
+2018
+</td><td class="BtrsAc">
+春学期
+</td><td class="Btrs">
+内山　泰伸
+</td><td class="Btrs">
+自由
+</td><td class="Btrs" style="font-size: 9px;">
+CB112CB112
+</td></tr></tbody></table><input type="hidden" name="ctl00$ctl00$MainContent$Contents$hidSortingHeadItem" id="MainContent_Contents_hidSortingHeadItem" value="lnkNo"><input type="hidden" name="ctl00$ctl00$MainContent$Contents$hidSortDirection" id="MainContent_Contents_hidSortDirection"><input type="hidden" name="ctl00$ctl00$MainContent$Contents$hidSortStr" id="MainContent_Contents_hidSortStr" value="ROW_NO"></div><table border="0" style="text-align:center"><tbody><tr><td class="btnspc" style="width: 900px;text-align:center"><div class="mrgnh clrfx"></div></td></tr></tbody></table><input type="hidden" name="ctl00$ctl00$MainContent$Contents$QuestionButtonBtm$hidPageId" id="MainContent_Contents_QuestionButtonBtm_hidPageId" value="Rec0100"><input type="hidden" name="ctl00$ctl00$MainContent$Contents$QuestionButtonBtm$hidTopBottomKbn" id="MainContent_Contents_QuestionButtonBtm_hidTopBottomKbn" value="2"><input type="hidden" name="ctl00$ctl00$MainContent$Contents$QuestionButtonBtm$hidQestionBtnShow" id="MainContent_Contents_QuestionButtonBtm_hidQestionBtnShow" value="0"><div style="padding-left: 10px"><input type="hidden" name="ctl00$ctl00$MainContent$Contents$AnnounceBtmCtrl1$hidPageId" id="MainContent_Contents_AnnounceBtmCtrl1_hidPageId" value="Rec0100"></div></div></div></div><input type="hidden" name="ctl00$ctl00$MainContent$Contents$hidMode" id="MainContent_Contents_hidMode" value="0"><input type="hidden" name="ctl00$ctl00$MainContent$Contents$hidShowKamokuNum" id="MainContent_Contents_hidShowKamokuNum" value="1"><input type="hidden" name="ctl00$ctl00$MainContent$Contents$hidLanguage" id="MainContent_Contents_hidLanguage" value="1"></div><!-- / タイムアウト警告メッセージ --><div id="timeout-block" style="display: none"><div class="timeout-background"></div><div class="timeout-view" id="warn-block" style="background-color: white;"><p>長時間サーバーへの接続が無い為、しばらくすると接続が切断される可能性があります。<br>接続状態を維持する為に「再接続」ボタンをクリックしてください。<br></p><div><input id="btnReset" type="button" class="button white xlarge" value="再接続"></div></div><div class="timeout-view" style="display: none; background-color: white;" id="closed-block"><p>一定時間サーバーへの接続が無かった為<br>接続が切断されます。<br>再度ログインし直して下さい。<br></p><div><input id="btnClose" type="button" class="button white xlarge" value="閉じる"></div></div></div><!-- / 再接続時の接続先(帯域外通信) --><input type="hidden" name="ctl00$ctl00$hdnSChkUrl" id="hdnSChkUrl" value="/RikyoStudentSystem/Utility/TimeoutBlock/timeout_block.aspx"><!-- / タイムアウト時刻＠全体でX分(仮の値を入れているが、実際にはCSファイルで格納) --><input type="hidden" name="ctl00$ctl00$hdnSEndMin" id="hdnSEndMin" value="30"><!-- / タイムアウト時刻＠残りX分(仮の値を入れているが、実際にはCSファイルで格納) --><input type="hidden" name="ctl00$ctl00$hdnShowMin" id="hdnShowMin" value="5"><input type="hidden" name="ctl00$ctl00$hdnLoginPage" id="hdnLoginPage" value="1"><div class="aspNetHidden"><input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="367A23B6"><input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value=""><input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="R9txMcNKEPSLsWG5slVppWWDRQlEdGOfHc+Ryzw1WBq1tFOBzsmAgAO9adLchWx2uwkLLvcQlI2iJ/VVolXFdP1QQKEIavi96yJM1XnXIoVm71X/MreTIJGkk+YQhsYsdN8dZgsxtatCgIVcOFdsLzu6S7Lrg3f6diq6nq+G7feiFlJG51wN9z1/cI8O2yxwT9DSbGqJvV7pglrlzboEToKeR+2WIJMICb5YEd471rS58eW6kfw49Q042E+bQTIm14F5/Sqt7+7Gjff/qDqXZ9rXLljW6yb+6BGp+bu39TentPPfEPanXllGRmHzSXnhpVJbnd9MPIVe1IMaJJz+ZUPnbT/G8Z6cZSZrt7VECHHhYIauU6d6hRLDZ+qHYvUG8NQi5RIcbCvchDk0I8ZF2761pQDmmlMZGk4V0joQm1GPnB2qL++vS4wMISlX6RlVab7zO39n2OeFKUJD5SE0PKLPJFKPw8wHy6FNSqeVUgm3Ir5Qz5reowXwHpqIomoVUKLVxrhsO0SIZywbcowcgXzjjJ+azFNYWUQaU340FEa88ESonTF8isz+mC/v74wpVWowf5FiBK8tC98osdvbu54HTGrWhIZMzgAAhqqyDk5+k/AZr3908iXKXpA2M6yaMKipoJIbUjcx9qI3Trm+MIuwGHJjbwrSXv7VAdtYrui/JDiMErqdqe0C2SQ5t6S5IngzptOpJcViCavi4VReBDN/Ai3LhV/acRUTjZW3zWrYcuRnnz5hNdaf4r4TksJh0E8oFUamV0Ubi5TZDgvnPFaZxs85eUOQCmF+YWV40L+haDqJpP3NpCOk5YPBEHDW8EOV/Cpgh7vdnwxgzv6Kzb/+mkLaTPiNQiIvHTJHAzt7ifCIDoJyeFoIwVA5HKWaVjtldtA4VSmge6uEqt6liv54PaONw3KgK6q2+Cro/nksxesvZu39fSV614LkzEGi8Y57pLMwMe0xI+SHYMYHTj/HpWaAnGaJt0CJFLhaXI+Aj56QIj83sI5To/bntAMNlx1dfhi6sm9gDGU3uj1Wwkds8pi9boy9mVoCCtz04HKKnnCYuslFblhegpSXBrq8Khdnlqjr0dSDK8uVq99dMAAt3n8Il1sK6PCTzBh4pRkP6QxaKYT3O+zM36Vs7w/O"></div></form><!-- フッター上部 --><div id="footerLower" style="height: 30px; padding-top: 25px"><div class="inner"><span id="lblfooterText">Copyright © Rikkyo University. All Rights Reserved.</span></div></div></div></body></html>

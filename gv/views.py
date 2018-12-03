@@ -66,11 +66,12 @@ def hp(request):
 
     return render(request, 'gv/hp.html', index_params)
 
-def flush(request):
-    request.session.flush()
+def flush(request):#flush関数自体はsessionのflushを行わない。hp.htmlを返すためのもの。flushはmainhome関数内で行う。
+    #request.session.flush()
     form = userInfoForm()
     stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
     numbers=len(stuobj)
+    
     #URL="https://rs.rikkyo.ac.jp/"
     #try:
     #    driver = webdriver.PhantomJS()
@@ -524,14 +525,24 @@ def mainhome(request):
             counter_params={
                 'numbers':numbers,
             }
-
             return render(request,'gv/counter.html',counter_params)
         else:
             pass
-
+        if value[0]=='flush':
+            request.session.flush()
+            form = userInfoForm()
+            index_params = {
+            'numbers':numbers,
+            'form':form,
+            #'message':''
+            }
+            return render(request, 'gv/hp.html', index_params)
+        else:
+            pass
+        request.session.flush()
         if short_cut_sn in stuobj:#もしすでに登録されているなら
 
-            try:#もしsessionが残っているなら
+            try:#もしsessionが残っているなら #ここはもう要らないかも
                 mainhome_after_login_params = {}
                 ##str_name = request.session['str_name']
                 ##mainhome_after_login_params['str_name'] = str_name
@@ -581,12 +592,8 @@ def mainhome(request):
         else:
             pass
 
-
-
-
-
-
-
+        middle_time = np.round(time.time() - start,1)
+        print('---condactまでの経過時間 {0}秒---'.format(middle_time))
 
         #formから学籍番号とパスワードの取得
         #入力が正しいか

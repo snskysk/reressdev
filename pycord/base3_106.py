@@ -20,7 +20,6 @@ import os
 #import matplotlib.cm as cm
 #from matplotlib.font_manager import FontProperties
 
-
 def special(result):
     import numpy as np
 
@@ -110,7 +109,9 @@ def func1(value):
         driver = webdriver.PhantomJS()
     except:#ローカルはphantomJSが使えないのでchromeに
         driver = webdriver.Chrome()
-    
+
+        access_time = np.round(time.time() - start,1)
+        print('---driver展開時間 {0}秒---'.format(access_time))    
     try:
         print("---https://rs.rikkyo.ac.jp/にアクセス---")
         driver.get(URL)
@@ -138,13 +139,18 @@ def func1(value):
         driver.find_element_by_css_selector("#MainContent_Contents_MenuCtrl_lnkSeiseki").click()
 
         data = driver.page_source.encode('utf-8')
+
         #soup = BeautifulSoup(data, 'html.parser')
+        
+
+
 
         #tableを取得
         #tables = soup.find_all('table')
         tttt = pd.read_html(data)
         urlda = driver.current_url
         #tttt = pd.read_html(ulrda)
+        
 
         print("---ページソースを取得---")
         #html=driver.page_source
