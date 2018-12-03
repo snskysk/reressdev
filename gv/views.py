@@ -398,7 +398,10 @@ def hp(request):
     numbers=len(stuobj)
     try:#sessionが切れていないか確認
         sn = request.session['stunum']  #学籍番号をsessionから持ってくる
-        return render(request, 'gv/site_map.html')
+        site_map_params = {
+            'numbers':numbers,
+        }
+        return render(request, 'gv/site_map.html',site_map_params)
     except:
         form = userInfoForm()
         hp_params = {
@@ -597,6 +600,8 @@ def new_data_register(st_data,sub_data,judgement_number,personal_number):#状況
 #@cached_property
 
 def mainhome(request):
+    stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
+    numbers=len(stuobj)
 
     if request.method == 'POST':
         value = [request.POST['stunum'], request.POST['password']]
@@ -609,9 +614,9 @@ def mainhome(request):
         else:
             short_cut_sn = value[0]
 
-        stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
+        #stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
+        #numbers=len(stuobj)
         if value[0]=='systemcall' and value[1]=='counter':
-            numbers=len(stuobj)
             counter_params={
                 'numbers':numbers,
             }
@@ -688,6 +693,7 @@ def mainhome(request):
             elif passcheck==2:
                 form = userInfoForm()
                 index_params = {
+                'numbers':numbers,
                 'form':form,
                 'message':'データ加工に失敗しました。対応していないユーザーである可能性があります。エラータイプ：フェーズ２'
                 }
@@ -697,6 +703,7 @@ def mainhome(request):
                 form = userInfoForm()
                 index_params = {
                 'form':form,
+                'numbers':numbers,
                 'message':'データ加工に失敗しました。対応していないユーザーである可能性があります。エラータイプ：フェーズ３'
                 }
                 return render(request, 'gv/hp.html', index_params)
@@ -705,6 +712,7 @@ def mainhome(request):
                 form = userInfoForm()
                 index_params = {
                 'form':form,
+                'numbers':numbers,
                 'message':'データ加工に失敗しました。対応していないユーザーである可能性があります。エラータイプ：フェーズ４'
                 }
                 return render(request, 'gv/hp.html', index_params)
@@ -713,6 +721,7 @@ def mainhome(request):
                 form = userInfoForm()
                 index_params = {
                 'form':form,
+                'numbers':numbers,
                 'message':'データ加工に失敗しました。対応していないユーザーである可能性があります。エラータイプ：フェーズ５'
                 }
                 return render(request, 'gv/hp.html', index_params)
@@ -721,6 +730,7 @@ def mainhome(request):
                 form = userInfoForm()
                 index_params = {
                 'form':form,
+                'numbers':numbers,
                 'message':'データ加工に失敗しました。対応していないユーザーである可能性があります。エラータイプ：フェーズ１１'
                 }
                 return render(request, 'gv/hp.html', index_params)
@@ -728,6 +738,7 @@ def mainhome(request):
                 form = userInfoForm()
                 index_params = {
                 'form':form,
+                'numbers':numbers,
                 'message':'データ加工に失敗しました。対応していないユーザーである可能性があります。エラータイプ：フェーズ１２'
                 }
                 return render(request, 'gv/hp.html', index_params)
@@ -736,6 +747,7 @@ def mainhome(request):
                 form = userInfoForm()
                 index_params = {
                 'form':form,
+                'numbers':numbers,
                 'message':'学生番号かパスワードが間違っている可能性があります'
                 }
                 return render(request, 'gv/hp.html', index_params)         #正しくなかったら戻る
@@ -743,6 +755,7 @@ def mainhome(request):
             form = userInfoForm()
             index_params = {
             'form':form,
+            'numbers':numbers,
             'message':'お手数ですが、再度お試しください。それでもご利用になれない場合は、よろしければ学年と学部学科、特殊な授業の履修履歴などがあれば明記の上お問い合わせください。'
             }
             return render(request, 'gv/hp.html', index_params)
@@ -752,20 +765,23 @@ def mainhome(request):
         try:
             #pythonからjsへの値の受け渡し
             mainhome_params = pytojsMaterials(result, list_pie, list_bar, table, kyoushoku_c)
+            mainhome_params['numbers'] = numbers
             for k in mainhome_params.keys():
                 request.session['{}'.format(k)] = str(mainhome_params[k])
+                
         except Exception as e:
             print(str(e.args))
             form = userInfoForm()
             index_params = {
             'form':form,
+            'numbers':numbers,
             'message':'正しくデータを得ることができませんでした'
             }
             return render(request, 'gv/hp.html', index_params)
 
 
         #データベースに登録するかどうか
-        stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
+        #stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
         t = list(personal_dataset.iloc[0])
 
         #学籍番号を大文字に変換
@@ -816,8 +832,8 @@ def mainhome(request):
     #getでmainhomeにアクセスしてしまった時の処理
     else:
         form = userInfoForm()
-        stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
-        numbers=len(stuobj)
+        #stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
+        #numbers=len(stuobj)
 
         index_params = {
             'form':form,
@@ -877,7 +893,7 @@ def mainhome_after_login(request):
         mainhome_after_login_params['residual_unit_bou'] = residual_unit_bou
         on_course_bou = request.session['on_course_bou']
         mainhome_after_login_params['on_course_bou'] = on_course_bou
-
+        
         return render(request, 'gv/mainhome.html', mainhome_after_login_params)
 
     except Exception:

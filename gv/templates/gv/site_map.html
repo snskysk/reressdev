@@ -13,8 +13,10 @@
 <!--メインの部分-->
 <!--<img src="/static/gv/teacher_search/images/kyozyubunnseki.png" alt="Re:Re:ss" width="100%"/>-->
 <!--経過時間：{{elapsed_time}} で表示-->
-<h2>リリスへようこそ</h2>
-<h5>機能名をクリックしてご利用ください</h5><br>
+<h2 style="color: #000;">リリスへようこそ</h2>
+<h4 style="text-align: center;color: darkkhaki;">現在の登録者数：{{numbers}}人</h4>
+<a href={% url 'flush' %}><h5><span class="non-class" style="background: linear-gradient(transparent 97%, #000 50%);">履修中止等による成績データの更新はこちら</span></h5></a>
+<br><h5>機能名をクリックしてご利用ください</h5>
 <div class="row" width=50%>
   <div class="panel panel-primary panel-main-color">
     <div class="panel-heading panel-color" style="text-align:center;" width="50%">
