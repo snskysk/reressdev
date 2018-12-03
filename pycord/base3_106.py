@@ -93,7 +93,7 @@ def func1(value):
         print('---アクセス時間 {0}秒---'.format(access_time))        
         print("---ユーザ情報を入力---")
         driver.find_element_by_css_selector("#userNameInput").send_keys(USER)
-        driver.find_element_by_css_selector("#userNameInput").send_keys(Keys.RETURN)
+        #driver.find_element_by_css_selector("#userNameInput").send_keys(Keys.RETURN)
 
         driver.find_element_by_css_selector("#passwordInput").send_keys(PASS)
         driver.find_element_by_css_selector("#passwordInput").send_keys(Keys.RETURN)
@@ -104,14 +104,17 @@ def func1(value):
             pass
         print("---ユーザ情報入力完了　―　ページ遷移---")
 
-        time.sleep(0.8)
+        #time.sleep(0.8)
 
         #print("---スクリーンショットの保存---")
         #driver.save_screenshot("gv/static/gv/images/test101.png")
 
         print("---ページ遷移---")
-        driver.find_element_by_css_selector("#MainContent_Contents_MenuCtrl_lnkSeiseki").click()
-
+        #driver.find_element_by_css_selector("#MainContent_Contents_MenuCtrl_lnkSeiseki").click()
+        
+        N_URL = "https://rs.rikkyo.ac.jp/rs/Record/Rec0100.aspx"
+        driver.get(N_URL)
+        
         data = driver.page_source.encode('utf-8')
 
         #soup = BeautifulSoup(data, 'html.parser')
