@@ -41,7 +41,6 @@ def hp(request):
     stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
     numbers=len(stuobj)
     request.session['numbers'] = numbers
-
     try:#sessionが切れていないか確認
         sn = request.session['stunum']  #学籍番号をsessionから持ってくる
         site_map_params = {
@@ -49,7 +48,12 @@ def hp(request):
         }
         return render(request, 'gv/site_map.html',site_map_params)
     except:
+        value_0 = 'first_to_fast'
+        value = [value_0,1]
+        result, list_pie, list_bar, table, personal_dataset, kyoushoku_c, passcheck = condact(value)
+        #mainhome_params = pytojsMaterials(result, list_pie, list_bar, table, kyoushoku_c)        
         form = userInfoForm()
+        print("---speed_optimisation1の実行が確認されました---")    
         hp_params = {
             'form':form,
             #'message':'学籍番号とパスワードを入力しよう',
@@ -57,7 +61,6 @@ def hp(request):
 
             }
         return render(request, 'gv/hp.html', hp_params)
-
     index_params = {
         'form':form,
         'message':'',
@@ -87,6 +90,8 @@ def flush(request):#flush関数自体はsessionのflushを行わない。hp.html
 
     return render(request, 'gv/hp.html', index_params)
 
+def substitution(request):
+    return render(request, 'gv/demo_gd.html')
 ####################################################################################
                             #授業分析(11月27日)new!!!
 ###############################################################################
