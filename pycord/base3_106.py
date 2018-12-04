@@ -104,17 +104,16 @@ def func1(value):
             pass
         print("---ユーザ情報入力完了　―　ページ遷移---")
 
-        #time.sleep(0.8)
+        time.sleep(1)
 
         #print("---スクリーンショットの保存---")
         #driver.save_screenshot("gv/static/gv/images/test101.png")
 
         print("---ページ遷移---")
         #driver.find_element_by_css_selector("#MainContent_Contents_MenuCtrl_lnkSeiseki").click()
-        
         N_URL = "https://rs.rikkyo.ac.jp/rs/Record/Rec0100.aspx"
         driver.get(N_URL)
-        
+        time.sleep(0.4)        
         data = driver.page_source.encode('utf-8')
 
         #soup = BeautifulSoup(data, 'html.parser')
@@ -125,7 +124,8 @@ def func1(value):
         #tableを取得
         #tables = soup.find_all('table')
         data_tables = pd.read_html(data)
-        urlda = driver.current_url
+        #urlda = driver.current_url
+        
         #data_tables = pd.read_html(ulrda)
         
 
@@ -141,7 +141,7 @@ def func1(value):
 
 
         #print("---全"+str(len(tables))+"個のテーブルを取得---")
-        time.sleep(1)
+        #time.sleep(0.3)
 
 
         driver.close()
