@@ -50,7 +50,10 @@ def hp(request):
     except:
         value_0 = 'first_to_fast'
         value = [value_0,1]
-        result, list_pie, list_bar, table, personal_dataset, kyoushoku_c, passcheck = condact(value)
+        try:#substitutionを利用した高速化処理ーー万が一失敗しても悪影響はない
+            result, list_pie, list_bar, table, personal_dataset, kyoushoku_c, passcheck = condact(value)
+        except:
+            pass
         #mainhome_params = pytojsMaterials(result, list_pie, list_bar, table, kyoushoku_c)        
         form = userInfoForm()
         print("---speed_optimisation1の実行が確認されました---")    
@@ -602,7 +605,7 @@ def mainhome(request):
 
         #formから学籍番号とパスワードの取得
         #入力が正しいか
-        try:
+        try:#以下の複数のifでmain.pyから受け取ったpasscheckによって工程を進めるかエラーとして吐き出すかを決定
             result, list_pie, list_bar, table, personal_dataset, kyoushoku_c, passcheck = condact(value)
             if passcheck==1:
                 pass
@@ -718,30 +721,32 @@ def mainhome(request):
             odc = len(old_data)#old_data_count
             nd_taking = len(table[table.iloc[:,5]=="履"])  #new_dataに含まれる「履」の数
             od_taking = len(old_data.filter(grade="履"))   #old_dataに含まれる「履」の数
-            if ndc > odc:
-                old_data.exclude(grade='Ｄ').delete()
-                new_data_register(t,table,2,lowerd_sn)
-                print("---すでに登録されているが新たなデータが古いデータより多いパターン---")
-            elif ndc <= odc and nd_taking < od_taking:
-                nd_normal = len(table[table.iloc[:,5]!="履"][table.iloc[:,5]!="Ｑ"][table.iloc[:,5]!="Ｄ"][table.iloc[:,5]!="欠"])
-                od_normal = len(subjectInfo.objects.filter(user_id__contains=lowerd_sn).exclude(grade='履').exclude(grade='Ｑ').exclude(grade='Ｄ').exclude(grade='欠'))    
-                if nd_normal == od_normal:
-                    old_data.filter(grade="履").delete()
-                    old_data.filter(grade="Ｑ").delete()
-                    table[table.iloc[:,5]=="履"][table.iloc[:,5]=="Ｑ"]
-                    new_data_register(t,table,0,lowerd_sn)
-                    print("---すでに登録されているが、「履」が「Ｑ」になった授業があるパターン---")
-                elif nd_normal > od_normal:
+            try:
+                if ndc > odc:
                     old_data.exclude(grade='Ｄ').delete()
                     new_data_register(t,table,2,lowerd_sn)
-                    print("---すでに登録されており、「履」の成績結果が出て内容が書き換わったパターン---")
+                    print("---すでに登録されているが新たなデータが古いデータより多いパターン---")
+                elif ndc <= odc and nd_taking < od_taking:
+                    nd_normal = len(table[table.iloc[:,5]!="履"][table.iloc[:,5]!="Ｑ"][table.iloc[:,5]!="Ｄ"][table.iloc[:,5]!="欠"])
+                    od_normal = len(subjectInfo.objects.filter(user_id__contains=lowerd_sn).exclude(grade='履').exclude(grade='Ｑ').exclude(grade='Ｄ').exclude(grade='欠'))    
+                    if nd_normal == od_normal:
+                        old_data.filter(grade="履").delete()
+                        old_data.filter(grade="Ｑ").delete()
+                        table[table.iloc[:,5]=="履"][table.iloc[:,5]=="Ｑ"]
+                        new_data_register(t,table,0,lowerd_sn)
+                        print("---すでに登録されているが、「履」が「Ｑ」になった授業があるパターン---")
+                    elif nd_normal > od_normal:
+                        old_data.exclude(grade='Ｄ').delete()
+                        new_data_register(t,table,2,lowerd_sn)
+                        print("---すでに登録されており、「履」の成績結果が出て内容が書き換わったパターン---")
+                    else:
+                        print("---想定外のパターン1---")
+                elif ndc < odc and nd_taking == od_taking:
+                    print("---すでに登録されており、過去にとったＤが成績表から消えてしまった場合---")
                 else:
-                    print("---想定外のパターン1---")
-            elif ndc < odc and nd_taking == od_taking:
-                print("---すでに登録されており、過去にとったＤが成績表から消えてしまった場合---")
-            else:
-                print("---すでに登録されており、データに何の変化もないパターン---")
-        
+                    print("---すでに登録されており、データに何の変化もないパターン---")
+            except:
+                pass        
         elapsed_time = np.round(time.time() - start,1)
         print('---mainhome全プロセス経過時間 {0}秒---'.format(elapsed_time))
         #ログインしたことの証拠,mainhome_after_loginで使用
