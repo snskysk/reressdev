@@ -87,70 +87,135 @@ def func1(value):
         access_time = np.round(time.time() - start,1)
         print('---driver展開時間 {0}秒---'.format(access_time))    
     try:
-        print("---https://rs.rikkyo.ac.jp/にアクセス---")
-        driver.get(URL)
-        access_time = np.round(time.time() - start,1)
-        print('---アクセス時間 {0}秒---'.format(access_time))        
-        print("---ユーザ情報を入力---")
-        driver.find_element_by_css_selector("#userNameInput").send_keys(USER)
-        #driver.find_element_by_css_selector("#userNameInput").send_keys(Keys.RETURN)
+        try:
+            print("---https://rs.rikkyo.ac.jp/にアクセス---")
 
-        driver.find_element_by_css_selector("#passwordInput").send_keys(PASS)
-        driver.find_element_by_css_selector("#passwordInput").send_keys(Keys.RETURN)
+            driver.get(URL)
+            access_time = np.round(time.time() - start,1)
+            print('---アクセス時間 {0}秒---'.format(access_time))        
+            print("---ユーザ情報を入力---")
 
-        try:#phantomJSの時のみ
-            driver.find_element_by_css_selector("#submitButton").click()
-        except:#ローカルのchromedriverの時の処理
-            pass
-        print("---ユーザ情報入力完了　―　ページ遷移---")
 
-        time.sleep(1)
+            driver.find_element_by_css_selector("#userNameInput").send_keys(USER)
+            #driver.find_element_by_css_selector("#userNameInput").send_keys(Keys.RETURN)
 
-        #print("---スクリーンショットの保存---")
-        #driver.save_screenshot("gv/static/gv/images/test101.png")
+            driver.find_element_by_css_selector("#passwordInput").send_keys(PASS)
+            driver.find_element_by_css_selector("#passwordInput").send_keys(Keys.RETURN)
 
-        print("---ページ遷移---")
-        #driver.find_element_by_css_selector("#MainContent_Contents_MenuCtrl_lnkSeiseki").click()
-        N_URL = "https://rs.rikkyo.ac.jp/rs/Record/Rec0100.aspx"
-        driver.get(N_URL)
-        time.sleep(0.4)        
-        data = driver.page_source.encode('utf-8')
+            try:#phantomJSの時のみ
+                driver.find_element_by_css_selector("#submitButton").click()
+            except:#ローカルのchromedriverの時の処理
+                pass
+            print("---ユーザ情報入力完了　―　ページ遷移---")
+            urlda = driver.current_url
+            print(urlda)
+            time.sleep(1)
 
-        #soup = BeautifulSoup(data, 'html.parser')
+            #print("---スクリーンショットの保存---")
+            #driver.save_screenshot("gv/static/gv/images/test101.png")
+
+            print("---ページ遷移---")
+            #driver.find_element_by_css_selector("#MainContent_Contents_MenuCtrl_lnkSeiseki").click()
+            N_URL = "https://rs.rikkyo.ac.jp/rs/Record/Rec0100.aspx"
         
-        #"https://grade-visualizer101.herokuapp.com/gv/substitution/"
-        #data = "http://127.0.0.1:8000/gv/substitution/"
+            driver.get(N_URL)
+            time.sleep(0.4)        
+            data = driver.page_source.encode('utf-8')
+            data_tables = pd.read_html(data)
 
-        #tableを取得
-        #tables = soup.find_all('table')
-        data_tables = pd.read_html(data)
-        #urlda = driver.current_url
-        
-        #data_tables = pd.read_html(ulrda)
-        
+            #soup = BeautifulSoup(data, 'html.parser')
+            
+            #"https://grade-visualizer101.herokuapp.com/gv/substitution/"
+            #data = "http://127.0.0.1:8000/gv/substitution/"
 
-        print("---ページソースを取得---")
-        #html=driver.page_source
+            #tableを取得
+            #tables = soup.find_all('table')
+            #data_tables = pd.read_html(data)
+            #urlda = driver.current_url
+            #data_tables = pd.read_html(ulrda)
+            print("---ページソースを取得---")
+            #html=driver.page_source
+            print("---ページソースからテーブル要素を取得---")
+            #tables = pd.io.html.read_html(html, flavor='bs4')
+            #data_tables = pd.io.html.read_html(html, flavor='bs4')
+            #data_tables = pd.read_html(html, flavor='bs4')
+            #data_tables = [1,2,3,4,5,6,7,8]
+            #print('現在のurl')
+            #print("---全"+str(len(tables))+"個のテーブルを取得---")
+            #time.sleep(0.3)
+            driver.close()
+            print("---Chromeをダウン---")
+            print("---scraping process all complete---")
+            elapsed_time = np.round(time.time() - start,1)
+            print('---スクレイピング経過時間 {0}秒---'.format(elapsed_time))
+            print("--------------------------")
+            passcheck=1
+        except:
+            driver.quit()
+            try:
+                driver = webdriver.PhantomJS()
+            except:#ローカルはphantomJSが使えないのでchromeに
+                driver = webdriver.Chrome()
 
-        print("---ページソースからテーブル要素を取得---")
-        #tables = pd.io.html.read_html(html, flavor='bs4')
-        #data_tables = pd.io.html.read_html(html, flavor='bs4')
-        #data_tables = pd.read_html(html, flavor='bs4')
-        #data_tables = [1,2,3,4,5,6,7,8]
-        #print('現在のurl')
+            print("---https://rs.rikkyo.ac.jp/にアクセス---")
+
+            driver.get(URL)
+            access_time = np.round(time.time() - start,1)
+            print('---アクセス時間 {0}秒---'.format(access_time))        
+            print("---ユーザ情報を入力---")
 
 
-        #print("---全"+str(len(tables))+"個のテーブルを取得---")
-        #time.sleep(0.3)
+            driver.find_element_by_css_selector("#userNameInput").send_keys(USER)
+            #driver.find_element_by_css_selector("#userNameInput").send_keys(Keys.RETURN)
 
+            driver.find_element_by_css_selector("#passwordInput").send_keys(PASS)
+            driver.find_element_by_css_selector("#passwordInput").send_keys(Keys.RETURN)
 
-        driver.close()
-        print("---Chromeをダウン---")
-        print("---scraping process all complete---")
-        elapsed_time = np.round(time.time() - start,1)
-        print('---スクレイピング経過時間 {0}秒---'.format(elapsed_time))
-        print("--------------------------")
-        passcheck=1
+            try:#phantomJSの時のみ
+                driver.find_element_by_css_selector("#submitButton").click()
+            except:#ローカルのchromedriverの時の処理
+                pass
+            print("---ユーザ情報入力完了　―　ページ遷移---")
+            urlda = driver.current_url
+            print(urlda)
+            time.sleep(1)
+
+            #print("---スクリーンショットの保存---")
+            #driver.save_screenshot("gv/static/gv/images/test101.png")
+
+            print("---ページ遷移---")
+            driver.find_element_by_css_selector("#MainContent_Contents_MenuCtrl_lnkSeiseki").click()
+            time.sleep(0.4)        
+            data = driver.page_source.encode('utf-8')
+            data_tables = pd.read_html(data)
+            #soup = BeautifulSoup(data, 'html.parser')
+            
+            #"https://grade-visualizer101.herokuapp.com/gv/substitution/"
+            #data = "http://127.0.0.1:8000/gv/substitution/"
+
+            #tableを取得
+            #tables = soup.find_all('table')
+            #data_tables = pd.read_html(data)
+            #urlda = driver.current_url
+            #data_tables = pd.read_html(ulrda)
+            print("---ページソースを取得---")
+            #html=driver.page_source
+            print("---ページソースからテーブル要素を取得---")
+            #tables = pd.io.html.read_html(html, flavor='bs4')
+            #data_tables = pd.io.html.read_html(html, flavor='bs4')
+            #data_tables = pd.read_html(html, flavor='bs4')
+            #data_tables = [1,2,3,4,5,6,7,8]
+            #print('現在のurl')
+            #print("---全"+str(len(tables))+"個のテーブルを取得---")
+            #time.sleep(0.3)
+            driver.close()
+            print("---Chromeをダウン---")
+            print("---scraping process all complete---")
+            elapsed_time = np.round(time.time() - start,1)
+            print('---スクレイピング経過時間 {0}秒---'.format(elapsed_time))
+            print("--------------------------")
+            passcheck=1
+
 
     except Exception as e:
         driver.quit()
