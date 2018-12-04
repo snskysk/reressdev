@@ -89,7 +89,7 @@ def func1(value):
     try:
         try:#N_URL = "https://rs.rikkyo.ac.jp/rs/Record/Rec0100.aspx"を使った高速化　失敗するようならexcept
             print("---https://rs.rikkyo.ac.jp/にアクセス---")
-
+            N_URL = "https://rs.rikkyo.ac.jp/rs/Record/Rec0100.aspx"#後に使う変数
             driver.get(URL)
             access_time = np.round(time.time() - start,1)
             print('---アクセス時間 {0}秒---'.format(access_time))        
@@ -106,15 +106,14 @@ def func1(value):
                 driver.find_element_by_css_selector("#submitButton").click()
             except:#ローカルのchromedriverの時の処理
                 pass
-            time.sleep(0.8)
-            print("---ユーザ情報入力完了　―　ページ遷移---")
+            time.sleep(0.1)
             #print("---スクリーンショットの保存---")
             #driver.save_screenshot("gv/static/gv/images/test101.png")
-            print("---ページ遷移---")
             #driver.find_element_by_css_selector("#MainContent_Contents_MenuCtrl_lnkSeiseki").click()
-            N_URL = "https://rs.rikkyo.ac.jp/rs/Record/Rec0100.aspx"        
             driver.get(N_URL)
-            time.sleep(0.4)        
+            time.sleep(0.8)        
+            print("---ユーザ情報入力完了　―　ページ遷移---")
+            print("---ページ遷移---")
             data = driver.page_source.encode('utf-8')
             data_tables = pd.read_html(data)
 

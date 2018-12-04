@@ -614,7 +614,7 @@ def mainhome(request):
                 index_params = {
                 'numbers':numbers,
                 'form':form,
-                'message':'データ加工に失敗しました。対応していないユーザーである可能性があります。エラータイプ：フェーズ２'
+                'message':'お手数ですが再度お試しください。データ加工に失敗しました。対応していないユーザーである可能性があります。エラータイプ：フェーズ２'
                 }
                 return render(request, 'gv/hp.html', index_params)
 
