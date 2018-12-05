@@ -25,7 +25,7 @@ def func1(value):
     USER=value[0]
     PASS=value[1]
     URL="https://rs.rikkyo.ac.jp/"
-    print("---Chromeを起動---")
+    print("---driverを起動---")
     start = time.time()
     #options = Options()
     # Heroku以外ではNone
@@ -107,6 +107,7 @@ def func1(value):
             except:#ローカルのchromedriverの時の処理
                 pass
             time.sleep(0.1)
+            
             #print("---スクリーンショットの保存---")
             #driver.save_screenshot("gv/static/gv/images/test101.png")
             #driver.find_element_by_css_selector("#MainContent_Contents_MenuCtrl_lnkSeiseki").click()
@@ -143,6 +144,7 @@ def func1(value):
             passcheck=1
         except:#時間のかかる従来のスクレイピング
             driver.quit()
+            print("---driverを再起動---")
             try:
                 driver = webdriver.PhantomJS()
             except:#ローカルはphantomJSが使えないのでchromeに

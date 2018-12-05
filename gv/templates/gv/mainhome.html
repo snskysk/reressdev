@@ -1,5 +1,6 @@
 {% extends 'gv/basetop.html' %}
 {% load static %}
+{% block title %} Re:Re:ss 成績グラフ 立教大学履修登録補助システム ～Re:Re:ss/リリス～ {% endblock %}
 {% block css %}
 <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/style.css' %}' />
 {% endblock %}
@@ -12,7 +13,7 @@
       <div class="row">
           <div class="panel panel-info panel-main-color">
             <div class="panel-heading panel-color" style="text-align:center;">
-              <span>成績達成率</span>
+              <span>単位達成率</span>
             </div><!--panel-heaing-->
             <div class="panel-body">
               <!--<div><canvas width="400" height="300" id="doughnutg"></canvas></div>-->
@@ -32,7 +33,7 @@
       <div class="row">
           <div class="panel panel-info panel-main-color">
             <div class="panel-heading panel-color" style="text-align:center;">
-              科目区分別　成績達成率
+              科目区分別　単位達成率
             </div><!--panel-heaing-->
             <div class="panel-body">
               <div><canvas height="280px" id="myrader"></canvas></div>
@@ -40,10 +41,10 @@
           </div><!--panel panel-info panel-main-color-->
           <div class="panel panel-info panel-main-color">
             <div class="panel-heading panel-color" style="text-align:center;">
-              科目区分別残単・履修数
+              科目区分別　残単・履修数
             </div><!--panel-heaing-->
             <div class="panel-body">
-              <div><canvas height="280px" id="bar-chart"></canvas></div>
+              <div style="padding-left: 8px;"><canvas height="280px" id="bar-chart"></canvas></div>
             </div><!--panel-body-->
           </div><!--panel panel-info panel-main-color-->
       </div>
