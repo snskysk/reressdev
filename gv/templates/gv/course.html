@@ -2,6 +2,7 @@
 {% load widget_tweaks %}
 {% load static %}
 {% block title %} Re:Re:ss 人気授業分析 立教大学履修登録補助システム ～Re:Re:ss/リリス～ {% endblock %}
+
 {% block css %}
 <link rel='stylesheet' type='text/css' href='{% static 'gv/course/my_course.css' %}' />
 <link rel='stylesheet' type='text/css' href='{% static 'gv/course/button.css' %}' />
@@ -49,7 +50,7 @@
 {% endblock%}
 
 
-
+{% block seo %}立教大学　Re:Re:ss/リリス　履修　このページは人気授業分析のページです。自分の学科や、リリス登録者中の全カリの人気ランキングを参照できます。授業名が、それぞれの授業分析のリンクになっています。{% endblock %}
 {% block body %}
 <!--メインの部分-->
 <img src="/static/gv/course/images/zyugyobunnseki.png" alt="立教大学　Re:Re:ss/リリス　履修　成績表・順位　人気授業分析" width="100%"/>
