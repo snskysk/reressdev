@@ -123,7 +123,7 @@
     <div class="modalWrapper">
       <div class="modalContents">
         <div class="non-class" style="text-align:center;">
-            <span><h4>ログイン中</h4><p>15秒ほどお待ちください</p><br><img src="{% static 'gv/images/loading3.gif'%}" width="40%"></span>
+            <span><h4>ログイン中</h4><p>15秒ほどお待ちください</p><br><img src="{% static 'gv/images/loading3.gif'%}" alt="立教大学　Re:Re:ss/リリス　履修　ローディング" width="40%"></span>
         </div>
         
         <p>同一ブラウザでは、次回以降ログイン不要です。</p>
@@ -133,7 +133,6 @@
         <p>①2015年以前入学の特定学部生</p>
         <p>②特殊授業の履修経験者</p>
         <br>
-        <p>※教授分析機能は、例外なくご利用可能です。</p>
                   
     </div>
       <div id="closeModal" class="closeModal">
@@ -147,7 +146,7 @@
 
   
 <div class="all">
-    <a href="{% url 'hp' %}"><img src="/static/gv/homepage/images/hpmain102.PNG" alt="Re:Re:ss" width="100%"/></a>
+    <a href="{% url 'hp' %}"><img src="/static/gv/homepage/images/hpmain102.PNG" alt="立教大学　Re:Re:ss/リリス　履修　hp-top" width="100%"/></a>
     <!--飛んでくる場所-->
     <!--<h4 class="jump-tag" class="sub-title">Re:Re:ss</h4><br><br>-->
     <!--<h3 id="hp-title2">  立教生のデータを繋ぐ<br>Re:Re:ss</h3><br>-->
@@ -157,7 +156,7 @@
 
 <!--</a>--><!--jump-->
     <div class="form-div"><!--画像の中にログインformを埋め込む-->
-        <img src="{% static 'gv/homepage/images/hpmain101c.PNG'%}" class="mainimage" width="100%">
+        <img src="{% static 'gv/homepage/images/hpmain101c.PNG'%}" alt="立教大学　Re:Re:ss/リリス　履修　hp-login" class="mainimage" width="100%">
         <div class="row form-in-img">
             <div class="user-form">
               <div class="limiter">
@@ -208,7 +207,7 @@
                     </div>
                     <div class="panel-body">
                       <div class="image101">
-                          <img src="{% static 'gv/site_map/images/site_map_2.PNG'%}" width="80%">
+                          <img src="{% static 'gv/site_map/images/site_map_2.PNG'%}" alt="立教大学　Re:Re:ss/リリス　履修　gpa-ranking" width="80%">
                       </div>
                       <h6>学年順位や学科内順位を確認しよう<br>成績表ソート機能も</h6>
                     </div>
@@ -221,7 +220,7 @@
                     </div>
                     <div class="panel-body">
                       <div class="image101">
-                          <img src="{% static 'gv/site_map/images/site_map_1.PNG'%}" width="80%">
+                          <img src="{% static 'gv/site_map/images/site_map_1.PNG'%}" alt="立教大学　Re:Re:ss/リリス　履修　graph" width="80%">
                       </div>
                       <h6>成績の各種達成率を<br>グラフ化</h6>
                     </div>
@@ -245,7 +244,7 @@
                     </div>
                     <div class="panel-body">
                       <div class="image101">
-                          <img src="{% static 'gv/site_map/images/site_map_3.PNG'%}" width="80%">
+                          <img src="{% static 'gv/site_map/images/site_map_3.PNG'%}" alt="立教大学　Re:Re:ss/リリス　履修　class-ranking" width="80%">
                       </div>
                       <h6>あなたの学科の人気授業をランキング化<br>授業名クリックで授業分析を確認しよう</h6>
                     </div>
@@ -258,7 +257,7 @@
                     </div>
                     <div class="panel-body">
                       <div class="image101">
-                          <img src="{% static 'gv/site_map/images/site_map_4.PNG'%}" width="80%">
+                          <img src="{% static 'gv/site_map/images/site_map_4.PNG'%}" alt="立教大学　Re:Re:ss/リリス　履修　class-analyze" width="80%">
                       </div>
                       <h6>授業の難易度をGPAやグラフで可視化<br>担当教授クリックで教授分析を確認しよう<br><br>シラバスにも接続可能</h6>
                     </div>
@@ -271,9 +270,9 @@
                     </div>
                     <div class="panel-body">
                       <div class="image101">
-                          <img src="{% static 'gv/site_map/images/site_map_5.PNG'%}" width="80%">
+                          <img src="{% static 'gv/site_map/images/site_map_5.PNG'%}" alt="立教大学　Re:Re:ss/リリス　履修　teacher-analyze" width="80%">
                       </div>
-                      <h6>教授の厳しさをGPAやグラフで可視化<br></h6>
+                      <h6>教授の厳しさをGPAやグラフで可視化<br>三つの機能をループして履修登録に役立てよう</h6>
                     </div>
                   </div>
                 </div>
@@ -281,31 +280,59 @@
               </div><!--panel-body-->
             </div><!--panel panel-info panel-main-color-->
           </div>
-          
 
+
+          <div class="col-lg-10 col-xs-12">
+            <div class="panel panel-info panel-main-color">
+              <div class="panel-heading">
+                <h4>Re:Re:ss/リリス　information</h4>    
+              </div>
+              <div class="panel-body">
+                <div style="text-align: left;">
+                  <ul>
+                    <li><h5 style="text-align: left;">2019.11.01
+                        ----    リリスアプリ配信</h5></li>
+                    <li><h5 style="text-align: left;">2019.11.08
+                        ----    リリス利用者50人突破</h5></li>
+                    <li><h5 style="text-align: left;">2019.11.15
+                        ----    リリス利用者100人突破</h5></li>
+                    <li><h5 style="text-align: left;">2019.11.20
+                        ----    update GPA同学年同学科比較</h5></li>
+                    <li><h5 style="text-align: left;">2019.11.20
+                        ----    update 四年生の一部が利用可能に</h5></li>
+                    <li><h5 style="text-align: left;">2019.11.29
+                        ----    update 授業分析を追加</h5></li>
+                    <li><h5 style="text-align: left;">2019.12.04
+                        ----    立教大学 履修中止期間 開始</h5></li>
+                        
+                  </ul>
+                </div>          
+              </div>
+            </div>
+          </div>
 
 
       <a href='{% url 'course' %}'>
-          <img src="{% static 'gv/homepage/images/hp2.jpg'%}" width="100%">
+          <img src="{% static 'gv/homepage/images/hp2.jpg'%}" alt="立教大学　Re:Re:ss/リリス　履修　class-ranking-img" width="100%">
       </a><!--jump-->
 
       <a href='{% url 'teacher_search' %}'>
-          <img src="{% static 'gv/homepage/images/hp3.jpg'%}" width="100%">
+          <img src="{% static 'gv/homepage/images/hp3.jpg'%}" alt="立教大学　Re:Re:ss/リリス　履修　teacher-analyze-img" width="100%">
       </a><!--jump-->
 
       <a href='{% url 'detail' %}'>
-          <img src="{% static 'gv/homepage/images/hp5.PNG'%}" width="100%">
+          <img src="{% static 'gv/homepage/images/hp5.PNG'%}" alt="立教大学　Re:Re:ss/リリス　履修　gpa-ranking-img" width="100%">
       </a>
 
       <a href='{% url 'mainhome_after_login' %}'>
-          <img src="{% static 'gv/homepage/images/hp1.PNG'%}" width="100%">
+          <img src="{% static 'gv/homepage/images/hp1.PNG'%}" alt="立教大学　Re:Re:ss/リリス　履修　graph-img-1" width="100%">
       </a><!--jump-->
 
       <a href='{% url 'mainhome_after_login' %}'>
-          <img src="{% static 'gv/homepage/images/hp4.jpg'%}" width="100%">
+          <img src="{% static 'gv/homepage/images/hp4.jpg'%}" alt="立教大学　Re:Re:ss/リリス　履修　graph-img-2" width="100%">
       </a>
 
-      <img src="{% static 'gv/homepage/images/hp6.PNG'%}" width="100%">
+      <img src="{% static 'gv/homepage/images/hp6.PNG'%}" alt="立教大学　Re:Re:ss/リリス　履修　hp-footer" width="100%">
 
 </div>
 
