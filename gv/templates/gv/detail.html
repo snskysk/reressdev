@@ -242,8 +242,12 @@ if (str==sn.slice(0,4)) {
 <!-- 起動 -->
 <script>
 
-//初期は履修中教科
- $('#id_search_main').val(['履修中']);
+  //初期は履修中教科
+  $('#id_search_main').val(['履修中']);
+  //セレクトボックスの監視
+  $('.input_group').on('change',function(){
+    console.log('ちくわ');
+  });
 </script>
 
 {% endblock %}
