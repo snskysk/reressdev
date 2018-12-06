@@ -171,6 +171,49 @@
 
 
 {% block js %}
+
+<script>
+  function make_rank(ran_1) {
+  $('.animation')
+    .animate({
+      top: ran_1[2] + '%',
+      width:ran_1[3] + '%'
+    }, 2000, 'swing', function () {
+        // アニメーション完了後に実行され
+        //alert('done!');
+        if (50<Number(ran_1[2])&&Number(ran_1[2])<75) {
+          $('.ani-ex').css('top','268px');
+        }
+        if (Number(ran_1[2])<10) {
+          $('.num').css('bottom','-50px');
+        }
+        $(".0").text(ran_1[0])//全体の人数
+        $(".1").text(ran_1[1])//自分のgpa
+        $(".2").text(ran_1[2].toFixed(1) + '%')//自分のgpa
+        $(".4").text(ran_1[4])//自分の順位
+        $('.gpa_p').css('display','block');
+    });
+  }
+</script>
+<!--セレクトボックスの値によって変更する-->
+<script>
+$(".select-select").change(function () {
+var str = $(this).val();
+if (str==sn.slice(0,4)) {
+  var ran_2 = {{ran_2|safe}}
+  $('.reset-ani *').removeAttr('style');
+  $('.red').css('color','red');
+  make_rank(ran_2);
+} else if (str==sn.slice(0,2)) {
+  var ran_1 = {{ran_1|safe}}
+  $('.reset-ani *').removeAttr('style');
+  $('.red').css('color','red');
+  make_rank(ran_1);
+}
+})
+</script>
+
+
 <!--セレクトボックスの中身を変更-->
 <script>
   var sn = "{{sn}}"
