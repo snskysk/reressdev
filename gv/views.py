@@ -31,11 +31,11 @@ from .forms import ggs_counter_Form
 # Create your views here.
 
 #####################################   view 目次     ######################################
-                #トップページ関連    
+                #トップページ関連
                                     # hp   # substitution　　# flush
                 #mainhome関連
                                     # new_data_register    # mainhome　　
-                #五大機能関連                    
+                #五大機能関連
                                     # mainhome_after_login
                                     # detail
                                     # course_more
@@ -45,7 +45,7 @@ from .forms import ggs_counter_Form
                                     # more
                                     # teacher_serach
                                     # make_list
-                #その他                    
+                #その他
                                     # counter
                                     # inquiry
                                     # 二重サブミット防止
@@ -71,9 +71,9 @@ def hp(request):
             result, list_pie, list_bar, table, personal_dataset, kyoushoku_c, passcheck = condact(value)
         except:
             pass
-        #mainhome_params = pytojsMaterials(result, list_pie, list_bar, table, kyoushoku_c)        
+        #mainhome_params = pytojsMaterials(result, list_pie, list_bar, table, kyoushoku_c)
         form = userInfoForm()
-        print("---speed_optimisation1の実行が確認されました---")    
+        print("---speed_optimisation1の実行が確認されました---")
         hp_params = {
             'form':form,
             #'message':'学籍番号とパスワードを入力しよう',
@@ -97,7 +97,7 @@ def flush(request):#flush関数自体はsessionのflushを行わない。hp.html
     form = userInfoForm()
     stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
     numbers=len(stuobj)
-    
+
     #URL="https://rs.rikkyo.ac.jp/"
     #try:
     #    driver = webdriver.PhantomJS()
@@ -321,7 +321,7 @@ def mainhome(request):
             mainhome_params['numbers'] = numbers
             for k in mainhome_params.keys():
                 request.session['{}'.format(k)] = str(mainhome_params[k])
-                
+
         except Exception as e:
             print(str(e.args))
             form = userInfoForm()
@@ -362,7 +362,7 @@ def mainhome(request):
                     print("---すでに登録されているが新たなデータが古いデータより多いパターン---")
                 elif ndc <= odc and nd_taking < od_taking:
                     nd_normal = len(table[table.iloc[:,5]!="履"][table.iloc[:,5]!="Ｑ"][table.iloc[:,5]!="Ｄ"][table.iloc[:,5]!="欠"])
-                    od_normal = len(subjectInfo.objects.filter(user_id__contains=lowerd_sn).exclude(grade='履').exclude(grade='Ｑ').exclude(grade='Ｄ').exclude(grade='欠'))    
+                    od_normal = len(subjectInfo.objects.filter(user_id__contains=lowerd_sn).exclude(grade='履').exclude(grade='Ｑ').exclude(grade='Ｄ').exclude(grade='欠'))
                     if nd_normal == od_normal:
                         old_data.filter(grade="履").delete()
                         old_data.filter(grade="Ｑ").delete()
@@ -380,7 +380,7 @@ def mainhome(request):
                 else:
                     print("---すでに登録されており、データに何の変化もないパターン---")
             except:
-                pass        
+                pass
         elapsed_time = np.round(time.time() - start,1)
         print('---mainhome全プロセス経過時間 {0}秒---'.format(elapsed_time))
         #ログインしたことの証拠,mainhome_after_loginで使用
@@ -457,7 +457,7 @@ def mainhome_after_login(request):
         mainhome_after_login_params['residual_unit_bou'] = residual_unit_bou
         on_course_bou = request.session['on_course_bou']
         mainhome_after_login_params['on_course_bou'] = on_course_bou
-        
+
         return render(request, 'gv/mainhome.html', mainhome_after_login_params)
 
     except Exception:
@@ -483,6 +483,7 @@ def mainhome_after_login(request):
 ##########################################################################
 
 def detail(request):
+    unko = 'raijfaoijakfj'
     stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
     numbers=len(stuobj)
     try:
@@ -975,7 +976,7 @@ def counter(request):
     numbers=len(stuobj)   #　↓　利用者の入学年度を重複を省いてリスト化
     list_y = sorted([int(str(list(set(studentInfo.objects.values_list('enteryear', flat=True)))[i])[2:4]) for i in range(len(list(set(studentInfo.objects.values_list('enteryear', flat=True)))))],reverse=True)
     users_by_year = [(i,len(studentInfo.objects.filter(user_id__startswith=i))) for i in list_y]#学年別利用者人数を動的に生成
-    
+
     #####
     gg_lists = {'aa':'キリスト教学科','ac':'史学科','ae':'教育学科','am':'文学科{英米文学専修}','an':'文学科{ドイツ文学専修}','as':'文学科{フランス文学専修}','at':'文学科{日本文学専修}','au':'文学部{文芸・思想専修}','ba':'経済学科','bc':'会計ファイナンス学科','bd':'経済政策学科','bm':'経営学科','bn':'国際経営学科','ca':'数学科','cb':'物理学科','cc':'化学科','cd':'生命理学科','da':'社会学科','dd':'現代文化学科','de':'メディア社会学科','dm':'異文化コミュニケーション学科','ea':'法学科','ec':'政治学科','ed':'国際ビジネス法学科','ib':'福祉学科','ic':'コミュニティ政策学科','id':'スポーツウエルネス学科','hm':'心理学科','hn':'映像身体学科','ha':'観光学科','hb':'交流文化学科'}
     #  ↓　　表の中身のパラメータを生成
@@ -1049,4 +1050,3 @@ def exists_submit_token(request):
 ###################################################################################
                                     #停止
 ##################################################################################
-
