@@ -1,0 +1,60 @@
+{% extends 'gv/base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block css %}
+  <link rel='stylesheet' type='text/css' href='{% static 'gv/review/my_review.css' %}' />
+  <!--!!!!!!!!!!!!!!!!!!!!!!!!!!星についてのcss!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+  <link rel='stylesheet' type='text/css' href='{% static 'gv/review-font/fontawesome-stars.css' %}' />
+{% endblock %}
+
+
+{% block body %}
+  <h1 class="page-header" style="text-align:center;">飲食店レビュー</h1>
+  <div class="review_div line">
+    <form action='{% url 'review' %}' method='post' name='review'>
+      {% csrf_token %}
+      {{form.shop_name.label}}<br>{{form.shop_name}}<br><br>
+      {{form.sex.label}}<br>{{form.sex}}<br><br>
+      {{form.utilization_time.label}}<br>{{form.utilization_time}}<br><br>
+      {{form.area.label}}<br>{{form.area}}<br><br>
+      {{form.genre.label}}<br>{{form.genre}}<br><br>
+      {{form.duration.label}}<br>{{form.duration}}<br><br>
+      {{form.price.label}}<br>{{form.price|add_class:"price_input"}}<br><br>
+      {{form.number_of_people.label}}<br>{{form.number_of_people}}<br><br>
+      {{form.evaluation_quality.label}}{{form.evaluation_quality}}
+      {{form.evaluation_amount.label}}<br>{{form.evaluation_amount}}
+      {{form.photograph_shine.label}}<br>{{form.photograph_shine}}
+      <div><!--button-->
+        <button type="submit" class="review_button">
+          成績を見る
+        </button>
+      </div><!--button-->
+    </form>
+  </div><!--review_div-->
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'gv/review/jquery.barrating.min.js' %}"></script><!--星を表現-->
+<!--星のselectform3つ-->
+<script>
+$(function() {
+  $('#id_evaluation_quality').barrating({
+    theme: 'fontawesome-stars'
+  });
+});
+$(function() {
+  $('#id_evaluation_amount').barrating({
+    theme: 'fontawesome-stars'
+  });
+});
+$(function() {
+  $('#id_photograph_shine').barrating({
+    theme: 'fontawesome-stars'
+  });
+});
+
+</script>
+
+
+{% endblock %}

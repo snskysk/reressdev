@@ -1,0 +1,20 @@
+/*#body-design4{
+    background-color:#000000;
+}*/
+
+#to_ambassador{
+    position:fixed;
+    bottom:40px;
+    right:10px;
+    z-index:1000;
+  }
+#to_ambassador2{
+    position:fixed;
+    bottom:5px;
+    right:10px;
+    z-index:1000;
+  }
+
+.safety-color{
+    color: #fff;
+  }

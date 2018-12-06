@@ -1,0 +1,30 @@
+<style>
+.small_size {
+  font_size: 16px;
+}
+</style>
+
+<table>
+  <thead>
+  <tr>
+    <th><span class="small_size">{{gakka_j}}の人気の授業<br>(<strong class="non-class" style="background: linear-gradient(transparent 60%, #ff99ff 60%);">クリックで授業分析へ</strong>)</span></th>
+    <th><span class="small_size">履修者数</span></th>
+    <th><span class="small_size">GPAの平均</span></th>
+  </tr>
+  </thead>
+  <tbody>
+  {% for message in sub_list_counter %}
+  <tr>
+    <td>
+      <form method="post" action="{% url 'sub_search' %}">
+        {% csrf_token %}
+        <input type="hidden" name="s_name" value="{{message.0}}">
+        <a href="javascript:void(0)" onclick="this.parentNode.submit()"><span class="non-class" style="background: linear-gradient(transparent 97%, #000 50%);">{{message.0}}</span></a>
+      </form>
+    </td>
+    <td>{{ message.1 }}人</td>
+    <td>{{ message.2 }}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>

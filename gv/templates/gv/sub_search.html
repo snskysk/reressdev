@@ -1,0 +1,161 @@
+{% extends 'gv/basetop.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block title %} Re:Re:ss 授業分析 立教大学履修登録補助システム ～Re:Re:ss/リリス～ {% endblock %}
+{% block css %}
+<link rel='stylesheet' type='text/css' href='{% static 'gv/sub_search/my_teacher_search.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/sub_search/button.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/sub_search/table.css' %}' />
+
+
+{% endblock%}
+{% block seo %}立教大学　Re:Re:ss/リリス　履修　このページは授業分析のページです。授業の難易度や担当教授の状況が把握でき、担当教授名がそれぞれの教授分析のリンクとなっています。シラバスにも飛べるようになっています。{% endblock %}
+{% block body %}
+<!--メインの部分-->
+<img src="/static/gv/sub_search/images/zyugyoubunnseki.png" alt="立教大学　Re:Re:ss/リリス　履修　授業分析" width="100%"/>
+<br>
+
+    <form action='{% url "sub_search" %}' method='post' name='sub_search'>
+      {% csrf_token %}
+      教科名入力(<strong class="non-class" style="border-top: 2px dotted #66ff66;">部分一致で予測変換</strong>)<br>
+            <!-- 入力フォーム -->
+            {{form.s_name|add_class:"sub_input"|attr:"autocomplete:off"}}<br>
+            <!--<input id="text" type="text" name="pattern" value="" autocomplete="off" size="10" style="display: block">-->
+            <!-- 補完候補を表示するエリア -->
+            <div id="suggest" class="suggest_input" style="display:none;"></div><br>
+            <!-- {{form.t_sub|add_class:"t_sub_input"}}<br> -->   
+      <button class="hamon">
+        授業を検索する
+      </button>
+    </form>
+    <br>
+    <div class="non-class" style="text-align: center;">該当科目のGPA：<strong class="non-class" style="background: linear-gradient(transparent 60%, #ff99ff 60%);">{{s_gpa}}</strong></div>
+    <div><canvas id="bar-chart"></canvas></div>
+    <form method="post" action="{% url 'sirabasu' %}" target="_blank">
+      {% csrf_token %}
+      <input type="hidden" name="sub-name" value="{{r_form}}">       
+      <a href="javascript:void(0)" onclick="this.parentNode.submit()"><button class="hamon">シラバスへ飛ぶ</button>
+      </a>
+    </form>
+    <div id='t_list'>
+      <table>
+      <thead>
+      <tr>
+        <th>専任名(<strong class="non-class" style="background: linear-gradient(transparent 60%, #ff99ff 60%);">クリックで教授分析へ</strong>)</th>
+        <th>担当率</th>
+        <th>評価平均<br>(GPA)</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for message in t_dict %}
+      <tr>
+        <td>
+          <!--<form method="post" action="{% url 'teacher_search' %}" target="_blank">-->
+          <form method="post" action="{% url 'teacher_search' %}">
+             {% csrf_token %}
+             <input type="hidden" name="t_name" value="{{message.0}}">
+             <input type="hidden" name="t_sub" value="">
+             <a href="javascript:void(0)" onclick="this.parentNode.submit()"><span class="non-class" style="background: linear-gradient(transparent 97%, #000 50%);">{{message.0}}</span></a>          
+          </form>
+        </td>
+        <td>{{ message.1 }}%</td>
+        <td>{{ message.2 }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+      </table>
+      <br>
+    </div>
+
+
+
+
+{% endblock %}
+
+
+{% block js %}
+
+
+
+
+<!--**************************************************
+
+****************************************************-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+<!--aaaaaaaaaaaaaaaaaaaaa 読み込み中 aaaaaaaaaaaaaaaaa-->
+<script src='https://cdn.rawgit.com/jaredreich/notie.js/a9e4afbeea979c0e6ee50aaf5cb4ee80e65d225d/notie.js'></script>
+
+
+<!--**************************************************
+               棒グラフの記述
+****************************************************-->
+<script language="JavaScript">
+  var nums = {{nums|safe}};
+  var grade_list_sample = {{grade_list_sample|safe}};
+  var r_form = '{{r_form|safe}}'
+  var ctx = document.getElementById("bar-chart").getContext('2d');
+  ctx.canvas.height = 280;
+  var ChartDemo = new Chart(ctx, {
+         type: 'bar',
+         data: {
+            //labels: kind_list,
+            labels: grade_list_sample,
+            datasets: [
+            {
+            label: r_form,
+            lineTension: 0,
+            fill: false,
+            //backgroundColor: ["rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(246,133,124,0.5)","rgba(246,133,124,0.5)","rgba(206,195,73,0.5)"]
+            backgroundColor: "rgba(131,90,206,0.4)",
+            //borderColor: "#217346",
+            data: nums
+          },
+            ]
+         },
+         options: {
+            responsive: true,
+            legend: {
+              labels: {
+                fontSize:13,
+                boxWidth: 10,
+              }
+            },
+            scales: {
+          xAxes: [{
+            ticks: {
+              fontSize: 15,
+              maxRotation: 100,
+              minRotation: 0
+            },
+          }],
+          yAxes: [{
+            ticks: {
+              fontSize: 10,
+              beginAtZero:true,
+              min: 0,
+              callback: function(value) {if (value % 1 === 0) {return value+'人';}}
+            },
+          }],
+        },
+         }
+       });
+</script>
+
+<!--入力補完-->
+<script src='{% static "gv/teacher_search/suggest.js" %}'></script>
+<script>
+  var all_sub_list = {{all_sub_list|safe}};
+  function startSuggest() {
+    new Suggest.Local(
+          "id_s_name",    // 入力のエレメントID
+          "suggest", // 補完候補を表示するエリアのID
+          all_sub_list,      // 補完候補の検索対象となる配列
+          {dispMax: 10, interval: 1000}); // オプション
+  }
+
+  window.addEventListener ?
+    window.addEventListener('load', startSuggest, false) :
+    window.attachEvent('onload', startSuggest);
+</script>
+
+{% endblock %}

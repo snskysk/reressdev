@@ -1,0 +1,97 @@
+
+.hamon{
+  border-radius: 10px;
+  color:#fff;
+  background: rgb(110, 110, 110);
+  position: relative;
+  padding: 15px 60px;
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: .3s;
+}
+.hamon::before,
+.hamon::after{
+  position: absolute;
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  left: calc(50% - 5px);
+  top: calc(50% - 5px);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .1);
+  transform: scale(0,0);
+}
+.hamon:active{
+  opacity: .7;
+}
+.hamon:hover::before{
+  animation: hamon 2s infinite;
+}
+.hamon:hover::after{
+  animation: hamon 2s .3s infinite;
+}
+@keyframes hamon {
+  0%   {  transform: scale(0,0);}
+  100% {  transform: scale(50,50);opacity: 0;}
+}
+
+
+.skerton{
+  display: inline-block;
+  padding: 15px;
+  text-decoration: none;
+  transition: .3s;
+}
+.skerton.default{
+  color: #ffffff;
+  border: 2px solid #fff;
+  padding: 25px 60px;
+}
+.skerton.default:hover{
+  color: #1E1C93;
+  background: #fff;
+}
+
+
+.stripe{
+  font-weight: bold;
+  letter-spacing: .2em;
+  display: inline-block;
+  z-index: 1;
+  padding: 16px 20px;
+  width: 200px;
+  overflow: hidden;
+  text-align: center;
+  background: rgb(3, 63, 112);
+  color: #ffffff;
+  position: relative;
+}
+.stripe::before{
+  z-index: -1;
+  content: '';
+  width: calc(200% + 40px);
+  position: absolute;
+  left: calc(-100% - 40px);
+  height: 100%;
+  display: block;
+  top: 0;
+  background: linear-gradient(135deg, rgba(3, 63, 132,1) 55%,rgb(3, 63, 112) 55%);
+  transition: .3s;
+}
+.stripe:hover::after{
+  z-index: 1;
+  content: '';
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  display: block;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(135deg, rgba(3, 63, 132,0) 50%,rgb(3, 63, 112) 50%);
+}
+.stripe:hover::before{
+  left: 0;
+}

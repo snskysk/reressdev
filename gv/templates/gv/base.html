@@ -1,0 +1,249 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no">
+  <title>Re:Re:ss/リリス 立教大学履修登録補助システム　～リリスを履修登録に活用しよう～</title>
+  <link rel="shortcut icon" href="{% static 'gv/base/images/soccer_128x128.ico'%}" />
+  <meta name="description" content="「立教大学履修登録補助システム」通称リリスは、人気授業ランキングなど履修に役立つ機能を中心に、わかりやすい成績参照機能を備えた立教生のためのWEBアプリです。立教大学WEBシステムと連携して、ユーザーごとに適切な情報をお届けします。">
+  <meta name="format-detection" content="telephone=no" />
+                        <!--▼▼jqueryの3のバージョン▼▼-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                                        <!--▼▼bootstrapの使用▼▼-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+                                <!--▼▼fontawesomeの使用▼▼-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+                              <!--▼▼メニューバー▼▼-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.1.0/css/drawer.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.1.0/js/drawer.min.js"></script>
+  <script src='{% static 'gv/base/js/nav.js' %}'></script>
+                              <!--▼▼自分のcss▼▼-->
+  <link rel="stylesheet" href='{% static 'gv/base/css/style.css'%}'>
+
+<!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaスライダーaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+<script src="{% static 'gv/homepage/slider/jquery.bxslider.min.js'%}"></script>
+<link href="{% static 'gv/homepage/slider/jquery.bxslider.css'%}" rel="stylesheet" />
+
+
+  <!--aタグの文字の色を指定-->
+  <style type="text/css">
+    a:link { color : #000000; }
+    a:visited { color : #000000; }
+  </style>
+
+  {% block css %}
+  {% endblock %}
+
+</head>
+
+<body class="drawer drawer--left drawer--sidebar">
+  <!-- ハンバーガーボタン -->
+<button type="button" class="drawer-toggle drawer-hamburger">
+  <span class="sr-only">toggle navigation</span>
+  <span class="drawer-hamburger-icon"></span>
+</button>
+
+<nav class="drawer-nav nav-width">
+  <div class="row">
+  <div class="col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1">
+  <ul class="drawer-menu">
+    <!-- ドロワーメニューの中身 -->
+      <br>
+      <img src="{% static 'gv/base/images/titlelogo.PNG'%}" width="100%"><br><br>
+      <li class="li-d li-toppage"><i class="fas fa-home fa-fw"></i>トップページ</li><br>
+      <li class="li-d"><a href={% url 'detail' %}><i class="fa fa-table fa-fw"></i>成績表・GPA<br>ランキング</a></li><br>
+      <li class="li-d"><a href={% url 'mainhome_after_login' %}><i class="fas fa-chart-bar fa-fw"></i></i>成績グラフ</a></li><br>
+      <li class="li-d"><a href={% url 'course' %}><i class="fas fa-book-open fa-fw"></i>人気授業分析</a></li><br>
+      <li class="li-d"><a href={% url 'sub_search' %}><i class="fas fa-book-open fa-fw"></i>授業分析</a></li><br>
+      <li class="li-d"><a href={% url 'teacher_search' %} id="t_search"><i class="fas fa-chalkboard-teacher fa-fw"></i>教授分析</a></li><br>
+      <li class="li-d"><a href={% url 'inquiry' %}><i class="fas fa-comment fa-fw"></i>ABOUT US</a></li><br>
+      <!--<div class="drawer_li_div"><li><a href='#'><i class="fa fa-sitemap fa-fw"></i>Taimee</a></li></div><br>-->
+    </ul>
+
+  </ul>
+</div>
+</div><!--row-->
+</nav>
+
+<!--要素はすべてsectionの中へ-->
+<section class="drawer-contents">
+  <div class="bg">
+    <div class='opa'>
+      <div class="frame">
+        <!-- スマホのフレーム画像 -->
+        <div class='relative'>
+          <img alt="" src="{% static 'gv/base/images/960.jpg'%}" class="frame-img">
+          <div class="main">
+            {% block body %}
+            {% endblock %}
+          </div><!--main-->
+          <button class="button">
+          </button>
+          <div class="backgroundbutton"></div>
+        </div><!--relative-->
+      </div><!--frame-->
+    </div>
+  </div><!--bg-->
+</section>
+
+
+
+{% block js %}
+{% endblock %}
+<!--aaaaaaaaaaaaaaaaaaaaa 読み込み中 aaaaaaaaaaaaaaaaa-->
+<script src='https://cdn.rawgit.com/jaredreich/notie.js/a9e4afbeea979c0e6ee50aaf5cb4ee80e65d225d/notie.js'></script>
+
+<!--
+  <script>
+  window.onload = function() {
+    //
+    var btn = document.getElementById('t_search');
+    btn.onclick = function() {
+    notie.alert(1, '-----　読込中です お待ちください　-----', 5);
+    };
+  };
+
+</script>
+-->
+
+<!--スライダー-->
+<script type="text/javascript">
+var num = 0;
+$(".ccc").click(function(){
+    $(this).data("click", ++num);
+    var click = $(this).data("click");
+    if(click % 3 == 1){
+      $('.bg').css('background-image', 'url("/static/gv/base/images/pc060992.JPG")')
+    }
+    else if(click % 3 == 2) {
+      $('.bg').css('background-image', 'url("/static/gv/base/images/pc060992.jpg")')
+    }
+    else {
+      $('.bg').css('background-image', 'url("/static/gv/base/images/pc060992.jpg")')
+    }
+    //return false;
+});
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+  $('#slider').bxSlider();
+  });
+  </script>
+
+  <!--画面サイズによってフレームを出すか出さないか-->
+  <script>
+
+  /*スマホの時*/
+  if(navigator.userAgent.match(/(iPhone|Android)/)){
+    $('.frame-img').remove();
+    $('.bg').unwrap();
+    $('.opa').unwrap();
+    $('.frame').unwrap();
+    $('.relative').unwrap();
+    $('.main').unwrap();
+    //$('.main').unwrap();
+    $('.button').remove();
+    $('.main').css('overflow','hidden');
+  }
+
+
+  $(window).resize(function(){
+      var w = $(window).width();
+      var x = 460;
+      if (w <= x) {
+        $('.frame-img').remove();
+        $('.bg').unwrap();
+        $('.opa').unwrap();
+        $('.frame').unwrap();
+        $('.relative').unwrap();
+        $('.main').unwrap();
+        //$('.main').unwrap();
+        $('.button').remove();
+
+      } else {
+        location.reload();
+        //$('.opa').append(parent_main);
+        //$('.opa').append(frame_img);
+        /*$('.drawer-contents').append(frame);
+        $('.drawer-contents').append(bg);
+        $('.drawer-contents').append(relative);
+        $('.drawer-contents').append(opa);
+        $('.drawer-contents').append(button);
+        $('.drawer-contents').append(frame_img);
+        $('.drawer-contents').append(main);*/
+      }
+  });
+  </script>
+
+
+
+
+  <script>
+  //ボタンを押すとgetで入りなおす
+
+
+  $('.button').on('click', function() {
+    var result = window.confirm('データをリセットせずにトップに移動します。');
+    if( result ) {
+      console.log('キャンセルがクリックされました');
+      location.href = 'https://grade-visualizer101.herokuapp.com/gv/hp/';
+    }
+    else {
+      console.log('sessionが切れました');
+        //本番環境ではhomepageのurlに変更する///////////////////////////////////////////////////////////////////
+        location.href = 'https://grade-visualizer101.herokuapp.com/gv/flush/';
+    }
+  });
+
+
+  $('.li-toppage').on('click', function() {
+    var result = window.confirm('データをリセットせずにトップに移動します。');
+    if( result ) {
+      console.log('キャンセルがクリックされました');
+      location.href = 'https://grade-visualizer101.herokuapp.com/gv/hp/';
+    }
+    else {
+      console.log('sessionが切れました');
+        //本番環境ではhomepageのurlに変更する///////////////////////////////////////////////////////////////////
+        location.href = 'https://grade-visualizer101.herokuapp.com/gv/flush/';
+    }
+  });
+
+
+
+
+
+
+
+
+  </script>
+
+
+   <script>
+   $(document).ready(function() {
+    $(".drawer").drawer({
+    });
+
+    var wH = $(window).height();
+    //div#exampleの高さを取得を取得して、変数divHに代入
+    var divH = $('.opa').innerHeight();
+    //console.log(divH);
+    //ボックス要素より画面サイズが大きければ実行
+    if(wH > divH){
+      //console.log('fs');
+      // div#examplに高さを加える
+      $('.opa').css('height',wH+'px');
+    //$('.window').css('height',wH+ 'px');
+    //$('.z').css('height','70%');
+    }
+  });
+
+
+
+   </script>
+  </body>
+  </html>

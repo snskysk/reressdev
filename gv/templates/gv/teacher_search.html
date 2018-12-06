@@ -1,0 +1,217 @@
+{% extends 'gv/basetop.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block title %} Re:Re:ss 教授分析 立教大学履修登録補助システム ～Re:Re:ss/リリス～ {% endblock %}
+{% block css %}
+<link rel='stylesheet' type='text/css' href='{% static 'gv/teacher_search/my_teacher_search.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/teacher_search/button.css' %}' />
+<!--<link rel='stylesheet' type='text/css' href='{% static 'gv/button/table.css' %}' />-->
+
+
+{% endblock%}
+{% block seo %}立教大学　Re:Re:ss/リリス　履修　このページは教授分析のページです。教授の難易度を、全体や授業別に分析することができます。人気授業分析に戻って、これまでの流れをループして使うと便利です。{% endblock %}
+{% block body %}
+<!--メインの部分-->
+<br>
+<img src="/static/gv/teacher_search/images/kyozyubunnseki.png" alt="立教大学　Re:Re:ss/リリス　履修　教授分析" width="100%"/>
+<br>
+<!--経過時間：{{elapsed_time}} で表示-->
+<!-- {{objjj}} -->
+    <form action='{% url 'teacher_search' %}' method='post' name='teacher_search'>
+      {% csrf_token %}
+      教授名入力(<strong class="non-class" style="border-top: 2px dotted #66ff66;">部分一致で予測変換</strong>)<br>
+            <!-- 入力フォーム -->
+            {{form.t_name|add_class:"teacher_input"|attr:"autocomplete:off"}}<br>
+            <!--<input id="text" type="text" name="pattern" value="" autocomplete="off" size="10" style="display: block">-->
+            <!-- 補完候補を表示するエリア -->
+            <div id="suggest" class="suggest_input" style="display:none;"></div><br>
+            {{form.t_sub|add_class:"t_sub_input"}}<br>
+      <button class="hamon">
+        教授を検索
+      </button>
+    </form>
+
+    <div id="result"></div>
+  <br>
+  <div class="non-class" style="text-align: center;">該当教授のGPA：<strong class="non-class" style="background: linear-gradient(transparent 60%, #ff99ff 60%);">{{k_gpa}}</strong></div>
+
+  <div><canvas id="bar-chart"></canvas></div>
+  <a href={% url 'course' %}><button class="hamon">人気授業分析に戻る</button>
+  </a>
+
+
+{% endblock %}
+
+
+{% block js %}
+
+<script>
+    $('.suggest_input').click(function() {
+      $('.teacher_input').blur();
+    })
+  </script>
+
+
+
+  <script>
+
+      $('.teacher_input').focusout(function(){
+        var input_t_name_true = $('.teacher_input').val();
+        //$(".t_sub_input").css("display", "block");
+        //$(".t_sub_input").css("text-align", "center");
+        $.ajax({
+          type: "GET",
+          url: "https://grade-visualizer101.herokuapp.com/gv/more/",
+          // url: "http://localhost:8000/gv/more/",
+          data: { name: input_t_name_true},
+          success　: function(data){
+            $('#result').html(data);//A
+          },
+          datatype:'json',
+        });
+      });
+  </script>
+
+  <script>
+    $('.teacher_input').focus(function() {
+        $('.t_sub_input option:not(:first)').remove();
+      });
+  </script>
+
+
+  <!--入った瞬間focus-->
+  <script>
+    var input_t_name = $('.teacher_input');
+    var message = "{{message|safe}}"
+    var length = message.length
+    if(length!=0){
+      $(input_t_name).focus();
+      $(input_t_name).blur();  }
+  </script>
+
+<!--
+<script>
+    var teacher_sub_dict = {{teacher_sub_dict|safe}};
+    var input_t_name = $('.teacher_input');
+
+    input_t_name.focus(function() {
+        $('.t_sub_input option:not(:first)').remove();
+      });
+
+    input_t_name.blur(function(){
+      var input_t_name_true = input_t_name.val();
+
+      if (teacher_sub_dict[input_t_name_true]) {
+        console.log('e');
+        var t_s_list = teacher_sub_dict[input_t_name_true];
+        for (i = 0; i < t_s_list.length; i++) {
+          $('.t_sub_input').append(`<option value=${t_s_list[i]}>${t_s_list[i]}</option>`);
+        }
+      };
+    });
+  </script>
+
+
+  <script>
+    var input_t_name = $('.teacher_input');
+    var message = "{{message|safe}}"
+    var length = message.length
+    if(length!=0){
+      $(input_t_name).focus();
+    }
+  </script>
+
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+<!--**************************************************
+
+****************************************************-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+<!--aaaaaaaaaaaaaaaaaaaaa 読み込み中 aaaaaaaaaaaaaaaaa-->
+<script src='https://cdn.rawgit.com/jaredreich/notie.js/a9e4afbeea979c0e6ee50aaf5cb4ee80e65d225d/notie.js'></script>
+
+
+<!--**************************************************
+               棒グラフの記述
+****************************************************-->
+<script language="JavaScript">
+  var nums = {{nums|safe}};
+  var grade_list_sample = {{grade_list_sample|safe}};
+  var r_form = '{{r_form|safe}}'
+  var ctx = document.getElementById("bar-chart").getContext('2d');
+  ctx.canvas.height = 280;
+  var ChartDemo = new Chart(ctx, {
+         type: 'bar',
+         data: {
+            //labels: kind_list,
+            labels: grade_list_sample,
+            datasets: [
+            {
+            label: r_form,
+            lineTension: 0,
+            fill: false,
+            //backgroundColor: ["rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(246,133,124,0.5)","rgba(246,133,124,0.5)","rgba(206,195,73,0.5)"]
+            backgroundColor: "rgba(131,90,206,0.4)",
+            //borderColor: "#217346",
+            data: nums
+          },
+            ]
+         },
+         options: {
+            responsive: true,
+            legend: {
+              labels: {
+                fontSize:13,
+                boxWidth: 10,
+              }
+            },
+            scales: {
+          xAxes: [{
+            ticks: {
+              fontSize: 15,
+              maxRotation: 100,
+              minRotation: 0
+            },
+          }],
+          yAxes: [{
+            ticks: {
+              fontSize: 10,
+              beginAtZero:true,
+              min: 0,
+              callback: function(value) {if (value % 1 === 0) {return value+'人';}}
+            },
+          }],
+        },
+         }
+       });
+</script>
+
+<!--入力補完-->
+<script src='{% static "gv/teacher_search/suggest.js" %}'></script>
+<script>
+  var teacher_list_space = {{teacher_list_space|safe}};
+  function startSuggest() {
+    new Suggest.Local(
+          "id_t_name",    // 入力のエレメントID
+          "suggest", // 補完候補を表示するエリアのID
+          teacher_list_space,      // 補完候補の検索対象となる配列
+          {dispMax: 10, interval: 1000}); // オプション
+  }
+
+  window.addEventListener ?
+    window.addEventListener('load', startSuggest, false) :
+    window.attachEvent('onload', startSuggest);
+</script>
+
+{% endblock %}

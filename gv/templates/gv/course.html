@@ -1,0 +1,395 @@
+{% extends 'gv/basetop.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block title %} Re:Re:ss 人気授業分析 立教大学履修登録補助システム ～Re:Re:ss/リリス～ {% endblock %}
+
+{% block css %}
+<link rel='stylesheet' type='text/css' href='{% static 'gv/course/my_course.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/course/button.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/course/table.css' %}' />
+
+
+
+<!-- 追加部分(12月1日css) -->
+<style type="text/css">
+  /* ▼ タブメニュー全体の設定 */
+  div.tabbox { margin: 0 0 0 0; padding: 0px; width:100%; height:100%;}
+  /* ▼ タブ部分のマージンとパディング領域を設定 */
+  /* p.tabs { margin: 0px; padding: 0px; } */
+  span.tabs a {
+     /* ▼ リンクをタブのように見せる */
+     /* display: inline-block; width: 100px; float: left; */
+     display: inline-block; width: 100px;
+     margin: 0px 0px 0px 0px; padding: 3px;
+     /* margin: 0 aut; padding: 3px; */
+     font-size:12px;
+     text-align:center;
+  }
+
+  /* ▼ タブごとの配色設定 */
+  span.tabs a.tab1 {text-decoration:none; background-color:#fafafa;border-right:3px solid #dcdcdc;border-left:3px solid #dcdcdc;border-bottom:3px solid #dcdcdc;border-top: 3px solid rgba(170, 0, 0, 0.85);  color: #666; font-weight:600;}
+  span.tabs a.tab2 {text-decoration:none; background-color:#fafafa;border-right:3px solid #dcdcdc;border-left:3px solid #dcdcdc;border-bottom:3px solid #dcdcdc;border-top: 3px solid rgba(0, 170, 0, 0.85);  color: #666; font-weight:600;}
+  span.tabs a.tab3 {text-decoration:none; background-color:#fafafa;border-right:3px solid #dcdcdc;border-left:3px solid #dcdcdc;border-bottom:3px solid #dcdcdc;border-top: 3px solid rgba(0, 0, 170, 0.85);  color: #666; font-weight:600;}
+  span.tabs a:hover {opacity:0.7;filter:alpha(opacity=70);}
+  /* ▼ タブ中身のボックス */
+  div.tab {
+     /* ▼ ボックス共通の装飾 */
+     height: 100%;
+     /* clear: left; */
+     width: 100%;
+
+  }
+  /* ▼ 各ボックスの配色設定 */
+  div#tab1 { border: 2px solid #FFFFFF; background-color: #FFFFFF; }
+  div#tab2 { border: 2px solid #FFFFFF; background-color: #FFFFFF; }
+  div#tab3 { border: 2px solid #FFFFFF; background-color: #FFFFFF; }
+  div.tab span { margin: 0.5em; }
+
+</style>
+
+{% endblock%}
+
+
+{% block seo %}立教大学　Re:Re:ss/リリス　履修　このページは人気授業分析のページです。自分の学科や、リリス登録者中の全カリの人気ランキングを参照できます。授業名が、それぞれの授業分析のリンクになっています。{% endblock %}
+{% block body %}
+<!--メインの部分-->
+<img src="/static/gv/course/images/zyugyobunnseki.png" alt="立教大学　Re:Re:ss/リリス　履修　成績表・順位　人気授業分析" width="100%"/>
+
+<div class="tabbox">
+  <div class="tabs_div">
+    <span class="tabs">
+      <a href="#tab1" class="tab1" onclick="ChangeTab('tab1'); return false;">{{gakka}}人気<br>ランキング</a>
+      <a href="#tab2" class="tab2" onclick="ChangeTab('tab2'); return false;">全カリ人気<br>ランキング</a>
+      <a href="#tab3" class="tab3" onclick="ChangeTab('tab3'); return false;">他学科の人気<br>ランキング</a>
+    </span>
+  </div>
+  <div id="tab1" class="tab">
+    <div class="my_gakka_tri">
+      <div id='my_gakka_triangleDown1'></div>
+      <div id='my_gakka_triangleDown2'></div>
+    </div>
+    <table id="my_gakka_table1">
+      <thead>
+      <tr>
+        <th><span class="small_size">履修者数順<br>(<strong class="non-class" style="background: linear-gradient(transparent 60%, #ff99ff 60%);">クリックで授業分析へ</strong>)</span></th>
+        <th><span class="small_size">履修者数</span></th>
+        <th><span class="small_size">GPA平均</span></th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for message in sub_list_counter %}
+      <tr>
+        <td>
+          <form method="post" action="{% url 'sub_search' %}">
+            {% csrf_token %}
+            <input type="hidden" name="s_name" value="{{message.0}}">
+            <a href="javascript:void(0)" onclick="this.parentNode.submit()"><span class="non-class" style="background: linear-gradient(transparent 97%, #000 50%);">{{message.0}}</span></a>
+          </form>
+        </td>
+        <td>{{ message.1 }}人</td>
+        <td>{{ message.2 }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <table id=my_gakka_table2>
+      <thead>
+      <tr>
+        <th><span class="small_size">GPA順<br>(<strong class="non-class" style="background: linear-gradient(transparent 60%, #ff99ff 60%);">クリックで授業分析へ</strong>)</span></th>
+        <th><span class="small_size">履修者数</span></th>
+        <th><span class="small_size">GPA平均</span></th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for message in sub_list_counter_sorted_gpa %}
+      <tr>
+        <td>
+          <form method="post" action="{% url 'sub_search' %}">
+            {% csrf_token %}
+            <input type="hidden" name="s_name" value="{{message.0}}">
+            <a href="javascript:void(0)" onclick="this.parentNode.submit()"><span class="non-class" style="background: linear-gradient(transparent 97%, #000 50%);">{{message.0}}</span></a>
+          </form>
+        </td>
+        <td>{{ message.1 }}人</td>
+        <td>{{ message.2 }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div id="tab2" class="tab">
+    <div class="zenkari_tri">
+      <div id='zenkari_triangleDown1'></div>
+      <div id='zenkari_triangleDown2'></div>
+    </div>
+    <table id=zenkari_table1>
+      <thead>
+      <tr>
+        <th><span class="small_size">履修者数順<br>(<strong class="non-class" style="background: linear-gradient(transparent 60%, #ff99ff 60%);">クリックで授業分析へ</strong>)</span></th>
+        <th><span class="small_size">履修者数</span></th>
+        <th><span class="small_size">GPA平均</span></th>
+        <!-- <th>評価平均<br>(GPA)</th> -->
+      </tr>
+      </thead>
+      <tbody>
+      {% for message in zenkari_ranking %}
+      <tr>
+        <td>
+          <form method="post" action="{% url 'sub_search' %}">
+            {% csrf_token %}
+            <input type="hidden" name="s_name" value="{{message.0}}">
+            <a href="javascript:void(0)" onclick="this.parentNode.submit()"><span class="non-class" style="background: linear-gradient(transparent 97%, #000 50%);">{{message.0}}</span></a>
+          </form>
+        </td>
+        <td>{{ message.1 }}人</td>
+        <td>{{ message.2 }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <table id=zenkari_table2>
+      <thead>
+      <tr>
+        <th><span class="small_size">GPA順<br>(<strong class="non-class" style="background: linear-gradient(transparent 60%, #ff99ff 60%);">クリックで授業分析へ</strong>)</span></th>
+        <th><span class="small_size">履修者数</span></th>
+        <th><span class="small_size">GPA平均</span></th>
+        <!-- <th>評価平均<br>(GPA)</th> -->
+      </tr>
+      </thead>
+      <tbody>
+      {% for message in zenkari_ranking_sorted_gpa %}
+      <tr>
+        <td>
+          <form method="post" action="{% url 'sub_search' %}">
+            {% csrf_token %}
+            <input type="hidden" name="s_name" value="{{message.0}}">
+            <a href="javascript:void(0)" onclick="this.parentNode.submit()"><span class="non-class" style="background: linear-gradient(transparent 97%, #000 50%);">{{message.0}}</span></a>
+          </form>
+        </td>
+        <td>{{ message.1 }}人</td>
+        <td>{{ message.2 }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div><!--tab2-->
+  <div id="tab3" class="tab">
+    <br>
+    <select class="parent" name="foo">
+      <option value="" selected="selected">学部を選択</option>
+      <option value="文学部">文学部</option>
+      <option value="経済学部">経済学部</option>
+      <option value="経営学部">経営学部</option>
+      <option value="理学部">理学部</option>
+      <option value="社会学部">社会学部</option>
+      <option value="異文化コミュニケーション学部">異文化コミュニケーション学部</option>
+      <option value="法学部">法学部</option>
+      <option value="コミュニティ福祉学部">コミュニティ福祉学部</option>
+      <option value="現代心理学部">現代心理学部</option>
+      <option value="観光学部">観光学部</option>
+    </select>
+    <br><br>
+    <select id="gakka" class="children" name="bar" disabled>
+      <option value="" selected="selected">学科を選択</option>
+      <option value="" data-val="文学部">学科を選択</option>
+      <option value="aa" data-val="文学部">キリスト教学科</option>
+      <option value="ac" data-val="文学部">史学科</option>
+      <option value="ae" data-val="文学部">教育学科</option>
+      <option value="am" data-val="文学部">文学科{英米文学専修}</option>
+      <option value="an" data-val="文学部">文学科{ドイツ文学専修}</option>
+      <option value="as" data-val="文学部">文学科{フランス文学専修}</option>
+      <option value="at" data-val="文学部">文学科{日本文学専修}</option>
+      <option value="au" data-val="文学部">文学科{文芸・思考専修}</option>
+
+      <option value="" data-val="経済学部">学科を選択</option>
+      <option value="ba" data-val="経済学部">経済学科</option>
+      <option value="bc" data-val="経済学部">会計ファイナンス学科</option>
+      <option value="bd" data-val="経済学部">経済政策学科</option>
+
+      <option value="" data-val="経営学部">学科を選択</option>
+      <option value="bm" data-val="経営学部">経営学科</option>
+      <option value="bn" data-val="経営学部">国際経営学科</option>
+
+      <option value="" data-val="理学部">学科を選択</option>
+      <option value="ca" data-val="理学部">数学科</option>
+      <option value="cb" data-val="理学部">物理学科</option>
+      <option value="cc" data-val="理学部">化学科</option>
+      <option value="cd" data-val="理学部">生命理学化</option>
+
+      <option value="" data-val="社会学部">学科を選択</option>
+      <option value="da" data-val="社会学部">社会学科</option>
+      <option value="dd" data-val="社会学部">現代文化学科</option>
+      <option value="de" data-val="社会学部">メディア社会学科</option>
+
+      <option value="" data-val="異文化コミュニケーション学部">学科を選択</option>
+      <option value="dm" data-val="異文化コミュニケーション学部">異文化コミュニケーション学科</option>
+
+      <option value="" data-val="法学部">学科を選択</option>
+      <option value="ea" data-val="法学部">法学科</option>
+      <option value="ec" data-val="法学部">政治学科</option>
+      <option value="ed" data-val="法学部">国際ビジネス法学科</option>
+
+      <option value="" data-val="コミュニティ福祉学部">学科を選択</option>
+      <option value="ic" data-val="コミュニティ福祉学部">コミュニティ政策学科</option>
+      <option value="ib" data-val="コミュニティ福祉学部">福祉学科</option>
+      <option value="id" data-val="コミュニティ福祉学部">スポーツウエルネス学科</option>
+
+      <option value="" data-val="現代心理学部">学科を選択</option>
+      <option value="hm" data-val="現代心理学部">心理学科</option>
+      <option value="hn" data-val="現代心理学部">映像身体学科</option>
+
+      <option value="" data-val="観光学部">学科を選択</option>
+      <option value="ha" data-val="観光学部">観光学科</option>
+      <option value="hm" data-val="観光学部">交流文化学科</option>
+    </select>
+
+    <div id=course_more></div><!--ajaxが入る場所-->
+  </div>
+</div><!-- tabbox -->
+
+
+{% endblock %}
+
+<!-- <form action='{% url 'course' %}' method='post' name='course'>
+  {% csrf_token %}
+  <div class="row" id="category-box">
+    <div class="col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1">
+      <div class="cp_ipselect cp_sl04 line">
+        {{form.category1|add_class:"category1_input"}}
+      </div>
+    </div><!--col-xs-6-->
+  <!-- </div>
+  <button class="hamon">
+    絞りこみ
+  </button>
+</form> -->
+
+{% block js %}
+
+
+
+
+<!-- 他学科検索のセレクトボックスの連動 -->
+<script>
+  $(function() {
+    var $children = $('.children');
+    var original = $children.html();
+
+    $('.parent').change(function() {
+      var val1 = $(this).val();
+
+      $children.html(original).find('option').each(function() {
+        var val2 = $(this).data('val');
+        if (val1 != val2) {
+          $(this).not('optgroup,.msg').remove();
+        }
+      });
+
+      if ($(this).val() === '') {
+        $children.attr('disabled', 'disabled');
+      } else {
+        $children.removeAttr('disabled');
+      }
+
+    });
+  });
+</script>
+
+<script>
+$('#gakka').change(function() {
+    var gakka = $('#gakka').val()
+    var now_url = location.href ;
+    //urlをlocakと本番に対応
+    url = "https://grade-visualizer101.herokuapp.com/gv/course_more/"
+    if ("http://localhost:8000/gv/course_more/".match(now_url)){
+      url = "http://localhost:8000/gv/course_more/"
+    }
+    $.ajax({
+      type: "GET",
+      // url: "https://grade-visualizer101.herokuapp.com/gv/course_more/",
+       url: url,
+      // url: "http://localhost:8000/gv/course_more/",
+       data: { name: gakka},
+       success　: function(data){
+         $('#course_more').html(data);//A
+      },
+      // datatype:'json',
+    });
+});
+</script>
+
+<!-- 追加部分(12月1日)js -->
+<script type="text/javascript">
+  function ChangeTab(tabname) {
+    // タブメニュー実装
+    document.getElementById('tab1').style.display = 'none';
+    document.getElementById('tab2').style.display = 'none';
+    document.getElementById('tab3').style.display = 'none';
+    // タブメニュー実装
+    document.getElementById(tabname).style.display = 'block';
+    if (tabname=='tab1') {
+      $('.tab1').css('background-color','#DDFFFF');
+      $('.tab2').css('background-color','#fafafa');
+      $('.tab3').css('background-color','#fafafa');
+    }
+    else if (tabname=='tab2') {
+      $('.tab1').css('background-color','#fafafa');
+      $('.tab2').css('background-color','#DDFFFF');
+      $('.tab3').css('background-color','#fafafa');
+    }
+    else{
+
+      $('.tab1').css('background-color','#fafafa');
+      $('.tab2').css('background-color','#fafafa');
+      $('.tab3').css('background-color','#DDFFFF');
+    }
+    }
+
+
+</script>
+<!-- ページを開いた際の最初に表示されるタブの選択 -->
+<script type="text/javascript">
+   ChangeTab('tab1');
+</script>
+
+
+<!-- 自分の学科をソートする。 -->
+<script>
+  $('#my_gakka_triangleDown1').click(function() {
+    $('#my_gakka_table1').css('display','inline-block');
+    $('#my_gakka_table2').css('display','none');
+    $('#my_gakka_triangleDown1').css('border-top','23px solid #FF0000');
+    $('#my_gakka_triangleDown2').css('border-top','23px solid #CCCCCC');
+   });
+  $('#my_gakka_triangleDown2').click(function() {
+    $('#my_gakka_table1').css('display','none');
+    $('#my_gakka_table2').css('display','inline-block');
+    $('#my_gakka_triangleDown1').css('border-top','23px solid #CCCCCC');
+    $('#my_gakka_triangleDown2').css('border-top','23px solid #FF0000');
+   });
+  $('#my_gakka_table2').css('display','none');
+  $('#my_gakka_triangleDown1').css('border-top','23px solid #FF0000');
+ </script>
+
+<!-- 全カリをソートする。 -->
+  <script>
+     $('#zenkari_triangleDown1').click(function() {
+       $('#zenkari_table1').css('display','inline-block');
+       $('#zenkari_table2').css('display','none');
+       $('#zenkari_triangleDown1').css('border-top','23px solid #FF0000');
+       $('#zenkari_triangleDown2').css('border-top','23px solid #CCCCCC');
+    //   console.log('1fjlkasjdfalkjf')
+      });
+     $('#zenkari_triangleDown2').click(function() {
+       $('#zenkari_table1').css('display','none');
+       $('#zenkari_table2').css('display','inline-block');
+       $('#zenkari_triangleDown1').css('border-top','23px solid #CCCCCC');
+       $('#zenkari_triangleDown2').css('border-top','23px solid #FF0000');
+      });
+    $('#zenkari_table2').css('display','none');
+    $('#zenkari_triangleDown1').css('border-top','23px solid #FF0000');
+
+   </script>
+
+
+{% endblock %}

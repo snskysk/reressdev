@@ -1,0 +1,30 @@
+{% extends 'gv/basetop.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block title %} Re:Re:ss ABOUT US 立教大学履修登録補助システム ～Re:Re:ss/リリス～ {% endblock %}
+{% block css %}
+<!--<link rel='stylesheet' type='text/css' href='{% static 'gv/teacher_search/my_teacher_search.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/teacher_search/button.css' %}' />-->
+<!--<link rel='stylesheet' type='text/css' href='{% static 'gv/button/table.css' %}' />-->
+
+
+{% endblock%}
+{% block seo %}立教大学　Re:Re:ss/リリス　履修　このページは、ABOUT　USのページです。お問い合わせやTwitterの情報が確認できます。{% endblock %}
+{% block body %}
+<!--メインの部分-->
+  <!--<h3 class="page-header page-title" style="text-align:center;">お問い合わせ</h3>-->
+  <img src="/static/gv/images/contact.png" alt="Re:Re:ss" width="100%"/>
+    <p style="text-align:center;">メールは<a href="mailto:rikkyo.reress301101&#64;gmail.com">rikkyo.reress301101&#64;gmail.com</a>へ</p>
+    <!--<a href="mailto:rikkyo.reress301101@gmail.com?subject=問い合わせ・エラー報告等&amp;body=ご記入ください">メールはこちらへ</a> -->
+    <a class="twitter-timeline"
+     data-lang="ja"
+     data-tweet-limit="5"
+     href="https://twitter.com/reressrikkyo">Tweets by reressdeveloper</a>
+  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+{% endblock %}
+
+
+{% block js %}
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>-->
+
+{% endblock %}

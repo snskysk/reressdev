@@ -1,0 +1,427 @@
+{% extends 'gv/basetop.html' %}
+{% load static%}
+{% load widget_tweaks %}
+{% block title %} Re:Re:ss トップページ before login 立教大学履修登録補助システム ～Re:Re:ss/リリス～  {% endblock %}
+{% block css %}
+  <!--  #######css homepage & mainhome ##############   -->
+  <!--  #######js homepage & base ####################   -->
+
+  <!--  ##############################################   -->
+  <!--  ################    css    from    homepage  #########   -->
+  <!--  ##############################################   -->
+  <link rel='stylesheet' type='text/css' href='{% static 'gv/homepage/homepage.css' %}' />
+
+
+    <!--  ##############################################   -->
+    <!--  ################    css    from    mainhome  #########   -->
+    <!--  ##############################################   -->
+
+    <!-- Bootstrap Core CSS -->
+    <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/bootstrap.min.css' %}' />
+    <!--<link href="../css/bootstrap.min.css" rel="stylesheet">-->
+
+    <!-- MetisMenu CSS -->
+    <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/metisMenu.min.css' %}' />
+    <!--<link href="../css/metisMenu.min.css" rel="stylesheet">-->
+
+    <!-- Custom CSS -->
+    <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/startmin.css' %}' />
+    <!--<link href="../css/startmin.css" rel="stylesheet">-->
+
+    <!-- Morris Charts CSS -->
+    <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/morris.css' %}' />
+    <!--<link href="../css/morris.css" rel="stylesheet">-->
+
+    <!-- Custom Fonts -->
+    <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/font-awesome.min.css' %}' />
+    <!--<link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
+
+    <!--  ##############################################   -->
+    <!--  ################    index     #########   -->
+    <!--  ##############################################   -->
+
+    <!--===============================================================================================-->
+	<link rel="icon" type="image/png" href='{% static 'gv/login/images/icons/favicon.ico' %}'/>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static 'gv/login/vendor/bootstrap/css/bootstrap.min.css' %}'>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static 'gv/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}'>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static 'gv/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}'>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static 'gv/login/vendor/animate/animate.css' %}'>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static 'gv/login/vendor/css-hamburgers/hamburgers.min.css' %}'>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static 'gv/login/vendor/animsition/css/animsition.min.css' %}'>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static 'gv/login/vendor/select2/select2.min.css' %}'>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static 'gv/login/vendor/daterangepicker/daterangepicker.css' %}'>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href='{% static 'gv/login/css/util.css' %}'>
+	<link rel="stylesheet" type="text/css" href='{% static 'gv/login/css/main.css' %}'>
+
+
+    <link rel='stylesheet' type='text/css' href='{% static 'gv/homepage/homepage.css' %}' />
+
+    <!-- Bootstrap Core CSS -->
+    <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/bootstrap.min.css' %}' />
+    <!--<link href="../css/bootstrap.min.css" rel="stylesheet">-->
+
+    <!-- MetisMenu CSS -->
+    <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/metisMenu.min.css' %}' />
+    <!--<link href="../css/metisMenu.min.css" rel="stylesheet">-->
+
+    <!-- Custom CSS -->
+    <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/startmin.css' %}' />
+    <!--<link href="../css/startmin.css" rel="stylesheet">-->
+
+    <!-- Morris Charts CSS -->
+    <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/morris.css' %}' />
+    <!--<link href="../css/morris.css" rel="stylesheet">-->
+
+    <!-- Custom Fonts -->
+    <link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/css/font-awesome.min.css' %}' />
+    <!--<link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
+
+
+
+<!-- 自分のCSS 11/13-->
+<link rel="stylesheet" href='{% static 'gv/homepage/to_ambassador.css' %}'>
+<link rel='stylesheet' type='text/css' href='{% static 'gv/homepage/hp_modal.css' %}' />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+
+{% endblock%}
+
+{% block body %}
+<h4 class="safety-color" id="to_ambassador">safety</h4>
+<!--<a href='{% url 'hp' %}'><h4 class="safety-color" id="to_ambassador2">ログイン済みの方</h4></a>-->
+<!-- モーダルエリアここから -->
+<section id="modalArea2" class="modalArea">
+    <div id="modalBg2" class="modalBg"></div>
+    <div class="modalWrapper">
+      <div class="modalContents">
+        <div class="non-class" style="text-align:center;">
+            <span><h4>リリスの安全性について</h4><p>リリスは、ユーザーの皆様に任意でIDとパスワードを入力頂き立教大学WEBシステムから成績データを収集しますが、パスワードや名前は一切保存しておりません。</p><br></span>
+        </div>
+        
+        <p>ユーザーの学部学科を識別し適切なデータを提供するために、IDのみ保存しております。</p>
+        <br>
+        <p>詳細は、Twitter投稿「リリスの安全性について」メディアをご参照ください。</p>
+                  
+    </div>
+      <div id="closeModal2" class="closeModal">
+        ×
+      </div>
+    </div>
+  </section>
+<!-- モーダルエリアここから -->
+<section id="modalArea" class="modalArea">
+    <div id="modalBg" class="modalBg"></div>
+    <div class="modalWrapper">
+      <div class="modalContents">
+        <div class="non-class" style="text-align:center;">
+            <span><h4>ログイン中</h4><p>15秒ほどお待ちください</p><br><img src="{% static 'gv/images/loading3.gif'%}" alt="立教大学　Re:Re:ss/リリス　履修　ローディング" width="40%"></span>
+        </div>
+        
+        <p>同一ブラウザでは、次回以降ログイン不要です。</p>
+        <br>
+        <p>下記に当てはまる場合、ご利用になれない場合があります。</p>
+        <br>
+        <p>①2015年以前入学の特定学部生</p>
+        <p>②特殊授業の履修経験者</p>
+        <br>
+                  
+    </div>
+      <div id="closeModal" class="closeModal">
+        ×
+      </div>
+    </div>
+  </section>
+  <!-- モーダルエリアここまで -->
+
+
+
+  
+<div class="all">
+    <a href="{% url 'hp' %}"><img src="/static/gv/homepage/images/hpmain102.PNG" alt="立教大学　Re:Re:ss/リリス　履修　hp-top" width="100%"/></a>
+    <!--飛んでくる場所-->
+    <!--<h4 class="jump-tag" class="sub-title">Re:Re:ss</h4><br><br>-->
+    <!--<h3 id="hp-title2">  立教生のデータを繋ぐ<br>Re:Re:ss</h3><br>-->
+    <!--<p class="under-linep">Re:Re:ssは、立教大学WEBシステムと連携して、成績データを履修登録に活用するためのシステムです。</p><br>-->
+
+
+
+<!--</a>--><!--jump-->
+    <div class="form-div"><!--画像の中にログインformを埋め込む-->
+        <img src="{% static 'gv/homepage/images/hpmain101c.PNG'%}" alt="立教大学　Re:Re:ss/リリス　履修　hp-login" class="mainimage" width="100%">
+        <div class="row form-in-img">
+            <div class="user-form">
+              <div class="limiter">
+                <h4 style="color: antiquewhite; text-align: center;">立教大学　履修登録補助システム</h4>
+                <br>
+                <h3 style="color: antiquewhite; text-align: center;">現在の登録者数：{{numbers}}人</h3>
+    
+                <form class="login100-form validate-form flex-sb flex-w" action='{% url 'mainhome' %}' method='post' , name='mainhome'>
+                  {% csrf_token %}
+                  <!--<span class="login100-form-title">学生ログイン</span><br><br><br>-->
+                  <div class="wrap-input100 validate-input m-b-16" id="numofstu" data-validate="Username is required">
+                    {{form.stunum|add_class:"input100"|attr:"placeholder:学生番号"}}
+                    <span class="focus-input100"></span>
+                  </div>
+                  <div class="wrap-input100 validate-input m-b-16" id="passofstu" data-validate="Password is required">
+                    {{form.password|add_class:"input100"|attr:"placeholder:パスワード"}}
+                    <span class="focus-input100"></span>
+                  </div><!--input100-->
+                  <!--<div class="container-login100-form-btn m-t-17">-->
+                    <div class="container-login100-form-btn">
+                      <div class="zigzag">
+                         <!--<button id='load-checker'></button>-->
+                          <button class="login100-form-btn" id="openModal">
+                              USE  Re:Re:ss
+                            
+                          </button><!--login100-form-btn-->                      
+                      </div>
+                        
+                    </div><!--container-login100-form-btn-->
+                </form>
+                <h5 style="color: antiquewhite; text-align: center;">※初回は15秒ほどお待ちください</h5>
+              </div><!--limiter-->
+            </div><!--user-form-->
+        </div><!--row form-in-img-->
+
+      </div><!--form-div-->
+
+      <div class="row" width=50%>
+            <div class="panel panel-primary panel-main-color">
+              <div class="panel-heading panel-color" style="text-align:center;" width="50%">
+                <span>成績参照機能</span>
+              </div><!--panel-heaing-->
+              <div class="panel-body">
+                <div class="col-lg-6 col-xs-6">
+                  <div class="panel panel-info panel-main-color">
+                    <div class="panel-heading">
+                        <a href={% url 'detail' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">GPAランキング</span></h5></a>
+                    </div>
+                    <div class="panel-body">
+                      <div class="image101">
+                          <img src="{% static 'gv/site_map/images/site_map_2.PNG'%}" alt="立教大学　Re:Re:ss/リリス　履修　gpa-ranking" width="80%">
+                      </div>
+                      <h6>学年順位や学科内順位を確認しよう<br>成績表ソート機能も</h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-xs-6">
+                  <div class="panel panel-info panel-main-color">
+                    <div class="panel-heading">
+                      <a href={% url 'mainhome_after_login' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">成績グラフ</span></h5></a>
+                    </div>
+                    <div class="panel-body">
+                      <div class="image101">
+                          <img src="{% static 'gv/site_map/images/site_map_1.PNG'%}" alt="立教大学　Re:Re:ss/リリス　履修　graph" width="80%">
+                      </div>
+                      <h6>成績の各種達成率を<br>グラフ化</h6>
+                    </div>
+                  </div>
+                </div>
+              </div><!--panel-body-->
+            </div><!--panel panel-info panel-main-color-->
+          </div>
+          
+          
+          <div class="row" width=50%>
+            <div class="panel panel-primary panel-main-color">
+              <div class="panel-heading panel-color" style="text-align:center;" width="50%">
+                <span>履修登録補助機能</span>
+              </div><!--panel-heaing-->
+              <div class="panel-body">
+                <div class="col-lg-6 col-xs-6">
+                  <div class="panel panel-info panel-main-color">
+                    <div class="panel-heading">
+                      <a href={% url 'course' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">人気授業分析</span></h5></a>
+                    </div>
+                    <div class="panel-body">
+                      <div class="image101">
+                          <img src="{% static 'gv/site_map/images/site_map_3.PNG'%}" alt="立教大学　Re:Re:ss/リリス　履修　class-ranking" width="80%">
+                      </div>
+                      <h6>あなたの学科の人気授業をランキング化<br>授業名クリックで授業分析を確認しよう</h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-xs-6">
+                  <div class="panel panel-info panel-main-color">
+                    <div class="panel-heading">
+                      <a href={% url 'sub_search' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">授業分析</span></h5></a>
+                    </div>
+                    <div class="panel-body">
+                      <div class="image101">
+                          <img src="{% static 'gv/site_map/images/site_map_4.PNG'%}" alt="立教大学　Re:Re:ss/リリス　履修　class-analyze" width="80%">
+                      </div>
+                      <h6>授業の難易度をGPAやグラフで可視化<br>担当教授クリックで教授分析を確認しよう<br><br>シラバスにも接続可能</h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-xs-6">
+                  <div class="panel panel-info panel-main-color">
+                    <div class="panel-heading">
+                      <a href={% url 'teacher_search' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">教授分析</span></h5></a>
+                    </div>
+                    <div class="panel-body">
+                      <div class="image101">
+                          <img src="{% static 'gv/site_map/images/site_map_5.PNG'%}" alt="立教大学　Re:Re:ss/リリス　履修　teacher-analyze" width="80%">
+                      </div>
+                      <h6>教授の厳しさをGPAやグラフで可視化<br>三つの機能をループして履修登録に役立てよう</h6>
+                    </div>
+                  </div>
+                </div>
+          
+              </div><!--panel-body-->
+            </div><!--panel panel-info panel-main-color-->
+          </div>
+
+
+          <div class="col-lg-10 col-xs-12">
+            <div class="panel panel-info panel-main-color">
+              <div class="panel-heading">
+                <h4>Re:Re:ss/リリス　information</h4>    
+              </div>
+              <div class="panel-body">
+                <div style="text-align: left;">
+                  <ul>
+                    <li><h5 style="text-align: left;">2019.11.01
+                        ----    リリスアプリ配信</h5></li>
+                    <li><h5 style="text-align: left;">2019.11.08
+                        ----    リリス利用者50人突破</h5></li>
+                    <li><h5 style="text-align: left;">2019.11.15
+                        ----    リリス利用者100人突破</h5></li>
+                    <li><h5 style="text-align: left;">2019.11.20
+                        ----    update GPA同学年同学科比較</h5></li>
+                    <li><h5 style="text-align: left;">2019.11.20
+                        ----    update 四年生の一部が利用可能に</h5></li>
+                    <li><h5 style="text-align: left;">2019.11.29
+                        ----    update 授業分析を追加</h5></li>
+                    <li><h5 style="text-align: left;">2019.12.04
+                        ----    立教大学 履修中止期間 開始</h5></li>
+                        
+                  </ul>
+                </div>          
+              </div>
+            </div>
+          </div>
+
+
+      <a href='{% url 'course' %}'>
+          <img src="{% static 'gv/homepage/images/hp2.jpg'%}" alt="立教大学　Re:Re:ss/リリス　履修　class-ranking-img" width="100%">
+      </a><!--jump-->
+
+      <a href='{% url 'teacher_search' %}'>
+          <img src="{% static 'gv/homepage/images/hp3.jpg'%}" alt="立教大学　Re:Re:ss/リリス　履修　teacher-analyze-img" width="100%">
+      </a><!--jump-->
+
+      <a href='{% url 'detail' %}'>
+          <img src="{% static 'gv/homepage/images/hp5.PNG'%}" alt="立教大学　Re:Re:ss/リリス　履修　gpa-ranking-img" width="100%">
+      </a>
+
+      <a href='{% url 'mainhome_after_login' %}'>
+          <img src="{% static 'gv/homepage/images/hp1.PNG'%}" alt="立教大学　Re:Re:ss/リリス　履修　graph-img-1" width="100%">
+      </a><!--jump-->
+
+      <a href='{% url 'mainhome_after_login' %}'>
+          <img src="{% static 'gv/homepage/images/hp4.jpg'%}" alt="立教大学　Re:Re:ss/リリス　履修　graph-img-2" width="100%">
+      </a>
+
+      <img src="{% static 'gv/homepage/images/hp6.PNG'%}" alt="立教大学　Re:Re:ss/リリス　履修　hp-footer" width="100%">
+
+</div>
+
+
+<!-- /main -->
+
+
+
+{% endblock%}
+
+{% block js %}
+
+<!--不正に入ろうとしたときにでるalert-->
+<script>
+  var message = "{{message|safe}}"
+  var length = message.length
+  if(message!=0){
+  alert(message);
+  }
+</script>
+
+<script>
+    window.onload = function() {
+      // 
+      var btn = document.getElementById('top_t_search');
+      btn.onclick = function() {
+      notie.alert(1, '-----　読込中です お待ちください　-----', 5);
+      };
+    };
+    
+</script>
+
+<!--
+    <script>
+    window.onload = function() {
+      // 
+      var btn = document.getElementById('load-checker');
+      btn.onclick = function() {
+      notie.alert(1, '-----　読込中です お待ちください　-----', 15);
+      };
+    };
+    
+</script>
+-->
+
+<script>
+$(function () {
+    $('#openModal').click(function(){
+        $('#modalArea').fadeIn();
+    });
+    $('#closeModal , #modalBg').click(function(){
+    $('#modalArea').fadeOut();
+    });
+});
+</script>
+<script>
+$(function () {
+    $('#to_ambassador').click(function(){
+        $('#modalArea2').fadeIn();
+    });
+    $('#closeModal2 , #modalBg2').click(function(){
+    $('#modalArea2').fadeOut();
+    });
+});
+</script>
+<script>
+    $(function() {
+        var topBtn = $('#to_ambassador'); 
+        topBtn.hide();
+        $(window).on('load scroll', function(){
+            if ($(this).scrollTop() < 600) {/*100は表示されるタイミングを適当に*/
+                topBtn.fadeIn();
+            } else {
+                topBtn.fadeOut();
+            }
+        });
+    });
+    </script>
+<script>
+    $(function() {
+        var topBtn = $('#to_ambassador2'); 
+        topBtn.hide();
+        $(window).on('load scroll', function(){
+            if ($(this).scrollTop() < 600) {/*100は表示されるタイミングを適当に*/
+                topBtn.fadeIn();
+            } else {
+                topBtn.fadeOut();
+            }
+        });
+    });
+    </script>
+
+{% endblock %}

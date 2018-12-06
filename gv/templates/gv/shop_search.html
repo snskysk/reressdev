@@ -1,0 +1,89 @@
+{% extends 'gv/base.html' %}
+{% load static %}
+
+{% block css %}
+  <link rel='stylesheet' type='text/css' href='{% static 'gv/shop_search/my_shop_search.css' %}' />
+  <style>
+  .star-rating-box {
+    position: relative; /* position: abosoluteの基準 */
+    display: inline-block; /* 最大星数に応じてdivのwidthを伸縮させるため */
+}
+.filled-star {
+    position: absolute; /* .filled-starと.empty-starを重ねる */
+    top: 0; /* 左上の基準位置に移動させる */
+    overflow: hidden; /* widthが足りない時、はみ出た分は表示しない */
+    white-space: nowrap; /* widthが足りない時に、折り返さないようにする。 */
+    /*width: 0%;*/ /* 星1.5個 表示。= 100 * 1.5 / 3 */
+}
+.star-color{
+  color: #FFA500;
+}
+  </style>
+{% endblock %}
+
+{% block body %}
+  <h1 class="page-header" style="text-align:center;">飲食店検索</h1>
+  <div class="detail_onclick" onclick="obj=document.getElementById('menu1').style; obj.display=(obj.display=='none')?'block':'none';">
+    <a class="detail_a" style="cursor:pointer;"><span style="color: #000000;"><u>▼飲食店検索▼</u></span></a><br><br>
+  </div><!--detail_onclick-->
+  <div id="menu1" style="display:none;clear:both;">
+    <div class="panel panel-default line">
+       <div class="panel-heading">
+         飲食店を探してみよう!
+        </div><!--panel-heading-->
+        <div class="panel-body">
+          <form action='{% url 'shop_search' %}' method='post' name='shop_search'>
+            {% csrf_token %}
+            {% for field in form %}
+              <div>
+                {{ field }}
+              </div><!---->
+            {% endfor %}
+            <div><!--button-->
+              <div class="detail_button_div">
+                <button class="detail_button">
+                  表示!!
+                </button>
+              </div><!--detail-button-div-->
+            </div><!--button-->
+          </form>
+        </div><!--panel-body-->
+    </div><!--panel-primary-->
+  </div><!--menu1-->
+  {% for object in shop_obj%}
+  <div class="panel panel-default line">
+     <div class="panel-heading">
+       {{object.shop_name}}
+      </div><!--panel-heading-->
+      <div class="panel-body">
+        {{object.price}}円<br>
+        <div class="star-rating-box">
+          <div class="empty-star">
+            ☆☆☆☆☆
+          </div>
+          <div class="filled-star" style="width:80%">
+            <span class="star-color">★★★★★</span>
+          </div>
+        </div>
+      </div><!--panel-body-->
+  </div><!--panel-default-->
+  {% endfor %}
+
+
+
+
+
+{% endblock %}
+
+{% block js %}
+<script>
+var s = '50%'
+$(window).load(function () {
+  console.log(s)
+  $('.filleed-star').css('width','50%');
+});
+</script>
+
+
+
+{% endblock %}

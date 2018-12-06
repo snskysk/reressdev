@@ -1,0 +1,318 @@
+{% extends 'gv/basetop.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block title %} Re:Re:ss トップページ  sitemap 立教大学履修登録補助システム ～Re:Re:ss/リリス～ {% endblock %}
+{% block css %}
+<link rel='stylesheet' type='text/css' href='{% static 'gv/site_map/my_teacher_search.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/site_map/button.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/site_map/table.css' %}' />
+<!--<link rel='stylesheet' type='text/css' href='{% static 'gv/button/table.css' %}' />-->
+
+{% endblock%}
+{% block seo %}立教大学　Re:Re:ss/リリス　履修　このページはログイン後のトップページです。このトップページでログアウトしない限りログイン前のページは表示されません。{% endblock %}
+{% block body %}
+<!--メインの部分-->
+<!--<img src="/static/gv/teacher_search/images/kyozyubunnseki.png" alt="Re:Re:ss" width="100%"/>-->
+<!--経過時間：{{elapsed_time}} で表示-->
+<h2 style="color: #000;">リリスへようこそ</h2>
+<h4 style="text-align: center;color: darkkhaki;">現在の登録者数：{{numbers}}人</h4>
+<a href={% url 'flush' %}><h5><span class="non-class" style="background: linear-gradient(transparent 97%, #000 50%);">履修中止等による成績データの更新はこちら</span></h5></a>
+<br><h5>機能名をクリックしてご利用ください</h5>
+<div class="row" width=50%>
+  <div class="panel panel-primary panel-main-color">
+    <div class="panel-heading panel-color" style="text-align:center;" width="50%">
+      <span>成績参照機能</span>
+    </div><!--panel-heaing-->
+    <div class="panel-body">
+      <div class="col-lg-6 col-xs-6">
+        <div class="panel panel-info panel-main-color">
+          <div class="panel-heading">
+              <a href={% url 'detail' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">GPAランキング</span></h5></a>
+          </div>
+          <div class="panel-body">
+            <div class="image101">
+                <img src="{% static 'gv/site_map/images/site_map_2.PNG'%}" width="80%">
+            </div>
+            <h6>学年順位や学科内順位を確認しよう<br>成績表ソート機能も</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-xs-6">
+        <div class="panel panel-info panel-main-color">
+          <div class="panel-heading">
+            <a href={% url 'mainhome_after_login' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">成績グラフ</span></h5></a>
+          </div>
+          <div class="panel-body">
+            <div class="image101">
+                <img src="{% static 'gv/site_map/images/site_map_1.PNG'%}" width="80%">
+            </div>
+            <h6>成績の各種達成率を<br>グラフ化</h6>
+          </div>
+        </div>
+      </div>
+    </div><!--panel-body-->
+  </div><!--panel panel-info panel-main-color-->
+</div>
+
+
+<div class="row" width=50%>
+  <div class="panel panel-primary panel-main-color">
+    <div class="panel-heading panel-color" style="text-align:center;" width="50%">
+      <span>履修登録補助機能</span>
+    </div><!--panel-heaing-->
+    <div class="panel-body">
+      <div class="col-lg-6 col-xs-6">
+        <div class="panel panel-info panel-main-color">
+          <div class="panel-heading">
+            <a href={% url 'course' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">人気授業分析</span></h5></a>
+          </div>
+          <div class="panel-body">
+            <div class="image101">
+                <img src="{% static 'gv/site_map/images/site_map_3.PNG'%}" width="80%">
+            </div>
+            <h6>あなたの学科の人気授業をランキング化<br>授業名クリックで授業分析を確認しよう</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-xs-6">
+        <div class="panel panel-info panel-main-color">
+          <div class="panel-heading">
+            <a href={% url 'sub_search' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">授業分析</span></h5></a>
+          </div>
+          <div class="panel-body">
+            <div class="image101">
+                <img src="{% static 'gv/site_map/images/site_map_4.PNG'%}" width="80%">
+            </div>
+            <h6>授業の難易度をGPAやグラフで可視化<br>担当教授クリックで教授分析を確認しよう<br><br>シラバスにも接続可能</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-xs-6">
+        <div class="panel panel-info panel-main-color">
+          <div class="panel-heading">
+            <a href={% url 'teacher_search' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">教授分析</span></h5></a>
+          </div>
+          <div class="panel-body">
+            <div class="image101">
+                <img src="{% static 'gv/site_map/images/site_map_5.PNG'%}" width="80%">
+            </div>
+            <h6>教授の厳しさをGPAやグラフで可視化<br></h6>
+          </div>
+        </div>
+      </div>
+
+    </div><!--panel-body-->
+  </div><!--panel panel-info panel-main-color-->
+</div>
+
+<div class="row" width=50%>
+    <div class="panel panel-primary panel-main-color">
+      <div class="panel-heading panel-color" style="text-align:center;" width="50%">
+        <span>その他機能</span>
+      </div><!--panel-heaing-->
+      <div class="panel-body">
+        <div class="col-lg-6 col-xs-6">
+          <div class="panel panel-info panel-main-color">
+            <div class="panel-heading">
+                <a href={% url 'inquiry' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">ABOUT　US</span></h5></a>
+            </div>
+            <div class="panel-body">
+              <div class="image101">
+                  <!--<img src="{% static 'gv/site_map/images/site_map_2.PNG'%}" width="80%">-->
+              </div>
+              <h6>お問い合わせやtwitterはこちらから</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-xs-6">
+          <div class="panel panel-info panel-main-color">
+            <div class="panel-heading">
+              <a href={% url 'flush' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">ログアウト</span></h5></a>
+            </div>
+            <div class="panel-body">
+              <div class="image101">
+                  <!--<img src="{% static 'gv/site_map/images/site_map_1.PNG'%}" width="80%">-->
+              </div>
+              <h6>ユーザーを変更する場合はこちらから再度ログインしてください</h6>
+            </div>
+          </div>
+        </div>
+      </div><!--panel-body-->
+    </div><!--panel panel-info panel-main-color-->
+  </div>
+
+
+{% endblock %}
+
+
+{% block js %}
+
+<script>
+    $('.suggest_input').click(function() {
+      $('.teacher_input').blur();
+    })
+  </script>
+  
+  
+  
+  <script>
+  
+      $('.teacher_input').focusout(function(){
+        var input_t_name_true = $('.teacher_input').val();
+        //$(".t_sub_input").css("display", "block");
+        //$(".t_sub_input").css("text-align", "center");
+        $.ajax({
+          type: "GET",
+          url: "https://grade-visualizer101.herokuapp.com/gv/more/",
+          data: { name: input_t_name_true},
+          success　: function(data){
+            $('#result').html(data);//A
+          },
+          datatype:'json',
+        });
+      });
+  </script>
+  
+  <script>
+    $('.teacher_input').focus(function() {
+        $('.t_sub_input option:not(:first)').remove();
+      });
+  </script>
+  
+  
+  <!--入った瞬間focus-->
+  <script>
+    var input_t_name = $('.teacher_input');
+    var message = "{{message|safe}}"
+    var length = message.length
+    if(length!=0){
+      $(input_t_name).focus();
+      $(input_t_name).blur();  }
+  </script>
+  
+<!--
+<script>
+    var teacher_sub_dict = {{teacher_sub_dict|safe}};
+    var input_t_name = $('.teacher_input');
+  
+    input_t_name.focus(function() {
+        $('.t_sub_input option:not(:first)').remove();
+      });
+  
+    input_t_name.blur(function(){
+      var input_t_name_true = input_t_name.val();
+  
+      if (teacher_sub_dict[input_t_name_true]) {
+        console.log('e');
+        var t_s_list = teacher_sub_dict[input_t_name_true];
+        for (i = 0; i < t_s_list.length; i++) {
+          $('.t_sub_input').append(`<option value=${t_s_list[i]}>${t_s_list[i]}</option>`);
+        }
+      };
+    });
+  </script>
+  
+  
+  <script>
+    var input_t_name = $('.teacher_input');
+    var message = "{{message|safe}}"
+    var length = message.length
+    if(length!=0){
+      $(input_t_name).focus();
+    }
+  </script>
+  
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+<!--**************************************************
+               
+****************************************************-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+<!--aaaaaaaaaaaaaaaaaaaaa 読み込み中 aaaaaaaaaaaaaaaaa-->
+<script src='https://cdn.rawgit.com/jaredreich/notie.js/a9e4afbeea979c0e6ee50aaf5cb4ee80e65d225d/notie.js'></script>
+
+
+<!--**************************************************
+               棒グラフの記述
+****************************************************-->
+<script language="JavaScript">
+  var nums = {{nums|safe}};
+  var grade_list_sample = {{grade_list_sample|safe}};
+  var r_form = '{{r_form|safe}}'
+  var ctx = document.getElementById("bar-chart").getContext('2d');
+  ctx.canvas.height = 280;
+  var ChartDemo = new Chart(ctx, {
+         type: 'bar',
+         data: {
+            //labels: kind_list,
+            labels: grade_list_sample,
+            datasets: [
+            {
+            label: r_form,
+            lineTension: 0,
+            fill: false,
+            //backgroundColor: ["rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(246,133,124,0.5)","rgba(246,133,124,0.5)","rgba(206,195,73,0.5)"]
+            backgroundColor: "rgba(131,90,206,0.4)",
+            //borderColor: "#217346",
+            data: nums
+          },
+            ]
+         },
+         options: {
+            responsive: true,
+            legend: {
+              labels: {
+                fontSize:13,
+                boxWidth: 10,
+              }
+            },
+            scales: {
+          xAxes: [{
+            ticks: {
+              fontSize: 15,
+              maxRotation: 100,
+              minRotation: 0
+            },
+          }],
+          yAxes: [{
+            ticks: {
+              fontSize: 10,
+              beginAtZero:true,
+              min: 0,
+              callback: function(value) {if (value % 1 === 0) {return value+'人';}}
+            },
+          }],
+        },
+         }
+       });
+</script>
+
+<!--入力補完-->
+<script src='{% static 'gv/teacher_search/suggest.js' %}'></script>
+<script>
+  var teacher_list_space = {{teacher_list_space|safe}};
+  function startSuggest() {
+    new Suggest.Local(
+          "id_t_name",    // 入力のエレメントID
+          "suggest", // 補完候補を表示するエリアのID
+          teacher_list_space,      // 補完候補の検索対象となる配列
+          {dispMax: 10, interval: 1000}); // オプション
+  }
+
+  window.addEventListener ?
+    window.addEventListener('load', startSuggest, false) :
+    window.attachEvent('onload', startSuggest);
+</script>
+
+{% endblock %}

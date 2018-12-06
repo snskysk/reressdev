@@ -1,0 +1,95 @@
+
+
+#category-box{
+  text-indent:center;
+  position:relative;
+}
+
+.col-xs-12{
+width:auto;
+}
+
+
+body  {
+        background: #ececec;
+        font-family: 'Lato', sans-serif;
+        color: #444;
+        text-align: center
+    }
+
+/* 三角形のcss */
+#my_gakka_triangleDown1{
+	width:0;
+	height:0;
+  border-right:16px solid transparent;
+  border-left:16px solid transparent;
+  border-top:23px solid #CCCCCC;
+  /* margin: 0 auto; */
+  margin-left: auto;
+  display: inline-block;
+  /* background-color: 'black'; */
+  position: absolute;
+  right:29%;
+  top: 15px;
+}
+/* 三角形のcss */
+#my_gakka_triangleDown2{
+	width:0;
+	height:0;
+	border-right:16px solid transparent;
+	border-left:16px solid transparent;
+	border-top:23px solid #CCCCCC;
+  margin: 0 auto;
+  display: inline-block;
+  position: absolute;
+  right: 9%;
+  top: 15px;
+  /* background-color: 'black'; */
+}
+
+/* 三角形のcss */
+#zenkari_triangleDown1{
+	width:0;
+	height:0;
+  border-right:16px solid transparent;
+  border-left:16px solid transparent;
+  border-top:23px solid #CCCCCC;
+  /* margin: 0 auto; */
+  margin-left: auto;
+  display: inline-block;
+  /* background-color: 'black'; */
+  position: absolute;
+  right:29%;
+  top: 15px;
+}
+/* 三角形のcss */
+#zenkari_triangleDown2{
+	width:0;
+	height:0;
+	border-right:16px solid transparent;
+	border-left:16px solid transparent;
+	border-top:23px solid #CCCCCC;
+  margin: 0 auto;
+  display: inline-block;
+  position: absolute;
+  right: 9%;
+  top: 15px;
+  /* background-color: 'black'; */
+}
+
+.my_gakka_tri {
+  position: relative;
+  width: 100%;
+  height: 30px;
+}
+
+.zenkari_tri {
+  position: relative;
+  width: 100%;
+  height: 30px;
+}
+
+
+.small_size {
+  font-size: 12px;
+}

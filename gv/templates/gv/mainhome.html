@@ -1,0 +1,323 @@
+{% extends 'gv/basetop.html' %}
+{% load static %}
+{% block title %} Re:Re:ss 成績グラフ 立教大学履修登録補助システム ～Re:Re:ss/リリス～ {% endblock %}
+{% block css %}
+<link rel='stylesheet' type='text/css' href='{% static 'gv/mainhome/style.css' %}' />
+{% endblock %}
+
+{% block seo %}立教大学　Re:Re:ss/リリス　履修　このページは成績グラフのページです。卒業単位の達成率や取得単位の成績評価別割合などが参照できる成績参照機能のページです。{% endblock %}
+{% block body %}
+<img src="/static/gv/mainhome/images/seisekigraph.png" alt="立教大学　Re:Re:ss/リリス　履修　成績グラフ" width="100%"/>
+  <div class="row">
+
+      <div class="row">
+          <div class="panel panel-info panel-main-color">
+            <div class="panel-heading panel-color" style="text-align:center;">
+              <span>単位達成率</span>
+            </div><!--panel-heaing-->
+            <div class="panel-body">
+              <!--<div><canvas width="400" height="300" id="doughnutg"></canvas></div>-->
+              <div><canvas height="280px" id="doughnutg"></canvas></div>
+            </div><!--panel-body-->
+          </div><!--panel panel-info panel-main-color-->
+          <div class="panel panel-info panel-main-color">
+            <div class="panel-heading panel-color" style="text-align:center;">
+              評価別　獲得単位数
+            </div><!--panel-heaing-->
+            <div class="panel-body">
+              <div><canvas height="280px" id="pigraph"></canvas></div>
+            </div><!--panel-body-->
+          </div><!--panel panel-info panel-main-color-->
+      </div>
+
+      <div class="row">
+          <div class="panel panel-info panel-main-color">
+            <div class="panel-heading panel-color" style="text-align:center;">
+              科目区分別　単位達成率
+            </div><!--panel-heaing-->
+            <div class="panel-body">
+              <div><canvas height="280px" id="myrader"></canvas></div>
+            </div><!--panel-body-->
+          </div><!--panel panel-info panel-main-color-->
+          <div class="panel panel-info panel-main-color">
+            <div class="panel-heading panel-color" style="text-align:center;">
+              科目区分別　残単・履修数
+            </div><!--panel-heaing-->
+            <div class="panel-body">
+              <div style="padding-left: 8px;"><canvas height="280px" id="bar-chart"></canvas></div>
+            </div><!--panel-body-->
+          </div><!--panel panel-info panel-main-color-->
+      </div>
+
+  </div><!--row-->
+
+{% endblock %}
+
+
+{% block js %}
+<!--**********************************************************************************************
+                                  円グラフの記述
+***************************************************************************************************-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+<script>
+  var dataLabelPlugin = {
+      afterDatasetsDraw: function (chart, easing) {
+          // To only draw at the end of animation, check for easing === 1
+          var ctx = chart.ctx;
+
+          chart.data.datasets.forEach(function (dataset, i) {
+              var dataSum = 0;
+              dataset.data.forEach(function (element){
+                  dataSum += element;
+              });
+
+              var meta = chart.getDatasetMeta(i);
+              if (!meta.hidden) {
+                  meta.data.forEach(function (element, index) {
+                      // Draw the text in black, with the specified font
+                      //ctx.fillStyle = 'rgb(255, 255, 255)';
+                      ctx.fillStyle = '#000000';
+                      var fontSize = 12;
+                      var fontStyle = 'normal';
+                      var fontFamily = 'Helvetica Neue';
+                      ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+
+                      // Just naively convert to string for now
+                      var labelString = chart.data.labels[index];
+                      var dataString = (Math.round(dataset.data[index] / dataSum * 1000)/10).toString() + "%";
+
+                      // Make sure alignment settings are correct
+                      //ctx.textAlign = 'center';
+                      ctx.textAlign = 'center';
+                      ctx.textBaseline = 'middle';
+
+                      var padding = 0;
+                      var padding = 0;
+                      var position = element.tooltipPosition();
+                      ctx.fillText(labelString, position.x, position.y - (fontSize / 2) - padding);
+                      ctx.fillText(dataString, position.x, position.y + (fontSize / 2) - padding);
+                  });
+              }
+          });
+      }
+  };
+
+  // Chart
+  var unitOfcircle = {{unitOfcircle|safe}}
+  var gradeOfcircle = {{gradeOfcircle|safe}}
+  var myChart = "pigraph";
+  var chart = new Chart(myChart, {
+      type: 'pie',
+      data: {
+          labels: gradeOfcircle,
+          datasets: [{
+              label: "Sample",
+              backgroundColor: ["#3F51B5", "#F44336", "#FF9800", "#4CAF50", "#9C27B0"],
+              data: unitOfcircle,
+          }]
+      },
+      options: {
+          title: {
+              display: false,
+              text: "Sample"
+          },
+          legend:{
+            labels: {
+              boxWidth: 20,
+              fontSize: 10,
+            }
+          },
+          maintainAspectRatio: false,
+      },
+      plugins: [dataLabelPlugin],
+                });
+</script>
+
+
+
+<!--円グラフ2個目-->
+<script>
+// Chart
+var get_num = {{get_num|safe}}
+var residual_num = {{residual_num|safe}}
+var on_num = {{on_num|safe}}
+
+var myChart = "doughnutg";
+var chart = new Chart(myChart, {
+    type: 'doughnut',
+    data: {
+        labels: ["修得済み","履修中","残単"],
+        datasets: [{
+            label: "Sample",
+            backgroundColor: ["red", "green", "yellow"],
+            data: [get_num,on_num,residual_num]
+        }]
+    },
+    options: {
+        title: {
+            display: false,
+            text: "Sample"
+        },
+        legend:{
+          labels: {
+            boxWidth: 20,
+            fontSize: 10,
+          }
+        },
+        maintainAspectRatio: false,
+    },
+    plugins: [dataLabelPlugin],
+              });
+</script>
+
+
+
+
+<!--**************************************************
+               棒グラフの記述
+****************************************************-->
+<script language="JavaScript">
+  //var residual_unit = {{residual_unit|safe}};
+  //var kind_name = {{kind_name|safe}};
+  //var on_course = {{on_course|safe}};
+  var residual_unit_bou = {{residual_unit_bou|safe}};
+  var kind_name_bou = {{kind_name_bou|safe}};
+  var on_course_bou = {{on_course_bou|safe}};
+  var ctx = document.getElementById("bar-chart").getContext('2d');
+  ctx.canvas.height = 280;
+  var ChartDemo = new Chart(ctx, {
+         type: 'bar',
+         data: {
+            //labels: kind_list,
+            labels: kind_name_bou,
+            datasets: [
+            {
+            label: "残単位数",
+            lineTension: 0,
+            fill: false,
+            //backgroundColor: ["rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(246,133,124,0.5)","rgba(246,133,124,0.5)","rgba(206,195,73,0.5)"]
+            backgroundColor: "rgba(131,185,206,0.5)",
+            //borderColor: "#217346",
+            data: residual_unit_bou
+          },
+          {
+          label: "履修中単位数",
+          lineTension: 0,
+          fill: false,
+          //backgroundColor: ["rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(131,185,206,0.5)","rgba(246,133,124,0.5)","rgba(246,133,124,0.5)","rgba(206,195,73,0.5)"]
+          backgroundColor: "rgba(131,0,206,0.5)",
+          //borderColor: "#217346",
+          data: on_course_bou
+        }
+            ]
+         },
+         options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+              labels: {
+                fontSize: 13,
+                boxWidth: 20,
+              }
+            },
+            scales: {
+          xAxes: [{
+            ticks: {
+              fontSize: 8,
+              //maxRotation: 100,
+              //minRotation: 0
+            },
+          }],
+          yAxes: [{
+            ticks: {
+              fontSize: 8,
+              beginAtZero:true,
+            },
+          }],
+        },
+         }
+       });
+</script>
+
+
+
+<!--**********************************************************************************************
+                                  レーダーチャート記述
+***************************************************************************************************-->
+  <script>
+    var Achivement_list = {{Achivement_list | safe}}
+    var kind_name = {{kind_name | safe}}
+    // 色の設定
+    var colorSet = {
+      red: 'rgb(255, 99, 132)',
+      orange: 'rgb(255, 159, 64)',
+      yellow: 'rgb(255, 205, 86)',
+      green: 'rgb(75, 192, 192)',
+      blue: 'rgb(54, 162, 235)',
+      purple: 'rgb(153, 102, 255)',
+      grey: 'rgb(201, 203, 207)'
+    };
+
+
+    // 色のRGB変換
+    var color = Chart.helpers.color;
+
+    /*
+     * チャートの初期設定
+     */
+    var config = {
+      type: 'radar',
+      data: {
+        //labels: ["月曜", "火曜", "水曜", "木曜", "金曜", "土曜", "日曜"],
+        labels: kind_name,
+        datasets: [{
+          label: "成績取得率",
+          backgroundColor: color(colorSet.red).alpha(0.5).rgbString(),
+          borderColor: colorSet.red,
+          pointBackgroundColor: colorSet.red,
+          data: Achivement_list
+        }, ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: false,
+        showTooltips: false,
+        legend: {
+          position: 'top',
+        },
+        title: {
+          display: false,
+        },
+        scale: {
+          display: true,
+          pointLabels: {
+            fontSize: 8,
+            fontColor: colorSet.yellow
+          },
+          ticks: {
+            display: true,
+            fontSize: 12,
+            fontColor: colorSet.green,
+            min: 0,
+            max: 100,
+            //maxRotation: 100,
+            //minRotation: 0,
+            beginAtZero: true
+          },
+          gridLines: {
+            display: true,
+            color: colorSet.yellow
+          }
+        }
+      }
+    };
+
+    /*
+     * チャートの作成
+     */
+    var myRadar = new Chart($("#myrader"), config);
+  </script>
+
+
+{% endblock %}
