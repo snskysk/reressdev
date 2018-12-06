@@ -242,6 +242,10 @@ if (str==sn.slice(0,4)) {
 <script src="{% static 'gv/detail/jquery.quicksearch.min.js' %}"></script>
 <!-- 起動 -->
 <script>
+  $(function () {
+    $('#id_search_main').quicksearch('table tbody tr');
+  });
+
 
   //初期は履修中教科
   $('#id_search_main').val(['履修中']);
