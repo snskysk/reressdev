@@ -246,7 +246,11 @@ if (str==sn.slice(0,4)) {
   $('#id_search_main').val(['履修中']);
   //セレクトボックスの監視
   $('.input_group').on('change',function(){
-    console.log('ちくわ');
+    var grade=$('#id_search1').val();
+    var year=$('#id_search2').val();
+    var season=$('#id_search3').val();
+    var category1=$('#id_search4').val();
+    console.log(grade+year+season+category1);
   });
 </script>
 
