@@ -243,13 +243,13 @@ $(function () {
 });
 </script>
 
-<script src="{% static 'gv/detail/jquery.quicksearch.min.js' %}"></script>
+<!-- <script src="{% static 'gv/detail/jquery.quicksearch.min.js' %}"></script> -->
 <!-- 起動 -->
 <script>
 
-$(function () {
-  $('#id_search_main').quicksearch('table tbody tr');
-});
+//$(function () {
+//  $('#id_search_main').quicksearch('table tbody tr');
+//});
 
 //初期は履修中教科
  $('#id_search_main').val(['履修中']);
@@ -263,7 +263,7 @@ $(function () {
     //var year=$('#id_search2').val();
     $('#id_search_main').val([year+' '+grade+' '+season+' '+category1]);
 
-    $('#id_search_main').quicksearch('table tbody tr', {
+    //$('#id_search_main').quicksearch('table tbody tr', {
   });
   });
 </script>
