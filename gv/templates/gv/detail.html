@@ -2,7 +2,13 @@
 {% load widget_tweaks %}
 {% load static %}
 {% block css %}
+<link rel='stylesheet' type='text/css' href='{% static 'gv/detail/detail.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/detail/button.css' %}' />
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+<link rel='stylesheet' type='text/css' href='{% static 'gv/course/table.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/counter/my_teacher_search.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/counter/table.css' %}' />
 {% endblock%}
 
 {% block body %}
