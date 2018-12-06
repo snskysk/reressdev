@@ -171,5 +171,28 @@
 
 
 {% block js %}
+<!--セレクトボックスの中身を変更-->
+<script>
+  var sn = "{{sn}}"
+  var belongs = "{{belongs}}"
+  $('.select-select').append($('<option>').html("20"+sn.slice(0,2)+"年度入学者").val(sn.slice(0,2)));
+  $('.select-select').append($('<option>').html("20"+sn.slice(0,2)+"年度入学の"+belongs).val(sn.slice(0,4)));
+  var ran_1 = {{ran_1|safe}}//配列
+  make_rank(ran_1);
+</script>
+
+<script>
+  var category1_list = {{category1_list|safe}}
+  var year_list = {{year_list|safe}}
+
+  for(var i=0;i<category1_list.length;i++){
+    $('#id_search4').append($('<option>').html(category1_list[i]).val(category1_list[i]));
+  }
+
+  for(var i=0;i<year_list.length;i++){
+    $('#id_search2').append($('<option>').html(year_list[i]).val(year_list[i]));
+  }
+</script>
+
 
 {% endblock %}
