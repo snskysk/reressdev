@@ -237,29 +237,5 @@ if (str==sn.slice(0,4)) {
   }
 </script>
 
-<!-- <script src="{% static 'gv/detail/jquery.quicksearch.min.js' %}"></script> -->
-<!-- 起動 -->
-<script>
 
-//$(function () {
-//  $('#id_search_main').quicksearch('table tbody tr');
-//});
-
-//初期は履修中教科
- $('#id_search_main').val(['履修中']);
-
-//セレクトボックスの監視
-  $('.input_group').on('change',function(){
-    var grade=$('#id_search1').val();
-    var year=$('#id_search2').val();
-    var season=$('#id_search3').val();
-    var category1=$('#id_search4').val();
-    //var year=$('#id_search2').val();
-    $('#id_search_main').val([year+' '+grade+' '+season+' '+category1]);
-    console.log($('#id_search_main').val());
-
-    //$('#id_search_main').quicksearch('table tbody tr', {
-  //});
-  });
-</script>
 {% endblock %}
