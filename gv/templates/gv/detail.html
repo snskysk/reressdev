@@ -1,4 +1,71 @@
+{% extends 'gv/basetop.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block css %}
+<link rel='stylesheet' type='text/css' href='{% static 'gv/detail/detail.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/detail/button.css' %}' />
 
-{{category1_list}}
-<br>
-{{year_list}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+<link rel='stylesheet' type='text/css' href='{% static 'gv/course/table.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/counter/my_teacher_search.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/counter/table.css' %}' />
+
+<!-- <script src="{% static 'gv/detail/jquery.quicksearch.js' %}"></script> -->
+
+<style>
+  .input_group{
+    margin: 5px;
+  }
+  .select_detail {
+    overflow: hidden;
+    /* width: 90%; */
+    /* margin: 2em auto; */
+    text-align: center;
+  }
+  .select_detail select {
+    /* width: 100%; */
+    /* padding-right: 1em; */
+    cursor: pointer;
+    text-indent: 0.01px;
+    text-overflow: ellipsis;
+    border: none;
+    outline: none;
+    background: transparent;
+    background-image: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .select_detail select::-ms-expand {
+    display: none;
+  }
+  .select_detail.select_d {
+    position: relative;
+    border-radius: 2px;
+    border: 2px solid #BBC8FF;
+    border-radius: 50px;
+    background: #ffffff;
+  }
+    .select_detail.select_d::before {
+    position: absolute;
+    top: 0.8em;
+    right: 0.8em;
+    width: 0;
+    height: 0;
+    padding: 0;
+    content: '';
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #BBC8FF;
+    pointer-events: none;
+  }
+  .select_detail.select_d select {
+    padding: 8px 38px 8px 8px;
+    color: #BBC8FF;
+  }
+</style>
+
+{% endblock%}
+
+{% block body %}
+<!--
