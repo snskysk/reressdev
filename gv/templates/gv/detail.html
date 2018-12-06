@@ -257,6 +257,8 @@ if (str==sn.slice(0,4)) {
     var category1=$('#id_search4').val();
     $('#id_search_main').val([year+' '+grade+' '+season+' '+category1]);
 
+    $('#id_search_main').quicksearch('table tbody tr');
+
   });
 </script>
 
