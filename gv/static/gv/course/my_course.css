@@ -93,3 +93,16 @@ body  {
 .small_size {
   font-size: 12px;
 }
+
+
+.hidden_table {
+  display: none;
+}
+
+#course_input_search {
+  position: absolute;
+  top:10px;
+  left:12%;
+  width: 35%;
+  height: 24px;
+}

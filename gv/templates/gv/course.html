@@ -65,15 +65,19 @@
   </div>
   <div id="tab1" class="tab">
     <div class="my_gakka_tri">
+      <select name="search" value="" id="course_input_search">
+        <option value=" ">カテゴリ</option>
+      </select>
       <div id='my_gakka_triangleDown1'></div>
       <div id='my_gakka_triangleDown2'></div>
     </div>
-    <table id="my_gakka_table1">
+    <table id="my_gakka_table1" class="my_gakka_search">
       <thead>
       <tr>
         <th><span class="small_size">履修者数順<br>(<strong class="non-class" style="background: linear-gradient(transparent 60%, #ff99ff 60%);">クリックで授業分析へ</strong>)</span></th>
         <th><span class="small_size">履修者数</span></th>
         <th><span class="small_size">GPA平均</span></th>
+        <th><span class="small_size hidden_table">カテゴリ</span></th>
       </tr>
       </thead>
       <tbody>
@@ -88,6 +92,7 @@
         </td>
         <td>{{ message.1 }}人</td>
         <td>{{ message.2 }}</td>
+        <td class="hidden_table">{{ message.3 }}</td>
       </tr>
       {% endfor %}
       </tbody>
@@ -98,6 +103,7 @@
         <th><span class="small_size">GPA順<br>(<strong class="non-class" style="background: linear-gradient(transparent 60%, #ff99ff 60%);">クリックで授業分析へ</strong>)</span></th>
         <th><span class="small_size">履修者数</span></th>
         <th><span class="small_size">GPA平均</span></th>
+        <th><span class="small_size hidden_table">カテゴリ</span></th>
       </tr>
       </thead>
       <tbody>
@@ -112,6 +118,7 @@
         </td>
         <td>{{ message.1 }}人</td>
         <td>{{ message.2 }}</td>
+        <td class="hidden_table">{{ message.3 }}</td>
       </tr>
       {% endfor %}
       </tbody>
@@ -265,6 +272,25 @@
 </form> -->
 
 {% block js %}
+
+<script src="{% static 'gv/detail/jquery.quicksearch.min.js' %}"></script>
+<!-- 起動 -->
+<script>
+  $(function () {
+    $('#course_input_search').quicksearch('.my_gakka_search tbody tr');
+  });
+</script>
+
+<!-- セレクトボックスの中身を変更 -->
+<script>
+  //var category1_list = {{category1_list|safe}}
+  var category1_list = {{category1_list_course|safe}}
+
+  for(var i=0;i<category1_list.length;i++){
+    $('#course_input_search').append($('<option>').html(category1_list[i]).val(category1_list[i]));
+  }
+
+</script>
 
 
 

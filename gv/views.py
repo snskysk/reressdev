@@ -478,152 +478,6 @@ def mainhome_after_login(request):
     }
     return render(request, 'gv/hp.html', index_params)
 
-##########################################################################
-                                     #detail GPAランキング等
-##########################################################################
-#
-# def detail(request):
-#     unko = 'raijfaoijakfj'
-#     stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
-#     numbers=len(stuobj)
-#     try:
-#         sn = request.session['stunum']
-#
-#     #ログインしてからでなければ入れない
-#     except Exception:
-#         form = userInfoForm()
-#         index_params = {
-#             'form':form,
-#             'message':'学籍番号とパスワードを入力しよう',
-#             'numbers':numbers,
-#         }
-#         return render(request, 'gv/hp.html', index_params)
-#
-#
-#     #同じ学年
-#     #same_stu_gpa1 = sorted(list(studentInfo.objects.filter(user_id__contains=sn[:2]).values_list('gpa', flat=True)),reverse=True)#同じ学年学科のgpaのリスト
-#     same_stu_gpa1 = sorted(list(studentInfo.objects.filter(user_id__startswith=sn[:2]).values_list('gpa', flat=True)),reverse=True)#同じ学年学科のgpaのリスト
-#     #same_stu_gpa = np.array(sorted(list(studentInfo.objects.filter(user_id__contains=sn[:3]).values_list('gpa', flat=True)),reverse=True))#同じ学年学科のgpaのリスト
-#     p_num1 = len(same_stu_gpa1)#同じ学年学科の人数
-#     my_gpa1 = studentInfo.objects.get(user_id=sn).gpa#自分のgpa
-#     my_index1 = [i for i, x in enumerate(same_stu_gpa1) if x == my_gpa1][0]
-#     gpa_rank_p1 = (my_index1 / p_num1) * 100#gpaのランキング(%)
-#     gpa_rank_width1 = 50 + (gpa_rank_p1/100)*50
-#     #gpa_rank = same_stu_gpa.index(my_gpa) + 1#自分の順位
-#     gpa_rank_i1 = my_index1 + 1#gpaのランキング(順位)
-#     ran_1 = [p_num1, my_gpa1, gpa_rank_p1, gpa_rank_width1, gpa_rank_i1]#ランキングに必要なデータの配列
-#
-#     #同じ学年、学科gpaの順位を計算
-#     #same_stu_gpa2 = sorted(list(studentInfo.objects.filter(user_id__contains=sn[:4]).values_list('gpa', flat=True)),reverse=True)#同じ学年学科のgpaのリスト
-#     same_stu_gpa2 = sorted(list(studentInfo.objects.filter(user_id__startswith=sn[:4]).values_list('gpa', flat=True)),reverse=True)#同じ学年学科のgpaのリスト
-#     #same_stu_gpa = np.array(sorted(list(studentInfo.objects.filter(user_id__contains=sn[:3]).values_list('gpa', flat=True)),reverse=True))#同じ学年学科のgpaのリスト
-#     p_num2 = len(same_stu_gpa2)#同じ学年学科の人数
-#     my_gpa2 = studentInfo.objects.get(user_id=sn).gpa#自分のgpa
-#     my_index2 = [i for i, x in enumerate(same_stu_gpa2) if x == my_gpa2][0]
-#     gpa_rank_p2 = (my_index2 / p_num2) * 100#gpaのランキング(%)
-#     gpa_rank_width2 = 50 + (gpa_rank_p2/100)*50
-#     #gpa_rank = same_stu_gpa.index(my_gpa) + 1#自分の順位
-#     gpa_rank_i2 = my_index2 + 1#gpaのランキング(順位)
-#     ran_2 = [p_num2, my_gpa2, gpa_rank_p2, gpa_rank_width2, gpa_rank_i2]#ランキングに必要なデータの配列
-#
-#
-#
-#
-#         #########################追加する部分1番###################################################################################################################################################################################################################################################
-#     gglist = {
-#         'a':[{'gakubu':'文学部','a':'キリスト教学科','c':'史学科','e':'教育学科','m':'文学科{英米文学専修}','n':'文学科{ドイツ文学専修}','s':'文学科{フランス文学専修}','t':'文学科{日本文学専修}','u':'文学部{文芸・思想専修}'}],
-#         'b':[{'gakubu':'経済学部','a':'経済学科','c':'会計ファイナンス学科','d':'経済政策学科'},{'gakubu':'経営学部','m':'経営学科','n':'国際経営学科'}],
-#         'c':[{'gakubu':'理学部','a':'数学科','b':'物理学科','c':'化学科','d':'生命理学科'}],
-#         'd':[{'gakubu':'社会学科','a':'社会学科','d':'現代文化学科','e':'メディア社会学科'},{'gakubu':'異文化コミュニケーション学科','m':'異文化コミュニケーション学科'}],
-#         'e':[{'gakubu':'法学部','a':'法学科','c':'政治学科','d':'国際ビジネス法学科'}],
-#         'i':[{'gakubu':'コミュニティ福祉学部','b':'福祉学科','c':'コミュニティ政策学科','d':'スポーツウエルネス学科'}],
-#         'h':[{'gakubu':'現代心理学部','m':'心理学科','n':'映像身体学科'},{'gakubu':'観光学部','a':'観光学科','b':'交流文化学科'}]
-#     }
-#
-#     try:
-#         for item in gglist[sn[2]]:#itemにはgglistのvalueの配列の要素の学部情報が入った辞書が代入される
-#             if sn[3] in item:#もしそのなかの辞書のキーにに学科があったら
-#                 gakubu_dict = item#gakubu_dictという変数にその辞書を代入
-#                 break#gglistは1つのキーに対して異なる学部を持つことがあるので上のifで反応した場合ここでbreakして繰り返しを抜ける(ex:bに対して経済と経営)
-#         belongs = gakubu_dict['gakubu'] + '>' + gakubu_dict[sn[3]]#所属(学部>学科)#ここの文字列を変更すれば表示を任意の値にで知る
-#     except:
-#         belongs = sn[2] + sn[3]#エラーが起きた時の所属(学籍番号のまま)
-#     ###################################################################################################################################################################################################################################################
-#
-#
-#
-#     if request.method == 'POST':
-#         form = find_my_sub_Form(request.POST)
-#         make_list('year_int','year',sn,form)
-#         make_list('category1','category1',sn,form)
-#         filtered_sub = subjectInfo.objects.filter(user_id=sn)
-#
-#         season = request.POST['season']
-#         grade = request.POST['grade']
-#         year = request.POST['year']
-#         category1 = request.POST['category1']
-#         subname_teacher = request.POST['subname_teacher']
-#
-#
-#         #季節のフィルター
-#         if len(season) is not 0:
-#             filtered_sub = filtered_sub.filter(season__contains=season)
-#         #成績のフィルター
-#         if len(grade) is not 0:
-#             g = int(grade)
-#             filtered_sub = filtered_sub.filter(grade_score_int=g)
-#         #科目名か先生の名前
-#         if len(subname_teacher) is not 0:
-#             filtered_sub = filtered_sub.filter(
-#                 Q(subjectname__contains=subname_teacher)|
-#                 Q(teacher__contains=subname_teacher)
-#                 ).distinct()
-#         #category1のフィルター
-#         if len(category1) is not 0:
-#             filtered_sub = filtered_sub.filter(category1=category1)
-#         #受講年度のフィルター
-#         if len(year) is not 0:
-#             y = int(year)
-#             filtered_sub = filtered_sub.filter(year_int=y)
-#
-#         filtered_sub_gpa = filtered_sub.exclude(grade = '履')
-#         result_score_int_sum = filtered_sub_gpa.aggregate(Sum('result_score_int'))['result_score_int__sum']
-#         unit_int_sum = filtered_sub_gpa.aggregate(Sum('unit_int'))['unit_int__sum']
-#
-#
-#         detail_params = {
-#             #'gpa_message':'該当科目のgpaは<b><u>'+str(round(gpa,2))+'</u></b><br>    ※Dがある場合正しく計算されません',
-#             'filtered_sub':filtered_sub,
-#             'form':form,
-#             'sn':sn,
-#             'ran_1':ran_1,
-#             'ran_2':ran_2,
-#             'belongs':belongs,#####################################追加する部分2番
-#
-#         }
-#         return render(request, 'gv/detail.html', detail_params)
-#
-#
-#     form = find_my_sub_Form()
-#     filtered_sub = subjectInfo.objects.filter(user_id=sn)#userのみの授業の情報
-#     filtered_sub_gpa = filtered_sub.exclude(grade = '履')
-#
-#     make_list('year_int','year',sn,form)#formのリストの中身を変更
-#     make_list('category1','category1',sn,form)#formのリストの中身を変更
-#
-#
-#
-#     detail_params = {
-#         'form':form,
-#         'filtered_sub':filtered_sub,
-#         'sn':sn,
-#         'ran_1':ran_1,
-#         'ran_2':ran_2,
-#         'belongs':belongs,##########################################追加する部分3番
-#         #'gpa_message':'gpaは<b><u>'+str(round(gpa,2))+'</u></b><br>    ※Dがある場合正しく計算されません'
-#     }
-#     return render(request, 'gv/detail.html', detail_params)
-
 
 def detail(request):
     stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
@@ -729,6 +583,7 @@ def course(request, num=1):
     stu_obj = studentInfo.objects.filter(user_id__contains=facu_depa) #データベースから同じ学部学科の人を取得
     sub_obj_origin = subjectInfo.objects.filter(user_id__contains=facu_depa) #データベースから同じ学部学科の授業を取得
     sub_obj = sub_obj_origin.exclude(category1__contains='必').exclude(grade='履') #必修を除く
+    category1_list_course = list(sub_obj.values_list('category1', flat=True).distinct())#必修以外の授業リスト
 
 
 
@@ -766,12 +621,13 @@ def course(request, num=1):
 
 
     sub_list = sub_obj.values_list('subjectname', flat=True)#授業名でリストを取得(重複あり)
+
+
     #pagenationがうまくいかないため今だけ変更
-    sub_list_counter = Counter(sub_list).most_common()[:20] #授業の数(多い順)
+    sub_list_counter = Counter(sub_list).most_common()[:50] #授業の数(多い順)
 
     #変更された1行(読みずらいが高速)
-    sub_list_counter = [(a[0],a[1],np.round(np.average(list(sub_obj.filter(subjectname=a[0]).values_list('grade_score_int',flat=True))),2)) for a in sub_list_counter]
-
+    sub_list_counter = [(a[0],a[1],np.round(np.average(list(sub_obj.filter(subjectname=a[0]).values_list('grade_score_int',flat=True))),2),sub_obj.filter(subjectname=a[0])[0].category1) for a in sub_list_counter]
     #gpa順にソートしたリスト
     sub_list_counter_sorted_gpa = sorted(sub_list_counter, key=lambda sub_list_counter: sub_list_counter[2], reverse=True)
 
@@ -786,6 +642,7 @@ def course(request, num=1):
         'sub_obj':sub_obj,
         'form':form,
         #'sub_list_counter':sub_list_counter,
+        'category1_list_course':category1_list_course,
         'sub_list_counter':sub_list_counter,
         'sub_list_counter_sorted_gpa':sub_list_counter_sorted_gpa,
         'zenkari_ranking':zenkari_ranking,
