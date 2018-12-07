@@ -253,14 +253,12 @@ if (str==sn.slice(0,4)) {
   //$('#id_search_main').val(['履修中']);
   //セレクトボックスの監視
   $('.input_group').on('change',function(){
-    var grade=$('#id_search1').val()+'  ';
+    var grade=$('#id_search1').val()+'　';
     var year=$('#id_search2').val();
     var season=$('#id_search3').val();
     var category1=$('#id_search4').val();
     $('#id_search_main').val([year+' '+grade+' '+season+' '+category1]);
     var unn = $('#id_search_main').val([year+' '+grade+' '+season+' '+category1]).val();
-    console.log(unn);
-
 
     $('#id_search_main').quicksearch('table tbody tr');
   });
@@ -278,12 +276,10 @@ if (str==sn.slice(0,4)) {
       var hankaku = zenkaku.replace( /[Ａ-Ｚ]/g, function(s) {
         return String.fromCharCode(s.charCodeAt(0) - 65248);
       });
-      // $(this).text(hankaku+'#');
-      // $(this).html(`${hankaku}<span style="color:white;">#</span>`);
-      $(this).html(hankaku + '  ');
+      $(this).html(hankaku + '　');
     }
     else{
-      var p_s = $(this).text()+' '//プラスシャープ
+      var p_s = $(this).text()+ '　'//プラスシャープ
       $(this).text(p_s);
     }
   });
