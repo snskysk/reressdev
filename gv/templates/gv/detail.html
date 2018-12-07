@@ -133,9 +133,9 @@
             <tr>
               <th class="tabth" width="70%">科目名(<strong class="non-class" style="background: linear-gradient(transparent 60%, #ff99ff 60%);">クリックで授業分析へ</strong>)</th>
               <th class="tabth" width="30%">成績状況</th>
-              <th class="hidden-tabl">season</th>
-              <th class="hidden-tabl">category1</th>
-              <th class="hidden-tabl">year</th>
+              <th class="hidden-table">season</th>
+              <th class="hidden-table">category1</th>
+              <th class="hidden-table">year</th>
             </tr>
           </thead>
           <tbody>
@@ -151,15 +151,15 @@
               {% if message.grade == '履' %}
                 <td class="gGgrade">履修中</td>
               {% else %}
-                <!-- <td>{{ message.grade }}<span class='hidden-tabl'>grade</span></td> -->
+                <!-- <td>{{ message.grade }}<span class='hidden-table'>grade</span></td> -->
                 <!-- <td>{{ message.grade }}<span id="gradeGrade" style="display:none;">Ｇ</span></td> -->
                 <!-- <td><span id="wrap">{{ message.grade }}<span id="gradeGrade" style="display:none;">grade</span></span></td> -->
                 <td class="gGgrade">{{ message.grade }}</td>
               {% endif %}
 
-              <td class="hidden-tabl">{{message.season}}</td>
-              <td class="hidden-tabl">{{message.category1}}</td>
-              <td class="hidden-tabl">{{message.year_int}}</td>
+              <td class="hidden-table">{{message.season}}</td>
+              <td class="hidden-table">{{message.category1}}</td>
+              <td class="hidden-table">{{message.year_int}}</td>
             </tr>
             {% endfor %}
           </tbody>
@@ -253,7 +253,7 @@ if (str==sn.slice(0,4)) {
   //$('#id_search_main').val(['履修中']);
   //セレクトボックスの監視
   $('.input_group').on('change',function(){
-    var grade=$('#id_search1').val()+' ';
+    var grade=$('#id_search1').val()+'  ';
     var year=$('#id_search2').val();
     var season=$('#id_search3').val();
     var category1=$('#id_search4').val();
@@ -280,7 +280,7 @@ if (str==sn.slice(0,4)) {
       });
       // $(this).text(hankaku+'#');
       // $(this).html(`${hankaku}<span style="color:white;">#</span>`);
-      $(this).html(hankaku + ' ');
+      $(this).html(hankaku + '  ');
     }
     else{
       var p_s = $(this).text()+' '//プラスシャープ
