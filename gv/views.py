@@ -53,6 +53,42 @@ from .forms import ggs_counter_Form
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                                                                                                 #トップページ関連
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+def base(request):
+    form = userInfoForm()
+    stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
+    numbers=len(stuobj)
+    request.session['numbers'] = numbers
+    try:#sessionが切れていないか確認
+        sn = request.session['stunum']  #学籍番号をsessionから持ってくる
+        site_map_params = {
+            'numbers':numbers,
+        }
+        return render(request, 'gv/site_map.html',site_map_params)
+    except:
+        value_0 = 'first_to_fast'
+        value = [value_0,1]
+        try:#substitutionを利用した高速化処理ーー万が一失敗しても悪影響はない
+            result, list_pie, list_bar, table, personal_dataset, kyoushoku_c, passcheck = condact(value)
+        except:
+            pass
+        #mainhome_params = pytojsMaterials(result, list_pie, list_bar, table, kyoushoku_c)
+        form = userInfoForm()
+        print("---speed_optimisation1の実行が確認されました---")
+        hp_params = {
+            'form':form,
+            #'message':'学籍番号とパスワードを入力しよう',
+            'numbers':numbers,
+
+            }
+        return render(request, 'gv/hp.html', hp_params)
+    index_params = {
+        'form':form,
+        'message':'',
+        'numbers':numbers,
+        }
+
+    return render(request, 'gv/hp.html', index_params)
+
 def hp(request):
     form = userInfoForm()
     stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
