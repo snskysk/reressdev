@@ -19,6 +19,7 @@ from collections import OrderedDict #順番付き辞書
 from django.core.paginator import Paginator
 
 import numpy as np
+import pandas as pd
 from operator import itemgetter
 ####### 高速化実験 #######
 from selenium import webdriver
@@ -46,6 +47,7 @@ from .forms import ggs_counter_Form
                                     # teacher_serach
                                     # make_list
                 #その他
+                                    #pastdata
                                     # counter
                                     # inquiry
                                     # 二重サブミット防止
@@ -921,6 +923,73 @@ def make_list(model_name,form_name,sn,form):
                                                                                                         #その他
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+def pastdata(request):
+    form = userInfoForm()
+    stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
+    numbers=len(stuobj)
+
+    try:#sessionが切れていないか確認
+        sn = request.session['stunum']  #学籍番号をsessionから持ってくる
+        #同学科の１つ先輩の学籍番号をリスト化
+        targets = list(studentInfo.objects.filter(user_id__contains=str(int(sn[0:2])-1)+str(sn[2:4])).values_list('user_id', flat=True))
+        if len(targets)==0:
+            senpai_data_list = ['データなし','','','','']
+            pastdata_params = {
+                'form':form,
+                'message':'',
+                'data':senpai_data_list,
+                'numbers':numbers,
+                }
+            return render(request, 'gv/pastdata.html', pastdata_params)
+        udatas = []
+        for k in range(len(targets)):
+            #個人の成績データを抽出するコード
+            tgt = subjectInfo.objects.filter(user_id__contains=str(targets[k]))
+            #必要な項目ごとに個人データを取り出す
+            subname, catename, tname, haruaki, nendo = list(tgt.values_list('subjectname',flat=True)),list(tgt.values_list('category1',flat=True)),list(tgt.values_list('teacher',flat=True)),list(tgt.values_list('season',flat=True)),list(tgt.values_list('year_int',flat=True))
+            #個人データの二次元配列リストを作る
+            tgtdata = []
+            for i in range(len(subname)):
+                name = str(tname[i])
+                sub = str(subname[i])
+                if "\u3000" in name:
+                    name = name.replace("\u3000"," ")
+                if "\u3000" in sub:
+                    sub = sub.replace("\u3000"," ")
+                data = [sub,catename[i],name,haruaki[i],nendo[i]]
+                tgtdata.append(data)
+            newl = []
+            nen = np.array(sorted(list(set(np.array(tgtdata)[:,4])),reverse=True))[0:2] #先輩の最も新しい成績年度の数字　2018とか
+            for i in range(len(subname)): #最も新しい年度のデータのみを先ほど作ったリストから抽出
+                if np.array(tgtdata)[i,4] == nen[0] or np.array(tgtdata)[i,4] == nen[1]:
+                    newl.append(list(np.array(tgtdata)[i]))
+            
+            udf = pd.DataFrame(sorted(newl,key=itemgetter(4,3),reverse=True))
+            udf.columns = ['subject','category','teacher','haruaki','nendo']
+            udatas.append(udf)
+
+        senpai_data_list = (udatas[np.random.randint(len(udatas))]).values.tolist()
+
+        pastdata_params = {
+            'form':form,
+            'message':'',
+            'data':senpai_data_list,
+            'numbers':numbers,
+            }
+        return render(request, 'gv/pastdata.html', pastdata_params)
+        
+    except:
+        index_params = {
+            'form':form,
+            'message':'',
+            'numbers':numbers,
+            }
+
+        return render(request, 'gv/hp.html', index_params)
+
+
+
+
 ####################################################################################
                                 #利用者の詳細を確認するためのカウンター
 ####################################################################################
@@ -929,16 +998,16 @@ def counter(request):
     form = ggs_counter_Form()
     ######
     stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
-    numbers=len(stuobj)   #　↓　利用者の入学年度を重複を省いてリスト化
+    numbers=len(stuobj)   #　↓　利用者の入学年度を重複を省いてリスト化 →　[17, 16, 15]　こんな感じになる
     list_y = sorted([int(str(list(set(studentInfo.objects.values_list('enteryear', flat=True)))[i])[2:4]) for i in range(len(list(set(studentInfo.objects.values_list('enteryear', flat=True)))))],reverse=True)
-    users_by_year = [(i,len(studentInfo.objects.filter(user_id__startswith=i))) for i in list_y]#学年別利用者人数を動的に生成
-
+    users_by_year = [(i,len(studentInfo.objects.filter(user_id__startswith=i))) for i in list_y]#学年別利用者人数を動的に生成　⇒　[(17, 1), (16, 7), (15, 1)]　こんな感じになる
     #####
     gg_lists = {'aa':'キリスト教学科','ac':'史学科','ae':'教育学科','am':'文学科{英米文学専修}','an':'文学科{ドイツ文学専修}','as':'文学科{フランス文学専修}','at':'文学科{日本文学専修}','au':'文学部{文芸・思想専修}','ba':'経済学科','bc':'会計ファイナンス学科','bd':'経済政策学科','bm':'経営学科','bn':'国際経営学科','ca':'数学科','cb':'物理学科','cc':'化学科','cd':'生命理学科','da':'社会学科','dd':'現代文化学科','de':'メディア社会学科','dm':'異文化コミュニケーション学科','ea':'法学科','ec':'政治学科','ed':'国際ビジネス法学科','ib':'福祉学科','ic':'コミュニティ政策学科','id':'スポーツウエルネス学科','hm':'心理学科','hn':'映像身体学科','ha':'観光学科','hb':'交流文化学科'}
     #  ↓　　表の中身のパラメータを生成
     ggobj = [(key,gg_list,len(studentInfo.objects.filter(user_id__contains=gg_list)),np.round(np.average(sorted(list(studentInfo.objects.filter(user_id__contains=gg_list).values_list('gpa', flat=True)),reverse=True)),2)) for gg_list,key in gg_lists.items()]
     ggobj.sort(key=itemgetter(2),reverse=True)#履修者数順
     ggobj2 = sorted(ggobj,key=itemgetter(3,2),reverse=True)#GPA順且つ履修者も降順
+
     if request.method == 'POST':
         gg_name = request.POST['gg_name']
         gakunenn = request.POST['gakunenn']

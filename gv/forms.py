@@ -91,7 +91,7 @@ class find_teacher(forms.Form):
 
 class ggs_counter_Form(forms.Form):
     gakunenn_list = [
-    (0,'全学年'),
+    (0,'学年選択'),
     (18,'1年生'),
     (17,'2年生'),
     (16,'3年生'),

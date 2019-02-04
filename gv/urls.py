@@ -14,6 +14,7 @@ urlpatterns = [
     path('flush/', views.flush, name='flush'),
     path('inquiry', views.inquiry, name='inquiry'),
     path('more/', views.more, name='more'),
+    path('pastdata/', views.pastdata, name='pastdata'),
     path('counter/', views.counter, name='counter'),
     path('sub_search/', views.sub_search, name='sub_search'),
     path('substitution/', views.substitution, name='substitution'),

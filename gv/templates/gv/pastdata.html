@@ -45,100 +45,39 @@
 <!--メインの部分-->
 <!--<img src="/static/gv/teacher_search/images/kyozyubunnseki.png" alt="Re:Re:ss" width="100%"/>-->
 <!--経過時間：{{elapsed_time}} で表示-->
-<h2><a href={% url 'counter' %}>データベースを読み込む</a></h2>
-<br><h2 style="text-align: center;">現在の利用者数：{{numbers}}人</h2>
-<table>
-  <thead>
-  <tr>
-    <th>学年</th>
-    <th>利用者数</th>
-  </tr>
-  </thead>
-  <tbody>
-  {% for message in users_by_year %}
-  <tr>
-    <td>
-        <input type="hidden" name="sub-name" value="{{message.0}}">
-        {{message.0}}年度入学者の利用者数
-    </td>
-    <td>{{ message.1 }}人</td>
-  </tr>
-  {% endfor %}
-  </tbody>
-</table>
+<h5 style="color: #000;">このページではあなたの学科の一学年上の<br>先輩が実際に履修した例を閲覧できます</h5>
+<a href={% url 'pastdata' %}><h4><span class="non-class" style="background: linear-gradient(transparent 97%, #000 50%);">他の先輩の履修例を見る</span></h4></a>
 
-<br><h3>利用者数/GPA検索機能</h3>
-<form action='{% url 'counter' %}' method='post' name='counter'>
-  {% csrf_token %}
-  {{form.gg_name.label}}<br>{{form.gg_name}}<br><br>
-    {{form.gakunenn.label}}<br>{{form.gakunenn}}<br><br>
-
-  <div><!--button-->
-    <button type="submit" class="hamon">
-      利用者数検索
-    </button>
-  </div><!--button-->
-</form>
-
-<br><h4>該当学科の利用者数：{{ggs_numbers}}人</h4>
-<h4>該当利用者のGPA平均：{{gpa_ave}}</h4>
 <br>
 <div class="tabbox">
-    <p class="tabs">
-      <a href="#tab1" class="tab1" onclick="ChangeTab('tab1'); return false;">履修者順</a>
-      <a href="#tab2" class="tab2" onclick="ChangeTab('tab2'); return false;">GPA順</a>
-    </p>
   <div id="tab1" class="tab">
     <table>
       <thead>
       <tr>
-        <th>学科名</th>
-        <!-- <th>コード</th> -->
-        <th>利用者数</th>
-        <th>GPA平均</th>
+        <th>科目名</th>
+        <th>カテゴリ</th>
+        <th>教授名</th>
+        <th>学期</th>
+        <th>履修年度</th>
       </tr>
       </thead>
       <tbody>
-      {% for message in ggobj_counter %}
+      {% for message in data %}
       <tr>
         <td>
             <input type="hidden" name="sub-name" value="{{message.0}}">
             {{message.0}}
         </td>
-        <!-- <td>{{ message.1 }}</td> -->
-        <td>{{ message.2 }}人</td>
+        <td>{{ message.1 }}</td>
+        <td>{{ message.2 }}</td>
         <td>{{ message.3 }}</td>
+        <td>{{ message.4 }}</td>
       </tr>
       {% endfor %}
       </tbody>
     </table>
   </div>
 
-  <div id="tab2" class="tab">
-    <table>
-      <thead>
-      <tr>
-        <th>学科名</th>
-        <!-- <th>コード</th> -->
-        <th>利用者数</th>
-        <th>GPA平均</th>
-      </tr>
-      </thead>
-      <tbody>
-      {% for message in ggobj_counter2 %}
-      <tr>
-        <td>
-            <input type="hidden" name="sub-name" value="{{message.0}}">
-            {{message.0}}
-        </td>
-        <!-- <td>{{ message.1 }}</td> -->
-        <td>{{ message.2 }}人</td>
-        <td>{{ message.3 }}</td>
-      </tr>
-      {% endfor %}
-      </tbody>
-    </table>
-  </div>
 </div><!--tab-box-->
   
 
@@ -191,6 +130,7 @@
 </script>
 
 <!--テーブル切り替え-->
+<!--
 <script type="text/javascript">
   function ChangeTab(tabname) {
      // タブメニュー実装
@@ -203,6 +143,7 @@
 
 </script>
 
+-->
 <!-- ページを開いた際の最初に表示されるタブの選択 -->
 <script type="text/javascript">
   ChangeTab('tab1');
