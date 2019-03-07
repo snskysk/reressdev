@@ -193,22 +193,32 @@ def mainhome(request):
 
         ##mainhomeすらログインしたことがあるuserなら戻す##
         ##################################################
-        #学籍番号を大文字に変換
+        #学籍番号を大文字に変換(小文字では？)
         if not value[0].islower():
             short_cut_sn = value[0].lower()
         else:
             short_cut_sn = value[0]
+        
+        if short_cut_sn[:2]=="19":#一時的にテスト用。このif文を消しても正常に動作するはずだが、実際に入学生にやってもらわないと何とも言えない。
+            #このコードさえ定期的に変えればよいともいえるが、seasons=1の該当者のseasonsが、成績発表と同時に2になるとは思えないため対策が必要
+            request.session['stunum']= short_cut_sn
+            request.session['seasons'] = 1
+            site_map_params = {
+                'numbers':numbers,
+                'message':'入学生は、まだGPAランキングと成績グラフをご利用になれません。',
+            }
+            return render(request, 'gv/site_map.html',site_map_params)
 
         #stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
         #numbers=len(stuobj)
-        if value[0]=='systemcall' and value[1]=='counter':
+        if value[0]=='systemcall' and value[1]=='counter':#systemcallコマンドでlogin無しでcounterページに行ける処理
             counter_params={
                 'numbers':numbers,
             }
             return render(request,'gv/counter.html',counter_params)
         else:
             pass
-        if value[0]=='flush':
+        if value[0]=='flush':#flushコマンドでセッションを消せるがこのif文の下にあるように、ログインしなおしたときにセッションを消す仕様にしたため意味なし
             request.session.flush()
             form = userInfoForm()
             index_params = {
@@ -224,6 +234,15 @@ def mainhome(request):
 
             try:#もしsessionが残っているなら #ここはもう要らないかも
                 mainhome_after_login_params = {}
+                #入学生対応用
+                seasons = request.session['seasons']
+                if seasons == 1:
+                    site_map_params = {
+                        'numbers':numbers,
+                        'message':'入学生は、まだGPAランキングと成績グラフをご利用になれません。',
+                    }
+                    return render(request, 'gv/site_map.html',site_map_params)
+                
                 ##str_name = request.session['str_name']
                 ##mainhome_after_login_params['str_name'] = str_name
                 ##gpa = request.session['gpa']
@@ -280,6 +299,8 @@ def mainhome(request):
         try:#以下の複数のifでmain.pyから受け取ったpasscheckによって工程を進めるかエラーとして吐き出すかを決定
             result, list_pie, list_bar, table, personal_dataset, kyoushoku_c, passcheck = condact(value)
             if passcheck==1:
+                pass
+            elif passcheck==101:#seasons1=1
                 pass
             elif passcheck==2:
                 form = userInfoForm()
@@ -352,23 +373,31 @@ def mainhome(request):
             return render(request, 'gv/hp.html', index_params)
 
         #正しくデータを整形することができるかどうか。
+        if passcheck!=101:
+            try:
+                #pythonからjsへの値の受け渡し
+                mainhome_params = pytojsMaterials(result, list_pie, list_bar, table, kyoushoku_c)
+                mainhome_params['numbers'] = numbers
+                for k in mainhome_params.keys():
+                    request.session['{}'.format(k)] = str(mainhome_params[k])
 
-        try:
-            #pythonからjsへの値の受け渡し
-            mainhome_params = pytojsMaterials(result, list_pie, list_bar, table, kyoushoku_c)
-            mainhome_params['numbers'] = numbers
-            for k in mainhome_params.keys():
-                request.session['{}'.format(k)] = str(mainhome_params[k])
-
-        except Exception as e:
-            print(str(e.args))
-            form = userInfoForm()
-            index_params = {
-            'form':form,
-            'numbers':numbers,
-            'message':'正しくデータを得ることができませんでした'
+            except Exception as e:
+                print(str(e.args))
+                form = userInfoForm()
+                index_params = {
+                'form':form,
+                'numbers':numbers,
+                'message':'正しくデータを得ることができませんでした'
+                }
+                return render(request, 'gv/hp.html', index_params)
+        else:#seasons=1の該当者
+            request.session['stunum']= short_cut_sn
+            request.session['seasons'] = 1
+            site_map_params = {
+                'numbers':numbers,
+                'message':'入学生は、まだGPAランキングと成績グラフをご利用になれません。',
             }
-            return render(request, 'gv/hp.html', index_params)
+            return render(request, 'gv/site_map.html',site_map_params)
 
 
         #データベースに登録するかどうか
@@ -382,7 +411,9 @@ def mainhome(request):
             lowerd_sn = t[0]
 
         request.session['stunum'] = lowerd_sn #settionに学籍番号を登録
-
+        seasons1flag = t[3]
+        #入学生対応用#変更03/07
+        request.session['seasons'] = seasons1flag #settionにseasonsを登録
 
         if lowerd_sn not in stuobj:
             print('---新規ユーザーのデータを保存------------------------------------')
@@ -450,6 +481,16 @@ def mainhome(request):
 
 def mainhome_after_login(request):
     try: #ログインしているか確かめる
+        seasons = request.session['seasons']#変更03/07
+        if seasons == 1:
+            stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
+            numbers=len(stuobj)
+            site_map_params = {
+                'numbers':numbers,
+                'message':'入学生は、まだGPAランキングと成績グラフをご利用になれません。',
+            }
+            return render(request, 'gv/site_map.html',site_map_params)
+
         #mainhome_after_login = login
         #print(mainhome_after_login)
         mainhome_after_login_params = {}
@@ -527,6 +568,14 @@ def detail(request):
         'da':'社会学科','dd':'現代文化学科','de':'メディア社会学科','dm':'異文化コミュニケーション学科','ea':'法学科','ec':'政治学科','ed':'国際ビジネス法学科',
         'ib':'福祉学科','ic':'コミュニティ政策学科','id':'スポーツウエルネス学科','hm':'心理学科','hn':'映像身体学科','ha':'観光学科','hb':'交流文化学科'
     }
+    #入学生対応用#変更03/07
+    seasons = request.session['seasons']
+    if seasons == 1:
+        site_map_params = {
+            'numbers':numbers,
+            'message':'入学生は、まだGPAランキングと成績グラフをご利用になれません。',
+        }
+        return render(request, 'gv/site_map.html',site_map_params)
 
     try:
         sn = request.session['stunum']

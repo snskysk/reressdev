@@ -187,13 +187,25 @@ def func1(value):
     #unit_info=data_tables[4]
     #gpa_info=data_tables[5]
     #grade_info=data_tables[7]
+
+    user_info=data_tables[2]
+    user_info.columns=['Major&Grade', 'ID&Class', 'userName', 'enterYear', 'seasons']
+    grade1flag = user_info.query("index==2")[["seasons"]]
+    grade1flag=np.array(grade1flag.astype(int))
+    if grade1flag == 1:
+        print("grade1")
+        result,kyoushoku_c,passcheck=[0,0,101]
+        return result,kyoushoku_c,passcheck
+    else:
+        print("you have grade tables")
+
     if len(data_tables)==8:#調整中通常生徒
-        user_info=data_tables[2]
+        #user_info=data_tables[2]
         unit_info=data_tables[4]
         gpa_info=data_tables[5]
         grade_info=data_tables[7]
 
-        user_info.columns=['Major&Grade', 'ID&Class', 'userName', 'enterYear', 'seasons']
+        #user_info.columns=['Major&Grade', 'ID&Class', 'userName', 'enterYear', 'seasons']
         enterYear=user_info.query("index==2")[["enterYear"]]
         enterYear=np.array(enterYear.astype(int)) 
         if enterYear<2016:
@@ -201,7 +213,7 @@ def func1(value):
         else:
             check_gpa=0
     elif len(data_tables)==7:
-        user_info=data_tables[2]
+        #user_info=data_tables[2]変更03/07この辺のuser_info処理の余分な重複を一括コメントアウトした
         check=data_tables[3]
         for_check=(np.array(check.query('index==0')))
         if len(for_check[0])>3:#通常
@@ -209,7 +221,7 @@ def func1(value):
             gpa_info=data_tables[4]
             grade_info=data_tables[6]
         
-            user_info.columns=['Major&Grade', 'ID&Class', 'userName', 'enterYear', 'seasons']
+            #user_info.columns=['Major&Grade', 'ID&Class', 'userName', 'enterYear', 'seasons']
             enterYear=user_info.query("index==2")[["enterYear"]]
             enterYear=np.array(enterYear.astype(int)) 
             if enterYear<2016:
@@ -218,10 +230,7 @@ def func1(value):
                 check_gpa=0
 
         else:#調整中四年生以上
-            user_info=data_tables[2]
-
-
-
+            #user_info=data_tables[2]
             unit_info=data_tables[4]
             grade_info=data_tables[6]
 
@@ -241,7 +250,7 @@ def func1(value):
 
             check_gpa=1
     else:#通常四年生以上
-        user_info=data_tables[2]
+        #user_info=data_tables[2]
         unit_info=data_tables[3]
         grade_info=data_tables[5]
 
@@ -261,7 +270,7 @@ def func1(value):
 
         check_gpa=1
 
-    user_info.columns=['Major&Grade', 'ID&Class', 'userName', 'enterYear', 'seasons']
+    #user_info.columns=['Major&Grade', 'ID&Class', 'userName', 'enterYear', 'seasons']
   
 
     unit_info.columns = ['区分名', '必要単位数', '修得単位数', '履修単位数', '不足単位数', '備考']

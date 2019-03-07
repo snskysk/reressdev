@@ -9,7 +9,7 @@ def pytojsMaterials(result, list_pie, list_bar, table,kyoushoku_c):
     #################################レーダーチャート###########################################
     #単位の取得率(ex:専門選択の取得パーセンテージ)
     Achivement_list = list(list_bar[2]['現在達成率(%)'])
-    Aciecement_list = [100 if i > 100 else i for i in Achivement_list]#100以上は100にする。
+    Aciecement_list = [100 if i > 100 else i for i in Achivement_list]#100以上は100にする。#変更03/07てかメモ、スペルミス発見
 
     #単位の種類のリスト
     kind_name = list(list_bar[2].index)

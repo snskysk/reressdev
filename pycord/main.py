@@ -24,14 +24,17 @@ def condact(value):
             result,kyoushoku_c,passcheck=func1(uservalue)
         if passcheck==1:
             pass
-        elif passcheck==401:
+        elif passcheck==401:#dataset_for_databaseで2015以前生用の表のcolumnsを作るためのflag
             pass
 
-        elif passcheck==11:
+        elif passcheck==11:#gpa_info.columns=["年度","春学期","秋学期","年度計","累計"]でミスったときの値
             result, dataset_pie, dataset_bar, database_dataset, personal_dataset, kyoushoku_c, passcheck=[1,1,1,1,1,1,11]        
             return result, dataset_pie, dataset_bar, database_dataset, personal_dataset, kyoushoku_c, passcheck
-        elif passcheck==12:
+        elif passcheck==12:#main_GI=pd.concat([main_GI,gpa_data],axis=1)でミスったときの値
             result, dataset_pie, dataset_bar, database_dataset, personal_dataset, kyoushoku_c, passcheck=[1,1,1,1,1,1,12]        
+            return result, dataset_pie, dataset_bar, database_dataset, personal_dataset, kyoushoku_c, passcheck
+        elif passcheck==101:#seasons=1の該当者
+            result, dataset_pie, dataset_bar, database_dataset, personal_dataset, kyoushoku_c, passcheck=[1,1,1,1,1,1,101]        
             return result, dataset_pie, dataset_bar, database_dataset, personal_dataset, kyoushoku_c, passcheck
 
         else:
