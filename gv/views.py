@@ -198,11 +198,14 @@ def mainhome(request):
             short_cut_sn = value[0].lower()
         else:
             short_cut_sn = value[0]
+
+        if short_cut_sn =='lilith':
+            short_cut_sn ='16bc046c'
         
         if short_cut_sn[:2]=="19":#一時的にテスト用。このif文を消しても正常に動作するはずだが、実際に入学生にやってもらわないと何とも言えない。
             #このコードさえ定期的に変えればよいともいえるが、seasons=1の該当者のseasonsが、成績発表と同時に2になるとは思えないため対策が必要
             request.session['stunum']= short_cut_sn
-            request.session['seasons'] = 1
+            request.session['seasons'] = "1"
             site_map_params = {
                 'numbers':numbers,
                 'message':'入学生は、まだGPAランキングと成績グラフをご利用になれません。',
@@ -392,7 +395,7 @@ def mainhome(request):
                 return render(request, 'gv/hp.html', index_params)
         else:#seasons=1の該当者
             request.session['stunum']= short_cut_sn
-            request.session['seasons'] = 1
+            request.session['seasons'] = "1"
             site_map_params = {
                 'numbers':numbers,
                 'message':'入学生は、まだGPAランキングと成績グラフをご利用になれません。',
@@ -413,7 +416,7 @@ def mainhome(request):
         request.session['stunum'] = lowerd_sn #settionに学籍番号を登録
         seasons1flag = t[3]
         #入学生対応用#変更03/07
-        request.session['seasons'] = seasons1flag #settionにseasonsを登録
+        request.session['seasons'] = str(seasons1flag) #settionにseasonsを登録
 
         if lowerd_sn not in stuobj:
             print('---新規ユーザーのデータを保存------------------------------------')
@@ -482,7 +485,7 @@ def mainhome(request):
 def mainhome_after_login(request):
     try: #ログインしているか確かめる
         seasons = request.session['seasons']#変更03/07
-        if seasons == 1:
+        if seasons == "1":
             stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
             numbers=len(stuobj)
             site_map_params = {
@@ -570,7 +573,7 @@ def detail(request):
     }
     #入学生対応用#変更03/07
     seasons = request.session['seasons']
-    if seasons == 1:
+    if seasons == "1":
         site_map_params = {
             'numbers':numbers,
             'message':'入学生は、まだGPAランキングと成績グラフをご利用になれません。',
