@@ -198,8 +198,6 @@ def judge_subject(request):
         return render(request, 'gv/judge_register.html',jr_params)
 
 
-
-
 def judge_register(request):
     stunum = request.session['stunum']
     if request.method == 'POST':
