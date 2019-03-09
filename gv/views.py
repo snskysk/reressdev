@@ -158,6 +158,15 @@ def flush(request):#flush関数自体はsessionのflushを行わない。hp.html
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 def judge_subject(request):
     stunum = request.session['stunum']
+    seasons = request.session['seasons']#変更03/07
+    if seasons == "1":
+        stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
+        numbers=len(stuobj)
+        site_map_params = {
+            'numbers':numbers,
+            'message':'入学生は、自身の成績データに依存する機能をご利用になれません。',
+        }
+        return render(request, 'gv/site_map.html',site_map_params)
     if request.method == 'POST':
         form = userJudge_Form()
         value = request.POST['judgement']
@@ -200,6 +209,15 @@ def judge_subject(request):
 
 def judge_register(request):
     stunum = request.session['stunum']
+    seasons = request.session['seasons']#変更03/07
+    if seasons == "1":
+        stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
+        numbers=len(stuobj)
+        site_map_params = {
+            'numbers':numbers,
+            'message':'入学生は、自身の成績データに依存する機能をご利用になれません。',
+        }
+        return render(request, 'gv/site_map.html',site_map_params)
     if request.method == 'POST':
         values = userJudge_Form(request.POST)
         subject_j = request.session['subject_j']
@@ -303,12 +321,13 @@ def mainhome(request):
         
         if short_cut_sn[:2]=="19":#一時的にテスト用。このif文を消しても正常に動作するはずだが、実際に入学生にやってもらわないと何とも言えない。
             #このコードさえ定期的に変えればよいともいえるが、seasons=1の該当者のseasonsが、成績発表と同時に2になるとは思えないため対策が必要
+            request.session.flush()
             request.session['stunum']= short_cut_sn
             request.session['seasons'] = "1"
             site_map_params = {
                 'numbers':numbers,
-                'message':'入学生は、まだGPAランキングと成績グラフをご利用になれません。',
-            }
+                'message':'入学生は、自身の成績データに依存する機能をご利用になれません。',
+        }
             return render(request, 'gv/site_map.html',site_map_params)
 
         #stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
@@ -341,8 +360,8 @@ def mainhome(request):
                 if seasons == 1:
                     site_map_params = {
                         'numbers':numbers,
-                        'message':'入学生は、まだGPAランキングと成績グラフをご利用になれません。',
-                    }
+                        'message':'入学生は、自身の成績データに依存する機能をご利用になれません。',
+            }
                     return render(request, 'gv/site_map.html',site_map_params)
                 
                 ##str_name = request.session['str_name']
@@ -497,8 +516,8 @@ def mainhome(request):
             request.session['seasons'] = "1"
             site_map_params = {
                 'numbers':numbers,
-                'message':'入学生は、まだGPAランキングと成績グラフをご利用になれません。',
-            }
+                'message':'入学生は、自身の成績データに依存する機能をご利用になれません。',
+        }
             return render(request, 'gv/site_map.html',site_map_params)
 
 
@@ -589,8 +608,8 @@ def mainhome_after_login(request):
             numbers=len(stuobj)
             site_map_params = {
                 'numbers':numbers,
-                'message':'入学生は、まだGPAランキングと成績グラフをご利用になれません。',
-            }
+                'message':'入学生は、自身の成績データに依存する機能をご利用になれません。',
+        }
             return render(request, 'gv/site_map.html',site_map_params)
 
         #mainhome_after_login = login
@@ -675,7 +694,7 @@ def detail(request):
     if seasons == "1":
         site_map_params = {
             'numbers':numbers,
-            'message':'入学生は、まだGPAランキングと成績グラフをご利用になれません。',
+            'message':'入学生は、自身の成績データに依存する機能をご利用になれません。',
         }
         return render(request, 'gv/site_map.html',site_map_params)
 
