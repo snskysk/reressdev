@@ -19,5 +19,7 @@ urlpatterns = [
     path('sub_search/', views.sub_search, name='sub_search'),
     path('substitution/', views.substitution, name='substitution'),
     path('course_more/', views.course_more, name='course_more'),
+    path('judge_register/', views.judge_register, name='judge_register'),
+    path('judge_subject/', views.judge_subject, name='judge_subject'),
 
 ]

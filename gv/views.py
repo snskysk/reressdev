@@ -6,8 +6,8 @@ import time
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 #from .forms import userInfoForm, findForm, find_my_sub_Form, food_pool_Form, find_shop
-from .forms import userInfoForm, findForm, find_my_sub_Form, food_pool_Form, find_shop, find_course, find_teacher, find_sub
-from .models import studentInfo, subjectInfo, food_pool
+from .forms import userInfoForm, findForm, find_my_sub_Form, food_pool_Form, find_shop, find_course, find_teacher, find_sub, userJudge_Form
+from .models import studentInfo, subjectInfo, food_pool, userJudge
 from pycord.main import condact
 from pycord.pytojs import pytojsMaterials
 from django.db.models import Q, Sum
@@ -156,6 +156,122 @@ def flush(request):#flush関数自体はsessionのflushを行わない。hp.html
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                                                                                                 #mainhome関連
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+def judge_subject(request):
+    stunum = request.session['stunum']
+    if request.method == 'POST':
+        form = userJudge_Form()
+        value = request.POST['judgement']
+        value = value.split(',')
+        #print(value)
+        subject_j,teacher_j,grade_j,season_j,year_j = value[0],value[1],value[2],value[3],value[4]
+        #print(subject_j,teacher_j,grade_j,season_j,year_j)
+        request.session['subject_j'] = subject_j
+        request.session['teacher_j'] = teacher_j
+        request.session['grade_j'] = grade_j
+        request.session['season_j'] = season_j
+        request.session['year_j'] = year_j
+        js_params = {
+            'form':form,
+            'user_name':stunum,
+            'sub_name':subject_j,
+            't_name':teacher_j,
+        }
+        return render(request, 'gv/judge_subject.html', js_params)
+    else:
+        filtered_sub = subjectInfo.objects.filter(user_id=stunum)#userのみの授業の情報
+        none,done = "未評価","済"
+        subs = list(filtered_sub.values_list('subjectname', flat=True))
+        teachers = list(filtered_sub.values_list('teacher', flat=True))
+        odlist = list(userJudge.objects.filter(user_id_j__contains=stunum).values_list('subject_j',flat=True))
+        hyoukas = []
+        for i in range(len(subs)):
+            if subs[i] in odlist:
+                hyoukas.append(done)
+            else:
+                hyoukas.append(none)
+
+        filtered_sub=[(subs[i],teachers[i],list(filtered_sub.values_list('grade', flat=True))[i],list(filtered_sub.values_list('season', flat=True))[i],list(filtered_sub.values_list('year_int', flat=True))[i],hyoukas[i]) for i in range(len(filtered_sub))]
+
+        jr_params = {
+            'data':filtered_sub,
+        }
+        return render(request, 'gv/judge_register.html',jr_params)
+
+
+
+
+def judge_register(request):
+    stunum = request.session['stunum']
+    if request.method == 'POST':
+        values = userJudge_Form(request.POST)
+        subject_j = request.session['subject_j']
+        teacher_j = request.session['teacher_j']
+        year_j = request.session['year_j']
+        season_j = request.session['season_j']
+        #modelcheck if
+        
+        old_data = userJudge.objects.filter(user_id_j__contains=stunum)
+        already_reviewed = len(old_data.filter(subject_j=subject_j))#old_dataに含まれる「subject_j」の数
+        if already_reviewed>=1:
+            old_data.filter(subject_j=subject_j).delete()
+        
+        user_judgements = userJudge(user_id_j=stunum,subject_j=subject_j,teacher_j=teacher_j,year_j=year_j,season_j=season_j,test_level=request.POST["test_level"],homework_amount=request.POST["homework_amount"],homework_level=request.POST["homework_level"],atend_importance=request.POST["atend_importance"],distribution_amount=request.POST["distribution_amount"],pastdata_amount=request.POST["pastdata_amount"],groupwork_amount=request.POST["groupwork_amount"],pointed_amount=request.POST["pointed_amount"],gratest_level=request.POST["gratest_level"],how_fun=request.POST["how_fun"])
+        user_judgements.save()        
+        #set form
+        filtered_sub = subjectInfo.objects.filter(user_id=stunum)#userのみの授業の情報
+        none,done = "未評価","済"
+        subs = list(filtered_sub.values_list('subjectname', flat=True))
+        teachers = list(filtered_sub.values_list('teacher', flat=True))
+        odlist = list(old_data.values_list('subject_j',flat=True))
+        hyoukas = []
+        for i in range(len(subs)):
+            if subs[i] in odlist:
+                hyoukas.append(done)
+            else:
+                hyoukas.append(none)
+
+        filtered_sub=[(subs[i],teachers[i],list(filtered_sub.values_list('grade', flat=True))[i],list(filtered_sub.values_list('season', flat=True))[i],list(filtered_sub.values_list('year_int', flat=True))[i],hyoukas[i]) for i in range(len(filtered_sub))]
+
+        jr_params = {
+            'data':filtered_sub,
+        }
+        return render(request, 'gv/judge_register.html',jr_params)
+    else:
+        #set form
+        filtered_sub = subjectInfo.objects.filter(user_id=stunum)#userのみの授業の情報
+        none,done = "未評価","済"
+        subs = list(filtered_sub.values_list('subjectname', flat=True))
+        teachers = list(filtered_sub.values_list('teacher', flat=True))
+        odlist = list(userJudge.objects.filter(user_id_j__contains=stunum).values_list('subject_j',flat=True))
+        hyoukas = []
+        for i in range(len(subs)):
+            if subs[i] in odlist:
+                hyoukas.append(done)
+            else:
+                hyoukas.append(none)
+
+        filtered_sub=[(subs[i],teachers[i],list(filtered_sub.values_list('grade', flat=True))[i],list(filtered_sub.values_list('season', flat=True))[i],list(filtered_sub.values_list('year_int', flat=True))[i],hyoukas[i]) for i in range(len(filtered_sub))]
+
+        """
+        stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
+        numbers=len(stuobj)   #　↓　利用者の入学年度を重複を省いてリスト化 →　[17, 16, 15]　こんな感じになる
+        list_y = sorted([int(str(list(set(studentInfo.objects.values_list('enteryear', flat=True)))[i])[2:4]) for i in range(len(list(set(studentInfo.objects.values_list('enteryear', flat=True)))))],reverse=True)
+        users_by_year = [(i,len(studentInfo.objects.filter(user_id__startswith=i))) for i in list_y]#学年別利用者人数を動的に生成　⇒　[(17, 1), (16, 7), (15, 1)]　こんな感じになる
+        #####
+        gg_lists = {'aa':'キリスト教学科','ac':'史学科','ae':'教育学科','am':'文学科{英米文学専修}','an':'文学科{ドイツ文学専修}','as':'文学科{フランス文学専修}','at':'文学科{日本文学専修}','au':'文学部{文芸・思想専修}','ba':'経済学科','bc':'会計ファイナンス学科','bd':'経済政策学科','bm':'経営学科','bn':'国際経営学科','ca':'数学科','cb':'物理学科','cc':'化学科','cd':'生命理学科','da':'社会学科','dd':'現代文化学科','de':'メディア社会学科','dm':'異文化コミュニケーション学科','ea':'法学科','ec':'政治学科','ed':'国際ビジネス法学科','ib':'福祉学科','ic':'コミュニティ政策学科','id':'スポーツウエルネス学科','hm':'心理学科','hn':'映像身体学科','ha':'観光学科','hb':'交流文化学科'}
+        #  ↓　　表の中身のパラメータを生成
+        ggobj = [(key,gg_list,len(studentInfo.objects.filter(user_id__contains=gg_list)),np.round(np.average(sorted(list(studentInfo.objects.filter(user_id__contains=gg_list).values_list('gpa', flat=True)),reverse=True)),2)) for gg_list,key in gg_lists.items()]
+        ggobj.sort(key=itemgetter(2),reverse=True)#履修者数順
+        ggobj2 = sorted(ggobj,key=itemgetter(3,2),reverse=True)#GPA順且つ履修者も降順
+        
+        """
+
+
+
+        jr_params = {
+            'data':filtered_sub,
+        }
+        return render(request, 'gv/judge_register.html',jr_params)
 
 ##########################################################################
                             #状況に応じてデータベースへ保存または削除＆上書き
@@ -188,7 +304,7 @@ def mainhome(request):
     stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
     numbers=len(stuobj)
     start = time.time()
-    if request.method == 'POST':
+    if request.method == 'POST':        
         value = [request.POST['stunum'], request.POST['password']]
 
         ##mainhomeすらログインしたことがあるuserなら戻す##
@@ -629,7 +745,6 @@ def detail(request):
         'belongs':belongs,##########################################追加する部分3番
     }
     return render(request, 'gv/detail.html', detail_params)
-
 
 
 ##########################################################################

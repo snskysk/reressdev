@@ -33,6 +33,50 @@ class subjectInfo(models.Model):
         subjectname = self.subjectname
         user_id = self.user_id
         return user_id + 'の' + subjectname
+
+class userJudge(models.Model):
+    num_list = [
+    (0,'0'),
+    (1,'1'),
+    (2,'2'),
+    (3,'3'),
+    (4,'4'),
+    (5,'5'),
+    (6,'6'),
+    (7,'7'),
+    (8,'8'),
+    (9,'9'),
+    (10,'10'),
+    ]
+    season_j_list = [['春学期','春学期'],['秋学期','秋学期'],['通年','通年']]
+    year_j_list = [[2015,'2015'],[2016,'2016'],[2017,'2017'],[2018,'2018'],[2019,'2019'],[2020,'2020'],[2021,'2021'],[2022,'2022'],[2023,'2023'],[2024,'2024'],[2025,'2025'],[2026,'2026'],[2027,'2027'],[2028,'2028'],[2029,'2029'],[2030,'2030']]
+
+    user_id_j = models.CharField(max_length = 10)#id
+    subject_j = models.CharField(max_length = 40)#教科名
+    teacher_j = models.CharField(max_length = 40)#教授名
+    year_j = models.CharField(max_length = 40, choices=year_j_list)#履修年度
+    season_j = models.CharField(max_length = 40, choices=season_j_list)#学期
+
+    test_level = models.IntegerField(choices=num_list)#テスト難易度
+    homework_amount = models.IntegerField(choices=num_list)#課題量
+    homework_level = models.IntegerField(choices=num_list)#課題難易度
+    atend_importance = models.IntegerField(choices=num_list)#出席重要度
+    distribution_amount = models.IntegerField(choices=num_list)#配布資料量
+    pastdata_amount = models.IntegerField(choices=num_list)#過去問等情報量
+    groupwork_amount = models.IntegerField(choices=num_list)#
+    pointed_amount = models.IntegerField(choices=num_list)#
+    gratest_level = models.IntegerField(choices=num_list)#
+    how_fun = models.IntegerField(choices=num_list)#
+    #psql -U shunsuke -d postgres
+    #\c gradedb
+    #create table gv_userJudge(id serial NOT NULL PRIMARY KEY, user_id_j varchar(30) NOT NULL, subject_j varchar(30) NOT NULL, teacher_j varchar(30) NOT NULL, year_j varchar(30) NOT NULL, season_j varchar(30) NOT NULL, test_level INTEGER NOT NULL, homework_amount INTEGER NOT NULL, homework_level INTEGER NOT NULL, atend_importance INTEGER NOT NULL, distribution_amount INTEGER NOT NULL, pastdata_amount INTEGER NOT NULL, groupwork_amount INTEGER NOT NULL, pointed_amount INTEGER NOT NULL, gratest_level INTEGER NOT NULL, how_fun INTEGER NOT NULL);
+
+    #user_id_j,subject_j,teacher_j,year_j,season_j,test_level,homework_amount,homework_level,atend_importance,distribution_amount,pastdata_amount
+    def __str__(self):
+        subject_j = self.subject_j
+        user_id_j = self.user_id_j
+        return user_id_j + 'の' + subject_j + 'への評価'
+
 #################################################################
                                 #10/03
 #################################################################

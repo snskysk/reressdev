@@ -101,7 +101,32 @@ class ggs_counter_Form(forms.Form):
     gg_name = forms.CharField(label='学科コードを入力')
     gakunenn = forms.ChoiceField(choices=gakunenn_list, required = False,label='学年で絞る')
 
-
+class userJudge_Form(forms.Form):
+    #user_id_j,subject_j,teacher_j,year_j,season_j,test_level,homework_amount,homework_level,atend_importance,distribution_amount,pastdata_amount
+    #subject_j#teacher_j#year_j#season_j
+    num_list = [
+    ('0','0'),
+    ('1','1'),
+    ('2','2'),
+    ('3','3'),
+    ('4','4'),
+    ('5','5'),
+    ('6','6'),
+    ('7','7'),
+    ('8','8'),
+    ('9','9'),
+    ('10','10'),
+    ]
+    test_level = forms.ChoiceField(choices=num_list, required = False,label='テスト難易度')
+    homework_amount = forms.ChoiceField(choices=num_list, required = False,label='課題量')
+    homework_level = forms.ChoiceField(choices=num_list, required = False,label='課題難易度')
+    atend_importance = forms.ChoiceField(choices=num_list, required = False,label='出席重要度')
+    distribution_amount = forms.ChoiceField(choices=num_list, required = False,label='配布資料量')
+    pastdata_amount = forms.ChoiceField(choices=num_list, required = False,label='過去問等情報量')
+    groupwork_amount = forms.ChoiceField(choices=num_list, required = False,label='グループワーク量')
+    pointed_amount = forms.ChoiceField(choices=num_list, required = False,label='挙手・指名頻度')
+    gratest_level = forms.ChoiceField(choices=num_list, required = False,label='ためになったか')
+    how_fun = forms.ChoiceField(choices=num_list, required = False,label='楽しかったか')
 
 class find_sub(forms.Form):
     s_name = forms.CharField(label='教科')
