@@ -8,3 +8,100 @@
 .review_div {
   text-align: center;
 }
+
+/*select-boxのcss(select-boxはcssのみ)*/
+.select-box {
+  background: #FFFDF4;
+  border: 2px solid #D2BA85;
+  border-radius: 50px;
+  color: #0C2245;
+  font-size: 14px;
+  height: 30px;
+  line-height: 30px;
+  text-align: left;
+  text-indent: 5px;
+  vertical-align: middle;
+  width: 120px;
+}
+
+/*各要素の感覚*/
+.select-div {
+  padding: 14px 0 6px;
+}
+
+/*店名form*/
+.shop-name-form {
+  background: #FFFDF4;
+  border: 2px solid #D2BA85;
+  border-radius: 10px;
+  color: #0C2245;
+  font-size: 14px;
+  height: 30px;
+  line-height: 30px;
+  text-align: left;
+  text-indent: 5px;
+  vertical-align: middle;
+  width: 80%;
+
+}
+
+/*reviewのボタン*/
+.review_button {
+  margin: 10px auto 30px;
+  width: 70%;
+  height: 50px;
+  background: linear-gradient(-135deg, #E4A972, #9941D8);
+  background: linear-gradient(90deg, #E4A972, #a6d3c8);
+
+  opacity: 0.8;
+  box-shadow: 2px 2px rgb(0,0,0,0.4);
+  border-radius: 50px;
+}
+
+/*ラベル*/
+.review-label {
+  font-size: 10px;
+  font-weight: bold;
+}
+
+
+
+/*タイトル*/
+.title{
+font-size: 30px;
+position: relative;
+padding: 0.5em;
+background: #a6d3c8;
+color: white;
+height: 60px;
+}
+
+.title::before {
+position: absolute;
+content: '';
+top: 100%;
+left: 0;
+border: none;
+border-bottom: solid 15px transparent;
+border-right: solid 20px rgb(149, 158, 155);
+}
+
+
+
+/*自由記述のcss*/
+.free-comment {
+  width: 100%;
+  height: 100px;
+}
+.free-comment {
+  padding: 0.5em 1em;
+  margin: 0 0;
+  color: #000000;
+  background: rgb(166,211,200,0.3);
+  border-top: solid 10px rgb(166,211,200);
+}
+
+
+.comprehensive .br-theme-fontawesome-stars .br-widget a {
+  font-size: 50px !important; //red;
+}

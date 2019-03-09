@@ -232,6 +232,7 @@ def judge_register(request):
 
         jr_params = {
             'data':filtered_sub,
+            'message':'レビューが完了しました。',
         }
         return render(request, 'gv/judge_register.html',jr_params)
     else:
@@ -249,22 +250,6 @@ def judge_register(request):
                 hyoukas.append(none)
 
         filtered_sub=[(subs[i],teachers[i],list(filtered_sub.values_list('grade', flat=True))[i],list(filtered_sub.values_list('season', flat=True))[i],list(filtered_sub.values_list('year_int', flat=True))[i],hyoukas[i]) for i in range(len(filtered_sub))]
-
-        """
-        stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
-        numbers=len(stuobj)   #　↓　利用者の入学年度を重複を省いてリスト化 →　[17, 16, 15]　こんな感じになる
-        list_y = sorted([int(str(list(set(studentInfo.objects.values_list('enteryear', flat=True)))[i])[2:4]) for i in range(len(list(set(studentInfo.objects.values_list('enteryear', flat=True)))))],reverse=True)
-        users_by_year = [(i,len(studentInfo.objects.filter(user_id__startswith=i))) for i in list_y]#学年別利用者人数を動的に生成　⇒　[(17, 1), (16, 7), (15, 1)]　こんな感じになる
-        #####
-        gg_lists = {'aa':'キリスト教学科','ac':'史学科','ae':'教育学科','am':'文学科{英米文学専修}','an':'文学科{ドイツ文学専修}','as':'文学科{フランス文学専修}','at':'文学科{日本文学専修}','au':'文学部{文芸・思想専修}','ba':'経済学科','bc':'会計ファイナンス学科','bd':'経済政策学科','bm':'経営学科','bn':'国際経営学科','ca':'数学科','cb':'物理学科','cc':'化学科','cd':'生命理学科','da':'社会学科','dd':'現代文化学科','de':'メディア社会学科','dm':'異文化コミュニケーション学科','ea':'法学科','ec':'政治学科','ed':'国際ビジネス法学科','ib':'福祉学科','ic':'コミュニティ政策学科','id':'スポーツウエルネス学科','hm':'心理学科','hn':'映像身体学科','ha':'観光学科','hb':'交流文化学科'}
-        #  ↓　　表の中身のパラメータを生成
-        ggobj = [(key,gg_list,len(studentInfo.objects.filter(user_id__contains=gg_list)),np.round(np.average(sorted(list(studentInfo.objects.filter(user_id__contains=gg_list).values_list('gpa', flat=True)),reverse=True)),2)) for gg_list,key in gg_lists.items()]
-        ggobj.sort(key=itemgetter(2),reverse=True)#履修者数順
-        ggobj2 = sorted(ggobj,key=itemgetter(3,2),reverse=True)#GPA順且つ履修者も降順
-        
-        """
-
-
 
         jr_params = {
             'data':filtered_sub,
@@ -922,7 +907,24 @@ def sub_search(request):
         t_dict_message2=np.reshape(t_dict_message2, (t_dict_message2.shape[0], 1))
         t_dict = np.hstack([t_dict_message01,t_dict_message2])
 
+        judgements = userJudge.objects.filter(subject_j__contains=s_name)
+        #str(np.average(np.array(list())))
+        d1 = str(np.average(np.array(list(judgements.values_list('test_level',flat=True)))))
+        d2 = str(np.average(np.array(list(judgements.values_list('homework_amount',flat=True)))))
+        d3 = str(np.average(np.array(list(judgements.values_list('homework_level',flat=True)))))
+        d4 = str(np.average(np.array(list(judgements.values_list('atend_importance',flat=True)))))
+        d5 = str(np.average(np.array(list(judgements.values_list('distribution_amount',flat=True)))))
+        d6 = str(np.average(np.array(list(judgements.values_list('pastdata_amount',flat=True)))))
+        d7 = str(np.average(np.array(list(judgements.values_list('groupwork_amount',flat=True)))))
+        d8 = str(np.average(np.array(list(judgements.values_list('pointed_amount',flat=True)))))
+        d9 = str(np.average(np.array(list(judgements.values_list('gratest_level',flat=True)))))
+        d10 = str(np.average(np.array(list(judgements.values_list('how_fun',flat=True)))))
+        Achivement_list = "['"+d1+"', '"+d2+"', '"+d3+"', '"+d4+"', '"+d5+"', '"+d6+"', '"+d7+"', '"+d8+"', '"+d9+"', '"+d10+"']"
+        kind_name = ['テスト難易度', '課題量', '課題難易度', '出席重要度', '配布資料量', '過去問等情報量', 'グループワーク量', '挙手・指名頻度', 'ためになったか', '楽しかったか']
+
         sub_search_params = {
+            'kind_name':kind_name,
+            'Achivement_list':Achivement_list,
             't_dict':t_dict,
             'form':form,
             #'sub_obj':sub_obj,
@@ -939,6 +941,9 @@ def sub_search(request):
     form = find_sub()
     nums = [0,0,0,0,0]
     grade_list_sample = ['S','A','B','C','D']
+
+
+
     sub_search_params = {
         'all_sub_list':all_sub_list,
         'nums':nums,
@@ -1037,7 +1042,30 @@ def teacher_search(request):
 
         ######################################
         elapsed_time = time.time() - start
+        print(t_name)
+        print(len(t_sub))
+
+        judgements = userJudge.objects.filter(teacher_j__contains=t_name)
+        if len(t_sub)>0:
+            judgements = judgements.filter(subject_j__contains=t_sub)
+        #str(np.average(np.array(list())))
+        d1 = str(np.average(np.array(list(judgements.values_list('test_level',flat=True)))))
+        d2 = str(np.average(np.array(list(judgements.values_list('homework_amount',flat=True)))))
+        d3 = str(np.average(np.array(list(judgements.values_list('homework_level',flat=True)))))
+        d4 = str(np.average(np.array(list(judgements.values_list('atend_importance',flat=True)))))
+        d5 = str(np.average(np.array(list(judgements.values_list('distribution_amount',flat=True)))))
+        d6 = str(np.average(np.array(list(judgements.values_list('pastdata_amount',flat=True)))))
+        d7 = str(np.average(np.array(list(judgements.values_list('groupwork_amount',flat=True)))))
+        d8 = str(np.average(np.array(list(judgements.values_list('pointed_amount',flat=True)))))
+        d9 = str(np.average(np.array(list(judgements.values_list('gratest_level',flat=True)))))
+        d10 = str(np.average(np.array(list(judgements.values_list('how_fun',flat=True)))))
+        Achivement_list = "['"+d1+"', '"+d2+"', '"+d3+"', '"+d4+"', '"+d5+"', '"+d6+"', '"+d7+"', '"+d8+"', '"+d9+"', '"+d10+"']"
+        kind_name = ['テスト難易度', '課題量', '課題難易度', '出席重要度', '配布資料量', '過去問等情報量', 'グループワーク量', '挙手・指名頻度', 'ためになったか', '楽しかったか']
+        print(Achivement_list)
+        print(kind_name)
         teacher_search_params = {
+            'kind_name':kind_name,
+            'Achivement_list':Achivement_list,
             'elapsed_time':elapsed_time,
             'message':'ok,',
             'form':form,
@@ -1055,6 +1083,7 @@ def teacher_search(request):
     form = find_teacher()
     nums = [0,0,0,0,0]
     grade_list_sample = ['S','A','B','C','D']
+    print("a")
 
     #elapsed_time = time.time() - start
     teacher_search_params = {

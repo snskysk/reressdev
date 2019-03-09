@@ -231,57 +231,129 @@
           
           
           <div class="row" width=50%>
-            <div class="panel panel-primary panel-main-color">
-              <div class="panel-heading panel-color" style="text-align:center;" width="50%">
-                <span>履修登録補助機能</span>
-              </div><!--panel-heaing-->
-              <div class="panel-body">
-                <div class="col-lg-6 col-xs-6">
-                  <div class="panel panel-info panel-main-color">
-                    <div class="panel-heading">
-                      <a href={% url 'course' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">人気授業分析</span></h5></a>
-                    </div>
-                    <div class="panel-body">
-                      <div class="image101">
-                          <img src="{% static 'gv/site_map/images/site_map_3.PNG'%}" alt="立教大学　Re:Re:ss/リリス　履修　class-ranking" width="80%">
+              <div class="panel panel-primary panel-main-color">
+                <div class="panel-heading panel-color" style="text-align:center;" width="50%">
+                  <span>履修登録補助機能</span>
+                </div><!--panel-heaing-->
+                <div class="panel-body">
+                  <div class="col-lg-6 col-xs-6">
+                    <div class="panel panel-info panel-main-color">
+                      <div class="panel-heading">
+                        <a href={% url 'course' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">人気授業分析</span></h5></a>
                       </div>
-                      <h6>あなたの学科の人気授業をランキング化<br>授業名クリックで授業分析を確認しよう</h6>
+                      <div class="panel-body">
+                        <div class="image101">
+                            <img src="{% static 'gv/site_map/images/site_map_3.PNG'%}" width="80%">
+                        </div>
+                        <h6>あなたの学科の人気授業をランキング化<br>授業名クリックで授業分析を確認しよう</h6>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-lg-6 col-xs-6">
-                  <div class="panel panel-info panel-main-color">
-                    <div class="panel-heading">
-                      <a href={% url 'sub_search' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">授業分析</span></h5></a>
-                    </div>
-                    <div class="panel-body">
-                      <div class="image101">
-                          <img src="{% static 'gv/site_map/images/site_map_4.PNG'%}" alt="立教大学　Re:Re:ss/リリス　履修　class-analyze" width="80%">
+                  <div class="col-lg-6 col-xs-6">
+                    <div class="panel panel-info panel-main-color">
+                      <div class="panel-heading">
+                        <a href={% url 'sub_search' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">授業分析</span></h5></a>
                       </div>
-                      <h6>授業の難易度をGPAやグラフで可視化<br>担当教授クリックで教授分析を確認しよう<br><br>シラバスにも接続可能</h6>
+                      <div class="panel-body">
+                        <div class="image101">
+                            <img src="{% static 'gv/site_map/images/site_map_4.PNG'%}" width="80%">
+                        </div>
+                        <h6>授業の難易度をGPAやグラフで可視化<br>担当教授クリックで教授分析を確認しよう<br><br>シラバスにも接続可能</h6>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-lg-6 col-xs-6">
-                  <div class="panel panel-info panel-main-color">
-                    <div class="panel-heading">
-                      <a href={% url 'teacher_search' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">教授分析</span></h5></a>
-                    </div>
-                    <div class="panel-body">
-                      <div class="image101">
-                          <img src="{% static 'gv/site_map/images/site_map_5.PNG'%}" alt="立教大学　Re:Re:ss/リリス　履修　teacher-analyze" width="80%">
+                  <div class="col-lg-6 col-xs-6">
+                    <div class="panel panel-info panel-main-color">
+                      <div class="panel-heading">
+                        <a href={% url 'teacher_search' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">教授分析</span></h5></a>
                       </div>
-                      <h6>教授の厳しさをGPAやグラフで可視化<br>三つの機能をループして履修登録に役立てよう</h6>
+                      <div class="panel-body">
+                        <div class="image101">
+                            <img src="{% static 'gv/site_map/images/site_map_5.PNG'%}" width="80%">
+                        </div>
+                        <h6>教授の厳しさをGPAやグラフで可視化<br></h6>
+                      </div>
                     </div>
                   </div>
-                </div>
-          
-              </div><!--panel-body-->
-            </div><!--panel panel-info panel-main-color-->
-          </div>
+                  <div class="col-lg-6 col-xs-6">
+                    <div class="panel panel-info panel-main-color">
+                      <div class="panel-heading">
+                        <a href={% url 'pastdata' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">先輩の履修</span></h5></a>
+                      </div>
+                      <div class="panel-body">
+                        <div class="image101">
+                            <img src="{% static 'gv/site_map/images/site_map_6.PNG'%}" width="60%">
+                        </div>
+                        <h6>あなたと同じ学科の一つ先輩の履修例を参考にしよう<br></h6>
+                      </div>
+                    </div>
+                  </div>
+            
+                </div><!--panel-body-->
+              </div><!--panel panel-info panel-main-color-->
+            </div>
+            
+            <div class="row" width=50%>
+              <div class="panel panel-primary panel-main-color">
+                <div class="panel-heading panel-color" style="text-align:center;" width="50%">
+                  <span>レビュー機能</span>
+                </div><!--panel-heaing-->
+                  <div class="col-lg-6 col-xs-6">
+                    <div class="panel panel-info panel-main-color">
+                      <div class="panel-heading">
+                        <a href={% url 'judge_register' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">レビュー機能</span></h5></a>
+                      </div>
+                      <div class="panel-body">
+                        <div class="image101">
+                            <img src="{% static 'gv/site_map/images/site_map_7.PNG'%}" width="80%">
+                        </div>
+                        <h6>授業に対してのレビューを選択形式で入力できます。<br>集計結果は授業分析や教授分析に反映されます。</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div><!--panel-body-->
+              </div><!--panel panel-info panel-main-color-->
+            
+            
+            <div class="row" width=50%>
+                <div class="panel panel-primary panel-main-color">
+                  <div class="panel-heading panel-color" style="text-align:center;" width="50%">
+                    <span>その他機能</span>
+                  </div><!--panel-heaing-->
+                  <div class="panel-body">
+                    <div class="col-lg-6 col-xs-6">
+                      <div class="panel panel-info panel-main-color">
+                        <div class="panel-heading">
+                            <a href={% url 'inquiry' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">ABOUT　US</span></h5></a>
+                        </div>
+                        <div class="panel-body">
+                          <div class="image101">
+                              <!--<img src="{% static 'gv/site_map/images/site_map_2.PNG'%}" width="80%">-->
+                          </div>
+                          <h6>お問い合わせ、利用規約はこちらから</h6>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-xs-6">
+                      <div class="panel panel-info panel-main-color">
+                        <div class="panel-heading">
+                          <a href={% url 'flush' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">ログアウト</span></h5></a>
+                        </div>
+                        <div class="panel-body">
+                          <div class="image101">
+                              <!--<img src="{% static 'gv/site_map/images/site_map_1.PNG'%}" width="80%">-->
+                          </div>
+                          <h6>ユーザーを変更する場合はこちらから再度ログインしてください</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!--panel-body-->
+                </div><!--panel panel-info panel-main-color-->
+              </div>
+            </div>
 
 
-          <div class="col-lg-10 col-xs-12">
+          <div class="col-lg-12 col-xs-12">
             <div class="panel panel-info panel-main-color">
               <div class="panel-heading">
                 <h4>Re:Re:ss/リリス　information</h4>    
@@ -289,20 +361,24 @@
               <div class="panel-body">
                 <div style="text-align: left;">
                   <ul>
-                    <li><h5 style="text-align: left;">2019.11.01
+                    <li><h5 style="text-align: left;">2018.11.01
                         ----    リリスアプリ配信</h5></li>
-                    <li><h5 style="text-align: left;">2019.11.08
+                    <li><h5 style="text-align: left;">2018.11.08
                         ----    リリス利用者50人突破</h5></li>
-                    <li><h5 style="text-align: left;">2019.11.15
+                    <li><h5 style="text-align: left;">2018.11.15
                         ----    リリス利用者100人突破</h5></li>
-                    <li><h5 style="text-align: left;">2019.11.20
+                    <li><h5 style="text-align: left;">2018.11.20
                         ----    update GPA同学年同学科比較</h5></li>
-                    <li><h5 style="text-align: left;">2019.11.20
+                    <li><h5 style="text-align: left;">2018.11.20
                         ----    update 四年生の一部が利用可能に</h5></li>
-                    <li><h5 style="text-align: left;">2019.11.29
+                    <li><h5 style="text-align: left;">2018.11.29
                         ----    update 授業分析を追加</h5></li>
-                    <li><h5 style="text-align: left;">2019.12.04
+                    <li><h5 style="text-align: left;">2018.12.04
                         ----    立教大学 履修中止期間 開始</h5></li>
+                    <li><h5 style="text-align: left;">2019.03.08
+                        ----    リリス　先輩の履修機能　追加</h5></li>
+                    <li><h5 style="text-align: left;">2019.03.10
+                        ----    リリス　レビュー機能　追加</h5></li>
                         
                   </ul>
                 </div>          

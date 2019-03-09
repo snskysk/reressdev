@@ -36,6 +36,15 @@
   <div class="non-class" style="text-align: center;">該当教授のGPA：<strong class="non-class" style="background: linear-gradient(transparent 60%, #ff99ff 60%);">{{k_gpa}}</strong></div>
 
   <div><canvas id="bar-chart"></canvas></div>
+  <div class="panel panel-info panel-main-color">
+    <div class="panel-heading panel-color" style="text-align:center;">
+      ユーザーレビュー統計グラフ
+    </div><!--panel-heaing-->
+    <div class="panel-body">
+      <div><canvas height="280px" id="myrader"></canvas></div>
+    </div><!--panel-body-->
+  </div><!--panel panel-info panel-main-color-->
+
   <a href={% url 'course' %}><button class="hamon">人気授業分析に戻る</button>
   </a>
 
@@ -212,6 +221,83 @@
   window.addEventListener ?
     window.addEventListener('load', startSuggest, false) :
     window.attachEvent('onload', startSuggest);
+</script>
+<!--**********************************************************************************************
+                                  レーダーチャート記述
+***************************************************************************************************-->
+<script>
+  var Achivement_list = {{Achivement_list | safe}}
+  var kind_name = {{kind_name | safe}}
+  // 色の設定
+  var colorSet = {
+    red: 'rgb(255, 99, 132)',
+    orange: 'rgb(255, 159, 64)',
+    yellow: 'rgb(255, 205, 86)',
+    green: 'rgb(75, 192, 192)',
+    blue: 'rgb(54, 162, 235)',
+    purple: 'rgb(153, 102, 255)',
+    grey: 'rgb(201, 203, 207)'
+  };
+
+
+  // 色のRGB変換
+  var color = Chart.helpers.color;
+
+  /*
+   * チャートの初期設定
+   */
+  var config = {
+    type: 'radar',
+    data: {
+      //labels: ["月曜", "火曜", "水曜", "木曜", "金曜", "土曜", "日曜"],
+      labels: kind_name,
+      datasets: [{
+        label: "10段階評価平均",
+        backgroundColor: color(colorSet.red).alpha(0.5).rgbString(),
+        borderColor: colorSet.red,
+        pointBackgroundColor: colorSet.red,
+        data: Achivement_list
+      }, ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: false,
+      showTooltips: false,
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: false,
+      },
+      scale: {
+        display: true,
+        pointLabels: {
+          fontSize: 8,
+          fontColor: colorSet.yellow
+        },
+        ticks: {
+          display: true,
+          fontSize: 12,
+          fontColor: colorSet.green,
+          min: 0,
+          max: 10,
+          //maxRotation: 100,
+          //minRotation: 0,
+          beginAtZero: true
+        },
+        gridLines: {
+          display: true,
+          color: colorSet.yellow
+        }
+      }
+    }
+  };
+
+  /*
+   * チャートの作成
+   */
+  var myRadar = new Chart($("#myrader"), config);
 </script>
 
 {% endblock %}

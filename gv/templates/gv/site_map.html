@@ -16,7 +16,7 @@
 <!--経過時間：{{elapsed_time}} で表示-->
 <h2 style="color: #000;">リリスへようこそ</h2>
 <h4 style="text-align: center;color: darkkhaki;">現在の登録者数：{{numbers}}人</h4>
-<a href={% url 'flush' %}><h5><span class="non-class" style="background: linear-gradient(transparent 97%, #000 50%);">履修中止等による成績データの更新はこちら</span></h5></a>
+<a href={% url 'flush' %}><h3><span class="non-class" style="background: linear-gradient(transparent 97%, #000 50%);">成績データの更新はこちら</span></h3></a>
 <br><h5>機能名をクリックしてご利用ください</h5>
 <div class="row" width=50%>
   <div class="panel panel-primary panel-main-color">
@@ -119,6 +119,28 @@
 </div>
 
 <div class="row" width=50%>
+  <div class="panel panel-primary panel-main-color">
+    <div class="panel-heading panel-color" style="text-align:center;" width="50%">
+      <span>レビュー機能</span>
+    </div><!--panel-heaing-->
+      <div class="col-lg-6 col-xs-6">
+        <div class="panel panel-info panel-main-color">
+          <div class="panel-heading">
+            <a href={% url 'judge_register' %}><h5><span  style="background: linear-gradient(transparent 95%, #000 50%);">レビュー機能</span></h5></a>
+          </div>
+          <div class="panel-body">
+            <div class="image101">
+                <img src="{% static 'gv/site_map/images/site_map_7.PNG'%}" width="80%">
+            </div>
+            <h6>授業に対してのレビューを選択形式で入力できます。<br>集計結果は授業分析や教授分析に反映されます。</h6>
+          </div>
+        </div>
+      </div>
+    </div><!--panel-body-->
+  </div><!--panel panel-info panel-main-color-->
+
+
+<div class="row" width=50%>
     <div class="panel panel-primary panel-main-color">
       <div class="panel-heading panel-color" style="text-align:center;" width="50%">
         <span>その他機能</span>
@@ -133,7 +155,7 @@
               <div class="image101">
                   <!--<img src="{% static 'gv/site_map/images/site_map_2.PNG'%}" width="80%">-->
               </div>
-              <h6>お問い合わせやtwitterはこちらから</h6>
+              <h6>お問い合わせ、利用規約はこちらから</h6>
             </div>
           </div>
         </div>
@@ -153,7 +175,7 @@
       </div><!--panel-body-->
     </div><!--panel panel-info panel-main-color-->
   </div>
-
+</div>
 
 {% endblock %}
 

@@ -6,7 +6,18 @@
 <!--<link rel='stylesheet' type='text/css' href='{% static 'gv/teacher_search/my_teacher_search.css' %}' />
 <link rel='stylesheet' type='text/css' href='{% static 'gv/teacher_search/button.css' %}' />-->
 <!--<link rel='stylesheet' type='text/css' href='{% static 'gv/button/table.css' %}' />-->
-
+<style>
+.box6 {
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  background:rgb(240, 239, 239);
+  border: dashed 2px rgb(224, 224, 224);/*点線*/
+}
+.box6 p {
+  margin: 0; 
+  padding: 0;
+}
+</style>
 
 {% endblock%}
 {% block seo %}立教大学　Re:Re:ss/リリス　履修　このページは、ABOUT　USのページです。お問い合わせやTwitterの情報が確認できます。{% endblock %}
@@ -16,6 +27,13 @@
   <img src="/static/gv/images/contact.png" alt="Re:Re:ss" width="100%"/>
     <p style="text-align:center;">メールは<a href="mailto:rikkyo.reress301101&#64;gmail.com">rikkyo.reress301101&#64;gmail.com</a>へ</p>
     <!--<a href="mailto:rikkyo.reress301101@gmail.com?subject=問い合わせ・エラー報告等&amp;body=ご記入ください">メールはこちらへ</a> -->
+    <br>
+    <div><span style="color:#FFF; font-size:20px; background-color: rgb(23, 6, 173); padding-left: 7px; padding-right: 7px;">利用規約・ご利用上の注意</span></div>
+    <div class="box6" style="margin-left: 5px; margin-right: 5px;">
+      <p style="font-size:16px;">リリスの安全性について<br><br>リリスは、ユーザーの皆様に任意でIDとパスワードを入力頂き立教大学WEBシステムから成績データを収集しますが、パスワードや名前は一切保存しておりません。<br>ユーザーの学部学科を識別し適切なデータを提供するために、IDのみ保存しております。<br>保存内容等の詳細は、Twitter投稿「リリスの安全性について」メディアをご参照ください。</p>
+      
+    </div>
+
     <a class="twitter-timeline"
      data-lang="ja"
      data-tweet-limit="5"
