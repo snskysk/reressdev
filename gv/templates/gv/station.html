@@ -1,0 +1,131 @@
+{% extends 'gv/basetop.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block title %} Re:Re:ss ABOUT US 立教大学履修登録補助システム ～Re:Re:ss/リリス～ {% endblock %}
+{% block css %}
+<!--<link rel='stylesheet' type='text/css' href='{% static 'gv/teacher_search/my_teacher_search.css' %}' />
+<link rel='stylesheet' type='text/css' href='{% static 'gv/teacher_search/button.css' %}' />-->
+<!--<link rel='stylesheet' type='text/css' href='{% static 'gv/button/table.css' %}' />-->
+<!--<link rel='stylesheet' type='text/css' href='{% static 'gv/teacher_search/button.css' %}' />-->
+<style>
+.box6 {
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  background:rgb(240, 239, 239);
+  border: dashed 2px rgb(224, 224, 224);/*点線*/
+}
+.box6 p {
+  margin: 0; 
+  padding: 0;
+}
+.box61 {
+  background:rgb(155, 149, 247);
+  border: dashed 2px rgb(106, 101, 153);/*点線*/
+}
+.box61 p {
+  margin: 0; 
+  padding: 0;
+}
+.hamon{
+  border-radius: 20px;
+  color:#fff;
+  background: rgb(3, 63, 112);
+  position: relative;
+  padding: 15px 50px;
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: .3s;
+}
+.hamon::before,
+.hamon::after{
+  position: absolute;
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  left: calc(50% - 5px);
+  top: calc(50% - 5px);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .1);
+  transform: scale(0,0);
+}
+.hamon:active{
+  opacity: .7;
+}
+.hamon:hover::before{
+  animation: hamon 2s infinite;
+}
+.hamon:hover::after{
+  animation: hamon 2s .3s infinite;
+}
+@keyframes hamon {
+  0%   {  transform: scale(0,0);}
+  100% {  transform: scale(50,50);opacity: 0;}
+}
+
+
+@-webkit-keyframes typing { from { width: 0; } }
+@-webkit-keyframes blink-caret { 50% { border-color: transparent; } }
+
+.typing { 
+	font: bold 300% Consolas, Monaco, monospace;
+	border-right: .1em solid black;
+	width: 16.5em; 
+	width: 21ch;
+	margin: 2em 1em;
+	white-space: nowrap;
+	overflow: hidden;
+	-webkit-animation: typing 3s steps(21, end),
+	           blink-caret .5s step-end infinite alternate;
+}
+
+</style>
+
+{% endblock%}
+{% block seo %}立教大学　Re:Re:ss/リリス　履修　このページは、ABOUT　USのページです。お問い合わせやTwitterの情報が確認できます。{% endblock %}
+{% block body %}
+<!--メインの部分-->
+<!--<h3 class="page-header page-title" style="text-align:center;">お問い合わせ</h3>-->
+<!--<img src="/static/gv/homepage/images/titlelogo2.PNG" alt="Re:Re:ss" width="50%"/>
+-->
+
+  <p style="position: relative;">
+        <img src="{% static 'gv/homepage/images/stationback2.PNG'%}" alt="立教大学　Re:Re:ss/リリス　履修　hp-login" class="mainimage" width="100%" height="300%">
+        <div class="typing" style="position: absolute; top: 15px; left: 10px; width: 300px; text-align: center; font-size:24px; color: rgb(252, 251, 212);">Welcome to Re:Re:ss!!</div>
+    </p>
+
+
+<div class="box61" style="margin-left: 5px; margin-right: 5px;" width="100%">
+
+    <!--<a href="mailto:rikkyo.reress301101@gmail.com?subject=問い合わせ・エラー報告等&amp;body=ご記入ください">メールはこちらへ</a> -->
+    <br>
+    <div><span style="color:#FFF; font-size:20px; background-color: rgb(118, 105, 240); padding-left: 7px; padding-right: 7px;">利用規約・ご利用上の注意</span></div>
+    <div class="box6" style="margin-left: 5px; margin-right: 5px;">
+        <p style="font-size:16px;">リリスの安全性について<br><br>リリスは、ユーザーの皆様に任意でIDとパスワードを入力頂き立教大学WEBシステムから成績データを収集しますが、パスワードや名前は一切保存しておりません。<br>ユーザーの学部学科を識別し適切なデータを提供するために、IDのみ保存しております。<br>保存内容等の詳細は、Twitter投稿「リリスの安全性について」メディアをご参照ください。</p>      
+    </div>
+
+            <!--<button id='load-checker'></button>-->
+    <div style="text-align:center;">
+        <a href={% url 'hp' %}>
+            <button class="hamon">
+                    START  Re:Re:ss
+            </button>
+        </a>                      
+    </div>
+
+
+    <p style="font-size:16px;"></p>
+</div>
+
+
+
+
+{% endblock %}
+
+
+{% block js %}
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>-->
+
+{% endblock %}

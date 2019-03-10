@@ -34,6 +34,9 @@ from .forms import ggs_counter_Form
 #####################################   view 目次     ######################################
                 #トップページ関連
                                     # hp   # substitution　　# flush
+                #review関連
+                                    # judge_subject
+                                    # judge_register
                 #mainhome関連
                                     # new_data_register    # mainhome　　
                 #五大機能関連
@@ -150,6 +153,7 @@ def flush(request):#flush関数自体はsessionのflushを行わない。hp.html
         }
 
     return render(request, 'gv/hp.html', index_params)
+    #return render(request, 'gv/station.html', index_params)
 
 
 
@@ -231,7 +235,8 @@ def judge_register(request):
         if already_reviewed>=1:
             old_data.filter(subject_j=subject_j).delete()
         
-        user_judgements = userJudge(user_id_j=stunum,subject_j=subject_j,teacher_j=teacher_j,year_j=year_j,season_j=season_j,test_level=request.POST["test_level"],homework_amount=request.POST["homework_amount"],homework_level=request.POST["homework_level"],atend_importance=request.POST["atend_importance"],distribution_amount=request.POST["distribution_amount"],pastdata_amount=request.POST["pastdata_amount"],groupwork_amount=request.POST["groupwork_amount"],pointed_amount=request.POST["pointed_amount"],gratest_level=request.POST["gratest_level"],how_fun=request.POST["how_fun"])
+        #user_judgements = userJudge(user_id_j=stunum,subject_j=subject_j,teacher_j=teacher_j,year_j=year_j,season_j=season_j,test_level=request.POST["test_level"],homework_amount=request.POST["homework_amount"],homework_level=request.POST["homework_level"],atend_importance=request.POST["atend_importance"],distribution_amount=request.POST["distribution_amount"],pastdata_amount=request.POST["pastdata_amount"],groupwork_amount=request.POST["groupwork_amount"],pointed_amount=request.POST["pointed_amount"],gratest_level=request.POST["gratest_level"],how_fun=request.POST["how_fun"])
+        user_judgements = userJudge(user_id_j=stunum,subject_j=subject_j,teacher_j=teacher_j,year_j=year_j,season_j=season_j,test_level=request.POST["test_level"],homework_amount=0,homework_level=request.POST["homework_level"],atend_importance=request.POST["atend_importance"],distribution_amount=request.POST["distribution_amount"],pastdata_amount=request.POST["pastdata_amount"],groupwork_amount=request.POST["groupwork_amount"],pointed_amount=0,gratest_level=request.POST["gratest_level"],how_fun=0)
         user_judgements.save()        
         #set form
         filtered_sub = subjectInfo.objects.filter(user_id=stunum)#userのみの授業の情報
@@ -938,8 +943,8 @@ def sub_search(request):
         d8 = str(np.average(np.array(list(judgements.values_list('pointed_amount',flat=True)))))
         d9 = str(np.average(np.array(list(judgements.values_list('gratest_level',flat=True)))))
         d10 = str(np.average(np.array(list(judgements.values_list('how_fun',flat=True)))))
-        Achivement_list = "['"+d1+"', '"+d5+"', '"+d2+"', '"+d3+"', '"+d4+"', '"+d6+"', '"+d7+"', '"+d8+"', '"+d9+"', '"+d10+"']"
-        kind_name = ['テスト難易度', '形式 マーク<論述', '課題量・難易度', '小テスト・レポート頻度', '出席重要度', '過去問・教授開示情報量等', 'グループワーク量', '挙手・指名頻度', 'ためになったか', '楽しかったか']
+        Achivement_list = "['"+d1+"', '"+d5+"', '"+d3+"', '"+d4+"', '"+d5+"', '"+d7+"', '"+d9+"']"
+        kind_name = ['テスト・課題難易度', '形式 マーク<論述', '小テ・レポ・課題量', '出席率・配布資料重要度', '過去問・教授開示情報量等', 'グループワーク量', '有意義・楽しさ']
 
         sub_search_params = {
             'kind_name':kind_name,
@@ -1078,8 +1083,10 @@ def teacher_search(request):
         d8 = str(np.average(np.array(list(judgements.values_list('pointed_amount',flat=True)))))
         d9 = str(np.average(np.array(list(judgements.values_list('gratest_level',flat=True)))))
         d10 = str(np.average(np.array(list(judgements.values_list('how_fun',flat=True)))))
-        Achivement_list = "['"+d1+"', '"+d5+"', '"+d2+"', '"+d3+"', '"+d4+"', '"+d6+"', '"+d7+"', '"+d8+"', '"+d9+"', '"+d10+"']"
-        kind_name = ['テスト難易度', '形式 マーク<論述', '課題量・難易度', '小テスト・レポート頻度', '出席率・配布資料重要度', '過去問・教授開示情報量、重要度', 'グループワーク量', '挙手・指名頻度', 'ためになったか', '楽しかったか']
+        #Achivement_list = "['"+d1+"', '"+d5+"', '"+d2+"', '"+d3+"', '"+d4+"', '"+d6+"', '"+d7+"', '"+d8+"', '"+d9+"', '"+d10+"']"
+        #kind_name = ['テスト難易度', '形式 マーク<論述', '課題量・難易度', '小テスト・レポート頻度', '出席率・配布資料重要度', '過去問・教授開示情報量、重要度', 'グループワーク量', '挙手・指名頻度', 'ためになったか', '楽しさ']
+        Achivement_list = "['"+d1+"', '"+d5+"', '"+d3+"', '"+d4+"', '"+d5+"', '"+d7+"', '"+d9+"']"
+        kind_name = ['テスト・課題難易度', '形式 マーク<論述', '小テ・レポ・課題量', '出席率・配布資料重要度', '過去問・教授開示情報量等', 'グループワーク量', '有意義・楽しさ']
         print(Achivement_list)
         print(kind_name)
         teacher_search_params = {
