@@ -117,12 +117,12 @@ class userJudge_Form(forms.Form):
     ('9','9'),
     ('10','10'),
     ]
-    test_level = forms.ChoiceField(choices=num_list, required = False,label='テスト難易度')
-    homework_amount = forms.ChoiceField(choices=num_list, required = False,label='課題量・難易度')
-    homework_level = forms.ChoiceField(choices=num_list, required = False,label='小テスト頻度(回)')
+    test_level = forms.ChoiceField(choices=num_list, required = False,label='テスト難易度(ない場合は0)')
+    homework_amount = forms.ChoiceField(choices=num_list, required = False,label='課題量・難易度(授業内課題を含む)')
+    homework_level = forms.ChoiceField(choices=num_list, required = False,label='小テスト・レポート頻度(回)')
     atend_importance = forms.ChoiceField(choices=num_list, required = False,label='出席重要度')
     distribution_amount = forms.ChoiceField(choices=num_list, required = False,label='形式 マーク<論述')
-    pastdata_amount = forms.ChoiceField(choices=num_list, required = False,label='過去問等情報量')
+    pastdata_amount = forms.ChoiceField(choices=num_list, required = False,label='過去問・教授開示情報量等')
     groupwork_amount = forms.ChoiceField(choices=num_list, required = False,label='グループワーク量')
     pointed_amount = forms.ChoiceField(choices=num_list, required = False,label='挙手・指名頻度')
     gratest_level = forms.ChoiceField(choices=num_list, required = False,label='ためになったか')

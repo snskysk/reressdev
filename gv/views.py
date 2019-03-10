@@ -200,7 +200,7 @@ def judge_subject(request):
                 hyoukas.append(none)
 
         filtered_sub=[(subs[i],teachers[i],list(filtered_sub.values_list('grade', flat=True))[i],list(filtered_sub.values_list('season', flat=True))[i],list(filtered_sub.values_list('year_int', flat=True))[i],hyoukas[i]) for i in range(len(filtered_sub))]
-
+        filtered_sub = sorted(filtered_sub,key=itemgetter(5),reverse=False)
         jr_params = {
             'data':filtered_sub,
         }
@@ -247,7 +247,7 @@ def judge_register(request):
                 hyoukas.append(none)
 
         filtered_sub=[(subs[i],teachers[i],list(filtered_sub.values_list('grade', flat=True))[i],list(filtered_sub.values_list('season', flat=True))[i],list(filtered_sub.values_list('year_int', flat=True))[i],hyoukas[i]) for i in range(len(filtered_sub))]
-
+        filtered_sub = sorted(filtered_sub,key=itemgetter(5),reverse=False)
         jr_params = {
             'data':filtered_sub,
             'message':'レビューが完了しました。',
@@ -268,7 +268,7 @@ def judge_register(request):
                 hyoukas.append(none)
 
         filtered_sub=[(subs[i],teachers[i],list(filtered_sub.values_list('grade', flat=True))[i],list(filtered_sub.values_list('season', flat=True))[i],list(filtered_sub.values_list('year_int', flat=True))[i],hyoukas[i]) for i in range(len(filtered_sub))]
-
+        filtered_sub = sorted(filtered_sub,key=itemgetter(5),reverse=False)
         jr_params = {
             'data':filtered_sub,
         }
@@ -939,7 +939,7 @@ def sub_search(request):
         d9 = str(np.average(np.array(list(judgements.values_list('gratest_level',flat=True)))))
         d10 = str(np.average(np.array(list(judgements.values_list('how_fun',flat=True)))))
         Achivement_list = "['"+d1+"', '"+d5+"', '"+d2+"', '"+d3+"', '"+d4+"', '"+d6+"', '"+d7+"', '"+d8+"', '"+d9+"', '"+d10+"']"
-        kind_name = ['テスト難易度', '形式 マーク<論述', '課題量・難易度', '小テスト頻度', '出席重要度', '過去問等情報量', 'グループワーク量', '挙手・指名頻度', 'ためになったか', '楽しかったか']
+        kind_name = ['テスト難易度', '形式 マーク<論述', '課題量・難易度', '小テスト・レポート頻度', '出席重要度', '過去問・教授開示情報量等', 'グループワーク量', '挙手・指名頻度', 'ためになったか', '楽しかったか']
 
         sub_search_params = {
             'kind_name':kind_name,
@@ -1079,7 +1079,7 @@ def teacher_search(request):
         d9 = str(np.average(np.array(list(judgements.values_list('gratest_level',flat=True)))))
         d10 = str(np.average(np.array(list(judgements.values_list('how_fun',flat=True)))))
         Achivement_list = "['"+d1+"', '"+d5+"', '"+d2+"', '"+d3+"', '"+d4+"', '"+d6+"', '"+d7+"', '"+d8+"', '"+d9+"', '"+d10+"']"
-        kind_name = ['テスト難易度', '形式 マーク<論述', '課題量・難易度', '小テスト頻度', '出席重要度', '過去問等情報量', 'グループワーク量', '挙手・指名頻度', 'ためになったか', '楽しかったか']
+        kind_name = ['テスト難易度', '形式 マーク<論述', '課題量・難易度', '小テスト・レポート頻度', '出席率・配布資料重要度', '過去問・教授開示情報量、重要度', 'グループワーク量', '挙手・指名頻度', 'ためになったか', '楽しかったか']
         print(Achivement_list)
         print(kind_name)
         teacher_search_params = {
