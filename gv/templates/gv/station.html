@@ -80,7 +80,62 @@
 	-webkit-animation: typing 3s steps(21, end),
 	           blink-caret .5s step-end infinite alternate;
 }
+.typing2 { 
+	font: bold 300% Consolas, Monaco, monospace;
+	border-right: .1em solid black;
+	width: 16.5em; 
+	width: 21ch;
+	margin: 2em 1em;
+	white-space: nowrap;
+	overflow: hidden;
+	-webkit-animation: typing 3s steps(21, end),
+	           blink-caret .5s step-end infinite alternate;
+}
+</style>
 
+<style>
+.anime_test3 {
+    display:  block;                /* ブロック要素にする */
+    margin: 0 auto;                 /* 要素中央揃え */
+    position:  relative;            /* 位置指定 */
+    animation: anime1 4s ease;      /* アニメーション指定 */
+}
+ 
+@keyframes anime1 {
+    0% {
+        opacity:  0;                /* 透明度指定 */
+        top: 500px;                  /* 位置指定 */
+    }
+    50% {
+        opacity:  0;                /* 透明度指定 */
+        top: 500;                     /* 位置指定 */
+    }
+    100% {
+        opacity:  1;                /* 透明度指定 */
+        top: 220;                     /* 位置指定 */
+    }
+}
+.anime_test4 {
+    display:  block;                /* ブロック要素にする */
+    margin: 0 auto;                 /* 要素中央揃え */
+    position:  relative;            /* 位置指定 */
+    animation: anime1 6.5s ease;      /* アニメーション指定 */
+}
+ 
+@keyframes anime1 {
+    0% {
+        opacity:  0;                /* 透明度指定 */
+        top: 700px;                  /* 位置指定 */
+    }
+    50% {
+        opacity:  0;                /* 透明度指定 */
+        top: 700;                     /* 位置指定 */
+    }
+    100% {
+        opacity:  1;                /* 透明度指定 */
+        top: 350;                     /* 位置指定 */
+    }
+}
 </style>
 
 {% endblock%}
@@ -91,33 +146,23 @@
 <!--<img src="/static/gv/homepage/images/titlelogo2.PNG" alt="Re:Re:ss" width="50%"/>
 -->
 
-  <p style="position: relative;">
-        <img src="{% static 'gv/homepage/images/stationback2.PNG'%}" alt="立教大学　Re:Re:ss/リリス　履修　hp-login" class="mainimage" width="100%" height="300%">
-        <div class="typing" style="position: absolute; top: 15px; left: 10px; width: 300px; text-align: center; font-size:24px; color: rgb(252, 251, 212);">Welcome to Re:Re:ss!!</div>
-    </p>
-
-
-<div class="box61" style="margin-left: 5px; margin-right: 5px;" width="100%">
-
-    <!--<a href="mailto:rikkyo.reress301101@gmail.com?subject=問い合わせ・エラー報告等&amp;body=ご記入ください">メールはこちらへ</a> -->
-    <br>
-    <div><span style="color:#FFF; font-size:20px; background-color: rgb(118, 105, 240); padding-left: 7px; padding-right: 7px;">利用規約・ご利用上の注意</span></div>
-    <div class="box6" style="margin-left: 5px; margin-right: 5px;">
-        <p style="font-size:16px;">リリスの安全性について<br><br>リリスは、ユーザーの皆様に任意でIDとパスワードを入力頂き立教大学WEBシステムから成績データを収集しますが、パスワードや名前は一切保存しておりません。<br>ユーザーの学部学科を識別し適切なデータを提供するために、IDのみ保存しております。<br>保存内容等の詳細は、Twitter投稿「リリスの安全性について」メディアをご参照ください。</p>      
-    </div>
-
-            <!--<button id='load-checker'></button>-->
-    <div style="text-align:center;">
+<p style="position: relative;">
+    <img src="{% static 'gv/homepage/images/stationback2.PNG'%}" alt="立教大学　Re:Re:ss/リリス　履修　hp-login" class="mainimage" width="100%" height="300%">
+    <div class="typing" style="position: absolute; top: 15px; left: 10px; width: 300px; text-align: center; font-size:24px; color: rgb(252, 251, 212);">Welcome to Re:Re:ss!!</div>
+    <div class="typing2" style="position: absolute; top: 80px; left: 10px; width: 300px; text-align: center; font-size:24px; color: rgb(252, 251, 212);">CLICK TO START >>></div>
+    <div class="anime_test3" style="text-align:center; position: absolute; top: 220px; left: 40px; width: 300px; text-align: center; font-size:24px; color: rgb(252, 251, 212);">
         <a href={% url 'hp' %}>
             <button class="hamon">
                     START  Re:Re:ss
             </button>
         </a>                      
     </div>
-
-
-    <p style="font-size:16px;"></p>
-</div>
+    <p class="anime_test4" style="text-align:center; position: absolute; top: 350px; left: 40px; width: 300px; text-align: center; font-size:24px; color: rgb(252, 251, 212); font-size:16px;">リリスの使い方<br><br>新入生<br>「先輩の履修」という機能を使ってみてください。履修の組み方の手助けになるかもしれません。<br><br>履修登録<br>人気授業分析（授業名クリック） → 授業分析（ページ下担当教授名クリック） → 教授分析<br>といった使い方が便利です。<br><br>成績参照<br>GPAランキングや成績グラフで自分のステータスが分かります。レビュー機能で履修した授業の評価をすると、他の人の役に立つかもしれません。<br><br>左上メニューのトップページを基盤に、それぞれの機能をお使いください。<br><br>Re:Re:ssで素敵な授業と巡り合いましょう。</p>      
+    <!--
+    <div class="anime_test3" style="position: absolute; top: 15px; left: 10px; width: 300px;"></div>
+    <img class="anime_test2" src="{% static 'gv/homepage/images/titlelogo2.PNG'%}" style="position: absolute; top: 15px; left: 10px; width: 300px;">
+    -->
+</p>
 
 
 

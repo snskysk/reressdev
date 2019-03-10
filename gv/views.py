@@ -1,7 +1,7 @@
 import sys
 import traceback
 import time
-
+import datetime
 #
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
@@ -95,6 +95,17 @@ def base(request):
     return render(request, 'gv/hp.html', index_params)
 
 def hp(request):
+    try:
+        today = request.session["today"]
+        if today != str(datetime.date.today()):
+            request.session["today"]=str(datetime.date.today())
+            return render(request, 'gv/station.html')
+        else:
+            pass
+    except:
+        request.session["today"]=str(datetime.date.today())
+        return render(request, 'gv/station.html')
+
     form = userInfoForm()
     stuobj = list(studentInfo.objects.values_list('user_id', flat=True))
     numbers=len(stuobj)
@@ -153,7 +164,7 @@ def flush(request):#flush関数自体はsessionのflushを行わない。hp.html
         }
 
     return render(request, 'gv/hp.html', index_params)
-    #return render(request, 'gv/station.html', index_params)
+    #return render(request, 'gv/station.html')
 
 
 
@@ -356,6 +367,7 @@ def mainhome(request):
         else:
             pass
         request.session.flush()
+        request.session["today"]=str(datetime.date.today())
         if short_cut_sn in stuobj:#もしすでに登録されているなら
 
             try:#もしsessionが残っているなら #ここはもう要らないかも
@@ -579,7 +591,9 @@ def mainhome(request):
         elapsed_time = np.round(time.time() - start,1)
         print('---mainhome全プロセス経過時間 {0}秒---'.format(elapsed_time))
         #ログインしたことの証拠,mainhome_after_loginで使用
-        return render(request, 'gv/site_map.html', mainhome_params)
+        #return render(request, 'gv/site_map.html', mainhome_params)
+        return render(request, 'gv/station.html')
+
 
     #getでmainhomeにアクセスしてしまった時の処理
     else:
