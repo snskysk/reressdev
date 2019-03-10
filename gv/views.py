@@ -938,8 +938,8 @@ def sub_search(request):
         d8 = str(np.average(np.array(list(judgements.values_list('pointed_amount',flat=True)))))
         d9 = str(np.average(np.array(list(judgements.values_list('gratest_level',flat=True)))))
         d10 = str(np.average(np.array(list(judgements.values_list('how_fun',flat=True)))))
-        Achivement_list = "['"+d1+"', '"+d2+"', '"+d3+"', '"+d4+"', '"+d5+"', '"+d6+"', '"+d7+"', '"+d8+"', '"+d9+"', '"+d10+"']"
-        kind_name = ['テスト難易度', '課題量', '課題難易度', '出席重要度', '配布資料量', '過去問等情報量', 'グループワーク量', '挙手・指名頻度', 'ためになったか', '楽しかったか']
+        Achivement_list = "['"+d1+"', '"+d5+"', '"+d2+"', '"+d3+"', '"+d4+"', '"+d6+"', '"+d7+"', '"+d8+"', '"+d9+"', '"+d10+"']"
+        kind_name = ['テスト難易度', '形式 マーク<論述', '課題量', '課題難易度', '出席重要度', '過去問等情報量', 'グループワーク量', '挙手・指名頻度', 'ためになったか', '楽しかったか']
 
         sub_search_params = {
             'kind_name':kind_name,
@@ -1078,8 +1078,8 @@ def teacher_search(request):
         d8 = str(np.average(np.array(list(judgements.values_list('pointed_amount',flat=True)))))
         d9 = str(np.average(np.array(list(judgements.values_list('gratest_level',flat=True)))))
         d10 = str(np.average(np.array(list(judgements.values_list('how_fun',flat=True)))))
-        Achivement_list = "['"+d1+"', '"+d2+"', '"+d3+"', '"+d4+"', '"+d5+"', '"+d6+"', '"+d7+"', '"+d8+"', '"+d9+"', '"+d10+"']"
-        kind_name = ['テスト難易度', '課題量', '課題難易度', '出席重要度', '配布資料量', '過去問等情報量', 'グループワーク量', '挙手・指名頻度', 'ためになったか', '楽しかったか']
+        Achivement_list = "['"+d1+"', '"+d5+"', '"+d2+"', '"+d3+"', '"+d4+"', '"+d6+"', '"+d7+"', '"+d8+"', '"+d9+"', '"+d10+"']"
+        kind_name = ['テスト難易度', '形式 マーク<論述', '課題量', '課題難易度', '出席重要度', '過去問等情報量', 'グループワーク量', '挙手・指名頻度', 'ためになったか', '楽しかったか']
         print(Achivement_list)
         print(kind_name)
         teacher_search_params = {

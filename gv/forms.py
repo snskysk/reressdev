@@ -121,7 +121,7 @@ class userJudge_Form(forms.Form):
     homework_amount = forms.ChoiceField(choices=num_list, required = False,label='課題量')
     homework_level = forms.ChoiceField(choices=num_list, required = False,label='課題難易度')
     atend_importance = forms.ChoiceField(choices=num_list, required = False,label='出席重要度')
-    distribution_amount = forms.ChoiceField(choices=num_list, required = False,label='配布資料量')
+    distribution_amount = forms.ChoiceField(choices=num_list, required = False,label='形式 マーク<論述')
     pastdata_amount = forms.ChoiceField(choices=num_list, required = False,label='過去問等情報量')
     groupwork_amount = forms.ChoiceField(choices=num_list, required = False,label='グループワーク量')
     pointed_amount = forms.ChoiceField(choices=num_list, required = False,label='挙手・指名頻度')
