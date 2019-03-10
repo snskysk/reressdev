@@ -166,7 +166,8 @@ def flush(request):#flush関数自体はsessionのflushを行わない。hp.html
     return render(request, 'gv/hp.html', index_params)
     #return render(request, 'gv/station.html')
 
-
+def welcome(request):
+    return render(request, 'gv/station.html')
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                                                                                                 #mainhome関連
