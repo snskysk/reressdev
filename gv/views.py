@@ -144,6 +144,7 @@ def hp(request):
 def substitution(request):#スクレイピング高速化用
     return render(request, 'gv/demo_gd.html')
 
+
 def flush(request):#flush関数自体はsessionのflushを行わない。hp.htmlを返すためのもの。flushはmainhome関数内で行う。
     #request.session.flush()
     form = userInfoForm()
